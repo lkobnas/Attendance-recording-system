@@ -2,7 +2,7 @@
 <br />
 
 ## About the Project
-Tired of taking attendance by hand? This Project will sure help you out. Our project aim to create a smart system that record student's attendance automatically. We provide 3 methods for attance record: RFID, Facial recognition and Fingerprint.
+Tired of taking attendance by hand? This project will surely help you out. Our project aims to create a smart system that records students' attendance automatically. We provide 3 methods for attendance record: RFID, Facial recognition and Fingerprint.
 
 <br />
 
