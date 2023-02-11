@@ -61,8 +61,10 @@ All scheduled classes and attendance records are saved into the local database. 
 
 <br />
 <br />
+
 ## Getting Started
 <br />
+
 ### Prerequisites
 <br />
 
@@ -81,5 +83,5 @@ All scheduled classes and attendance records are saved into the local database. 
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
-[logo] : images/punchIN_logo.png
+
 
