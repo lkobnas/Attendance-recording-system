@@ -2,7 +2,7 @@
 <br />
 
 <p align="center">
-    <img src="images/punchIN_logo.png" alt="Logo" >
+    <img src="images/punchIN_logo.png" alt="Logo" width="912" height="282">
 </p>
 
 ## About the Project
@@ -57,13 +57,18 @@ All scheduled classes and attendance records are saved into the local database. 
 
 ## System Design 
 
+<br />
 
+## Circuit Diagram
+
+<br />
+
+<img src="images/circuit_diagram.png" alt="circuit_diagram" width="800" height="355">
 
 <br />
 <br />
 
 ## Getting Started
-<br />
 
 ### Prerequisites
 <br />
@@ -75,6 +80,16 @@ All scheduled classes and attendance records are saved into the local database. 
 
 ## Usage
 <br />
+
+## References
+
+GPIO Pinout of Raspberry Pi 4B (2G)
+<br/>
+
+<img src="images/GPIO_pinout.png" alt="raspberry_pinout" width="774" height="435">
+
+<br/>
+<br/>
 
 ## Acknowledgements
 * Wix  ([Logo Design and Inspiration](https://www.wix.com/logo/maker))
