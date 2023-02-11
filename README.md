@@ -1,4 +1,4 @@
-# Attendance Recording System
+# PunchIN - A Smart Attendance Recording System
 <br />
 
 ## About the Project
