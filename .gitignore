@@ -35,4 +35,4 @@
 .vscode
 
 # Credentials
-credentials.txt
+email/credentials.txt
