@@ -1,22 +1,29 @@
 #include <curl/curl.h>
 #include <string>
+#include <fstream>
 
 int main()
 {
+	// Read file for credentials
+	std::string username, password;	
+    std::ifstream infile("credentials.txt");
+    infile >> username >> password;	
+	
     CURL *curl;
     CURLcode res = CURLE_OK;
     struct curl_slist *recipients = NULL;
-    std::string sender = "eng5220.group38@gmail.com";
+    std::string sender = username;
     std::string recipient = "eng5220.group38@gmail.com";
     std::string subject = "Test email from C++";
     std::string body = "This is a test email sent using libcurl from C++.";
+    
 
     // Initialize curl
     curl = curl_easy_init();
     if(curl) {
         // Set email details
         curl_easy_setopt(curl, CURLOPT_USERNAME, sender.c_str());
-        curl_easy_setopt(curl, CURLOPT_PASSWORD, "Group38_5220");
+        curl_easy_setopt(curl, CURLOPT_PASSWORD, password);
         curl_easy_setopt(curl, CURLOPT_URL, "smtp://smtp.gmail.com:587");
         curl_easy_setopt(curl, CURLOPT_USE_SSL, (long)CURLUSESSL_ALL);
 
@@ -44,6 +51,9 @@ int main()
         // Cleanup
         curl_slist_free_all(recipients);
         curl_easy_cleanup(curl);
+        
+        //test code
+        std::cout<< username << password S;
     }
 
     return 0;
