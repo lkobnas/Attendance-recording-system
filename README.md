@@ -1,19 +1,30 @@
-# PunchIN - A Smart Attendance Recording System
-<br />
+<h1> PunchIN - A Smart Attendance Recording System </h1>
+<br>
 
 <p align="center">
-    <img src="images/punchIN_logo.png" alt="Logo" width="912" height="282">
+    <img src="images/punchIN_banner_flat.png" alt="Logo" width="912" height="282">
 </p>
 
-## About the Project
+<h2> About the Project </h2>
 Tired of taking attendance by hand? This project will surely help you out! PunchIN is a real-time raspberry Pi project which aims to simplify the process of taking attendance by introducing a smart device. It not only saves time but also ensures accuracy and reduces the chance of manual errors. This system eliminates the need for manual signatures and allows students to mark their attendance in just a few seconds.
-<br />
-<br />
+<br>
+<br>
 
+<h2> Join us on social media </h2>
 
-## Features
+<a href="https://twitter.com/PunchIN_38">
+  <img align="left" alt="PunchIN | Twitter" width="38px" style ="margin-right:20px"  src="https://raw.githubusercontent.com/peterthehan/peterthehan/master/assets/twitter.svg" />
+</a>
 
-### 1. Take attendance with three methods
+<a href="https://twitter.com/PunchIN_38">
+  <img align="left" alt="PunchIN | YouTube" width="38px" style ="margin-right:20px" src="https://raw.githubusercontent.com/peterthehan/peterthehan/master/assets/youtube.svg" />
+</a>
+
+<br>
+
+<h2> <br> Features </h2>
+
+<h3> 1. Take attendance with three methods </h3>
 
 * RFID / NFC
 * Facial recognition
@@ -21,9 +32,9 @@ Tired of taking attendance by hand? This project will surely help you out! Punch
 
 Maximum Flexibility!
 
-<br/>
+<br>
 
-### 2. Friendly UI design
+<h3> 2. Friendly UI design </h3>
 
 Intuitive UI design with three operation modes:
 
@@ -31,67 +42,68 @@ Intuitive UI design with three operation modes:
 - User Registration mode 
 - Class Scheduling mode
 
-<br/>
+<br>
 
-### 3. Email notification
+<h3> 3. Email notification </h3>
 
 - A confirmation email will be sent out automatically when a student has punched in
 - A reminder email will be sent to students who registered in a class but did not show up on time
 
-<br/>
+<br>
 
-### 4. Real-time attendance record
+<h3> 4. Real-time attendance record </h3>
 
 All scheduled classes and attendance records are saved into the local database. Course instructors can review the real-time attendance record in the front panel at any time.
 
-<br/>
+<br>
 
-## Hardware
+<h2> Hardware </h2>
+
 1. Raspberry Pi 4B 2G (Microprocessor)
 2. 7" 800*480 TN Touch Monitor (Front panel)
 3. PN532 RFID/NFC Reader (Sensor)
 4. 90 degrees Camera (Sensor)
 5. AS608 Optical Fingerprint Sensor (Sensor)
 
-<br />
+<br>
 
-## System Design 
+<h2> System Design </h2>
 
-<br />
+<br>
 
-## Circuit Diagram
+<h2> Circuit Diagram </h2>
 
-<br />
+<br>
 
 <img src="images/circuit_diagram.png" alt="circuit_diagram" width="800" height="355">
 
-<br />
-<br />
+<br>
+<br>
 
-## Getting Started
+<h2> Getting Started </h2>
 
-### Prerequisites
-<br />
+<h3> Prerequisites </h3>
+<br>
 
-### Installation
-<br />
+<h3> Installation </h3>
+<br>
 
-<br />
+<br>
 
-## Usage
-<br />
+<h2> Usage </h2>
+<br>
 
-## References
+<h2> References </h2>
 
 GPIO Pinout of Raspberry Pi 4B (2G)
-<br/>
+<br>
 
 <img src="images/GPIO_pinout.png" alt="raspberry_pinout" width="774" height="435">
 
-<br/>
-<br/>
+<br>
+<br>
 
-## Acknowledgements
+<h2> Acknowledgements </h2>
 * Wix  ([Logo Design and Inspiration](https://www.wix.com/logo/maker))
 * Flaticon  ([Icon](https://www.flaticon.com/))
 
