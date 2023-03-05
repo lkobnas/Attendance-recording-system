@@ -37,3 +37,4 @@
 # Credentials
 email/credentials.h
 email/credentials.json
+email/credentials.txt
