@@ -35,4 +35,5 @@
 .vscode
 
 # Credentials
-email/credentials.txt
+email/credentials.h
+email/credentials.json
