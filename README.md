@@ -69,13 +69,16 @@ All scheduled classes and attendance records are saved into the local database. 
 
 <h2> System Design </h2>
 
+1. Circuit Diagram
+
+<img src="images/circuit_diagram.png" alt="circuit_diagram" width="800" height="355" style="margin-left:25px">
+<br>
 <br>
 
-<h2> Circuit Diagram </h2>
+2. Sequence Diagram
 
+<img src="images/Sequence_diagram.png" alt="Sequence_diagram" width="800" style="margin-left:25px">
 <br>
-
-<img src="images/circuit_diagram.png" alt="circuit_diagram" width="800" height="355">
 
 <br>
 <br>
@@ -90,12 +93,6 @@ All scheduled classes and attendance records are saved into the local database. 
 
 <br>
 
-
-<h2> Project Planning </h2>
-
-[GitHub Projects - PunchIN Project Planning](https://github.com/users/lkobnas/projects/1)
-<br>
-
 <h2> Contributors </h2>
 <a href="https://github.com/lkobnas/Attendance-recording-system/graphs/contributors">
   <img width="38px" style ="margin-right:20px" src="https://contrib.rocks/image?repo=lkobnas/Attendance-recording-system" />
@@ -107,6 +104,13 @@ All scheduled classes and attendance records are saved into the local database. 
 ([37Sniper](https://github.com/37Sniper)) - Chenguang Wang (2826966W) <br>
 ([HengyuY](https://github.com/HengyuY)) - Hengyu Yang (2822511Y) <br>
 ([Yyyyy0512](https://github.com/Yyyyy0512)) - Jin Yang (2803454Y) <br>
+<br>
+<br>
+
+<h2> Project Planning </h2>
+
+[GitHub Projects - PunchIN Project Planning](https://github.com/users/lkobnas/projects/1)
+<br>
 <br>
 
 <h2> References </h2>
@@ -122,10 +126,10 @@ GPIO Pinout of Raspberry Pi 4B (2G)
 
 <h2> Acknowledgements </h2>
 
-* Wix  ([Logo Design and Inspiration](https://www.wix.com/logo/maker))
-* Flaticon  ([Icon](https://www.flaticon.com/))
-* Contributor ([contributor.img](https://contrib.rocks/))
-
+* Logo Design and Inspiration  ([Wix](https://www.wix.com/logo/maker))
+* Creating Icon ([Flaticon](https://www.flaticon.com/))
+* Making contributor section ([contributor.img](https://contrib.rocks/))
+* Creating graph and diagram ([Lucidchart](https://www.lucidchart.com/pages/))
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
