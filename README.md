@@ -16,7 +16,7 @@ Tired of taking attendance by hand? This project will surely help you out! Punch
   <img align="left" alt="PunchIN | Twitter" width="38px" style ="margin-right:20px"  src="https://raw.githubusercontent.com/peterthehan/peterthehan/master/assets/twitter.svg" />
 </a>
 
-<a href="https://twitter.com/PunchIN_38">
+<a href="https://www.youtube.com/channel/UC1_89wKcrga4XP-w_oYpf4w">
   <img align="left" alt="PunchIN | YouTube" width="38px" style ="margin-right:20px" src="https://raw.githubusercontent.com/peterthehan/peterthehan/master/assets/youtube.svg" />
 </a>
 
@@ -90,7 +90,23 @@ All scheduled classes and attendance records are saved into the local database. 
 
 <br>
 
-<h2> Usage </h2>
+
+<h2> Project Planning </h2>
+
+[GitHub Projects - PunchIN Project Planning](https://github.com/users/lkobnas/projects/1)
+<br>
+
+<h2> Contributors </h2>
+<a href="https://github.com/lkobnas/Attendance-recording-system/graphs/contributors">
+  <img width="38px" style ="margin-right:20px" src="https://contrib.rocks/image?repo=lkobnas/Attendance-recording-system" />
+</a>
+
+<br>
+
+([lkobnas](https://github.com/lkobnas)) - San Bok Lam (2426734L) <br>
+([37Sniper](https://github.com/37Sniper)) - Chenguang Wang (2826966W) <br>
+([HengyuY](https://github.com/HengyuY)) - Hengyu Yang (2822511Y) <br>
+([Yyyyy0512](https://github.com/Yyyyy0512)) - Jin Yang (2803454Y) <br>
 <br>
 
 <h2> References </h2>
@@ -103,9 +119,12 @@ GPIO Pinout of Raspberry Pi 4B (2G)
 <br>
 <br>
 
+
 <h2> Acknowledgements </h2>
+
 * Wix  ([Logo Design and Inspiration](https://www.wix.com/logo/maker))
 * Flaticon  ([Icon](https://www.flaticon.com/))
+* Contributor ([contributor.img](https://contrib.rocks/))
 
 
 
