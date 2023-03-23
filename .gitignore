@@ -33,3 +33,7 @@
 
 # Vscode
 .vscode
+
+# Email api credentials
+credentials.txt
+email_curl/credentials.txt
