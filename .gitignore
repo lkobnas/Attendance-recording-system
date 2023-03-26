@@ -37,3 +37,7 @@
 # Email api credentials
 credentials.txt
 email_curl/credentials.txt
+
+# UI
+.cmake
+CMakeCache.txt
