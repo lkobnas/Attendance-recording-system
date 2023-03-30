@@ -21,34 +21,60 @@ private:
     QPushButton *button2;
     QPushButton *button3;
 
-     // create main window and layout
-    QVBoxLayout *mainLayout;
+    // create main window and layout
+    QVBoxLayout *mainInputLayout;
+    QVBoxLayout *mainListLayout;
+    QHBoxLayout *mainLayout;
 
     // create student input layout
-    QHBoxLayout *studentInputLayout;
+    QVBoxLayout *recordLayout;
+    QPushButton *recordButton;
+
+    // empty label for spacing
+    QLabel *spaceLabel;
+
+    // create student input layout
+    QVBoxLayout *studentInputLayout;
+    QHBoxLayout *s1;
+    QHBoxLayout *s2;
+    QHBoxLayout *s3;
     QLabel *nameLabel;
     QLineEdit *nameLineEdit;
-    QLabel *studentIdLabel;
-    QLineEdit *studentIdLineEdit;
-    QLabel *cardIdLabel;
-    QLineEdit *cardIdLineEdit;
+    QPushButton *studentClearButton;
+    QPushButton *cardButton;
+    QPushButton *fingerprintButton;
+    QLabel *studentIDLabel;
+    QLineEdit *studentIDLineEdit; 
     QPushButton *addStudentButton;
 
     // create course input layout
-    QHBoxLayout *courseInputLayout;
+    QVBoxLayout *courseInputLayout;
+    QHBoxLayout *c1;
+    QHBoxLayout *c2;
+    QHBoxLayout *c3;
     QLabel *courseNameLabel;
     QLineEdit *courseNameLineEdit;
+    QPushButton *courseClearButton;
     QLabel *dateTimeLabel;
     QLineEdit *dateTimeLineEdit;
     QLabel *studentIdsLabel;
     QLineEdit *studentIdsLineEdit;
     QPushButton *addCourseButton;
 
-    QVBoxLayout *vLayout;
+    
+    // create list layout
+    QVBoxLayout *studentListLayout;
+    QLabel *studentLabel;
+    QStringList *studentList;  
+    QVBoxLayout *courseListLayout;
+    QLabel *courseLabel;
+    QStringList *courseList;  
+
+
 
     void record();
-    void newStudent();
-    void newCourse();
+    void addNewStudent();
+    void addNewCourse();
 
 };
 
