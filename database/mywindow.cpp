@@ -51,7 +51,7 @@ MyWindow::MyWindow(){
     courseNameLabel = new QLabel("Course Name:");
     courseNameLineEdit = new QLineEdit();
     courseClearButton = new QPushButton("Clear");
-    dateTimeLabel = new QLabel("Date/Time (DD/MM/YYYY MM/HH):");
+    dateTimeLabel = new QLabel("Date/Time (DD/MM/YYYY MM:HH):");
     dateTimeLineEdit = new QLineEdit();
     studentIdsLabel = new QLabel("Student IDs (comma separated):");
     studentIdsLineEdit = new QLineEdit();

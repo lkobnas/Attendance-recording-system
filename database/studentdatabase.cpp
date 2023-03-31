@@ -5,7 +5,7 @@
 #include <QFile>
 #include <QBuffer>
 
-bool StudentDatabase::insertStudent(QString name, QString id, QString cardId, QString picturePath, QString fingerprint)
+bool StudentDatabase::insertStudent(QString name, QString id, QString cardId, QPixmap picturePath, QByteArray fingerprint)
 {
     if (!QFile::exists(picturePath)) {
         return false;
