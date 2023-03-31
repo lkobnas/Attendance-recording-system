@@ -1,8 +1,0 @@
-/home/sanbok/Documents/Attendance-recording-system/UI/CMakeFiles/install/strip.dir
-/home/sanbok/Documents/Attendance-recording-system/UI/CMakeFiles/install/local.dir
-/home/sanbok/Documents/Attendance-recording-system/UI/CMakeFiles/install.dir
-/home/sanbok/Documents/Attendance-recording-system/UI/CMakeFiles/list_install_components.dir
-/home/sanbok/Documents/Attendance-recording-system/UI/CMakeFiles/rebuild_cache.dir
-/home/sanbok/Documents/Attendance-recording-system/UI/CMakeFiles/edit_cache.dir
-/home/sanbok/Documents/Attendance-recording-system/UI/CMakeFiles/UI.dir
-/home/sanbok/Documents/Attendance-recording-system/UI/CMakeFiles/UI_autogen.dir
