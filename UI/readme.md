@@ -22,7 +22,7 @@ Install the QT5 and Qwt development packages:
 ## Running the project
 
 ```
-    ./punchIN
+    ./punchin
 ```
 
 ## Reference
