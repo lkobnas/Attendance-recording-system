@@ -70,6 +70,8 @@ private:
     QLabel *courseLabel;
     QStringList *courseList;  
 
+    QTextLayout *
+
 
 
     void record();
