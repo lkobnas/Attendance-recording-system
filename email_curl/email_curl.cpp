@@ -6,14 +6,14 @@
 int main() {
 
     std::ifstream file("credentials.txt");
-    std::string API_CMD;
+    std::string API_KEY;
     if (file.is_open()) {
-        std::getline(file, API_CMD);
+        std::getline(file, API_KEY);
         file.close();
     } else {
         std::cerr << "Unable to open file." << std::endl;
     }
-    int exitStatus = std::system(API_CMD.c_str());
+    //int exitStatus = std::system(API_KEY.c_str());
 
     //Send email here
     
