@@ -3,7 +3,7 @@
 int main(){
     StudentDB db;
     db.initDB();
-    db.insertStudent("Test Name","20602322","cardID1234","fpID5678");
+    db.insertStudent("Test Name2","20602323","cardID1235","fpID5679");
     return 0;
     
 }

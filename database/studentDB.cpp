@@ -51,9 +51,31 @@ bool StudentDB::insertStudent(QString name, QString email, QString cardId, QByte
 	if (exit != SQLITE_OK) {
 		cerr << "Error in insertData function." << endl;
 		sqlite3_free(messageError);
+		return false;
 	}
 	else
 		cout << "Records inserted Successfully!" << endl;
 
-	return 0;
+	return true;
+}
+
+bool StudentDB::deleteStudent(int id)
+{
+	sqlite3* DB;
+	char* messageError;
+	string sql = "DELETE FROM STUDENTS WHERE ID = "+id;
+	string end = ";";
+	sql = sql + end;
+
+	int exit = sqlite3_open("students.db", &DB);
+	/* An open database, SQL to be evaluated, Callback function, 1st argument to callback, Error msg written here */
+	exit = sqlite3_exec(DB, sql.c_str(), callback, NULL, &messageError);
+	if (exit != SQLITE_OK) {
+		cerr << "Error in deleteData function." << endl;
+		sqlite3_free(messageError);
+	}
+	else
+		cout << "Records deleted Successfully!" << endl;
+
+	return true;
 }
