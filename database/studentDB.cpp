@@ -9,11 +9,12 @@ bool StudentDB::initDB()
     char* messageError;
 	string sql = "CREATE TABLE IF NOT EXISTS STUDENTS("
 		"ID INTEGER PRIMARY KEY AUTOINCREMENT, "
+		"SID       TEXT NOT NULL, "
 		"NAME      TEXT NOT NULL, "
 		"EMAIL     TEXT NOT NULL, "
 		"CARDID    TEXT NOT NULL, "
-		"FPID      BLOB NOT NULL );";
-
+		"PHOTO     BLOB, "
+		"FPID      BLOB);";
     try
 	{
         int exit = 0;
@@ -33,19 +34,39 @@ bool StudentDB::initDB()
 		cerr << e.what();
         return false;
 	}
-
 	return true;
 }
 
-bool StudentDB::insertStudent(QString name, QString email, QString cardId, QByteArray fpId)
+bool StudentDB::insertStudent(QString sid, QString name, QString email, QString cardId, QByteArray picture, QByteArray fpId)
 {
+
 	sqlite3* DB;
 	char* messageError;
-		
-	string sql = "INSERT INTO STUDENTS (NAME, EMAIL, CARDID, FPID) VALUES('"+name.toStdString()+"', '"+email.toStdString()+"', '"+cardId.toStdString()+"', '"+fpId.toStdString()+"');";
-
-
 	int exit = sqlite3_open("students.db", &DB);
+    
+	sqlite3_stmt* checkStmt;
+    int checkResult = sqlite3_prepare_v2(DB, "SELECT * FROM students WHERE SID = ?;", -1, &checkStmt, nullptr);
+    if (checkResult != SQLITE_OK) {
+        cerr << "Failed to prepare statement:" << sqlite3_errmsg(DB);
+        checkResult == -1;     
+    }
+    if (checkResult != -1){
+        sqlite3_bind_text(checkStmt, 1, sid.toUtf8().constData(), -1, SQLITE_STATIC);
+        checkResult = sqlite3_step(checkStmt);
+        sqlite3_finalize(checkStmt);
+    }
+    
+    if (checkResult == SQLITE_ROW) {
+        cerr << "Student with ID" << sid.toStdString() << "already exists in database.";
+        return false;
+    }
+    // if (checkResult != SQLITE_DONE) {
+    //     cerr << "Failed to execute statement:" << sqlite3_errmsg(DB);
+    // }
+    
+
+
+	string sql = "INSERT INTO STUDENTS (SID, NAME, EMAIL, CARDID, PHOTO, FPID) VALUES('"+sid.toStdString()+"', '"+name.toStdString()+"', '"+email.toStdString()+"', '"+cardId.toStdString()+"', '"+picture.toStdString()+"', '"+fpId.toStdString()+"');";
     
     exit = sqlite3_exec(DB, sql.c_str(), NULL, 0, &messageError);
 	if (exit != SQLITE_OK) {
@@ -58,62 +79,71 @@ bool StudentDB::insertStudent(QString name, QString email, QString cardId, QByte
 
 	return true;
 }
-
-bool StudentDB::deleteStudent(QString id)
+bool StudentDB::deleteStudent(QString sid)
 {
 	sqlite3* DB;
 	char* messageError;
-	string sql = "DELETE FROM STUDENTS WHERE ID = "+id.toStdString()+";";
-	//string end = ";";
-	//sql = sql + end;
+	//QString sql = "DELETE FROM STUDENTS WHERE SID = ?;";
+	sqlite3_open("students.db", &DB);
+    // Prepare the delete statement
+    sqlite3_stmt* stmt;
+    const char* query = "DELETE FROM STUDENTS WHERE SID = ?;";
+    sqlite3_prepare_v2(DB, query, -1, &stmt, nullptr);
 
-	int exit = sqlite3_open("students.db", &DB);
-	/* An open database, SQL to be evaluated, Callback function, 1st argument to callback, Error msg written here */
-	exit = sqlite3_exec(DB, sql.c_str(), callback, NULL, &messageError);
-	if (exit != SQLITE_OK) {
-		cerr << "Error in deleteStudent function." << endl;
-		sqlite3_free(messageError);
-	}
-	else
-		cout << "Records deleted Successfully!" << endl;
+    // Bind the studentID parameter to the statement
+    sqlite3_bind_text(stmt, 1, sid.toUtf8().constData(), -1, SQLITE_TRANSIENT);
 
+    // Execute the statement
+    if (sqlite3_step(stmt) != SQLITE_DONE) {
+        cerr << "Failed to delete student:" << sqlite3_errmsg(DB);
+		return false;
+    }else{
+        cout<< "Records deleted sucessfully"<<endl;
+    }
+
+    // Clean up the statement
+    sqlite3_finalize(stmt);
 	return true;
+	// int exit = sqlite3_open("students.db", &DB);
+	// /* An open database, SQL to be evaluated, Callback function, 1st argument to callback, Error msg written here */
+	// exit = sqlite3_exec(DB, sql.c_str(), callback, NULL, &messageError);
+	// if (exit != SQLITE_OK) {
+	// 	cerr << "Error in deleteStudent function." << endl;
+	// 	sqlite3_free(messageError);
+	// }
+	// else
+	// 	cout << "Records deleted Successfully!" << endl;
+
+	// return true;
 }
 
-Student StudentDB::getStudent(QString id)
-{
-	sqlite3* DB;
-	sqlite3_open("students.db", &DB);
-    sqlite3_stmt* stmt;
-    char* errMsg = nullptr;
-    std::string sql = "SELECT * FROM students WHERE id = ?;";
+Student StudentDB::getStudent(QString sid){
 
-    int result = sqlite3_prepare_v2(DB, sql.c_str(), -1, &stmt, nullptr);
-    if (result != SQLITE_OK) {
+    QString sql = "SELECT * FROM STUDENTS WHERE SID = ?;";
+    sqlite3_stmt* stmt;
+	sqlite3* DB;
+	int exit = sqlite3_open("students.db", &DB);
+    int rc = sqlite3_prepare_v2(DB, sql.toUtf8().constData(), -1, &stmt, NULL);
+    if (rc != SQLITE_OK) {
         std::cerr << "Error preparing SQL statement: " << sqlite3_errmsg(DB) << std::endl;
         return Student();
     }
-
-    result = sqlite3_bind_int(stmt, 1, id.toInt());
-    if (result != SQLITE_OK) {
-        std::cerr << "Error binding parameter: " << sqlite3_errmsg(DB) << std::endl;
+    rc = sqlite3_bind_text(stmt, 1, sid.toUtf8().constData(), -1, SQLITE_STATIC);
+    if (rc != SQLITE_OK) {
+        std::cerr << "Error binding SQL parameter: " << sqlite3_errmsg(DB) << std::endl;
         sqlite3_finalize(stmt);
         return Student();
     }
-
-    result = sqlite3_step(stmt);
-    if (result != SQLITE_ROW) {
-        std::cerr << "Error retrieving student: " << sqlite3_errmsg(DB) << std::endl;
-        sqlite3_finalize(stmt);
-        return Student();
-    }
+    rc = sqlite3_step(stmt);
 
     Student student;
     student.id = sqlite3_column_int(stmt, 0);
-    student.name = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
-    student.email = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2));
-    student.cardId = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 3));
-    student.fpId = reinterpret_cast<const char*>(sqlite3_column_blob(stmt, 4));
+	student.sid = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
+    student.name = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2));
+    student.email = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 3));
+    student.cardId = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 4));
+	student.picture = reinterpret_cast<const char*>(sqlite3_column_blob(stmt, 5));
+    student.fpId = reinterpret_cast<const char*>(sqlite3_column_blob(stmt, 6));
 	//QByteArray arr= QByteArray((const char *)dataBlob->pbData, dataBlob->cbData);
     sqlite3_finalize(stmt);
 
@@ -136,10 +166,12 @@ QList<Student> StudentDB::getAllStudents() {
     while (sqlite3_step(stmt) == SQLITE_ROW) {
         Student s;
         s.id = sqlite3_column_int(stmt, 0);
-        s.name = QString::fromUtf8(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1)));
-        s.email = QString::fromUtf8(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2)));
-        s.cardId = QString::fromUtf8(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 3)));
-        s.fpId = QByteArray(reinterpret_cast<const char*>(sqlite3_column_blob(stmt, 4)));
+		s.sid = QString::fromUtf8(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1)));
+        s.name = QString::fromUtf8(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2)));
+        s.email = QString::fromUtf8(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 3)));
+        s.cardId = QString::fromUtf8(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 4)));
+		s.picture = QByteArray(reinterpret_cast<const char*>(sqlite3_column_blob(stmt, 5)));
+        s.fpId = QByteArray(reinterpret_cast<const char*>(sqlite3_column_blob(stmt, 6)));
                             //sqlite3_column_bytes(stmt, 4));
 
         students.append(s);

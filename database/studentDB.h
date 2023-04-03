@@ -5,10 +5,12 @@
 #include <QPixmap>
 
 struct Student {
-    int id;
+    QString id;
+    QString sid;
     QString name;
     QString email;
     QString cardId;
+    QByteArray picture;
     QByteArray fpId;
 };
 
@@ -16,9 +18,9 @@ class StudentDB{
     
     public:
         static bool initDB();
-        static bool insertStudent(QString name, QString email, QString cardId, QByteArray fpId);
-        static bool deleteStudent(QString id);
-        static Student getStudent(QString id);
+        static bool insertStudent(QString sid, QString name, QString email, QString cardId, QByteArray picture, QByteArray fpId);
+        static bool deleteStudent(QString sid);
+        static Student getStudent(QString sid);
         static QList<Student> getAllStudents();
         static int callback(void* NotUsed, int argc, char** argv, char** azColName);
 
