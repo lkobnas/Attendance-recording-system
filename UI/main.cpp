@@ -5,7 +5,8 @@ int main(int argc, char *argv[]) {
     
     QApplication app(argc, argv);
     MyWindow window;
-    window.setMinimumSize(QSize(1500,800));
+
+    window.setMinimumSize(QSize(800,480));
     window.show();
 
     return app.exec();
