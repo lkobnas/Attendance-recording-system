@@ -6,7 +6,7 @@ MyWindow::MyWindow(){
     button2 = new QPushButton("Register New Student");
     button3 = new QPushButton("Create New Course");
 
-    connect(button1,&QPushButton::clicked,this,&MyWindow::record);
+    connect(button1,&QPushButton::clicked,this,&MyWindow::recordAttendance);
     connect(button2,&QPushButton::clicked,this,&MyWindow::addNewStudent);
     connect(button3,&QPushButton::clicked,this,&MyWindow::addNewCourse);
 
@@ -51,8 +51,9 @@ MyWindow::MyWindow(){
     courseNameLabel = new QLabel("Course Name:");
     courseNameLineEdit = new QLineEdit();
     courseClearButton = new QPushButton("Clear");
-    dateTimeLabel = new QLabel("Date/Time (DD/MM/YYYY MM:HH):");
+    dateTimeLabel = new QLabel("Date/Time:");
     dateTimeLineEdit = new QLineEdit();
+    dateTimeLineEdit->setPlaceholderText("DD/MM/YYYY hh:mm");
     studentIdsLabel = new QLabel("Student IDs (comma separated):");
     studentIdsLineEdit = new QLineEdit();
     addCourseButton = new QPushButton("Add Course");
@@ -79,14 +80,42 @@ MyWindow::MyWindow(){
     
     //create student list layout
     studentListLayout = new QVBoxLayout();
-    studentLabel = new QLabel("Student List");
-    studentList = new QStringList(); 
+    //studentLabel = new QLabel("Student List");
+
+    //create student table widget
+    studentTable = new QTableWidget();
+    studentTable->setWindowTitle("Student Information");
+    studentTable->setRowCount(5);
+    studentTable->setColumnCount(3);
+    
+    studentTable->setColumnWidth(0,100);
+    studentTable->setColumnWidth(1,200);
+    studentTable->setColumnWidth(2,400);
+
+    QStringList headerLabels;
+    headerLabels << "SID" << "Name" << "Email";
+    studentTable->setHorizontalHeaderLabels(headerLabels); 
+
+
+    QTableWidgetItem* item1 = new QTableWidgetItem();
+    QTableWidgetItem* item2 = new QTableWidgetItem();
+    QTableWidgetItem* item3 = new QTableWidgetItem();
+    item1->setText("Test1");
+    item2->setText("Test2");
+    item3->setText("Test3");
+    studentTable->setItem(0,0,item1);
+    studentTable->setItem(0,1,item2);
+    studentTable->setItem(0,2,item3);
+    //studentTable->insertRow()
+
+
     courseListLayout = new QVBoxLayout();
     courseLabel = new QLabel("Course List");
     courseList = new QStringList();
     mainListLayout = new QVBoxLayout();
 
-    studentListLayout->addWidget(studentLabel);
+    //studentListLayout->addWidget(studentLabel);
+    studentListLayout->addWidget(studentTable);
     //studentListLayout->addWidget(studentList);
     courseListLayout->addWidget(courseLabel);
     mainListLayout->addLayout(studentListLayout);
@@ -103,7 +132,7 @@ MyWindow::MyWindow(){
 
 }
 
-void MyWindow::record() {
+void MyWindow::recordAttendance() {
 	
 }
 
