@@ -8,7 +8,7 @@ Install the QT5 and Qwt development packages:
 ```
     sudo apt-get install qtdeclarative5-dev-tools
     sudo apt-get install libqwt-qt5-dev
-    sudo apt-get install build-essential qt5-default
+    sudo apt-get install qtbase5-dev
 ```
 
 ## Building the project
