@@ -20,7 +20,7 @@ class CourseDB {
     
     public:
         static bool initDB();
-        static bool insertCourse(QString name, QString datetime, QList<Student> studentList);
+        static bool insertCourse(QString name, QString datetime, QString SIDString);
         static bool deleteCourse(QString name);
         static Course getCourse(QString name);
         static QList<Course> getAllCourses();
@@ -29,7 +29,7 @@ class CourseDB {
     private:
         static QString listToString(QList<Student> studentList);
         static QList<Student> stringtoList(QString s);
-        static bool updateStudentList(QList<Student> studentList);
+        static bool updateStudentList(sqlite3* DB, char* messageError, QString courseName, QString studentList);
 };
 
 #endif // COURSEDB_H
