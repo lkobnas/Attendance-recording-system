@@ -8,6 +8,7 @@
 #include <QFormLayout>
 #include <QMessageBox>
 #include <QLineEdit>
+#include <QTableWidget>
 
 
 class MyWindow : public QWidget {
@@ -70,11 +71,16 @@ private:
     QLabel *courseLabel;
     QStringList *courseList;  
 
+    QTableWidget *studentTable;
+    QTableWidget *courseTable;
 
+    //QTextLayout *
 
-    void record();
+    void recordAttendance();
     void addNewStudent();
     void addNewCourse();
+    void loadStudentTable();
+    void loadCourseTable();
 
 };
 
