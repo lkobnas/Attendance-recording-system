@@ -1,11 +1,15 @@
+#ifndef STUDENTDB_H
+#define STUDENTDB_H
+
 #include "sqlite3.h"
 #include <QString>
 #include <QByteArray>
 #include <QList>
 #include <QPixmap>
 
-struct Student {
-    QString id;
+struct Student
+{
+    /* data */
     QString sid;
     QString name;
     QString email;
@@ -14,7 +18,8 @@ struct Student {
     QByteArray fpId;
 };
 
-class StudentDB{
+
+class StudentDB {
     
     public:
         static bool initDB();
@@ -25,3 +30,5 @@ class StudentDB{
         static int callback(void* NotUsed, int argc, char** argv, char** azColName);
 
 };
+
+#endif // STUDENTDB_H

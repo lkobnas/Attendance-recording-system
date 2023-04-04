@@ -16,6 +16,7 @@ find_package(SQLite3 REQUIRED)
 
 add_executable(database
   studentDB.cpp
+  courseDB.cpp
   main_test.cpp
 )
 

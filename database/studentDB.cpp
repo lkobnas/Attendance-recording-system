@@ -1,5 +1,5 @@
 #include "studentDB.h"
-#include "iostream"
+#include <iostream>
 //#include <QSqlDatabase>
 using namespace std;
 
@@ -137,7 +137,7 @@ Student StudentDB::getStudent(QString sid){
     rc = sqlite3_step(stmt);
 
     Student student;
-    student.id = sqlite3_column_int(stmt, 0);
+    //student.id = sqlite3_column_int(stmt, 0);
 	student.sid = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
     student.name = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2));
     student.email = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 3));
@@ -165,7 +165,7 @@ QList<Student> StudentDB::getAllStudents() {
 
     while (sqlite3_step(stmt) == SQLITE_ROW) {
         Student s;
-        s.id = sqlite3_column_int(stmt, 0);
+        //s.id = sqlite3_column_int(stmt, 0);
 		s.sid = QString::fromUtf8(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1)));
         s.name = QString::fromUtf8(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2)));
         s.email = QString::fromUtf8(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 3)));
