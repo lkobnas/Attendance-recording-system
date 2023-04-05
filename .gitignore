@@ -40,3 +40,5 @@ email_curl/credentials.txt
 
 # UI
 build/
+build-punchin-Desktop-Debug/
+QtDesignStudio/
