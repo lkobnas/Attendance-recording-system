@@ -13,6 +13,7 @@ struct Course {
     QString name;
     QString datetime;
     QList<Student> studentList;
+    QList<Student> arrivedStudents;
 
 };
 
@@ -21,6 +22,7 @@ class CourseDB {
     public:
         static bool initDB();
         static bool insertCourse(QString name, QString datetime, QString SIDString);
+        static bool updateArrived(QString name, QString SIDString);
         static bool deleteCourse(QString name);
         static Course getCourse(QString name);
         static QList<Course> getAllCourses();
