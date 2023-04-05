@@ -9,9 +9,10 @@ bool CourseDB::initDB()
     char* messageError;
 	string sql = "CREATE TABLE IF NOT EXISTS COURSES("
 		"ID INTEGER PRIMARY KEY AUTOINCREMENT, "
-		"NAME          TEXT NOT NULL, "
-		"DATETIME      TEXT NOT NULL, "
-		"STUDENT_LIST  TEXT);";
+		"NAME       TEXT NOT NULL, "
+		"DATETIME   TEXT NOT NULL, "
+        "PENDING    TEXT, "
+		"ARRIVED    TEXT);";
     try
 	{
         int exit = 0;
@@ -54,7 +55,7 @@ bool CourseDB::insertCourse(QString name, QString datetime, QString SIDString)
     }
     
     if (checkResult == SQLITE_ROW) {
-        cerr << "Course with ID" << name.toStdString() << "already exists in course database.";
+        cerr << "Course with ID" << name.toStdString() << "already exists in course database."<<endl;
         updateStudentList(DB, messageError, name, SIDString);
         return false;
     }
@@ -67,7 +68,7 @@ bool CourseDB::insertCourse(QString name, QString datetime, QString SIDString)
     }else{
         s = SIDString.replace(" ","");
     }
-	string sql = "INSERT INTO COURSES (NAME, DATETIME, STUDENT_LIST) VALUES('"+name.toStdString()+"', '"+datetime.toStdString()+"', '"+s.toStdString()+"');";
+	string sql = "INSERT INTO COURSES (NAME, DATETIME, PENDING) VALUES('"+name.toStdString()+"', '"+datetime.toStdString()+"', '"+s.toStdString()+"');";
     
     exit = sqlite3_exec(DB, sql.c_str(), NULL, 0, &messageError);
 	if (exit != SQLITE_OK) {
@@ -83,6 +84,10 @@ bool CourseDB::insertCourse(QString name, QString datetime, QString SIDString)
 QString CourseDB::listToString(QList<Student> studentList){
 
     QString s;
+    if(studentList.isEmpty()){
+        s.append("");
+        return s;
+    }
     s.append(studentList[0].sid);
     for (int i=1; i<studentList.size(); i++){
         s.append(",");
@@ -106,9 +111,19 @@ bool CourseDB::updateStudentList(sqlite3* DB, char* messageError, QString course
     
     Course course = getCourse(courseName);
     QList<Student> sqlist = course.studentList;
+    QList<Student> aqlist = course.arrivedStudents;
     QString slist = listToString(sqlist);
+    QString alist = listToString(aqlist);
+
     bool change = false;
-    
+
+    for(int i=ilist.size()-1;i>=0;i--){
+        if(alist.contains(ilist[i])){
+            cout<<ilist[i].toStdString()<<" is already here"<<endl;
+            ilist.removeAt(i);
+        }
+    }
+
     for(int i=0;i<ilist.size();i++){
         if(slist.contains(ilist[i])){
             cout<<ilist[i].toStdString()<<" is already registered in this course"<<endl;
@@ -119,11 +134,20 @@ bool CourseDB::updateStudentList(sqlite3* DB, char* messageError, QString course
             change = true;
         }
     }
+
+    slist.replace(",,",",");
+    if(slist.startsWith(",")){
+        slist.remove(0,1);
+    }
+    if(slist.endsWith(",")){
+        slist.remove(slist.length()-1, 1);
+    }
+    
     if(change == false){
         return false;
     }else{
 
-        string sql = "UPDATE COURSES SET STUDENT_LIST = '"+slist.toStdString()+"' WHERE NAME = '"+courseName.toStdString()+"';"; 
+        string sql = "UPDATE COURSES SET PENDING = '"+slist.toStdString()+"' WHERE NAME = '"+courseName.toStdString()+"';"; 
         int exit = sqlite3_exec(DB, sql.c_str(), NULL, 0, &messageError);
         if (exit != SQLITE_OK) {
             cerr << "Error in insertCoursefunction." << endl;
@@ -133,6 +157,67 @@ bool CourseDB::updateStudentList(sqlite3* DB, char* messageError, QString course
         else
             cout << "Records inserted Successfully!" << endl;
     }
+
+    return true;
+}
+
+bool CourseDB::updateArrived(QString courseName, QString targetSID){
+    targetSID.replace(" ","");
+    
+    Course course = getCourse(courseName);
+    QList<Student> sqlist = course.studentList;
+    QList<Student> aqlist = course.arrivedStudents;
+    QString slist = listToString(sqlist);
+    QString alist = listToString(aqlist);
+
+    if(!slist.contains(targetSID)){
+        cerr<<targetSID.toStdString()<<" is not registered in this class or is already here"<<endl;
+        return false;
+    }
+      
+    if(!alist.isEmpty()){
+        if(alist.contains(targetSID)){
+            cerr<<targetSID.toStdString()<<" is already here"<<endl;
+
+        }
+        alist.append(",");
+        alist.append(targetSID);
+    }else{
+        alist.append(targetSID);
+    }
+    
+       
+    slist.replace(targetSID,"");
+    slist.replace(",,",",");
+    if(slist.startsWith(",")){
+        slist.remove(0,1);
+    }
+    if(slist.endsWith(",")){
+        slist.remove(slist.length()-1, 1);
+    }
+    sqlite3* DB;
+    char* messageError;
+	int exit = sqlite3_open("courses.db", &DB);
+    
+    string sql = "UPDATE COURSES SET PENDING = '"+slist.toStdString()+"' WHERE NAME = '"+courseName.toStdString()+"';"; 
+    exit = sqlite3_exec(DB, sql.c_str(), NULL, 0, &messageError);
+    if (exit != SQLITE_OK) {
+        cerr << "Error in updating slist in updateArrived." << endl;
+        sqlite3_free(messageError);
+        return false;
+    }
+    else
+        cout << "slist inserted Successfully!" << endl;
+    
+    sql = "UPDATE COURSES SET ARRIVED = '"+alist.toStdString()+"' WHERE NAME = '"+courseName.toStdString()+"';"; 
+    exit = sqlite3_exec(DB, sql.c_str(), NULL, 0, &messageError);
+    if (exit != SQLITE_OK) {
+        cerr << "Error in updating alist in updateArrived." << endl;
+        sqlite3_free(messageError);
+        return false;
+    }
+    else
+        cout << "alist inserted Successfully!" << endl;
 
     return true;
 }
@@ -201,6 +286,8 @@ Course CourseDB::getCourse(QString name){
     QString s;
     s = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 3));
     course.studentList = stringtoList(s);
+    s = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 4));
+    course.arrivedStudents = stringtoList(s);
 	//QByteArray arr= QByteArray((const char *)dataBlob->pbData, dataBlob->cbData);
     sqlite3_finalize(stmt);
 
