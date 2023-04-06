@@ -16,7 +16,7 @@ int main(){
     // Testing courses.db
     CourseDB dbc;
     dbc.initDB();
-    //dbc.insertCourse("ENG5220","4/4/2023 15:30", "2993326W,  2426734L,   3559320A");
+    dbc.insertCourse("ENG5220","4/4/2023 15:30", "2993326W,  2426734L,   3559320A");
     dbc.insertCourse("ENG5220","4/4/2023 15:30", "      9553252Q,   3559320A");
     dbc.updateArrived("ENG5220", "notexistID");
     dbc.updateArrived("ENG5220", "2426734L");

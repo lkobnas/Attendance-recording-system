@@ -81,6 +81,9 @@ bool StudentDB::insertStudent(QString sid, QString name, QString email, QString 
 }
 bool StudentDB::deleteStudent(QString sid)
 {
+    if(!checkStudentExist(sid)){
+        return false;
+    }
 	sqlite3* DB;
 	char* messageError;
 	//QString sql = "DELETE FROM STUDENTS WHERE SID = ?;";
@@ -116,6 +119,34 @@ bool StudentDB::deleteStudent(QString sid)
 
 	// return true;
 }
+bool StudentDB::checkStudentExist(QString sid)
+{
+    QString sql = "SELECT * FROM STUDENTS WHERE SID = ?;";
+    sqlite3_stmt* stmt;
+	sqlite3* DB;
+	int exit = sqlite3_open("students.db", &DB);
+    int rc = sqlite3_prepare_v2(DB, sql.toUtf8().constData(), -1, &stmt, NULL);
+    if (rc != SQLITE_OK) {
+        std::cerr << "Error preparing SQL statement: " << sqlite3_errmsg(DB) << std::endl;
+        return false;
+    }
+    rc = sqlite3_bind_text(stmt, 1, sid.toUtf8().constData(), -1, SQLITE_STATIC);
+    if (rc != SQLITE_OK) {
+        std::cerr << "Error binding SQL parameter: " << sqlite3_errmsg(DB) << std::endl;
+        sqlite3_finalize(stmt);
+        return false;
+    }
+    rc = sqlite3_step(stmt);
+
+    Student student;
+    //student.id = sqlite3_column_int(stmt, 0);
+	student.sid = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
+    sqlite3_finalize(stmt);
+    if(student.sid.isEmpty()){
+        return false;
+    }
+return true;
+}
 
 Student StudentDB::getStudent(QString sid){
 
@@ -146,6 +177,10 @@ Student StudentDB::getStudent(QString sid){
     student.fpId = reinterpret_cast<const char*>(sqlite3_column_blob(stmt, 6));
 	//QByteArray arr= QByteArray((const char *)dataBlob->pbData, dataBlob->cbData);
     sqlite3_finalize(stmt);
+
+    // if(student.sid.isEmpty()){
+        
+    // }
 
     return student;
 }
