@@ -1,8 +1,14 @@
 #include "courseDB.h"
 #include <iostream>
-//#include <QSqlDatabase>
 using namespace std;
 
+
+/**
+ * @brief 
+ * 
+ * @return true 
+ * @return false 
+ */
 bool CourseDB::initDB()
 {
     sqlite3* DB;
@@ -68,6 +74,7 @@ bool CourseDB::insertCourse(QString name, QString datetime, QString SIDString)
     }else{
         s = SIDString.replace(" ","");
     }
+    cout<<"Insert: "<<s.toStdString()<<endl;
 	string sql = "INSERT INTO COURSES (NAME, DATETIME, PENDING) VALUES('"+name.toStdString()+"', '"+datetime.toStdString()+"', '"+s.toStdString()+"');";
     
     exit = sqlite3_exec(DB, sql.c_str(), NULL, 0, &messageError);
@@ -83,6 +90,11 @@ bool CourseDB::insertCourse(QString name, QString datetime, QString SIDString)
 }
 QString CourseDB::listToString(QList<Student> studentList){
 
+    cout<<"listToString input: ";
+    for(int i=0;i<studentList.size();i++){
+        cout<<studentList[i].sid.toStdString()<<" ";
+    }
+
     QString s;
     if(studentList.isEmpty()){
         s.append("");
@@ -96,11 +108,17 @@ QString CourseDB::listToString(QList<Student> studentList){
     return s;
 }
 QList<Student> CourseDB::stringtoList(QString s){
+
     QList<Student> studentList;
     QList<QString> sidList;
     sidList = s.split(",");
+
     for(int i=0;i<sidList.size();i++){
-        studentList.append(StudentDB::getStudent(sidList[i]));
+        if(!StudentDB::checkStudentExist(sidList[i])){
+            continue;
+        }
+        Student student = StudentDB::getStudent(sidList[i]);
+            studentList.append(student);
     }
     return studentList;
 }
@@ -117,12 +135,26 @@ bool CourseDB::updateStudentList(sqlite3* DB, char* messageError, QString course
 
     bool change = false;
 
-    for(int i=ilist.size()-1;i>=0;i--){
-        if(alist.contains(ilist[i])){
-            cout<<ilist[i].toStdString()<<" is already here"<<endl;
-            ilist.removeAt(i);
+    // for(int i=ilist.size()-1;i>=0;i--){
+    //     if(alist.contains(ilist[i])){
+    //         cout<<ilist[i].toStdString()<<" is already here"<<endl;
+    //         ilist.removeAt(i);
+    //     }
+    // }
+ 
+    for (auto it = ilist.begin(); it != ilist.end(); ) {
+        if (alist.contains(*it)) {
+            it = ilist.erase(it);
+        } else {
+            ++it;
         }
     }
+
+    cout<<"ilist : ";
+    for (int i=0;i<ilist.size();i++) {
+        cout<<ilist[i].toStdString()<<" ";
+    }
+    cout<<endl<<"slist : "<<slist.toStdString()<<endl;
 
     for(int i=0;i<ilist.size();i++){
         if(slist.contains(ilist[i])){
@@ -146,7 +178,7 @@ bool CourseDB::updateStudentList(sqlite3* DB, char* messageError, QString course
     if(change == false){
         return false;
     }else{
-
+        cout<<"Insert in updateStudentList: "<<slist.toStdString()<<endl;
         string sql = "UPDATE COURSES SET PENDING = '"+slist.toStdString()+"' WHERE NAME = '"+courseName.toStdString()+"';"; 
         int exit = sqlite3_exec(DB, sql.c_str(), NULL, 0, &messageError);
         if (exit != SQLITE_OK) {
@@ -178,7 +210,7 @@ bool CourseDB::updateArrived(QString courseName, QString targetSID){
     if(!alist.isEmpty()){
         if(alist.contains(targetSID)){
             cerr<<targetSID.toStdString()<<" is already here"<<endl;
-
+            return false;
         }
         alist.append(",");
         alist.append(targetSID);
@@ -279,17 +311,25 @@ Course CourseDB::getCourse(QString name){
     }
     rc = sqlite3_step(stmt);
 
+
+    cout<<"CourseDB Get"<<endl;
     Course course;
     //course.id = sqlite3_column_int(stmt, 0);
     course.name = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
     course.datetime = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2));
     QString s;
-    s = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 3));
-    course.studentList = stringtoList(s);
+    const unsigned char* slist = sqlite3_column_text(stmt, 3);
+    QString sqlist = QString::fromUtf8((const char*)slist);
+    cout<<"sqlist from get: "<<sqlist.toStdString()<<endl;
+    course.studentList = stringtoList(sqlist);
+
+    //s = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 3));
+    //course.studentList = stringtoList(s);
     s = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 4));
     course.arrivedStudents = stringtoList(s);
 	//QByteArray arr= QByteArray((const char *)dataBlob->pbData, dataBlob->cbData);
     sqlite3_finalize(stmt);
+
 
     return course;
 }
@@ -312,9 +352,10 @@ QList<Course> CourseDB::getAllCourses() {
         //s.id = sqlite3_column_int(stmt, 0);
 		course.name = QString::fromUtf8(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1)));
         course.datetime = QString::fromUtf8(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2)));
-        QString s;
-        s = QString::fromUtf8(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 3)));
-        course.studentList = stringtoList(s);
+        QString slist = QString::fromUtf8(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 3)));
+        course.studentList = stringtoList(slist);
+        QString alist = QString::fromUtf8(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 4)));
+        course.arrivedStudents = stringtoList(alist);
         courses.append(course);
     }
 
