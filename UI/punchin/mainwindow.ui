@@ -126,6 +126,9 @@
    </property>
   </action>
   <action name="actionSwitch_to_student_mode">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Switch to student mode</string>
    </property>
