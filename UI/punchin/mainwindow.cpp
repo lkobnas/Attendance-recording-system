@@ -5,6 +5,7 @@
 #include <QLineEdit>
 #include <QPushButton>
 #include <QMessageBox>
+#include <QInputDialog>
 
 #include <QtCore>
 #include <QtGui>
@@ -14,9 +15,9 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-    sdb.initDB();
-    cdb.initDB();
     ui->setupUi(this);
+    adminMode = false;
+    datetimeDisplay();
 }
 
 MainWindow::~MainWindow()
@@ -24,74 +25,51 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-
-void MainWindow::on_sAddButton_clicked()
+void MainWindow::on_addNewStudentButton_clicked()
 {
+    AddStudentWindow sWindow;
+    sWindow.setModal(true);
+    sWindow.exec();
+}
+
+
+void MainWindow::on_addNewCourseButton_clicked()
+{
+    AddCourseWindow cWindow;
+    cWindow.setModal(true);
+    cWindow.exec();
+}
+
+void MainWindow::datetimeDisplay()
+{
+    QDateTime datetime = QDateTime::currentDateTime();
+    //QTime time = QTime::currentTime();
+    QString dateTimeText = datetime.toString("dd/mm/yyyy hh:mm:ss");
+    QFont font = ui->mDateTimeLabel->font();
+    font.setPointSize(30);
+    font.setBold(true);
+    ui->mDateTimeLabel->setFont(font);
+    ui->mDateTimeLabel->setText(dateTimeText);
     
-    QString name = ui->sNameLineEdit->text();
-    if (name.isEmpty()) {
-        QMessageBox::warning(this, "Error adding student", "Name cannot be empty.");
-        return;
-    } 
-    QString email = ui->sEmailLineEdit->text();
-    if (email.isEmpty()) {
-        QMessageBox::warning(this, "Error adding student", "Email cannot be empty.");
-        return;
-    } 
-    QString sid = ui->sSIDLineEdit->text();
-    if (sid.isEmpty()) {
-        QMessageBox::warning(this, "Error adding student", "Student ID cannot be empty.");
-        return;
-    } 
-    // TODO Check rfid card
-    QString cardID = "cardIDHere";
-    QByteArray photo = "photoDataHere";
-    QByteArray fdID = "fingerprintDataHere";
-    // Insert new student data to database
-    try{
-        sdb.insertStudent(sid,name,email,cardID,photo,fdID);
-    }catch(QException &e){
-        QMessageBox::warning(this, "Error adding student", e.what());
+}
+
+void MainWindow::on_actionAdministrator_mode_triggered()
+{
+    if(adminMode == false){
+        QString pw = QInputDialog::getText(this,"Admin Mode","Please enter admin passcode: "); //TODO: check ok button
+        if (pw.compare("5220")){
+            adminMode = true;
+        }else{
+            QMessageBox::warning(this, "Error switching to admin mode", "Wrong passcode");
+        }
     }
-    
-
-
 }
 
-void MainWindow::on_sClearButton_clicked()
+
+void MainWindow::on_actionSwitch_to_student_mode_triggered()
 {
-
+    if(adminMode == true){
+        adminMode = false;
+    }
 }
-
-
-void MainWindow::on_sCardButton_clicked()
-{
-
-}
-
-
-void MainWindow::on_sFpButton_clicked()
-{
-
-}
-
-
-void MainWindow::on_sPhotoButton_clicked()
-{
-
-}
-
-
-void MainWindow::on_cClearButton_clicked()
-{
-
-}
-
-
-void MainWindow::on_cAddButton_clicked()
-{
-
-}
-
-
 

@@ -15,11 +15,11 @@ find_package(SQLite3 REQUIRED)
 
 set(PROJECT_SOURCES
         main.cpp
-        mainwindow.cpp
-        mainwindow.h
-        mainwindow.ui
-        ../../../database/studentDB.cpp
-        ../../../database/courseDB.cpp
+        mainwindow.h mainwindow.cpp mainwindow.ui
+        addstudentwindow.h addstudentwindow.cpp addstudentwindow.ui
+        addcoursewindow.h addcoursewindow.cpp addcoursewindow.ui
+        ../../database/studentDB.cpp
+        ../../database/courseDB.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

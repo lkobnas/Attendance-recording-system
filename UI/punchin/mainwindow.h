@@ -2,8 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "../../../database/studentDB.h"
-#include "../../../database/courseDB.h"
+
+#include "addstudentwindow.h"
+#include "addcoursewindow.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -12,26 +13,22 @@ QT_END_NAMESPACE
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
-    StudentDB sdb;
-    CourseDB cdb;
+    bool adminMode;
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
 private slots:
-    void on_sAddButton_clicked();
 
-    void on_sClearButton_clicked();
+    void on_addNewStudentButton_clicked();
 
-    void on_sCardButton_clicked();
+    void on_addNewCourseButton_clicked();
 
-    void on_sFpButton_clicked();
+    void datetimeDisplay();
 
-    void on_sPhotoButton_clicked();
+    void on_actionAdministrator_mode_triggered();
 
-    void on_cClearButton_clicked();
-
-    void on_cAddButton_clicked();
+    void on_actionSwitch_to_student_mode_triggered();
 
 private:
     Ui::MainWindow *ui;
