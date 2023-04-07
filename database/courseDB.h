@@ -2,6 +2,7 @@
 #define COURSEDB_H
 
 #include "sqlite3.h"
+#include "myException.h"
 #include <QString>
 #include <QByteArray>
 #include <QList>

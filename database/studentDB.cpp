@@ -23,14 +23,14 @@ bool StudentDB::initDB()
 		exit = sqlite3_exec(DB, sql.c_str(), NULL, 0, &messageError);
 		if (exit != SQLITE_OK) {
 			sqlite3_free(messageError);
-            throw "Error in createTable function";
+            throw MyException("Error in createTable function");
 		}
 
 		sqlite3_close(DB);
 	}
 	catch (const exception& e)
 	{
-		throw e.what();
+		throw MyException(e.what());
 	}
 	return true;
 }
@@ -55,7 +55,7 @@ bool StudentDB::insertStudent(QString sid, QString name, QString email, QString 
     
     if (checkResult == SQLITE_ROW) {
         QString s = "Student with ID " + sid + " already exists in database";
-        throw s;
+        throw MyException(s);
     }
 
 	string sql = "INSERT INTO STUDENTS (SID, NAME, EMAIL, CARDID, PHOTO, FPID) VALUES('"+sid.toStdString()+"', '"+name.toStdString()+"', '"+email.toStdString()+"', '"+cardId.toStdString()+"', '"+picture.toStdString()+"', '"+fpId.toStdString()+"');";
@@ -63,7 +63,7 @@ bool StudentDB::insertStudent(QString sid, QString name, QString email, QString 
     exit = sqlite3_exec(DB, sql.c_str(), NULL, 0, &messageError);
 	if (exit != SQLITE_OK) {
 		sqlite3_free(messageError);
-        throw "Error in insertStudent function.";
+        throw MyException("Error in insertStudent function");
 	}
 
 	return true;
@@ -86,7 +86,7 @@ bool StudentDB::deleteStudent(QString sid)
 
     // Execute the statement
     if (sqlite3_step(stmt) != SQLITE_DONE) {
-        throw sqlite3_errmsg(DB);
+        throw MyException(sqlite3_errmsg(DB));
     }
 
     // Clean up the statement
@@ -102,12 +102,12 @@ bool StudentDB::checkStudentExist(QString sid)
 	int exit = sqlite3_open("students.db", &DB);
     int rc = sqlite3_prepare_v2(DB, sql.toUtf8().constData(), -1, &stmt, NULL);
     if (rc != SQLITE_OK) {
-        throw sqlite3_errmsg(DB);
+        throw MyException(sqlite3_errmsg(DB));
     }
     rc = sqlite3_bind_text(stmt, 1, sid.toUtf8().constData(), -1, SQLITE_STATIC);
     if (rc != SQLITE_OK) {
         sqlite3_finalize(stmt);
-        throw sqlite3_errmsg(DB);
+        throw MyException(sqlite3_errmsg(DB));
     }
     rc = sqlite3_step(stmt);
 
@@ -130,12 +130,12 @@ Student StudentDB::getStudent(QString sid){
     int rc = sqlite3_prepare_v2(DB, sql.toUtf8().constData(), -1, &stmt, NULL);
     if (rc != SQLITE_OK) {
         sqlite3_finalize(stmt);
-        throw sqlite3_errmsg(DB);
+        throw MyException(sqlite3_errmsg(DB));
     }
     rc = sqlite3_bind_text(stmt, 1, sid.toUtf8().constData(), -1, SQLITE_STATIC);
     if (rc != SQLITE_OK) {
         sqlite3_finalize(stmt);
-        throw sqlite3_errmsg(DB);
+        throw MyException(sqlite3_errmsg(DB));
     }
     rc = sqlite3_step(stmt);
 
@@ -162,7 +162,7 @@ QList<Student> StudentDB::getAllStudents() {
     int rc = sqlite3_prepare_v2(DB, sql.c_str(), -1, &stmt, nullptr);
 
     if (rc != SQLITE_OK) {
-        throw "Failed to prepare sql in getAllStudents";
+        throw MyException("Failed to prepare sql in getAllStudents");
     }
 
     while (sqlite3_step(stmt) == SQLITE_ROW) {

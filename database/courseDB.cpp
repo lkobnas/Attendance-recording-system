@@ -1,5 +1,5 @@
 #include "courseDB.h"
-//#include <iostream>
+#include <iostream>
 using namespace std;
 
 
@@ -27,7 +27,7 @@ bool CourseDB::initDB()
 		exit = sqlite3_exec(DB, sql.c_str(), NULL, 0, &messageError);
 		if (exit != SQLITE_OK) {
             sqlite3_free(messageError);
-			throw "Error in createTable function.";
+			throw MyException("Error in createTable function.");
 			
 		}
 
@@ -35,7 +35,7 @@ bool CourseDB::initDB()
 	}
 	catch (const exception& e)
 	{
-		throw e.what();
+		throw MyException(e.what());
         return false;
 	}
 	return true;
@@ -62,8 +62,13 @@ bool CourseDB::insertCourse(QString name, QString datetime, QString SIDString)
     if (checkResult == SQLITE_ROW) {
         try{
             updateStudentList(DB, messageError, name, SIDString);
-        }catch (const exception& e){
-            throw e;
+        }catch (const QException& e){
+            const MyException* myException = dynamic_cast<const MyException*>(&e);
+            if (myException) {
+                QString errorMessage = myException->message();
+            }
+            //throw MyException(e);
+            throw;
         }
         return false; //Course not added so return false
     }
@@ -97,10 +102,10 @@ bool CourseDB::insertCourse(QString name, QString datetime, QString SIDString)
     exit = sqlite3_exec(DB, sql.c_str(), NULL, 0, &messageError);
 	if (exit != SQLITE_OK) {
         sqlite3_free(messageError);
-		throw "Error in insertCoursefunction.";
+		throw MyException("Error in insertCoursefunction.");
 	}
     if (removedNotExist){
-        throw "Non-registered student have been removed";
+        throw MyException("Non-registered student have been removed");
     }
 
 	return true;
@@ -156,7 +161,7 @@ bool CourseDB::updateStudentList(sqlite3* DB, char* messageError, QString course
     }
 
     if(ilist.isEmpty()){
-        throw "Nothing to update in Student list";
+        throw MyException("Nothing to update in Student list");
     }
 
     for(int i=0;i<ilist.size();i++){
@@ -179,13 +184,13 @@ bool CourseDB::updateStudentList(sqlite3* DB, char* messageError, QString course
     }
     
     if(change == false){
-        throw "Nothing to update in Student list";
+        throw MyException("Nothing to update in Student list");
     }else{
         string sql = "UPDATE COURSES SET PENDING = '"+slist.toStdString()+"' WHERE NAME = '"+courseName.toStdString()+"';"; 
         int exit = sqlite3_exec(DB, sql.c_str(), NULL, 0, &messageError);
         if (exit != SQLITE_OK) {
             sqlite3_free(messageError);
-            throw "Error in insertCoursefunction.";            
+            throw MyException("Error in insertCoursefunction.");            
         }
     }
 
@@ -203,13 +208,13 @@ bool CourseDB::updateArrived(QString courseName, QString targetSID){
 
     if(!slist.contains(targetSID)){
         QString s = targetSID + " is not registered in this class or is already here";
-        throw s;
+        throw MyException(s);
     }
       
     if(!alist.isEmpty()){
         if(alist.contains(targetSID)){
             QString s = targetSID + " is already here";
-            throw s;
+            throw MyException(s);
         }
         alist.append(",");
         alist.append(targetSID);
@@ -234,14 +239,14 @@ bool CourseDB::updateArrived(QString courseName, QString targetSID){
     exit = sqlite3_exec(DB, sql.c_str(), NULL, 0, &messageError);
     if (exit != SQLITE_OK) {
         sqlite3_free(messageError);
-        throw "Error in updating slist in updateArrived.";
+        throw MyException("Error in updating slist in updateArrived");
     }
     
     sql = "UPDATE COURSES SET ARRIVED = '"+alist.toStdString()+"' WHERE NAME = '"+courseName.toStdString()+"';"; 
     exit = sqlite3_exec(DB, sql.c_str(), NULL, 0, &messageError);
     if (exit != SQLITE_OK) {
         sqlite3_free(messageError);
-        throw "Error in updating alist in updateArrived.";
+        throw MyException("Error in updating alist in updateArrived");
     }
 
     return true;
@@ -263,7 +268,7 @@ bool CourseDB::deleteCourse(QString name)
 
 
     if (sqlite3_step(stmt) != SQLITE_DONE) {
-       throw sqlite3_errmsg(DB);
+       throw MyException(sqlite3_errmsg(DB));
     }
     sqlite3_finalize(stmt);
 
@@ -278,12 +283,12 @@ Course CourseDB::getCourse(QString name){
 	int exit = sqlite3_open("courses.db", &DB);
     int rc = sqlite3_prepare_v2(DB, sql.toUtf8().constData(), -1, &stmt, NULL);
     if (rc != SQLITE_OK) {
-        throw sqlite3_errmsg(DB);
+        throw MyException(sqlite3_errmsg(DB));
     }
     rc = sqlite3_bind_text(stmt, 1, name.toUtf8().constData(), -1, SQLITE_STATIC);
     if (rc != SQLITE_OK) {
         sqlite3_finalize(stmt);
-        throw sqlite3_errmsg(DB);
+        throw MyException(sqlite3_errmsg(DB));
         
     }
     rc = sqlite3_step(stmt);
