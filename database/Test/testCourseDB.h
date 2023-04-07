@@ -11,21 +11,21 @@ TEST(courseDB_test, courseDB_init) {
 }
 
 TEST(courseDB_test, courseDB_insertCourse) {
-    EXPECT_EQ(cdb.insertCourse("ENG5220","4/4/2023 15:30", "   2993326W,  2426734L,   3559320A"),true);
-    EXPECT_EQ(cdb.insertCourse("ENG5220","4/4/2023 15:30", "      9553252Q,   3559320A"),false);
-    EXPECT_EQ(cdb.insertCourse("ENG5220","4/4/2023 15:30", "    9553252Q, 3559320A"),false);
-    EXPECT_EQ(cdb.insertCourse("ENG5330","7/4/2023 12:30", "2993326W,  2426734L,   3559320A"),true);
-    EXPECT_EQ(cdb.insertCourse("ENG5330","7/4/2023 12:30", ""),false);
+    EXPECT_ANY_THROW(cdb.insertCourse("ENG5220","4/4/2023 15:30", "   2993326W,  2426734L  ,  1234567A")); // Throw exception if input contains unregistered student
+    EXPECT_EQ(cdb.insertCourse("ENG5220","4/4/2023 15:30", "      9553252Q,   3559320A"),false);           // Return false if course not inserted but updated student list
+    EXPECT_ANY_THROW(cdb.insertCourse("ENG5220","4/4/2023 15:30", "    9553252Q, 3559320A"));              // Throw exception if course not inserted and student list not updated
+    EXPECT_EQ(cdb.insertCourse("ENG5330","7/4/2023 12:30", "2993326W,  2426734L  "),true);       // Return true if course inserted
+    EXPECT_ANY_THROW(cdb.insertCourse("ENG5330","7/4/2023 12:30",""));
 
 }
 
 TEST(courseDB_test, courseDB_updateArrivedList) {
     EXPECT_EQ(cdb.updateArrived("ENG5220","2993326W"),true);
-    EXPECT_EQ(cdb.updateArrived("ENG5220","2993326W"),false);
-    EXPECT_EQ(cdb.updateArrived("ENG5220","NOTEXIST"),false);
+    EXPECT_ANY_THROW(cdb.updateArrived("ENG5220","2993326W"));
+    EXPECT_ANY_THROW(cdb.updateArrived("ENG5220","NOTEXIST"));
     EXPECT_EQ(cdb.updateArrived("ENG5220","2426734L"),true);
     EXPECT_EQ(cdb.updateArrived("ENG5330","2993326W"),true);
-    EXPECT_EQ(cdb.updateArrived("ENG5330","2993326W"),false);
+    EXPECT_ANY_THROW(cdb.updateArrived("ENG5330","2993326W"));
 }
 
 TEST(courseDB_test, courseDB_getCourse) {

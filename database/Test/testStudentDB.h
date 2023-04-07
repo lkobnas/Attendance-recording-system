@@ -13,7 +13,7 @@ TEST(studentDB_test, studentDB_init) {
 
 TEST(studentDB_test, studentDB_insertStudent) {
     EXPECT_EQ(sdb.insertStudent("9553252Q","John Wick","9553252Q@student.gla.ac.uk","5A-8D-B3-33-3A","picturedata266501","005391582938538479183749187349183749817498317491873948174981798374198DAFADFAFHDKJHAKHkfdjahdfkjahfkdjahdfkuakeaf931"),true); 
-    EXPECT_EQ(sdb.insertStudent("9553252Q","John Wick","9553252Q@student.gla.ac.uk","5A-8D-B3-33-3A","picturedata266501","005391582938538479183749187349183749817498317491873948174981798374198DAFADFAFHDKJHAKHkfdjahdfkjahfkdjahdfkuakeaf931"),false); 
+    EXPECT_ANY_THROW(sdb.insertStudent("9553252Q","John Wick","9553252Q@student.gla.ac.uk","5A-8D-B3-33-3A","picturedata266501","005391582938538479183749187349183749817498317491873948174981798374198DAFADFAFHDKJHAKHkfdjahdfkjahfkdjahdfkuakeaf931")); 
     EXPECT_EQ(sdb.insertStudent("3559320A","Test Name2","3559320A@student.gla.ac.uk","9C-3A-92-D3-2B","picturedata9957401","178035125132183749187349183749817498317491873948174981798374198DAFADFAFHDKJHAKHkfdjahdfkjahfkdjahdfkuakeaf931"),true);
     EXPECT_EQ(sdb.insertStudent("2426734L","A","email@email.com","cardID","",""),true);
     EXPECT_EQ(sdb.insertStudent("2993326W","B C","2993326W@student.gla.ac.uk","cardIDDD","",""),true);
