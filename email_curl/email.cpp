@@ -4,10 +4,7 @@
 #include <iostream>
 #include "email.h"
 
-/// @brief Send email using SendGrid with pre-designed dynamic templates
-/// @param recipient Recipient email address
-/// @param email_type 1: send attendance recorded email, 2: send new account confirmation email
-bool Email::send_email(std::string recipient, int email_type){
+bool Email::readCredentialsFile(){
     std::ifstream file("credentials.txt");
     std::string API_KEY;
     if (file.is_open()) {
@@ -17,8 +14,23 @@ bool Email::send_email(std::string recipient, int email_type){
         std::cerr << "Unable to open credentials file." << std::endl;
         return false;
     }
-    
+
     api_key = API_KEY;
+
+    if(api_key==""){
+        return false;
+    }
+
+    return true;
+}
+
+/// @brief Send email using SendGrid with pre-designed dynamic templates
+/// @param recipient Recipient email address
+/// @param email_type 1: send attendance recorded email, 2: send new account confirmation email
+bool Email::send_email(std::string recipient, int email_type){
+    if(!readCredentialsFile()){
+        return false;
+    }
     //recipient = "eng5220.group38@gmail.com";
     sender = "eng5220.group38@gmail.com";
     if(email_type==1){

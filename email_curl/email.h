@@ -11,6 +11,7 @@ public:
     /// @param recipient 
     /// @param email_type 
     bool send_email(std::string recipient, int email_type);
+    bool readCredentialsFile();
 private:
     std::string api_key;
     std::string sender ;
