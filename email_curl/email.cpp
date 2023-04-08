@@ -112,6 +112,7 @@ bool Email::send_email_enrollToCourse(std::string recipient, std::string courseN
                             }, \
                             \"template_id\": \"" + templateID + "\" \
                         }'";
+    system(command.c_str());
     return true;  
 }
 

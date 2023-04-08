@@ -14,15 +14,12 @@ TEST(email_test, readCredentialsFile) {
 }
 TEST(email_test, send_email_record) {
     EXPECT_EQ(email.send_email_record("eng5220.group38@gmail.com","ENG5220"), true);
-    //EXPECT_EQ(email.send_email_record("eng5220.group38@gmail.com"), true);
 }
 TEST(email_test, send_email_newStudent) {
     EXPECT_EQ(email.send_email_newStudent("eng5220.group38@gmail.com"), true);
-    //EXPECT_EQ(email.send_email_record("eng5220.group38@gmail.com"), true);
 }
 TEST(email_test, send_email_enrollToCourse) {
     EXPECT_EQ(email.send_email_enrollToCourse("eng5220.group38@gmail.com","ENG5220","04/05/2023 13:50"), true);
-    //EXPECT_EQ(email.send_email_enrollToCourse("eng5220.group38@gmail.com"), true);
 }
 TEST(email_test, send_email_lateReminder) {
     EXPECT_EQ(email.send_email_lateReminder("eng5220.group38@gmail.com","ENG5220","04/05/2023 13:50"), true);
