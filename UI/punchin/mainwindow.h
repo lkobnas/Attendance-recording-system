@@ -13,18 +13,22 @@ QT_END_NAMESPACE
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
-    bool adminMode;
+    bool adminMode = false;
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
 private slots:
 
+    void init();
+    
+    void update();
+
+    void updateDatetimeDisplay();
+
     void on_addNewStudentButton_clicked();
 
     void on_addNewCourseButton_clicked();
-
-    void datetimeDisplay();
 
     void on_actionAdministrator_mode_triggered();
 

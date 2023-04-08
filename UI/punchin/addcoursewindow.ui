@@ -6,40 +6,18 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>417</width>
-    <height>299</height>
+    <width>432</width>
+    <height>270</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QWidget" name="horizontalLayoutWidget_10">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>19</y>
-     <width>391</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <layout class="QHBoxLayout" name="horizontalLayout_10">
-    <item>
-     <widget class="QLabel" name="label_7">
-      <property name="text">
-       <string>Add New Course</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
   <widget class="QWidget" name="gridLayoutWidget_2">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>50</y>
+     <x>20</x>
+     <y>20</y>
      <width>391</width>
      <height>191</height>
     </rect>
@@ -131,8 +109,8 @@
   <widget class="QPushButton" name="closeButton">
    <property name="geometry">
     <rect>
-     <x>310</x>
-     <y>260</y>
+     <x>180</x>
+     <y>230</y>
      <width>89</width>
      <height>25</height>
     </rect>

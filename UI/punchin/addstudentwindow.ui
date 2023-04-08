@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>422</width>
-    <height>301</height>
+    <width>430</width>
+    <height>283</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,8 +16,8 @@
   <widget class="QWidget" name="gridLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>48</y>
+     <x>20</x>
+     <y>20</y>
      <width>391</width>
      <height>201</height>
     </rect>
@@ -121,36 +121,11 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="horizontalLayoutWidget_5">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>20</y>
-     <width>389</width>
-     <height>19</height>
-    </rect>
-   </property>
-   <layout class="QHBoxLayout" name="horizontalLayout_5">
-    <property name="sizeConstraint">
-     <enum>QLayout::SetDefaultConstraint</enum>
-    </property>
-    <item>
-     <widget class="QLabel" name="label_6">
-      <property name="text">
-       <string>Add New Student</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>310</x>
-     <y>260</y>
+     <x>180</x>
+     <y>240</y>
      <width>89</width>
      <height>25</height>
     </rect>

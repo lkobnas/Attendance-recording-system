@@ -13,8 +13,8 @@ AddStudentWindow::AddStudentWindow(QWidget *parent) :
     ui(new Ui::AddStudentWindow)
 {
     sdb.initDB();
-
     ui->setupUi(this);
+    setWindowTitle("Add New Student");
 }
 
 AddStudentWindow::~AddStudentWindow()
