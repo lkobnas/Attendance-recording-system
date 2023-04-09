@@ -61,18 +61,28 @@ void MainWindow::init(){
     // Create a QStandardItemModel to represent the data source for the table view
     QStandardItemModel *model = new QStandardItemModel(this);
     model->setRowCount(courseList.size());
-    model->setColumnCount(3);
+    model->setColumnCount(4);
     model->setHeaderData(0, Qt::Horizontal, "Course Name");
     model->setHeaderData(1, Qt::Horizontal, "Date Time");
-    model->setHeaderData(2, Qt::Horizontal, "Arrived/Total Students");
+    model->setHeaderData(2, Qt::Horizontal, "Arrived");
+    model->setHeaderData(3, Qt::Horizontal, "Total");
     // Create a QTableView object and set the model for the view
     ui->tableView->setModel(model);
+    ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     // Set the column widths and header titles
     ui->tableView->setColumnWidth(0, 100);
-    ui->tableView->setColumnWidth(1, 200);
-    ui->tableView->setColumnWidth(2, 50);
-    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tableView->setColumnWidth(1, 160);
+    ui->tableView->setColumnWidth(2, 60);
+    ui->tableView->setColumnWidth(3, 40);
+    //ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+    for(int i=0;i<courseList.size();i++){
+        model->setData(model->index(i,0),courseList[i].name);
+        model->setData(model->index(i,1),courseList[i].datetime);
+        model->setData(model->index(i,2),courseList[i].arrivedStudents.size());
+        model->setData(model->index(i,3),courseList[i].studentList.size());
+    }
     //ui->tableView->setHorizontalHeaderLabels(QStringList() << "Course Name" << "Date Time" << "Arrived/Total Students");
 
 }
@@ -104,6 +114,12 @@ void MainWindow::updateDatetimeDisplay()
     
 }
 
+void MainWindow::updateTableView()
+{
+    
+    
+}
+
 void MainWindow::on_actionAdministrator_mode_triggered()
 {
     if(adminMode == false){
@@ -117,8 +133,7 @@ void MainWindow::on_actionAdministrator_mode_triggered()
             }else{
                 QMessageBox::warning(this, "Error switching to admin mode", "Wrong passcode");
             }
-        }
-                    
+        }                   
     }
 }
 

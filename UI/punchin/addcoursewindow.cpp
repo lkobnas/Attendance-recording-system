@@ -14,6 +14,7 @@ AddCourseWindow::AddCourseWindow(QWidget *parent) :
     cdb.initDB();
     ui->setupUi(this);
     setWindowTitle("Add New Course");
+    //ui->cNoteLabel->
 }
 
 AddCourseWindow::~AddCourseWindow()
@@ -33,32 +34,35 @@ void AddCourseWindow::on_cAddButton_clicked()
         QMessageBox::warning(this, "Error adding course", "Course date/time is invalid");
         return;
     } 
-    QString sid = ui->cStudentIDListLineEdit->text();  
-    if (sid.isEmpty()) {
-        QMessageBox::information(this, "Error adding student", "Student ID cannot be empty.");
-        return;
-    } 
-    
-     //Insert new course to database
-     try{
-         sdb.insertStudent(sid,name,email,cardID,photo,fdID);
-     }catch(QException &e){
-         const MyException* myException = dynamic_cast<const MyException*>(&e);
-         if (myException) {
-             QString errorMessage = myException->message();
-             QMessageBox::warning(this, "Error adding student", errorMessage);
-             return;
-         }
-     }
-    QMessageBox::information(this, "DateTime", datetime);
+    QDateTime currentTime = QDateTime::currentDateTime();
+    QDateTime inputTime = QDateTime::fromString(datetime, "yyyy-MM-dd hh:mm:ss");
+    if (inputTime < currentTime){
+        QMessageBox::warning(this, "Error adding course", "Cannot add course from the past");
+        return;       
+    }
 
+    QString sidList = ui->cStudentIDListLineEdit->text();  
+
+    //Insert new course to database
+    try{
+        cdb.insertCourse(name, datetime, sidList);
+    }catch(QException &e){
+        const MyException* myException = dynamic_cast<const MyException*>(&e);
+        if (myException) {
+            QString errorMessage = myException->message();
+            QMessageBox::warning(this, "Error adding course", errorMessage);
+            return;
+        }
+    }
+    QMessageBox::information(this, "DateTime", datetime);
 
 return;
 }
 
 void AddCourseWindow::on_cClearButton_clicked()
 {
-    
+    ui->cNameLineEdit->clear();
+    ui->cStudentIDListLineEdit->clear();
 }
 
 
