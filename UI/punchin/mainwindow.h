@@ -34,6 +34,8 @@ private slots:
 
     void on_actionSwitch_to_student_mode_triggered();
 
+    void updateTableView();
+
 private:
     Ui::MainWindow *ui;
 };

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>432</width>
-    <height>270</height>
+    <width>430</width>
+    <height>292</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,60 +19,10 @@
      <x>20</x>
      <y>20</y>
      <width>391</width>
-     <height>191</height>
+     <height>211</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout_2">
-    <item row="1" column="0">
-     <layout class="QHBoxLayout" name="horizontalLayout_6">
-      <item>
-       <widget class="QLabel" name="label_4">
-        <property name="text">
-         <string>Course name :</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="cNameLineEdit"/>
-      </item>
-      <item>
-       <widget class="QPushButton" name="cClearButton">
-        <property name="text">
-         <string>Clear</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item row="5" column="0">
-     <layout class="QHBoxLayout" name="horizontalLayout_8">
-      <item>
-       <widget class="QPushButton" name="cAddButton">
-        <property name="text">
-         <string>Add Course / Update Student ID List</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item row="4" column="0">
-     <layout class="QHBoxLayout" name="horizontalLayout_9">
-      <item>
-       <widget class="QLabel" name="label_8">
-        <property name="text">
-         <string>Student ID List :</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="cStudentIDListLineEdit">
-        <property name="placeholderText">
-         <string>1234567A,2345678B...</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
     <item row="3" column="0">
      <layout class="QHBoxLayout" name="horizontalLayout_7">
       <item>
@@ -104,13 +54,70 @@
       </item>
      </layout>
     </item>
+    <item row="6" column="0">
+     <layout class="QHBoxLayout" name="horizontalLayout_8">
+      <item>
+       <widget class="QPushButton" name="cAddButton">
+        <property name="text">
+         <string>Add Course / Update Student ID List</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="1" column="0">
+     <layout class="QHBoxLayout" name="horizontalLayout_6">
+      <item>
+       <widget class="QLabel" name="label_4">
+        <property name="text">
+         <string>Course name :</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="cNameLineEdit"/>
+      </item>
+      <item>
+       <widget class="QPushButton" name="cClearButton">
+        <property name="text">
+         <string>Clear</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="4" column="0">
+     <layout class="QHBoxLayout" name="horizontalLayout_9">
+      <item>
+       <widget class="QLabel" name="label_8">
+        <property name="text">
+         <string>Student ID List :</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="cStudentIDListLineEdit">
+        <property name="placeholderText">
+         <string>1234567A,2345678B...</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="5" column="0">
+     <widget class="QLabel" name="cNoteLabel">
+      <property name="text">
+       <string>cNoteLabel</string>
+      </property>
+     </widget>
+    </item>
    </layout>
   </widget>
   <widget class="QPushButton" name="closeButton">
    <property name="geometry">
     <rect>
-     <x>180</x>
-     <y>230</y>
+     <x>170</x>
+     <y>250</y>
      <width>89</width>
      <height>25</height>
     </rect>

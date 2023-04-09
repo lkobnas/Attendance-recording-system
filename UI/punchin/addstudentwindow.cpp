@@ -83,7 +83,6 @@ void AddStudentWindow::on_sAddButton_clicked()
     }
     QMessageBox::information(this, "Insert successful", "New student " +name+ " added to database");
 
-
 return;
 }
 
