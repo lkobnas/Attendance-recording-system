@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QStandardItemModel>
 
 #include "addstudentwindow.h"
 #include "addcoursewindow.h"
@@ -14,12 +15,12 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
     bool adminMode = false;
+    QStandardItemModel* model;
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
 private slots:
-
     void init();
     
     void update();

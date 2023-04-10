@@ -14,7 +14,8 @@ AddCourseWindow::AddCourseWindow(QWidget *parent) :
     cdb.initDB();
     ui->setupUi(this);
     setWindowTitle("Add New Course");
-    //ui->cNoteLabel->
+    ui->cNoteLabel->setText("Note: You can add a student into an existing class.");
+    ui->dateTimeEdit->setDateTime(QDateTime::currentDateTime().addDays(1));
 }
 
 AddCourseWindow::~AddCourseWindow()

@@ -59,7 +59,7 @@ void MainWindow::init(){
     }
     
     // Create a QStandardItemModel to represent the data source for the table view
-    QStandardItemModel *model = new QStandardItemModel(this);
+    model = new QStandardItemModel(this);
     model->setRowCount(courseList.size());
     model->setColumnCount(4);
     model->setHeaderData(0, Qt::Horizontal, "Course Name");
@@ -71,10 +71,10 @@ void MainWindow::init(){
     ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     // Set the column widths and header titles
-    ui->tableView->setColumnWidth(0, 100);
+    ui->tableView->setColumnWidth(0, 95);
     ui->tableView->setColumnWidth(1, 160);
     ui->tableView->setColumnWidth(2, 60);
-    ui->tableView->setColumnWidth(3, 40);
+    ui->tableView->setColumnWidth(3, 30);
     //ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     for(int i=0;i<courseList.size();i++){
@@ -84,7 +84,6 @@ void MainWindow::init(){
         model->setData(model->index(i,3),courseList[i].studentList.size());
     }
     //ui->tableView->setHorizontalHeaderLabels(QStringList() << "Course Name" << "Date Time" << "Arrived/Total Students");
-
 }
 
 void MainWindow::update(){
