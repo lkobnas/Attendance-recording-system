@@ -71,10 +71,10 @@ void MainWindow::init(){
     ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     // Set the column widths and header titles
-    ui->tableView->setColumnWidth(0, 95);
+    ui->tableView->setColumnWidth(0, 105);
     ui->tableView->setColumnWidth(1, 160);
     ui->tableView->setColumnWidth(2, 60);
-    ui->tableView->setColumnWidth(3, 30);
+    ui->tableView->setColumnWidth(3, 40);
 
     //ui->tableView->setHorizontalHeaderLabels(QStringList() << "Course Name" << "Date Time" << "Arrived/Total Students");
     updateTableView();
