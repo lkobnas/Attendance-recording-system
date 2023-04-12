@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>842</width>
+    <height>554</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,9 +17,9 @@
    <widget class="QWidget" name="gridLayoutWidget_3">
     <property name="geometry">
      <rect>
-      <x>390</x>
-      <y>70</y>
-      <width>381</width>
+      <x>410</x>
+      <y>40</y>
+      <width>401</width>
       <height>391</height>
      </rect>
     </property>
@@ -33,7 +33,7 @@
     <property name="geometry">
      <rect>
       <x>200</x>
-      <y>490</y>
+      <y>460</y>
       <width>161</width>
       <height>41</height>
      </rect>
@@ -45,8 +45,8 @@
    <widget class="QPushButton" name="addNewCourseButton">
     <property name="geometry">
      <rect>
-      <x>600</x>
-      <y>490</y>
+      <x>640</x>
+      <y>460</y>
       <width>161</width>
       <height>41</height>
      </rect>
@@ -59,7 +59,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>120</y>
+      <y>90</y>
       <width>341</width>
       <height>341</height>
      </rect>
@@ -69,7 +69,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>30</y>
+      <y>0</y>
       <width>341</width>
       <height>61</height>
      </rect>
@@ -93,8 +93,8 @@
    <widget class="QLabel" name="label_courseTimetable">
     <property name="geometry">
      <rect>
-      <x>390</x>
-      <y>30</y>
+      <x>420</x>
+      <y>0</y>
       <width>381</width>
       <height>41</height>
      </rect>
@@ -109,8 +109,8 @@
    <widget class="QPushButton" name="testButton">
     <property name="geometry">
      <rect>
-      <x>390</x>
-      <y>30</y>
+      <x>420</x>
+      <y>10</y>
       <width>89</width>
       <height>25</height>
      </rect>
@@ -122,8 +122,8 @@
    <widget class="QPushButton" name="deleteCourseButton">
     <property name="geometry">
      <rect>
-      <x>400</x>
-      <y>490</y>
+      <x>420</x>
+      <y>460</y>
       <width>181</width>
       <height>41</height>
      </rect>
@@ -136,7 +136,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>490</y>
+      <y>460</y>
       <width>161</width>
       <height>41</height>
      </rect>
@@ -151,7 +151,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>842</width>
      <height>22</height>
     </rect>
    </property>
