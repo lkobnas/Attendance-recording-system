@@ -2,6 +2,7 @@
 #define ADDCOURSEWINDOW_H
 
 #include "../../database/courseDB.h"
+#include "../../email_curl/email.h"
 #include <QDialog>
 
 namespace Ui {
@@ -12,6 +13,7 @@ class AddCourseWindow : public QDialog
 {
     Q_OBJECT
     CourseDB cdb;
+    Email email_curl;
 
 public:
     explicit AddCourseWindow(QWidget *parent = nullptr);

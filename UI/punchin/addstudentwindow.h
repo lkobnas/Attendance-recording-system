@@ -2,6 +2,7 @@
 #define ADDSTUDENTWINDOW_H
 
 #include "../../database/studentDB.h"
+#include "../../email_curl/email.h"
 #include <QDialog>
 
 namespace Ui {
@@ -12,6 +13,7 @@ class AddStudentWindow : public QDialog
 {
     Q_OBJECT
     StudentDB sdb;
+    Email email_curl;
 
 public:
     explicit AddStudentWindow(QWidget *parent = nullptr);

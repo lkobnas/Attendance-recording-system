@@ -58,10 +58,10 @@ bool CourseDB::insertCourse(QString name, QString datetime, QString SIDString)
         checkResult = sqlite3_step(checkStmt);
         sqlite3_finalize(checkStmt);
     }
-    
+
     if (checkResult == SQLITE_ROW) {
         try{
-            updateStudentList(DB, messageError, name, SIDString);
+            updateStudentList(DB, messageError, name, datetime, SIDString);
         }catch (const QException& e){
             const MyException* myException = dynamic_cast<const MyException*>(&e);
             if (myException) {
@@ -108,6 +108,13 @@ bool CourseDB::insertCourse(QString name, QString datetime, QString SIDString)
         throw MyException("Non-registered student have been removed");
     }
 
+    QList<QString> finalList= s.split(",");
+    for(int i=0; i<finalList.size(); i++){
+        Student student = StudentDB::getStudent(finalList[i]);
+        Email email_curl;
+        email_curl.send_email_enrollToCourse(student.email.toStdString(),name.toStdString(),datetime.toStdString());
+    }
+
 	return true;
 }
 QString CourseDB::listToString(QList<Student> studentList){
@@ -140,7 +147,7 @@ QList<Student> CourseDB::stringtoList(QString s){
     return studentList;
 }
 
-bool CourseDB::updateStudentList(sqlite3* DB, char* messageError, QString courseName, QString inputList){
+bool CourseDB::updateStudentList(sqlite3* DB, char* messageError, QString courseName, QString datetime, QString inputList){
     inputList.replace(" ","");
     QList<QString> ilist = inputList.split(",");
     
@@ -192,6 +199,11 @@ bool CourseDB::updateStudentList(sqlite3* DB, char* messageError, QString course
             sqlite3_free(messageError);
             throw MyException("Error in insertCoursefunction.");            
         }
+        for(int i=0; i<ilist.size(); i++){
+            Student student = StudentDB::getStudent(ilist[i]);
+                Email email_curl;
+                email_curl.send_email_enrollToCourse(student.email.toStdString(), courseName.toStdString(), datetime.toStdString());
+            }
     }
 
     return true;
@@ -318,7 +330,7 @@ QList<Course> CourseDB::getAllCourses() {
     sqlite3_stmt* stmt;
 	sqlite3* DB;
 	sqlite3_open("courses.db", &DB);
-    std::string sql = "SELECT * FROM COURSES";
+    std::string sql = "SELECT * FROM COURSES ORDER BY DATETIME";
     int rc = sqlite3_prepare_v2(DB, sql.c_str(), -1, &stmt, nullptr);
 
     if (rc != SQLITE_OK) {

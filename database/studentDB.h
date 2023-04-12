@@ -28,6 +28,8 @@ class StudentDB {
         static bool deleteStudent(QString sid);
         static bool checkStudentExist(QString sid);
         static Student getStudent(QString sid);
+        static Student getStudentByCardID(QString cardID);
+        static Student getStudentByFPID(QString fpID);
         static QList<Student> getAllStudents();
         static int callback(void* NotUsed, int argc, char** argv, char** azColName);
         

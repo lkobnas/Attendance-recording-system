@@ -9,6 +9,7 @@
 #include <QPixmap>
 
 #include "studentDB.h"
+#include "../email_curl/email.h"
 
 struct Course {
     QString name;
@@ -32,7 +33,7 @@ class CourseDB {
     private:
         static QString listToString(QList<Student> studentList);
         static QList<Student> stringtoList(QString s);
-        static bool updateStudentList(sqlite3* DB, char* messageError, QString courseName, QString studentList);
+        static bool updateStudentList(sqlite3* DB, char* messageError, QString courseName, QString datetime, QString studentList);
 };
 
 #endif // COURSEDB_H

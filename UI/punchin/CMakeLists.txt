@@ -20,6 +20,7 @@ set(PROJECT_SOURCES
         addcoursewindow.h addcoursewindow.cpp addcoursewindow.ui
         ../../database/studentDB.cpp
         ../../database/courseDB.cpp
+        ../../email_curl/email.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
