@@ -81,7 +81,9 @@ void AddStudentWindow::on_sAddButton_clicked()
             return;
         }
     }
+    email_curl.send_email_newStudent(email.toStdString());
     QMessageBox::information(this, "Insert successful", "New student " +name+ " added to database");
+    close();
 
 return;
 }

@@ -18,6 +18,7 @@ add_executable(database
   studentDB.cpp
   courseDB.cpp
   main_test.cpp
+  ../email_curl/email.cpp
 )
 
 target_link_libraries(database Qt5::Core Qt5::Gui Qt5::Widgets Qt5::Sql sqlite3)

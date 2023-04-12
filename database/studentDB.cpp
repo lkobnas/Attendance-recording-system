@@ -65,8 +65,8 @@ bool StudentDB::insertStudent(QString sid, QString name, QString email, QString 
 		sqlite3_free(messageError);
         throw MyException("Error in insertStudent function");
 	}
-
-	return true;
+	
+    return true;
 }
 bool StudentDB::deleteStudent(QString sid)
 {
@@ -133,6 +133,70 @@ Student StudentDB::getStudent(QString sid){
         throw MyException(sqlite3_errmsg(DB));
     }
     rc = sqlite3_bind_text(stmt, 1, sid.toUtf8().constData(), -1, SQLITE_STATIC);
+    if (rc != SQLITE_OK) {
+        sqlite3_finalize(stmt);
+        throw MyException(sqlite3_errmsg(DB));
+    }
+    rc = sqlite3_step(stmt);
+
+    Student student;
+    //student.id = sqlite3_column_int(stmt, 0);
+	student.sid = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
+    student.name = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2));
+    student.email = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 3));
+    student.cardId = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 4));
+	student.picture = reinterpret_cast<const char*>(sqlite3_column_blob(stmt, 5));
+    student.fpId = reinterpret_cast<const char*>(sqlite3_column_blob(stmt, 6));
+	//QByteArray arr= QByteArray((const char *)dataBlob->pbData, dataBlob->cbData);
+    sqlite3_finalize(stmt);
+
+    return student;
+}
+
+Student StudentDB::getStudentByCardID(QString cardID){
+
+    QString sql = "SELECT * FROM STUDENTS WHERE CARDID = ?;";
+    sqlite3_stmt* stmt;
+	sqlite3* DB;
+	int exit = sqlite3_open("students.db", &DB);
+    int rc = sqlite3_prepare_v2(DB, sql.toUtf8().constData(), -1, &stmt, NULL);
+    if (rc != SQLITE_OK) {
+        sqlite3_finalize(stmt);
+        throw MyException(sqlite3_errmsg(DB));
+    }
+    rc = sqlite3_bind_text(stmt, 1, cardID.toUtf8().constData(), -1, SQLITE_STATIC);
+    if (rc != SQLITE_OK) {
+        sqlite3_finalize(stmt);
+        throw MyException(sqlite3_errmsg(DB));
+    }
+    rc = sqlite3_step(stmt);
+
+    Student student;
+    //student.id = sqlite3_column_int(stmt, 0);
+	student.sid = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
+    student.name = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2));
+    student.email = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 3));
+    student.cardId = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 4));
+	student.picture = reinterpret_cast<const char*>(sqlite3_column_blob(stmt, 5));
+    student.fpId = reinterpret_cast<const char*>(sqlite3_column_blob(stmt, 6));
+	//QByteArray arr= QByteArray((const char *)dataBlob->pbData, dataBlob->cbData);
+    sqlite3_finalize(stmt);
+
+    return student;
+}
+
+Student StudentDB::getStudentByFPID(QString fpID){
+
+    QString sql = "SELECT * FROM STUDENTS WHERE FPID = ?;";
+    sqlite3_stmt* stmt;
+	sqlite3* DB;
+	int exit = sqlite3_open("students.db", &DB);
+    int rc = sqlite3_prepare_v2(DB, sql.toUtf8().constData(), -1, &stmt, NULL);
+    if (rc != SQLITE_OK) {
+        sqlite3_finalize(stmt);
+        throw MyException(sqlite3_errmsg(DB));
+    }
+    rc = sqlite3_bind_text(stmt, 1, fpID.toUtf8().constData(), -1, SQLITE_STATIC);
     if (rc != SQLITE_OK) {
         sqlite3_finalize(stmt);
         throw MyException(sqlite3_errmsg(DB));

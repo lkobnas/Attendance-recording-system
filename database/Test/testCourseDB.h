@@ -4,6 +4,8 @@
 #include <gtest/gtest.h>
 #include "courseDB.h"
 #include "courseDB.cpp"
+#include "../email_curl/email.h"
+#include "../email_curl/email.cpp"
 CourseDB cdb;
 
 TEST(courseDB_test, courseDB_init) {

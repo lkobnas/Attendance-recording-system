@@ -14,7 +14,9 @@ AddCourseWindow::AddCourseWindow(QWidget *parent) :
     cdb.initDB();
     ui->setupUi(this);
     setWindowTitle("Add New Course");
-    //ui->cNoteLabel->
+    ui->cNoteLabel->setText("Note: You can add a student into an existing class.");
+    ui->dateTimeEdit->setDateTime(QDateTime::currentDateTime().addMSecs(1000*60*5)); // 5 minutes
+    ui->dateTimeEdit->setDisplayFormat("yyyy-MM-dd hh:mm");
 }
 
 AddCourseWindow::~AddCourseWindow()
@@ -29,13 +31,15 @@ void AddCourseWindow::on_cAddButton_clicked()
         QMessageBox::warning(this, "Error adding course", "Course name cannot be empty.");
         return;
     } 
-    QString datetime = ui->dateTimeEdit->text();        // TODO: Check time is valid or not > current time
+    QString datetime = ui->dateTimeEdit->text();       // TODO: Check time is valid or not > current time
     if (datetime.isEmpty()) {
         QMessageBox::warning(this, "Error adding course", "Course date/time is invalid");
         return;
     } 
     QDateTime currentTime = QDateTime::currentDateTime();
-    QDateTime inputTime = QDateTime::fromString(datetime, "yyyy-MM-dd hh:mm:ss");
+    QDateTime inputTime = QDateTime::fromString(datetime, "yyyy-MM-dd hh:mm");
+    QMessageBox::information(this, "Current Time", currentTime.toString());
+    QMessageBox::information(this, "Input Time", inputTime.toString());    
     if (inputTime < currentTime){
         QMessageBox::warning(this, "Error adding course", "Cannot add course from the past");
         return;       
@@ -54,8 +58,8 @@ void AddCourseWindow::on_cAddButton_clicked()
             return;
         }
     }
-    QMessageBox::information(this, "DateTime", datetime);
-
+    QMessageBox::information(this, "Success", "New course inserted to database");
+    close();
 return;
 }
 

@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QStandardItemModel>
 
 #include "addstudentwindow.h"
 #include "addcoursewindow.h"
@@ -13,13 +14,17 @@ QT_END_NAMESPACE
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
-    bool adminMode = false;
+    bool adminMode = true;              ///TEST MODE
+    QStandardItemModel* model;
+    CourseDB cdb;
+    StudentDB sdb;
+    QList<Course> courseList;
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    void updateTableView();
 
 private slots:
-
     void init();
     
     void update();
@@ -34,7 +39,11 @@ private slots:
 
     void on_actionSwitch_to_student_mode_triggered();
 
-    void updateTableView();
+    void on_testButton_clicked();
+
+    void on_studentListButton_clicked();
+
+    void on_deleteCourseButton_clicked();
 
 private:
     Ui::MainWindow *ui;

@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
-//#include "courseDB.h"
 
 #include <sqlite3.h>
 
@@ -10,6 +9,9 @@
 #include <QMessageBox>
 #include <QInputDialog>
 #include <QTableView>
+#include <QModelIndexList>
+#include <QModelIndex>
+#include <QItemSelection>
 
 #include <QtCore>
 #include <QtGui>
@@ -44,8 +46,6 @@ void MainWindow::init(){
     font.setPointSize(18);
     ui->label_courseTimetable->setFont(font);
 
-    CourseDB cdb;
-    QList<Course> courseList;
     try{
         cdb.initDB();
         courseList = cdb.getAllCourses();
@@ -59,7 +59,7 @@ void MainWindow::init(){
     }
     
     // Create a QStandardItemModel to represent the data source for the table view
-    QStandardItemModel *model = new QStandardItemModel(this);
+    model = new QStandardItemModel(this);
     model->setRowCount(courseList.size());
     model->setColumnCount(4);
     model->setHeaderData(0, Qt::Horizontal, "Course Name");
@@ -71,20 +71,13 @@ void MainWindow::init(){
     ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     // Set the column widths and header titles
-    ui->tableView->setColumnWidth(0, 100);
+    ui->tableView->setColumnWidth(0, 95);
     ui->tableView->setColumnWidth(1, 160);
     ui->tableView->setColumnWidth(2, 60);
-    ui->tableView->setColumnWidth(3, 40);
-    //ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tableView->setColumnWidth(3, 30);
 
-    for(int i=0;i<courseList.size();i++){
-        model->setData(model->index(i,0),courseList[i].name);
-        model->setData(model->index(i,1),courseList[i].datetime);
-        model->setData(model->index(i,2),courseList[i].arrivedStudents.size());
-        model->setData(model->index(i,3),courseList[i].studentList.size());
-    }
     //ui->tableView->setHorizontalHeaderLabels(QStringList() << "Course Name" << "Date Time" << "Arrived/Total Students");
-
+    updateTableView();
 }
 
 void MainWindow::update(){
@@ -93,17 +86,25 @@ void MainWindow::update(){
 
 void MainWindow::on_addNewStudentButton_clicked()
 {
-    AddStudentWindow sWindow;
-    sWindow.setModal(true);
-    sWindow.exec();
+    if(adminMode){
+        AddStudentWindow sWindow;
+        sWindow.setModal(true);
+        sWindow.exec(); 
+    }else{
+        QMessageBox::warning(this, "Permission Denied", "Please switch to admin mode");
+    }
 }
-
 
 void MainWindow::on_addNewCourseButton_clicked()
 {
-    AddCourseWindow cWindow;
-    cWindow.setModal(true);
-    cWindow.exec();
+    if(adminMode){
+        AddCourseWindow cWindow;
+        cWindow.setModal(true);
+        cWindow.exec();
+        updateTableView();
+    }else{
+        QMessageBox::warning(this, "Permission Denied", "Please switch to admin mode");
+    }
 }
 
 void MainWindow::updateDatetimeDisplay()
@@ -116,8 +117,23 @@ void MainWindow::updateDatetimeDisplay()
 
 void MainWindow::updateTableView()
 {
-    
-    
+    try{
+        courseList = cdb.getAllCourses();
+        model->setRowCount(courseList.size());
+        for(int i=0;i<courseList.size();i++){
+            model->setData(model->index(i,0),courseList[i].name);
+            model->setData(model->index(i,1),courseList[i].datetime);
+            model->setData(model->index(i,2),courseList[i].arrivedStudents.size());
+            model->setData(model->index(i,3),courseList[i].studentList.size());
+        }
+    }catch(QException &e){
+        const MyException* myException = dynamic_cast<const MyException*>(&e);
+        if (myException) {
+            QString errorMessage = myException->message();
+            QMessageBox::warning(this, "Course database error", errorMessage);
+            return;
+        }
+    }
 }
 
 void MainWindow::on_actionAdministrator_mode_triggered()
@@ -145,7 +161,108 @@ void MainWindow::on_actionSwitch_to_student_mode_triggered()
     }
 }
 
-void getUpdatedTime(){
+QList<QStringList> getSelectedData(QTableView* tableView) {
+    QList<QStringList> selectedData;
+
+    // Get the selection model for the QTableView
+    QItemSelectionModel* selectionModel = tableView->selectionModel();
+
+    // Get the selected indexes
+    QModelIndexList selectedIndexes = selectionModel->selectedIndexes();
+
+    //Iterate over the selected indexes and add the corresponding data to the list
+    for (const QModelIndex& index : selectedIndexes) {
+        QStringList rowData;
+        const QStandardItemModel* model = static_cast<const QStandardItemModel*>(tableView->model());
+        rowData.append(model->data(model->index(index.row(), 0)).toString());      
+        selectedData.append(rowData);
+    }
+
+    return selectedData;
+}
+
+
+void MainWindow::on_testButton_clicked()
+{
+
+}
+
+void MainWindow::on_studentListButton_clicked()
+{
+    QList<Student> studentList;
+    
+    try{
+        sdb.initDB();
+        studentList  = sdb.getAllStudents();
+        
+    }catch(QException &e){
+        const MyException* myException = dynamic_cast<const MyException*>(&e);
+        if (myException) {
+            QString errorMessage = myException->message();
+            QMessageBox::warning(this, "Student database error", errorMessage);
+            return;
+        }
+    }
+    
+    QDialog* popupWindow = new QDialog(this);
+    popupWindow->setWindowTitle("Student List");
+    popupWindow->resize(500, 300);
+
+    // Create a new QTableView and set its model to a QStandardItemModel with 3 columns
+    QTableView* tableView = new QTableView(popupWindow);
+    // Create a QStandardItemModel to represent the data source for the table view
+    model = new QStandardItemModel(this);
+    model->setRowCount(studentList.size());
+    model->setColumnCount(3);
+    model->setHeaderData(0, Qt::Horizontal, "Name");
+    model->setHeaderData(1, Qt::Horizontal, "Student ID");
+    model->setHeaderData(2, Qt::Horizontal, "Email");
+    // Create a QTableView object and set the model for the view
+    tableView->setModel(model);
+    tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    // Set the column widths and header titles
+    tableView->setColumnWidth(0, 140);
+    tableView->setColumnWidth(1, 105);
+    tableView->setColumnWidth(2, 220);
+
+    for(int i=0; i<studentList.size();i++){
+        model->setData(model->index(i,0),studentList[i].name);
+        model->setData(model->index(i,1),studentList[i].sid);
+        model->setData(model->index(i,2),studentList[i].email);
+    }
+
+    // Add the table view to a layout and set the layout for the popup window
+    QVBoxLayout* layout = new QVBoxLayout(popupWindow);
+    layout->addWidget(tableView);
+    
+    popupWindow->setLayout(layout);
+
+    // Show the popup window
+    popupWindow->exec();
+}
+
+
+void MainWindow::on_deleteCourseButton_clicked()
+{
+    QList<QStringList> selectedData = getSelectedData(ui->tableView);
+    if(selectedData.size()<1){
+        QMessageBox::warning(this, "Error deleting course", "Please select a course");
+    }else if(selectedData.size()>1){
+        QMessageBox::warning(this, "Error deleting course", "Please only select one course at one time");
+    }else{
+        try{
+            cdb.deleteCourse(selectedData[0][0]);
+        }catch(QException &e){
+            const MyException* myException = dynamic_cast<const MyException*>(&e);
+            if (myException) {
+                QString errorMessage = myException->message();
+                QMessageBox::warning(this, "Course database error", errorMessage);
+                return;
+            }
+        }
+        QMessageBox::information(this, "Success", "Course deleted");
+        updateTableView();
+    }
 
 }
 
