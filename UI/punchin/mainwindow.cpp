@@ -265,12 +265,12 @@ void MainWindow::rfidListener() {
 
         if (!uid.empty()) {
             QMetaObject::invokeMethod(this, "onUIDReceived", Qt::QueuedConnection,
-                                      Q_ARG(std::string, uid));
+                                      Q_ARG(QString, uid));
         }
     }
 }
 
-void MainWindow::onUIDReceived(const std::string &uid) {
+void MainWindow::onUIDReceived(const QString &uid) {
     // Process the received UID, for example, update the UI
     // Use the 'uid' variable to access the UID value
     qDebug() << &uid;
