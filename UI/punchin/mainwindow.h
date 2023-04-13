@@ -6,6 +6,7 @@
 
 #include "addstudentwindow.h"
 #include "addcoursewindow.h"
+#include "../../camera/camera.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -45,7 +46,10 @@ private slots:
 
     void on_deleteCourseButton_clicked();
 
+    void onCameraNewFrame(const QImage& image);
+
 private:
     Ui::MainWindow *ui;
+    Camera* camera;
 };
 #endif // MAINWINDOW_H

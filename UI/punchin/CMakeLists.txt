@@ -21,6 +21,7 @@ set(PROJECT_SOURCES
         ../../database/studentDB.cpp
         ../../database/courseDB.cpp
         ../../email_curl/email.cpp
+        ../../camera/camera.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

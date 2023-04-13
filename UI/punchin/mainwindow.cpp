@@ -29,10 +29,17 @@ MainWindow::MainWindow(QWidget *parent)
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()),this,SLOT(update()));
     timer->start(500);
+
+    ui->graphicsView->setScene(camera_->scene());
+    // Connect the newFrameAvailable signal from the camera to the onCameraNewFrame slot
+    connect(camera_, SIGNAL(newFrameAvailable(QImage)), this, SLOT(onCameraNewFrame(QImage)));
+    // Start the camera
+    camera_->start();
 }
 
 MainWindow::~MainWindow()
 {
+    camera_->stop();
     delete ui;
 }
 
@@ -82,6 +89,15 @@ void MainWindow::init(){
 
 void MainWindow::update(){
     updateDatetimeDisplay();
+}
+
+void MainWindow::onCameraNewFrame(const QImage& image)
+{
+    // Process the new frame in the main thread
+    camera_->thread().eventDispatcher()->blockingCallFromThread([&](){
+        camera_->processFrame(image);
+        return true;
+    });
 }
 
 void MainWindow::on_addNewStudentButton_clicked()
