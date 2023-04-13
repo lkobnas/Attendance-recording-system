@@ -45,24 +45,5 @@ string RFID::get_uid(void) {
 return uid_str;
 }
 
-void RFID::workerThread(std::function<void(const QString&)> callback) {
-    std::thread([=](){
-        while (true) {
-            std::string uid = get_uid();
-            QString qUid = QString::fromStdString(uid);
-            QMetaObject::invokeMethod(this, [=](){
-                callback(qUid);
-            });
-        }
-    }).detach();
-}
-
-void RFID::rpi_get_uid(){
-        while (true) {
-            std::string uid = get_uid();
-            QString qUid = QString::fromStdString(uid);
-            emit uidDetected(qUid);
-        }
-}
 
 

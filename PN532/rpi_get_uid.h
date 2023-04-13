@@ -12,10 +12,5 @@
 class RFID : public QObject{
     public:
         static std::string get_uid(void);
-        static void workerThread(std::function<void(const QString&)> callback);
-        static void rpi_get_uid();
-
-    signals:
-        void uidDetected(QString uid);
 
 };
