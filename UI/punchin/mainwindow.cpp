@@ -1,24 +1,4 @@
 #include "mainwindow.h"
-#include "./ui_mainwindow.h"
-
-#include <sqlite3.h>
-
-#include <QWidget>
-#include <QLineEdit>
-#include <QPushButton>
-#include <QMessageBox>
-#include <QInputDialog>
-#include <QTableView>
-#include <QModelIndexList>
-#include <QModelIndex>
-#include <QItemSelection>
-
-#include <QtCore>
-#include <QtGui>
-#include <QException>
-
-//#include <QSqlDatabase>
-//#include <QSqlTableModel>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -29,10 +9,14 @@ MainWindow::MainWindow(QWidget *parent)
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()),this,SLOT(update()));
     timer->start(500);
+    
+    rfidThread = std::thread(&MainWindow::rfidListener, this);
+
 }
 
 MainWindow::~MainWindow()
 {
+    rfidThread.join();
     delete ui;
 }
 
@@ -264,5 +248,31 @@ void MainWindow::on_deleteCourseButton_clicked()
         updateTableView();
     }
 
+}
+
+void MainWindow::cardCallback(const QString &uid)
+{
+    qDebug() << "RFID input received: " << uid;
+    // Update the UI with the RFID input
+    //update database arrived
+    //email
+    //doorlock
+}
+
+void MainWindow::rfidListener() {
+    while (true) {
+        std::string uid = rfid.get_uid();
+
+        if (!uid.empty()) {
+            QMetaObject::invokeMethod(this, "onUIDReceived", Qt::QueuedConnection,
+                                      Q_ARG(std::string, uid));
+        }
+    }
+}
+
+void MainWindow::onUIDReceived(const std::string &uid) {
+    // Process the received UID, for example, update the UI
+    // Use the 'uid' variable to access the UID value
+    qDebug() << &uid;
 }
 

@@ -4,8 +4,29 @@
 #include <QMainWindow>
 #include <QStandardItemModel>
 
+#include <sqlite3.h>
+
+#include <QtCore>
+#include <QtGui>
+#include <QException>
+#include <QWidget>
+#include <QLineEdit>
+#include <QPushButton>
+#include <QMessageBox>
+#include <QInputDialog>
+#include <QTableView>
+#include <QModelIndexList>
+#include <QModelIndex>
+#include <QItemSelection>
+
+#include <thread>
+#include <functional>
+
 #include "addstudentwindow.h"
 #include "addcoursewindow.h"
+#include "mainwindow.h"
+#include "./ui_mainwindow.h"
+#include "../../PN532/rpi_get_uid.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -45,7 +66,15 @@ private slots:
 
     void on_deleteCourseButton_clicked();
 
+    static void cardCallback(const QString &uid);
+
+    void onUIDReceived(const std::string &uid);
+
 private:
     Ui::MainWindow *ui;
+    RFID rfid;
+    std::thread rfidThread;
+    void rfidListener();
+    //std::function<void(const QString&)> rfid_callback_;
 };
 #endif // MAINWINDOW_H

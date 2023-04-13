@@ -21,6 +21,9 @@ set(PROJECT_SOURCES
         ../../database/studentDB.cpp
         ../../database/courseDB.cpp
         ../../email_curl/email.cpp
+        ../../PN532/pn532.cpp
+        ../../PN532/pn532_rpi.cpp
+        ../../PN532/rpi_get_uid.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -46,7 +49,7 @@ else()
     endif()
 endif()
 
-target_link_libraries(punchin PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Sql sqlite3)
+target_link_libraries(punchin PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Sql sqlite3 wiringPi)
 
 set_target_properties(punchin PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com

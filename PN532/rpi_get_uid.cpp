@@ -1,3 +1,8 @@
+#include <thread>
+#include <functional>
+#include <QString>
+#include <thread>
+
 #include "rpi_get_uid.h"
 using namespace std;
 
@@ -7,13 +12,13 @@ string RFID::get_uid(void) {
     uint8_t uid[MIFARE_UID_MAX_LENGTH];
     int32_t uid_len = 0;
     string uid_str;
-    cout<<"Hello!\r\n";
+    //cout<<"Hello!\r\n";
     PN532 pn532; // creat a module object pn532
     pn532_rpi I2C_pn532; // creat a I2C object for raspberry pi
     I2C_pn532.PN532_I2C_Init(&pn532);
     if (PN532_GetFirmwareVersion(&pn532, buff) == PN532_STATUS_OK) {
         //printf("Found PN532 with firmware version: %d.%d\r\n", buff[1], buff[2]);
-        cout<<"Found PN532 with firmware version: "<<static_cast<int>(buff[1])<<"."<<static_cast<int>(buff[2])<<"\r\n";
+        //cout<<"Found PN532 with firmware version: "<<static_cast<int>(buff[1])<<"."<<static_cast<int>(buff[2])<<"\r\n";
     } else {
         return 0;
     }
@@ -39,4 +44,25 @@ string RFID::get_uid(void) {
     }
 return uid_str;
 }
+
+void RFID::workerThread(std::function<void(const QString&)> callback) {
+    std::thread([=](){
+        while (true) {
+            std::string uid = get_uid();
+            QString qUid = QString::fromStdString(uid);
+            QMetaObject::invokeMethod(this, [=](){
+                callback(qUid);
+            });
+        }
+    }).detach();
+}
+
+void RFID::rpi_get_uid(){
+        while (true) {
+            std::string uid = get_uid();
+            QString qUid = QString::fromStdString(uid);
+            emit uidDetected(qUid);
+        }
+}
+
 
