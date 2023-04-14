@@ -130,6 +130,35 @@ void MainWindow::updateTableView()
     ui->tableView->update();
 }
 
+void MainWindow::checkCourseStart(){
+    QDateTime currentTime = QDateTime::currentDateTime();
+    //QString currentTimeText = currentTime.toString("dd/MM/yyyy hh:mm:ss");
+    QAbstractItemModel* model = ui->tableView->model();
+    QModelIndex firstIndex = model->index(0, 1, QModelIndex());
+    // Get the data stored in the first index
+    QVariant data = model->data(firstIndex);
+    // Convert the data to a QString if necessary
+    //QString courseTimeText = data.toString();
+    QDateTime courseTime = QDateTime::fromString(data, "yyyy-MM-dd hh:mm");
+    if(courseTime == currentTime){
+        //late email
+    }else if(currentTime > courseTime.addMSecs(1000*60*30)){
+        //delete course
+        try{
+            cdb.deleteCourse(selectedData[0][0]);
+        }catch(QException &e){
+            const MyException* myException = dynamic_cast<const MyException*>(&e);
+            if (myException) {
+                QString errorMessage = myException->message();
+                QMessageBox::warning(this, "Course database error", errorMessage);
+                return;
+            }
+        }
+        QMessageBox::information(this, "Success", "Course deleted");
+        updateTableView();        
+    }
+}
+
 void MainWindow::on_actionAdministrator_mode_triggered()
 {
     if(adminMode == false){

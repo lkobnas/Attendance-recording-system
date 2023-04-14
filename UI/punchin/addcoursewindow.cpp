@@ -46,8 +46,9 @@ void AddCourseWindow::on_cAddButton_clicked()
     QString sidList = ui->cStudentIDListLineEdit->text();  
 
     //Insert new course to database
+    bool result;
     try{
-        cdb.insertCourse(name, datetime, sidList);
+        result = cdb.insertCourse(name, datetime, sidList);
     }catch(QException &e){
         const MyException* myException = dynamic_cast<const MyException*>(&e);
         if (myException) {
@@ -56,7 +57,12 @@ void AddCourseWindow::on_cAddButton_clicked()
             return;
         }
     }
-    QMessageBox::information(this, "Success", "New course inserted to database");
+    if(!result){
+        QMessageBox::information(this, "Success", "New student added to course");
+    }else{
+        QMessageBox::information(this, "Success", "New course inserted to database");
+    }
+    
     close();
 return;
 }

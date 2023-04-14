@@ -52,6 +52,8 @@ private slots:
 
     void updateDatetimeDisplay();
 
+    void checkCourseStart();
+
     void on_addNewStudentButton_clicked();
 
     void on_addNewCourseButton_clicked();

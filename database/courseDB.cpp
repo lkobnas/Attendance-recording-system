@@ -104,9 +104,9 @@ bool CourseDB::insertCourse(QString name, QString datetime, QString SIDString)
         sqlite3_free(messageError);
 		throw MyException("Error in insertCoursefunction.");
 	}
-    if (removedNotExist){
-        throw MyException("Non-registered student have been removed");
-    }
+    // if (removedNotExist){
+    //     throw MyException("Non-registered student have been removed");
+    // }
 
     QList<QString> finalList= s.split(",");
     for(int i=0; i<finalList.size(); i++){
