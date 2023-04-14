@@ -301,5 +301,5 @@ void recordAttendanceWindow(QString studentID){
     //update database arrived
     //email
     //doorlock
-    QDebug() << "recordAttendanceWindow triggered";
+    qDebug() << "recordAttendanceWindow triggered";
 }
