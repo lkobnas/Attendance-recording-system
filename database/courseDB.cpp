@@ -260,7 +260,6 @@ bool CourseDB::updateArrived(QString courseName, QString targetSID){
         sqlite3_free(messageError);
         throw MyException("Error in updating alist in updateArrived");
     }
-
     return true;
 }
 

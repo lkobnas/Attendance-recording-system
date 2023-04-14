@@ -27,6 +27,7 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include "../../PN532/rpi_get_uid.h"
+#include "../../eamil_curl/email.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

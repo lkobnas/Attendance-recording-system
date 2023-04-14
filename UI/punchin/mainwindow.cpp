@@ -270,17 +270,19 @@ void MainWindow::rfidListener() {
 
 void MainWindow::recordAttendanceWindow(QString studentID)
 {
-    //update database arrived
-    //email
     //doorlock
     qDebug() << "recordAttendanceWindow triggered";
+    QString s = "Your attendance have been recorded, your SID: "+studentID;
+    QMessageBox* popup = new QMessageBox(QMessageBox::Information, "Success", s, QMessageBox::Close, nullptr);
+    popup->setAttribute(Qt::WA_DeleteOnClose); // delete the popup automatically when it's closed
+    QTimer::singleShot(3000, popup, &QMessageBox::close); // close the popup after 3 seconds
+    popup->show(); 
+
+    
 }
 
 void MainWindow::onUIDReceived(const QString uid) {
-    // Process the received UID, for example, update the UI
-    // Use the 'uid' variable to access the UID value
-    qDebug() << "onUIDReceived: ";
-    qDebug() << uid;
+    //update database arrived
     Student student;
     try{
         student = sdb.getStudentByCardID(uid);
@@ -293,13 +295,40 @@ void MainWindow::onUIDReceived(const QString uid) {
         }
     }
     if(student.sid.isEmpty()){
-        QMessageBox* popup = new QMessageBox(QMessageBox::Warning, "Invalid Card", "You are not registered in this class", QMessageBox::Close, nullptr);
+        QMessageBox* popup = new QMessageBox(QMessageBox::Warning, "Invalid Card", "You are not registered in the system", QMessageBox::Close, nullptr);
         popup->setAttribute(Qt::WA_DeleteOnClose); // delete the popup automatically when it's closed
         QTimer::singleShot(3000, popup, &QMessageBox::close); // close the popup after 3 seconds
         popup->show(); 
+        return;
     }
-
+    QAbstractItemModel* model = ui->tableView->model();
+    QModelIndex firstIndex = model->index(0, 0, QModelIndex());
+    // Get the data stored in the first index
+    QVariant data = model->data(firstIndex);
+    // Convert the data to a QString if necessary
+    QString courseName = data.toString();
+    if(courseName.isEmpty()){
+        QMessageBox* popup = new QMessageBox(QMessageBox::Warning, "No coming class", "No upcoming class", QMessageBox::Close, nullptr);
+        popup->setAttribute(Qt::WA_DeleteOnClose); // delete the popup automatically when it's closed
+        QTimer::singleShot(3000, popup, &QMessageBox::close); // close the popup after 3 seconds
+        popup->show(); 
+        return;
+    }
+    try{
+        cdb.updateArrived(courseName, uid)
+    }catch(QException &e){
+        const MyException* myException = dynamic_cast<const MyException*>(&e);
+        if (myException) {
+            QString errorMessage = myException->message();
+            QMessageBox::warning(this, "Failed to record attendance", errorMessage);
+            return;
+        }
+    }    
+    // Send Attendance recorded email
+    Email email_curl;
+    email_curl.send_email_record(student.email, courseName);
     recordAttendanceWindow(student.sid);
+    
     // Update the UI with the RFID input
 
 }
