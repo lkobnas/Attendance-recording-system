@@ -75,7 +75,7 @@ signals:
 
 private:
     Ui::MainWindow *ui; 
-    AddStudentWindow* sWindow;
+    AddStudentWindow* sWindow; 
     bool studentWindowValid;
     RFID rfid;
     std::thread rfidThread;

@@ -72,10 +72,13 @@ void MainWindow::update(){
 void MainWindow::on_addNewStudentButton_clicked()
 {
     if(adminMode){
+        sWindow = new AddStudentWindow(this);
+        connect(this, &MainWindow::passVariable, sWindow, &AddStudentWindow::receiveVariable);
         studentWindowValid = true;
-        sWindow->setModal(true);
-        sWindow->exec(); 
-        studentWindowValid = false;
+        //sWindow->setModal(true);
+        sWindow->show(); 
+        qDebug() << "After show";
+        //studentWindowValid = false;
     }else{
         QMessageBox::warning(this, "Permission Denied", "Please switch to admin mode");
     }
