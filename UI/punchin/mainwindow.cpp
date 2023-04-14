@@ -268,6 +268,14 @@ void MainWindow::rfidListener() {
     }
 }
 
+void MainWindow::recordAttendanceWindow(QString studentID)
+{
+    //update database arrived
+    //email
+    //doorlock
+    qDebug() << "recordAttendanceWindow triggered";
+}
+
 void MainWindow::onUIDReceived(const QString uid) {
     // Process the received UID, for example, update the UI
     // Use the 'uid' variable to access the UID value
@@ -296,10 +304,3 @@ void MainWindow::onUIDReceived(const QString uid) {
 
 }
 
-void recordAttendanceWindow(QString studentID){
-
-    //update database arrived
-    //email
-    //doorlock
-    qDebug() << "recordAttendanceWindow triggered";
-}
