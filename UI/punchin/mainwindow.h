@@ -68,7 +68,7 @@ private slots:
 
     static void cardCallback(const QString &uid);
 
-    void onUIDReceived(const std::string &uid);
+    void onUIDReceived(const QString &uid);
 
 private:
     Ui::MainWindow *ui;

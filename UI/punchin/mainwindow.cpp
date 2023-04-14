@@ -259,15 +259,16 @@ void MainWindow::cardCallback(const QString &uid)
 void MainWindow::rfidListener() {
     while (true) {
         std::string uid = rfid.get_uid();
-
+        
         if (!uid.empty()) { 
+            QString quid = QString::fromStdString(uid);
             QMetaObject::invokeMethod(this, "onUIDReceived", Qt::QueuedConnection,
-                                      Q_ARG(std::string, uid));
+                                      Q_ARG(QString, quid));
         }
     }
 }
 
-void MainWindow::onUIDReceived(const std::string &uid) {
+void MainWindow::onUIDReceived(const QString &uid) {
     // Process the received UID, for example, update the UI
     // Use the 'uid' variable to access the UID value
     qDebug() << "onUIDReceived: ";
