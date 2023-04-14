@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(timer, SIGNAL(timeout()),this,SLOT(update()));
     timer->start(500);
     
-    //connect(this, &MainWindow::passVariable, this, &AddStudentWindow::receiveVariable, Qt::QueuedConnection);
+    //connect(this, &MainWindow::passCardID, this, &AddStudentWindow::receiveVariable, Qt::QueuedConnection);
     rfidThread = std::thread(&MainWindow::rfidListener, this);
 
 }
@@ -73,15 +73,19 @@ void MainWindow::on_addNewStudentButton_clicked()
 {
     if(adminMode){
         sWindow = new AddStudentWindow(this);
-        connect(this, &MainWindow::passVariable, sWindow, &AddStudentWindow::receiveVariable);
+        connect(this, &MainWindow::passCardID, sWindow, &AddStudentWindow::receiveCardID);
+        connect(sWindow, &QDialog::finished, this, &MainWindow::onAddStudentWindowClosed);
         studentWindowValid = true;
         //sWindow->setModal(true);
         sWindow->show(); 
-        qDebug() << "After show";
         //studentWindowValid = false;
     }else{
         QMessageBox::warning(this, "Permission Denied", "Please switch to admin mode");
     }
+}
+
+void MainWindow::onAddStudentWindowClosed(){
+    studentWindowValid = false;
 }
 
 void MainWindow::on_addNewCourseButton_clicked()
@@ -291,12 +295,12 @@ void MainWindow::recordAttendanceWindow(QString studentID)
 void MainWindow::onUIDReceived(const QString uid) {
     //update database arrived
     if(studentWindowValid){       
-        connect(this, &MainWindow::passVariable, sWindow, 
+        connect(this, &MainWindow::passCardID, sWindow, 
         [=](const QVariant& value) {
-            sWindow->receiveVariable(value.toString());
+            sWindow->receiveCardID(value.toString());
         }, Qt::QueuedConnection);
         // Emit the signal with the variable
-        emit passVariable(uid);        
+        emit passCardID(uid);        
         return;
     }
 

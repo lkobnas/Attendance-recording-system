@@ -21,7 +21,7 @@ public:
     ~AddStudentWindow();
 
 public slots:
-    void receiveVariable(QString variable);
+    void receiveCardID(QString cardid);
 
 private slots:
     void on_sClearButton_clicked();
@@ -38,6 +38,13 @@ private slots:
 
 private:
     Ui::AddStudentWindow *ui;
+
+    QString name;
+    QString email;
+    QString sid;
+    QString cardID;
+    QByteArray photo;
+    QByteArray fpID;
 };
 
 #endif // ADDSTUDENTWINDOW_H

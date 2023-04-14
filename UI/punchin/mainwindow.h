@@ -70,8 +70,10 @@ private slots:
 
     void onUIDReceived(const QString uid);
 
+    void onAddStudentWindowClosed();
+
 signals:
-    void passVariable(QString cardID);
+    void passCardID(QString cardID);
 
 private:
     Ui::MainWindow *ui; 
