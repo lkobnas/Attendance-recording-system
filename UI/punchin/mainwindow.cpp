@@ -127,6 +127,7 @@ void MainWindow::updateTableView()
             return;
         }
     }
+    ui->tableView->update();
 }
 
 void MainWindow::on_actionAdministrator_mode_triggered()
@@ -349,7 +350,7 @@ void MainWindow::onUIDReceived(const QString uid) {
     Email email_curl;
     email_curl.send_email_record(student.email.toStdString(), courseName.toStdString());
     recordAttendanceWindow(student.sid);
-    
+    updateTableView();
     // Update the UI with the RFID input
 
 }
