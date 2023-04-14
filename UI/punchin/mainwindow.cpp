@@ -267,7 +267,7 @@ void MainWindow::rfidListener() {
     }
 }
 
-void MainWindow::onUIDReceived(const QString &uid) {
+void MainWindow::onUIDReceived(const std::string &uid) {
     // Process the received UID, for example, update the UI
     // Use the 'uid' variable to access the UID value
     qDebug() << "onUIDReceived: ";
