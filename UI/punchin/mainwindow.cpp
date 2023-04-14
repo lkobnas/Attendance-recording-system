@@ -336,7 +336,7 @@ void MainWindow::onUIDReceived(const QString uid) {
         return;
     }
     try{
-        cdb.updateArrived(courseName, uid);
+        cdb.updateArrived(courseName, student.sid);
     }catch(QException &e){
         const MyException* myException = dynamic_cast<const MyException*>(&e);
         if (myException) {
