@@ -75,6 +75,7 @@ private:
     RFID rfid;
     std::thread rfidThread;
     void rfidListener();
+    void recordAttendanceWindow(QString studentID);
     //std::function<void(const QString&)> rfid_callback_;
 };
 #endif // MAINWINDOW_H
