@@ -253,19 +253,16 @@ void MainWindow::on_deleteCourseButton_clicked()
 void MainWindow::cardCallback(const QString &uid)
 {
     qDebug() << "RFID input received: " << uid;
-    // Update the UI with the RFID input
-    //update database arrived
-    //email
-    //doorlock
+
 }
 
 void MainWindow::rfidListener() {
     while (true) {
         std::string uid = rfid.get_uid();
 
-        if (!uid.empty()) {
+        if (!uid.empty()) { 
             QMetaObject::invokeMethod(this, "onUIDReceived", Qt::QueuedConnection,
-                                      Q_ARG(QString, uid));
+                                      Q_ARG(std::string, uid));
         }
     }
 }
@@ -273,6 +270,12 @@ void MainWindow::rfidListener() {
 void MainWindow::onUIDReceived(const QString &uid) {
     // Process the received UID, for example, update the UI
     // Use the 'uid' variable to access the UID value
+    qDebug() << "onUIDReceived: ";
     qDebug() << &uid;
+
+    // Update the UI with the RFID input
+    //update database arrived
+    //email
+    //doorlock
 }
 
