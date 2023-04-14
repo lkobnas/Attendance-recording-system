@@ -4,6 +4,7 @@
 #include "../../database/studentDB.h"
 #include "../../email_curl/email.h"
 #include <QDialog>
+#include <QDebug>
 
 namespace Ui {
 class AddStudentWindow;
@@ -18,6 +19,9 @@ class AddStudentWindow : public QDialog
 public:
     explicit AddStudentWindow(QWidget *parent = nullptr);
     ~AddStudentWindow();
+
+public slots:
+    void receiveVariable(QString variable);
 
 private slots:
     void on_sClearButton_clicked();

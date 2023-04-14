@@ -29,10 +29,14 @@ void AddStudentWindow::on_sClearButton_clicked()
     ui->sSIDLineEdit->clear();
 }
 
+void AddStudentWindow::receiveVariable(QString variable)
+{
+    qDebug()<< variable;
+}
 
 void AddStudentWindow::on_sCardButton_clicked()
 {
-
+    
 }
 
 

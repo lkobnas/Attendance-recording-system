@@ -70,8 +70,12 @@ private slots:
 
     void onUIDReceived(const QString uid);
 
+signals:
+    void passVariable(QString cardID);
+
 private:
     Ui::MainWindow *ui; 
+    AddStudentWindow* addStudentWindow = nullptr;
     RFID rfid;
     std::thread rfidThread;
     void rfidListener();
