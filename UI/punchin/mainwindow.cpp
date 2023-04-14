@@ -72,10 +72,10 @@ void MainWindow::update(){
 void MainWindow::on_addNewStudentButton_clicked()
 {
     if(adminMode){
-        AddStudentWindow sWindow; 
-        sWindow.setModal(true);
-        sWindow.exec(); 
-        qDebug() << "After sWindow exec";
+        studentWindowValid = true;
+        sWindow->setModal(true);
+        sWindow->exec(); 
+        studentWindowValid = false;
     }else{
         QMessageBox::warning(this, "Permission Denied", "Please switch to admin mode");
     }
@@ -283,8 +283,19 @@ void MainWindow::recordAttendanceWindow(QString studentID)
     
 }
 
+
+
 void MainWindow::onUIDReceived(const QString uid) {
     //update database arrived
+    if(studentWindowValid){       
+        connect(this, &MainWindow::passVariable, sWindow, 
+        [=](const QVariant& value) {
+            sWindow->receiveVariable(value.toString());
+        }, Qt::QueuedConnection);
+        // Emit the signal with the variable
+        emit passVariable(uid);        
+        return;
+    }
 
     Student student;
     try{
