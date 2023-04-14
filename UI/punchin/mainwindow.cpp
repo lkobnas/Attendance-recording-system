@@ -168,7 +168,7 @@ QList<QStringList> getSelectedData(QTableView* tableView) {
 
 void MainWindow::on_testButton_clicked()
 {
-
+    recordAttendanceWindow("41054466255110128");
 }
 
 void MainWindow::on_studentListButton_clicked()
@@ -273,10 +273,33 @@ void MainWindow::onUIDReceived(const QString uid) {
     // Use the 'uid' variable to access the UID value
     qDebug() << "onUIDReceived: ";
     qDebug() << uid;
+    Student student;
+    try{
+        student = sdb.getStudentByCardID(uid);
+    }catch(QException &e){
+        const MyException* myException = dynamic_cast<const MyException*>(&e);
+        if (myException) {
+            QString errorMessage = myException->message();
+            QMessageBox::warning(this, "Student database error", errorMessage);
+            return;
+        }
+    }
+    if(student.sid.isEmpty()){
+        QMessageBox* popup = new QMessageBox(QMessageBox::Warning, "Invalid Card", "You are not registered in this class", QMessageBox::Close, nullptr);
+        popup->setAttribute(Qt::WA_DeleteOnClose); // delete the popup automatically when it's closed
+        QTimer::singleShot(3000, popup, &QMessageBox::close); // close the popup after 3 seconds
+        popup->show(); 
+    }
 
+    recordAttendanceWindow(student.sid);
     // Update the UI with the RFID input
+
+}
+
+void recordAttendanceWindow(QString studentID){
+
     //update database arrived
     //email
     //doorlock
+    QDebug() << "recordAttendanceWindow triggered";
 }
-
