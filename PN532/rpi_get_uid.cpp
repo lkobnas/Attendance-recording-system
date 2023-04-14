@@ -32,7 +32,7 @@ string RFID::get_uid(void) {
             cout<<".";
             fflush(stdout);
         } else {
-            cout<<"\r\nFound card with UID: ";
+            cout<<"\r\n Card founded ";
             for (uint8_t i = 0; i < uid_len; i++) {
                 //printf("%02x ", uid[i]);
                 //cout<<hex<<static_cast<int>(uid[i])<<" ";
