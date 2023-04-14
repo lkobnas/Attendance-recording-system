@@ -315,7 +315,7 @@ void MainWindow::onUIDReceived(const QString uid) {
         return;
     }
     try{
-        cdb.updateArrived(courseName, uid)
+        cdb.updateArrived(courseName, uid);
     }catch(QException &e){
         const MyException* myException = dynamic_cast<const MyException*>(&e);
         if (myException) {
@@ -326,7 +326,7 @@ void MainWindow::onUIDReceived(const QString uid) {
     }    
     // Send Attendance recorded email
     Email email_curl;
-    email_curl.send_email_record(student.email, courseName);
+    email_curl.send_email_record(student.email.toStdString(), courseName.toStdString());
     recordAttendanceWindow(student.sid);
     
     // Update the UI with the RFID input
