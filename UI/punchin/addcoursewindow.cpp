@@ -37,9 +37,7 @@ void AddCourseWindow::on_cAddButton_clicked()
         return;
     } 
     QDateTime currentTime = QDateTime::currentDateTime();
-    QDateTime inputTime = QDateTime::fromString(datetime, "yyyy-MM-dd hh:mm");
-    QMessageBox::information(this, "Current Time", currentTime.toString());
-    QMessageBox::information(this, "Input Time", inputTime.toString());    
+    QDateTime inputTime = QDateTime::fromString(datetime, "yyyy-MM-dd hh:mm"); 
     if (inputTime < currentTime){
         QMessageBox::warning(this, "Error adding course", "Cannot add course from the past");
         return;       

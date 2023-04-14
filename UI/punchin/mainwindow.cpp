@@ -117,7 +117,7 @@ void MainWindow::updateTableView()
             model->setData(model->index(i,0),courseList[i].name);
             model->setData(model->index(i,1),courseList[i].datetime);
             model->setData(model->index(i,2),courseList[i].arrivedStudents.size());
-            model->setData(model->index(i,3),courseList[i].studentList.size());
+            model->setData(model->index(i,3),courseList[i].studentList.size() + courseList[i].arrivedStudents.size());
         }
     }catch(QException &e){
         const MyException* myException = dynamic_cast<const MyException*>(&e);
