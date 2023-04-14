@@ -31,7 +31,7 @@ void AddStudentWindow::on_sClearButton_clicked()
 
 void AddStudentWindow::receiveVariable(QString variable)
 {
-    qDebug()<< variable;
+    qDebug()<< "receiveVariable: "<<variable;
 }
 
 void AddStudentWindow::on_sCardButton_clicked()
