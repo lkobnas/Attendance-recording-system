@@ -23,6 +23,7 @@
 
 #include <string.h>
 #include <stdio.h>
+#include <stdint.h>
 
 // 去除文件中的空格
 // 仅适合本例，用于处理配置文件，数据量很小

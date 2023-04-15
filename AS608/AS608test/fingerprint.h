@@ -8,6 +8,7 @@
 #include <unistd.h>
 #include <wiringPi.h>
 #include <wiringSerial.h>
+#include <stdint.h>
 
 extern AS608 g_as608;
 extern int g_fd;

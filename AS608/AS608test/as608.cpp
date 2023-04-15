@@ -30,6 +30,7 @@
 #include <stdarg.h>
 #include <wiringPi.h>
 #include <wiringSerial.h>
+#include <stdint.h>
 
 
 /*******************************BEGIN**********************************
