@@ -159,16 +159,12 @@ void MainWindow::checkCourseStart(){
     }
     if(courseTime == currentTime){
         //late email    
-        if(!email_timer->isActive()){
-            qDebug() << "late_email triggered";
-            Course course = cdb.getCourse(courseName);
-            QList<Student> studentList = course.studentList;
-            Email email;
-            for(int i=0;i<studentList.size();i++){
-                email.send_email_lateReminder(studentList[i].email.toStdString(),courseName.toStdString(),datetimeData.toString().toStdString());
-            }
-            
-            email_timer->start();
+        qDebug() << "late_email triggered";
+        Course course = cdb.getCourse(courseName);
+        QList<Student> studentList = course.studentList;
+        Email email;
+        for(int i=0;i<studentList.size();i++){
+            email.send_email_lateReminder(studentList[i].email.toStdString(),courseName.toStdString(),datetimeData.toString().toStdString());
         }
     }else if(currentTime > courseTime.addMSecs(1000*60*1)){ // TEST for 1 min
         //delete course
