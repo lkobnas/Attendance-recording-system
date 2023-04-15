@@ -154,6 +154,9 @@ void MainWindow::checkCourseStart(){
 
     QString courseName = coursenameData.toString();
     QDateTime courseTime = QDateTime::fromString(datetimeData.toString(), "yyyy-MM-dd hh:mm");
+    if(courseTime.isNull()){
+        return;
+    }
     if(courseTime == currentTime){
         //late email    
         if(!email_timer->isActive()){
@@ -180,7 +183,10 @@ void MainWindow::checkCourseStart(){
                 return;
             }
         }
-        QMessageBox::information(this, "Success", "Course deleted");
+        QMessageBox* popup = new QMessageBox(QMessageBox::Information, "Auto delete triggered", "Course Deleted", QMessageBox::Close, nullptr);
+        popup->setAttribute(Qt::WA_DeleteOnClose); // delete the popup automatically when it's closed
+        QTimer::singleShot(2000, popup, &QMessageBox::close); // close the popup after 3 seconds
+        popup->show(); 
         updateTableView();        
     }
 }
