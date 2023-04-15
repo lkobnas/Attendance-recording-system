@@ -43,6 +43,7 @@ void MainWindow::init(){
     font.setPointSize(18);
     ui->label_courseTimetable->setFont(font);
 
+    studentWindowValid = false;
     try{
         cdb.initDB();
         courseList = cdb.getAllCourses();
