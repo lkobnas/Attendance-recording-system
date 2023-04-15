@@ -3,6 +3,6 @@
 int main(){
     Fingerprint fp;
     int result = fp.fp_init();
-    std:cout<< "result:" << result;
+    std::cout<< "result:" << result;
     fp.fp_add(9);
 }
