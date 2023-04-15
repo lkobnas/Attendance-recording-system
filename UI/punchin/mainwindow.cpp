@@ -15,12 +15,14 @@ MainWindow::MainWindow(QWidget *parent)
     //Timer for input delay
     delay_timer = new QTimer(this);
     delay_timer->setInterval(1500);
-    connect(delay_timer, SIGNAL(timeout()),this,SLOT(onUIDReceived(const QString)));
+    //connect(delay_timer, SIGNAL(timeout()),this,SLOT(onUIDReceived(const QString)));
+    connect(delay_timer, &QTimer::timeout, this, &MainWindow::d_resetFunctionRunningFlag);
+    d_functionRunning = false;
 
     // Email Timer
     email_timer = new QTimer(this);
     email_timer->setInterval(2000);
-    connect(email_timer, &QTimer::timeout, this, &MainWindow::checkCourseStart);
+    //connect(email_timer, &QTimer::timeout, this, &MainWindow::checkCourseStart);
 
     //Timer for input delay
     //connect(this, &MainWindow::passCardID, this, &AddStudentWindow::receiveVariable, Qt::QueuedConnection);
@@ -425,13 +427,20 @@ void MainWindow::recordAttendanceWindow(QString studentID)
     popup->show(); 
 }
 
+void MainWindow::e_resetFunctionRunningFlag(){
+    e_functionRunning = false;
+}
+void MainWindow::d_resetFunctionRunningFlag(){
+    d_functionRunning = false;
+}
 
 void MainWindow::onUIDReceived(const QString uid) {
     //update database arrived
-    if(delay_timer->isActive()){
-        return;
+    if (!d_functionRunning) {
+        d_functionRunning = true;
+        delay_timer->start();
+        // Function code here
     }
-    delay_timer->start();
 
     if(studentWindowValid){       
         connect(this, &MainWindow::passCardID, sWindow, 

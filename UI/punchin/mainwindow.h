@@ -85,6 +85,11 @@ private:
     std::thread rfidThread;
     QTimer* email_timer;
     QTimer* delay_timer;
+    bool e_functionRunning;
+    bool d_functionRunning;
+    void e_resetFunctionRunningFlag();
+    void d_resetFunctionRunningFlag();
+
     void rfidListener();
     void recordAttendanceWindow(QString studentID);
     //std::function<void(const QString&)> rfid_callback_;
