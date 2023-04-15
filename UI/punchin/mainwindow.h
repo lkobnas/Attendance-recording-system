@@ -52,6 +52,8 @@ private slots:
 
     void updateDatetimeDisplay();
 
+    void checkCourseStart();
+
     void on_addNewStudentButton_clicked();
 
     void on_addNewCourseButton_clicked();
@@ -68,13 +70,23 @@ private slots:
 
     static void cardCallback(const QString &uid);
 
-    void onUIDReceived(const std::string &uid);
+    void onUIDReceived(const QString uid);
+
+    void onAddStudentWindowClosed();
+
+signals:
+    void passCardID(QString cardID);
 
 private:
-    Ui::MainWindow *ui;
+    Ui::MainWindow *ui; 
+    AddStudentWindow* sWindow; 
+    bool studentWindowValid;
     RFID rfid;
     std::thread rfidThread;
+    QTimer* email_timer;
+    QTimer* delay_timer;
     void rfidListener();
+    void recordAttendanceWindow(QString studentID);
     //std::function<void(const QString&)> rfid_callback_;
 };
 #endif // MAINWINDOW_H

@@ -37,9 +37,7 @@ void AddCourseWindow::on_cAddButton_clicked()
         return;
     } 
     QDateTime currentTime = QDateTime::currentDateTime();
-    QDateTime inputTime = QDateTime::fromString(datetime, "yyyy-MM-dd hh:mm");
-    QMessageBox::information(this, "Current Time", currentTime.toString());
-    QMessageBox::information(this, "Input Time", inputTime.toString());    
+    QDateTime inputTime = QDateTime::fromString(datetime, "yyyy-MM-dd hh:mm"); 
     if (inputTime < currentTime){
         QMessageBox::warning(this, "Error adding course", "Cannot add course from the past");
         return;       
@@ -48,8 +46,9 @@ void AddCourseWindow::on_cAddButton_clicked()
     QString sidList = ui->cStudentIDListLineEdit->text();  
 
     //Insert new course to database
+    bool result;
     try{
-        cdb.insertCourse(name, datetime, sidList);
+        result = cdb.insertCourse(name, datetime, sidList);
     }catch(QException &e){
         const MyException* myException = dynamic_cast<const MyException*>(&e);
         if (myException) {
@@ -58,7 +57,12 @@ void AddCourseWindow::on_cAddButton_clicked()
             return;
         }
     }
-    QMessageBox::information(this, "Success", "New course inserted to database");
+    if(!result){
+        QMessageBox::information(this, "Success", "New student added to course");
+    }else{
+        QMessageBox::information(this, "Success", "New course inserted to database");
+    }
+    
     close();
 return;
 }

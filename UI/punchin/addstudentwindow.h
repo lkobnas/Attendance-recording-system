@@ -3,7 +3,13 @@
 
 #include "../../database/studentDB.h"
 #include "../../email_curl/email.h"
+#include <QWidget>
+#include <QLineEdit>
+#include <QPushButton>
+#include <QMessageBox>
+#include <QException>
 #include <QDialog>
+#include <QDebug>
 
 namespace Ui {
 class AddStudentWindow;
@@ -18,6 +24,9 @@ class AddStudentWindow : public QDialog
 public:
     explicit AddStudentWindow(QWidget *parent = nullptr);
     ~AddStudentWindow();
+
+public slots:
+    void receiveCardID(QString cardid);
 
 private slots:
     void on_sClearButton_clicked();
@@ -34,6 +43,13 @@ private slots:
 
 private:
     Ui::AddStudentWindow *ui;
+
+    QString name;
+    QString email;
+    QString sid;
+    QString cardID;
+    QByteArray photo;
+    QByteArray fpID;
 };
 
 #endif // ADDSTUDENTWINDOW_H

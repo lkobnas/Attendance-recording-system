@@ -1,11 +1,7 @@
 #include "addstudentwindow.h"
 #include "ui_addstudentwindow.h"
 
-#include <QWidget>
-#include <QLineEdit>
-#include <QPushButton>
-#include <QMessageBox>
-#include <QException>
+
 
 
 AddStudentWindow::AddStudentWindow(QWidget *parent) :
@@ -29,10 +25,20 @@ void AddStudentWindow::on_sClearButton_clicked()
     ui->sSIDLineEdit->clear();
 }
 
+void AddStudentWindow::receiveCardID(QString cardid)
+{
+    qDebug()<< "receiveCardID: "<<cardid;
+    cardID = cardid;
+    QPalette pal = ui->sCardButton->palette();
+    pal.setColor(QPalette::Button, QColor(Qt::green));
+    ui->sCardButton->setAutoFillBackground(true);
+    ui->sCardButton->setPalette(pal);
+    ui->sCardButton->update();
+}
 
 void AddStudentWindow::on_sCardButton_clicked()
 {
-
+    QMessageBox::information(this, "Scan your card", "Place your card on the card reader until this button turn green");
 }
 
 
@@ -51,28 +57,33 @@ void AddStudentWindow::on_sPhotoButton_clicked()
 void AddStudentWindow::on_sAddButton_clicked()
 {
 
-    QString name = ui->sNameLineEdit->text();
+    name = ui->sNameLineEdit->text();
     if (name.isEmpty()) {
         QMessageBox::warning(this, "Error adding student", "Student name cannot be empty.");
         return;
     } 
-    QString email = ui->sEmailLineEdit->text();
+    email = ui->sEmailLineEdit->text();
     if (email.isEmpty()) {
         QMessageBox::warning(this, "Error adding student", "Student email cannot be empty.");
         return;
     } 
-    QString sid = ui->sSIDLineEdit->text();
+    sid = ui->sSIDLineEdit->text();
     if (sid.isEmpty()) {
         QMessageBox::warning(this, "Error adding student", "Student ID cannot be empty.");
         return;
     } 
     // TODO Check rfid card
-    QString cardID = "cardIDHere";
-    QByteArray photo = "photoDataHere";
-    QByteArray fdID = "fingerprintDataHere";
+    if(cardID.isEmpty()){
+        QMessageBox::warning(this, "Error adding student", "Student card have not registered");
+        return;
+    }
+
+
+    photo = "photoDataHere";
+    fpID = "fingerprintDataHere";
     // Insert new student data to database
     try{
-        sdb.insertStudent(sid,name,email,cardID,photo,fdID);
+        sdb.insertStudent(sid,name,email,cardID,photo,fpID);
     }catch(QException &e){
         const MyException* myException = dynamic_cast<const MyException*>(&e);
         if (myException) {
