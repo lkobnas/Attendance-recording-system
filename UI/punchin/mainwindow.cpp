@@ -19,7 +19,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Email Timer
     email_timer email_timer = new QTimer(this);
-    d_timer->setInterval(2000);
+    email_timer->setInterval(2000);
     connect(email_timer, &QTimer::timeout, this, &MainWindow::checkCourseStart);
 
     //Timer for input delay
