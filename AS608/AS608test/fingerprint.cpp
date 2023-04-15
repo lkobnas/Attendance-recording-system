@@ -59,7 +59,7 @@ int Fingerprint::fp_init(){
   // 5.打开串口
 	if((g_fd = serialOpen(g_config.serial, g_config.baudrate)) < 0)	{
 		fprintf(stderr,"Unable to open serial device: %s\n", strerror(errno));
-		return 1;
+		return 2;
 	}
 
   // 6.注册退出函数(打印一些信息、关闭串口等)
@@ -68,6 +68,7 @@ int Fingerprint::fp_init(){
   // 7.初始化 AS608 模块
   // 地址 密码
   PS_Setup(g_config.address, g_config.password) ||  PS_Exit();
+return 0;
 }
 
 void Fingerprint::fp_add(int address)
