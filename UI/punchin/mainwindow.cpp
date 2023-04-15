@@ -28,7 +28,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
-    //rfidThread.detach();
+    rfidThread.detach();
     rfidThread.join();
     delete ui;
 }
@@ -80,7 +80,7 @@ void MainWindow::init(){
 
 void MainWindow::update(){
     updateDatetimeDisplay();
-    //checkCourseStart();
+    checkCourseStart();
 }
 
 void MainWindow::on_addNewStudentButton_clicked()
@@ -166,6 +166,7 @@ void MainWindow::checkCourseStart(){
         Email email;
         for(int i=0;i<studentList.size();i++){
             email.send_email_lateReminder(studentList[i].email.toStdString(),courseName.toStdString(),datetimeData.toString().toStdString());
+            qDebug()<< studentList[i].email;
         }
     }else if(currentTime > courseTime.addMSecs(1000*60*1)){ // TEST for 1 min
         //delete course
