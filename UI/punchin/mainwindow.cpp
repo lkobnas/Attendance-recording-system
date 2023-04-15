@@ -46,6 +46,12 @@ void MainWindow::init(){
     font.setPointSize(18);
     ui->label_courseTimetable->setFont(font);
 
+    font.setPointSize(18);
+    ui->labelUpcomingCourseName->setFont(font);
+    font.setBold(false);
+    ui->labelUpcomingCourse->setFont(font);
+
+    
     studentWindowValid = false;
     try{
         cdb.initDB();
@@ -347,6 +353,12 @@ void MainWindow::updateStudentTable(){
     try{
         course = cdb.getCourse(courseName);       
         sModel->setRowCount(std::max(course.studentList.size(),course.arrivedStudents.size()));
+        for(int i=0;i<course.studentList.size();i++){
+            sModel->setData(sModel->index(i,0),"");
+        }
+        for(int i=0;i<course.arrivedStudents.size();i++){
+            sModel->setData(sModel->index(i,1),"");
+        }
         for(int i=0;i<course.studentList.size();i++){
             sModel->setData(sModel->index(i,0),course.studentList[i].name);
         }
