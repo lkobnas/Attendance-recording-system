@@ -17,6 +17,11 @@ MainWindow::MainWindow(QWidget *parent)
     // d_timer->setInterval(2000);
     // connect(d_timer, &QTimer::timeout, this, onUIDReceived);
 
+    // Email Timer
+    email_timer email_timer = new QTimer(this);
+    d_timer->setInterval(2000);
+    connect(email_timer, &QTimer::timeout, this, &MainWindow::checkCourseStart);
+
     //Timer for input delay
     //connect(this, &MainWindow::passCardID, this, &AddStudentWindow::receiveVariable, Qt::QueuedConnection);
     rfidThread = std::thread(&MainWindow::rfidListener, this);
@@ -157,6 +162,9 @@ void MainWindow::checkCourseStart(){
     }
  
     if(qAbs(currentTime.secsTo(courseTime)) <= 1){
+        if(email_timer->isActive()){
+            return;
+        }
         //late email    
         qDebug() << "late_email triggered";
         Course course = cdb.getCourse(courseName);
@@ -166,6 +174,7 @@ void MainWindow::checkCourseStart(){
             email.send_email_lateReminder(studentList[i].email.toStdString(),courseName.toStdString(),datetimeData.toString().toStdString());
             qDebug()<< studentList[i].email;
         }
+        email_timer->start();
     }else if(currentTime > courseTime.addMSecs(1000*60*1)){ // TEST for 1 min
         //delete course
         try{
