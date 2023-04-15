@@ -31,9 +31,10 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     if (rfidThread.joinable()) {
+        rfidThread.detach();
         rfidThread.join();
     }
-    //delete ui;
+    delete ui;
 }
 
 void MainWindow::init(){
