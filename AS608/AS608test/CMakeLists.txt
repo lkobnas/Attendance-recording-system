@@ -1,20 +1,20 @@
-cmake_minimum_required(VERSION 3.7.0)
+cmake_minimum_required(VERSION 3.0)
 
-project(fp VERSION 1.0.0 LANGUAGES CXX)
+project(FingerprintTest)
 
-#file(REMOVE_RECURSE ${CMAKE_BINARY_DIR})
-
-set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-set(CMAKE_AUTOMOC ON)
-
-
-add_executable(fp
-  as608.cpp
-  utils.cpp
-  fingerprint.cpp
-  main_test.cpp
+# Compile fingerprint.cpp and utils.c as C++ files
+set(SOURCES 
+    main_test.cpp
+    fingerprint.cpp
+    as608.c
+    utils.c
 )
 
-target_link_libraries(fp wiringPi)
+set(CMAKE_CXX_STANDARD 11)
+
+# Add wiringPi library
+find_library(WIRINGPI_LIB wiringPi)
+
+# Add executable and link with wiringPi
+add_executable(${PROJECT_NAME} ${SOURCES})
+target_link_libraries(${PROJECT_NAME} ${WIRINGPI_LIB})
