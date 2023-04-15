@@ -132,18 +132,44 @@
      </rect>
     </property>
     <property name="text">
-     <string>View Student List</string>
+     <string>View All Students</string>
     </property>
    </widget>
    <widget class="QTableView" name="studentTableView">
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>100</y>
+      <y>140</y>
       <width>341</width>
-      <height>331</height>
+      <height>291</height>
      </rect>
     </property>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>90</y>
+      <width>301</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLabel" name="labelUpcomingCourse">
+       <property name="text">
+        <string>Upcoming Course : </string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="labelUpcomingCourseName">
+       <property name="text">
+        <string>CourseName</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

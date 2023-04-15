@@ -37,6 +37,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
     bool adminMode = true;              ///TEST MODE
     QStandardItemModel* model;
+    QStandardItemModel* sModel;
     CourseDB cdb;
     StudentDB sdb;
     QList<Course> courseList;
@@ -44,6 +45,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void updateTableView();
+    void updateStudentTable();
 
 private slots:
     void init();
@@ -68,8 +70,6 @@ private slots:
 
     void on_deleteCourseButton_clicked();
 
-    static void cardCallback(const QString &uid);
-
     void onUIDReceived(const QString uid);
 
     void onAddStudentWindowClosed();
@@ -85,6 +85,11 @@ private:
     std::thread rfidThread;
     QTimer* email_timer;
     QTimer* delay_timer;
+    bool e_functionRunning;
+    bool d_functionRunning;
+    void e_resetFunctionRunningFlag();
+    void d_resetFunctionRunningFlag();
+
     void rfidListener();
     void recordAttendanceWindow(QString studentID);
     //std::function<void(const QString&)> rfid_callback_;
