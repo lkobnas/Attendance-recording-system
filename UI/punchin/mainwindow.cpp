@@ -349,6 +349,8 @@ void MainWindow::updateStudentTable(){
     QString courseName = coursenameData.toString();
     if(courseName.isEmpty()){
         ui->labelUpcomingCourseName->setText("None");
+        sModel->removeRows(0, sModel->rowCount());
+        ui->studentTableView->update();
         return;
     }
     ui->labelUpcomingCourseName->setText(courseName);
@@ -356,12 +358,7 @@ void MainWindow::updateStudentTable(){
     try{
         course = cdb.getCourse(courseName);       
         sModel->setRowCount(std::max(course.studentList.size(),course.arrivedStudents.size()));
-        for(int i=0;i<course.studentList.size();i++){
-            sModel->setData(sModel->index(i,0),"");
-        }
-        for(int i=0;i<course.arrivedStudents.size();i++){
-            sModel->setData(sModel->index(i,1),"");
-        }
+        sModel->removeRows(0, sModel->rowCount());
         for(int i=0;i<course.studentList.size();i++){
             sModel->setData(sModel->index(i,0),course.studentList[i].name);
         }
