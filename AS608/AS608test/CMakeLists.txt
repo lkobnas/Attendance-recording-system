@@ -18,4 +18,4 @@ add_executable(fp
   main_test.cpp
 )
 
-target_link_libraries(fp wiringPi wiringSerial)
+target_link_libraries(fp wiringPi)
