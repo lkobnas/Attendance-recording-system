@@ -58,7 +58,7 @@ void MainWindow::init(){
             return;
         }
     }
-    
+    // Initialise Course Table
     // Create a QStandardItemModel to represent the data source for the table view
     model = new QStandardItemModel(this);
     model->setRowCount(courseList.size());
@@ -70,12 +70,21 @@ void MainWindow::init(){
     // Create a QTableView object and set the model for the view
     ui->tableView->setModel(model);
     ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
-
     // Set the column widths and header titles
     ui->tableView->setColumnWidth(0, 105);
     ui->tableView->setColumnWidth(1, 160);
     ui->tableView->setColumnWidth(2, 60);
     ui->tableView->setColumnWidth(3, 40);
+
+    // Initialise Student Table
+    sModel = new QStandardItemModel(this);
+    sModel->setColumnCount(2);
+    sModel->setHeaderData(0, Qt::Horizontal, "Expected Students");
+    sModel->setHeaderData(1, Qt::Horizontal, "Arrived Students");
+    ui->studentTableView->setModel(sModel);
+    ui->studentTableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->studentTableView->setColumnWidth(0, 150);
+    ui->studentTableView->setColumnWidth(1, 150);
 
     //ui->tableView->setHorizontalHeaderLabels(QStringList() << "Course Name" << "Date Time" << "Arrived/Total Students");
     updateTableView();
@@ -145,6 +154,7 @@ void MainWindow::updateTableView()
         }
     }
     ui->tableView->update();
+    updateStudentTable();
 }
 
 void MainWindow::checkCourseStart(){
@@ -162,7 +172,7 @@ void MainWindow::checkCourseStart(){
         return;
     }
  
-    if(qAbs(currentTime.secsTo(courseTime)) <= 1){
+    if(qAbs(currentTime.secsTo(courseTime)) <= 1){ 
         if(email_timer->isActive()){
             return;
         }
@@ -222,27 +232,6 @@ void MainWindow::on_actionSwitch_to_student_mode_triggered()
     }
 }
 
-QList<QStringList> getSelectedData(QTableView* tableView) {
-    QList<QStringList> selectedData;
-
-    // Get the selection model for the QTableView
-    QItemSelectionModel* selectionModel = tableView->selectionModel();
-
-    // Get the selected indexes
-    QModelIndexList selectedIndexes = selectionModel->selectedIndexes();
-
-    //Iterate over the selected indexes and add the corresponding data to the list
-    for (const QModelIndex& index : selectedIndexes) {
-        QStringList rowData;
-        const QStandardItemModel* model = static_cast<const QStandardItemModel*>(tableView->model());
-        rowData.append(model->data(model->index(index.row(), 0)).toString());      
-        selectedData.append(rowData);
-    }
-
-    return selectedData;
-}
-
-
 void MainWindow::on_testButton_clicked()
 {
     QDateTime currentTime = QDateTime::currentDateTime();
@@ -267,8 +256,6 @@ void MainWindow::on_testButton_clicked()
         qDebug() << studentList[i].email;
         email.send_email_lateReminder(studentList[i].email.toStdString(),courseName.toStdString(),datetimeData.toString().toStdString());
     }
-    
-    
 }
 
 void MainWindow::on_studentListButton_clicked()
@@ -325,6 +312,58 @@ void MainWindow::on_studentListButton_clicked()
     popupWindow->exec();
 }
 
+QList<QStringList> getSelectedData(QTableView* tableView) {
+    QList<QStringList> selectedData;
+
+    // Get the selection model for the QTableView
+    QItemSelectionModel* selectionModel = tableView->selectionModel();
+
+    // Get the selected indexes
+    QModelIndexList selectedIndexes = selectionModel->selectedIndexes();
+
+    //Iterate over the selected indexes and add the corresponding data to the list
+    for (const QModelIndex& index : selectedIndexes) {
+        QStringList rowData;
+        const QStandardItemModel* model = static_cast<const QStandardItemModel*>(tableView->model());
+        rowData.append(model->data(model->index(index.row(), 0)).toString());      
+        selectedData.append(rowData);
+    }
+
+    return selectedData;
+}
+
+void MainWindow::updateStudentTable(){
+
+    QAbstractItemModel* model = ui->tableView->model();
+    QModelIndex coursenameIndex = model->index(0, 0, QModelIndex());
+    QVariant coursenameData = model->data(coursenameIndex);
+    QString courseName = coursenameData.toString();
+    if(courseName.isEmpty()){
+        ui->labelUpcomingCourseName->setText("None");
+        return;
+    }
+    ui->labelUpcomingCourseName->setText(courseName);
+    Course course;
+    try{
+        course = cdb.getCourse(courseName);       
+        sModel->setRowCount(std::max(course.studentList.size(),course.arrivedStudents.size()));
+        for(int i=0;i<course.studentList.size();i++){
+            sModel->setData(sModel->index(i,0),course.studentList[i].name);
+        }
+        for(int i=0;i<course.arrivedStudents.size();i++){
+            sModel->setData(sModel->index(i,1),course.arrivedStudents[i].name);
+        }
+    }catch(QException &e){
+        const MyException* myException = dynamic_cast<const MyException*>(&e);
+        if (myException) {
+            QString errorMessage = myException->message();
+            QMessageBox::warning(this, "Course database error", errorMessage);
+            return;
+        }
+    }
+    ui->studentTableView->update();
+    
+}
 
 void MainWindow::on_deleteCourseButton_clicked()
 {
@@ -347,12 +386,6 @@ void MainWindow::on_deleteCourseButton_clicked()
         QMessageBox::information(this, "Success", "Course deleted");
         updateTableView();
     }
-
-}
-
-void MainWindow::cardCallback(const QString &uid)
-{
-    qDebug() << "RFID input received: " << uid;
 
 }
 

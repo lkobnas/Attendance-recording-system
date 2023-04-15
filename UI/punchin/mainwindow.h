@@ -37,6 +37,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
     bool adminMode = true;              ///TEST MODE
     QStandardItemModel* model;
+    QStandardItemModel* sModel;
     CourseDB cdb;
     StudentDB sdb;
     QList<Course> courseList;
@@ -44,6 +45,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void updateTableView();
+    void updateStudentTable();
 
 private slots:
     void init();
@@ -68,11 +70,11 @@ private slots:
 
     void on_deleteCourseButton_clicked();
 
-    static void cardCallback(const QString &uid);
-
     void onUIDReceived(const QString uid);
 
     void onAddStudentWindowClosed();
+
+    void on_studentTableView_activated(const QModelIndex &index);
 
 signals:
     void passCardID(QString cardID);
