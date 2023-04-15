@@ -8,12 +8,11 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTORCC ON)
-set(CMAKE_AUTOUIC ON)
+
 
 add_executable(fp
-  as608.c
-  utils.c
+  as608.cpp
+  utils.cpp
   fingerprint.cpp
   main_test.cpp
 )
