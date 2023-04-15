@@ -30,13 +30,10 @@ bool Fingerprint::waitUntilNotDetectFinger(int wait_time) {
   }
 }
 
-void Fingerprint::fp_init(){
+int Fingerprint::fp_init(){
       // 1.读取配置文件，获得芯片地址和通信密码
   if (!readConfig())
     exit(1);
-
-  // 2.优先解析的内容，如参数选项、配置本地文件等
-  priorAnalyseArgv(argc, argv);
   
   if (g_verbose == 1)
     printConfig();
@@ -114,6 +111,17 @@ void Fingerprint::fp_add(int address)
     PS_RegModel() || PS_Exit();
     PS_StoreChar(2, address) || PS_Exit();
 
+}
+void atExitFunc() {
+  if (g_verbose == 1)
+    printf("Exit\n");
+  if (g_fd > 0)
+    serialClose(g_fd); 
+}
+bool PS_Exit() {
+  printf("ERROR! code=%02X, desc=%s\n", g_error_code, PS_GetErrorDesc());
+  exit(2);
+  return true;
 }
 
 void Fingerprint::printConfig() {

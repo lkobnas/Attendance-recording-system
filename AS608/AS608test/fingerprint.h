@@ -18,7 +18,7 @@ extern uchar g_error_code;
 class Fingerprint{
 
     public:
-        void fp_init();
+        int fp_init();
         void fp_add(int address);
 
     private:
@@ -33,7 +33,6 @@ class Fingerprint{
         void printConfig();
         bool readConfig();  // 读取文件到 g_config
         bool writeConfig(); // 将 g_config 写入文件
-        void asyncConfig();
-    
+        void asyncConfig();    
     
 };
