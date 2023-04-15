@@ -357,8 +357,8 @@ void MainWindow::updateStudentTable(){
     Course course;
     try{
         course = cdb.getCourse(courseName);       
-        sModel->setRowCount(std::max(course.studentList.size(),course.arrivedStudents.size()));
         sModel->removeRows(0, sModel->rowCount());
+        sModel->setRowCount(std::max(course.studentList.size(),course.arrivedStudents.size()));
         for(int i=0;i<course.studentList.size();i++){
             sModel->setData(sModel->index(i,0),course.studentList[i].name);
         }
