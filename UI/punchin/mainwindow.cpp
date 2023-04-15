@@ -79,7 +79,7 @@ void MainWindow::init(){
 
 void MainWindow::update(){
     updateDatetimeDisplay();
-    checkCourseStart();
+    //checkCourseStart();
 }
 
 void MainWindow::on_addNewStudentButton_clicked()
