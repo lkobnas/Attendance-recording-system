@@ -32,9 +32,18 @@ bool Fingerprint::waitUntilNotDetectFinger(int wait_time) {
 
 int Fingerprint::fp_init(){
       // 1.读取配置文件，获得芯片地址和通信密码
-  if (!readConfig())
-    exit(1);
-  
+//   if (!readConfig())
+//     exit(1);
+    g_config.address = 0xffffffff;
+    g_config.password= 0x00000000;
+    g_config.has_password = 0;
+    g_config.baudrate = 9600;
+    g_config.detect_pin = 1; 
+    strcpy(g_config.serial, "/dev/ttyAMA0");
+
+    writeConfig(); 
+
+
   if (g_verbose == 1)
     printConfig();
   
