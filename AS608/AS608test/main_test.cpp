@@ -14,5 +14,6 @@ int main(){
     // wiringPiSetup();
     // pinMode(1, INPUT);
     fp.fp_list();
+    fp.fp_identify();
     //fp.fp_add(9);
 }

@@ -136,6 +136,25 @@ void Fingerprint::fp_list(){
       } 
 }
 
+void Fingerprint::fp_identify(){
+     int pageID = 0;
+    int score = 0;
+    
+    // 检测手指是否存在
+    int count = 0;
+    printf("Please put your finger on the moudle\n");
+    while (digitalRead(g_as608.detect_pin) == LOW) {
+      delay(1);
+      if ((count++) > 5000) {
+        printf("Not detected the finger!\n");
+        exit(2);
+      }
+    }
+
+    PS_Identify(&pageID, &score) || PS_Exit();
+    printf("Matched! pageID=%d score=%d\n", pageID, score); 
+}
+
 void Fingerprint::atExitFunc() {
   if (g_verbose == 1)
     printf("Exit\n");
