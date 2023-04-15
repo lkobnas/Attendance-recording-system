@@ -3,6 +3,11 @@
 
 #include "../../database/studentDB.h"
 #include "../../email_curl/email.h"
+#include <QWidget>
+#include <QLineEdit>
+#include <QPushButton>
+#include <QMessageBox>
+#include <QException>
 #include <QDialog>
 #include <QDebug>
 

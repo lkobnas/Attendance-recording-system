@@ -83,6 +83,7 @@ private:
     bool studentWindowValid;
     RFID rfid;
     std::thread rfidThread;
+    QTimer* email_timer;
     void rfidListener();
     void recordAttendanceWindow(QString studentID);
     //std::function<void(const QString&)> rfid_callback_;

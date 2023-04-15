@@ -1,11 +1,7 @@
 #include "addstudentwindow.h"
 #include "ui_addstudentwindow.h"
 
-#include <QWidget>
-#include <QLineEdit>
-#include <QPushButton>
-#include <QMessageBox>
-#include <QException>
+
 
 
 AddStudentWindow::AddStudentWindow(QWidget *parent) :

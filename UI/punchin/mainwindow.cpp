@@ -1,15 +1,26 @@
 #include "mainwindow.h"
 
+#include <QMessageBox>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     init();
+    //Timer for date/time display
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()),this,SLOT(update()));
     timer->start(500);
     
+    //Timer for input delay
+    // QTimer d_timer = new QTimer(this);
+    // d_timer->setInterval(2000);
+    // connect(d_timer, &QTimer::timeout, this, onUIDReceived);
+
+    //Timer for input delay
+    email_timer = new QTimer(this);
+    email_timer->setInterval(2000);
+    connect(email_timer, &QTimer::timeout, this,  &MainWindow::checkCourseStart);
     //connect(this, &MainWindow::passCardID, this, &AddStudentWindow::receiveVariable, Qt::QueuedConnection);
     rfidThread = std::thread(&MainWindow::rfidListener, this);
 
@@ -17,6 +28,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
+    rfidThread.detach();
     rfidThread.join();
     delete ui;
 }
@@ -134,18 +146,29 @@ void MainWindow::checkCourseStart(){
     QDateTime currentTime = QDateTime::currentDateTime();
     //QString currentTimeText = currentTime.toString("dd/MM/yyyy hh:mm:ss");
     QAbstractItemModel* model = ui->tableView->model();
-    QModelIndex firstIndex = model->index(0, 1, QModelIndex());
-    // Get the data stored in the first index
-    QVariant data = model->data(firstIndex);
-    // Convert the data to a QString if necessary
-    //QString courseTimeText = data.toString();
-    QDateTime courseTime = QDateTime::fromString(data, "yyyy-MM-dd hh:mm");
+    QModelIndex datetimeIndex = model->index(0, 1, QModelIndex());
+    QModelIndex coursenameIndex = model->index(0, 0, QModelIndex());
+    QVariant datetimeData = model->data(datetimeIndex);
+    QVariant coursenameData = model->data(coursenameIndex);
+
+    QString courseName = coursenameData.toString();
+    QDateTime courseTime = QDateTime::fromString(datetimeData.toString(), "yyyy-MM-dd hh:mm");
     if(courseTime == currentTime){
-        //late email
+        //late email    
+        if(!email_timer->isActive()){
+            Course course = cdb.getCourse(courseName);
+            QList<Student> studentList = course.studentList;
+            Email email;
+            for(int i=0;i<studentList.size();i++){
+                email.send_email_lateReminder(studentList[i].email.toStdString(),courseName.toStdString(),datetimeData.toString().toStdString());
+            }
+            
+            email_timer->start();
+        }
     }else if(currentTime > courseTime.addMSecs(1000*60*30)){
         //delete course
         try{
-            cdb.deleteCourse(selectedData[0][0]);
+            cdb.deleteCourse(courseName);
         }catch(QException &e){
             const MyException* myException = dynamic_cast<const MyException*>(&e);
             if (myException) {
