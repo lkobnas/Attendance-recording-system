@@ -35,8 +35,6 @@ private slots:
 
     void on_sFpButton_clicked();
 
-    void on_sPhotoButton_clicked();
-
     void on_sAddButton_clicked();
 
     void on_pushButton_clicked();

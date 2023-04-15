@@ -26,13 +26,6 @@
     <item row="5" column="0">
      <layout class="QHBoxLayout" name="horizontalLayout_3">
       <item>
-       <widget class="QPushButton" name="sPhotoButton">
-        <property name="text">
-         <string>Take Photo</string>
-        </property>
-       </widget>
-      </item>
-      <item>
        <widget class="QPushButton" name="sAddButton">
         <property name="text">
          <string>Add Student</string>

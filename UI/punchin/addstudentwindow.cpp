@@ -44,13 +44,7 @@ void AddStudentWindow::on_sCardButton_clicked()
 
 void AddStudentWindow::on_sFpButton_clicked()
 {
-
-}
-
-
-void AddStudentWindow::on_sPhotoButton_clicked()
-{
-
+    
 }
 
 
