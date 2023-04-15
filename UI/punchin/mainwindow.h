@@ -74,8 +74,6 @@ private slots:
 
     void onAddStudentWindowClosed();
 
-    void on_studentTableView_activated(const QModelIndex &index);
-
 signals:
     void passCardID(QString cardID);
 
