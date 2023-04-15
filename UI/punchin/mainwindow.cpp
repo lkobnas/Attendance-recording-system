@@ -155,11 +155,8 @@ void MainWindow::checkCourseStart(){
     if(courseTime.isNull()){
         return;
     }
-    qDebug() << "currentTime";
-    qDebug() << currentTime.toString();
-    qDebug() << "courseTime";
-    qDebug() << courseTime.toString();    
-    if(courseTime == currentTime){
+ 
+    if(qAbs(currentTime.secsTo(courseTime)) <= 1){
         //late email    
         qDebug() << "late_email triggered";
         Course course = cdb.getCourse(courseName);
@@ -184,7 +181,7 @@ void MainWindow::checkCourseStart(){
         }
         QMessageBox* popup = new QMessageBox(QMessageBox::Information, "Auto delete triggered", "Course Deleted", QMessageBox::Close, nullptr);
         popup->setAttribute(Qt::WA_DeleteOnClose); // delete the popup automatically when it's closed
-        QTimer::singleShot(2000, popup, &QMessageBox::close); // close the popup after 3 seconds
+        QTimer::singleShot(3000, popup, &QMessageBox::close); // close the popup after 3 seconds
         popup->show(); 
         updateTableView();        
     }
