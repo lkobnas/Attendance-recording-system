@@ -37,7 +37,7 @@ int Fingerprint::fp_init(){
     g_config.address = 0xffffffff;
     g_config.password= 0x00000000;
     g_config.has_password = 0;
-    g_config.baudrate = 9600;
+    g_config.baudrate = 57600;
     g_config.detect_pin = 1; 
     strcpy(g_config.serial, "/dev/ttyAMA0");
 
