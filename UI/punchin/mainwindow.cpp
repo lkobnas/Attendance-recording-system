@@ -15,7 +15,7 @@ MainWindow::MainWindow(QWidget *parent)
     //Timer for input delay
     delay_timer = new QTimer(this);
     delay_timer->setInterval(1500);
-    connect(delay_timer, SIGNAL(timeout()),this,SLOT(onUIDReceived()));
+    connect(delay_timer, SIGNAL(timeout()),this,SLOT(onUIDReceived(const QString)));
 
     // Email Timer
     email_timer = new QTimer(this);
