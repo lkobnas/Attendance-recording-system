@@ -79,6 +79,7 @@ void MainWindow::init(){
 
 void MainWindow::update(){
     updateDatetimeDisplay();
+    checkCourseStart();
 }
 
 void MainWindow::on_addNewStudentButton_clicked()
@@ -156,6 +157,7 @@ void MainWindow::checkCourseStart(){
     if(courseTime == currentTime){
         //late email    
         if(!email_timer->isActive()){
+            qDebug() << "late_email triggered";
             Course course = cdb.getCourse(courseName);
             QList<Student> studentList = course.studentList;
             Email email;
@@ -165,9 +167,10 @@ void MainWindow::checkCourseStart(){
             
             email_timer->start();
         }
-    }else if(currentTime > courseTime.addMSecs(1000*60*30)){
+    }else if(currentTime > courseTime.addMSecs(1000*60*1)){ // TEST for 1 min
         //delete course
         try{
+            qDebug() << "auto_delete triggered";
             cdb.deleteCourse(courseName);
         }catch(QException &e){
             const MyException* myException = dynamic_cast<const MyException*>(&e);
