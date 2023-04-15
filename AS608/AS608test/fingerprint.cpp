@@ -112,13 +112,13 @@ void Fingerprint::fp_add(int address)
     PS_StoreChar(2, address) || PS_Exit();
 
 }
-void atExitFunc() {
+void Fingerprint::atExitFunc() {
   if (g_verbose == 1)
     printf("Exit\n");
   if (g_fd > 0)
     serialClose(g_fd); 
 }
-bool PS_Exit() {
+bool Fingerprint::PS_Exit() {
   printf("ERROR! code=%02X, desc=%s\n", g_error_code, PS_GetErrorDesc());
   exit(2);
   return true;

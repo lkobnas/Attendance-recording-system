@@ -33,6 +33,8 @@ class Fingerprint{
         void printConfig();
         bool readConfig();  // 读取文件到 g_config
         bool writeConfig(); // 将 g_config 写入文件
-        void asyncConfig();    
+        void asyncConfig(); 
+        void atExitFunc();
+        bool PS_Exit();
     
 };
