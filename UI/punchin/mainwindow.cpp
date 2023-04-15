@@ -13,9 +13,9 @@ MainWindow::MainWindow(QWidget *parent)
     timer->start(500);
     
     //Timer for input delay
-    // QTimer d_timer = new QTimer(this);
-    // d_timer->setInterval(2000);
-    // connect(d_timer, &QTimer::timeout, this, onUIDReceived);
+    delay_timer = new QTimer(this);
+    delay_timer->setInterval(1500);
+    connect(delay_timer, SIGNAL(timeout()),this,SLOT(onUIDReceived()));
 
     // Email Timer
     email_timer = new QTimer(this);
@@ -381,6 +381,11 @@ void MainWindow::recordAttendanceWindow(QString studentID)
 
 void MainWindow::onUIDReceived(const QString uid) {
     //update database arrived
+    if(delay_timer->isActive()){
+        return;
+    }
+    delay_timer->start();
+
     if(studentWindowValid){       
         connect(this, &MainWindow::passCardID, sWindow, 
         [=](const QVariant& value) {
