@@ -116,7 +116,7 @@ void Fingerprint::fp_add(int address)
 
 }
 
-void printConfig() {
+void Fingerprint::printConfig() {
   printf("address=%08x\n", g_config.address);
   if (g_config.has_password)
     printf("password=%08x\n", g_config.password);
@@ -128,7 +128,7 @@ void printConfig() {
 }
 
 // 同步g_config变量内容和其他变量内容
-void asyncConfig() {
+void Fingerprint::syncConfig() {
   g_as608.detect_pin   = g_config.detect_pin;
   g_as608.has_password = g_config.has_password;
   g_as608.password     = g_config.password;
@@ -137,7 +137,7 @@ void asyncConfig() {
 }
 
 // 读取配置文件
-bool readConfig() {
+bool Fingerprint::readConfig() {
   FILE* fp;
 
   // 获取用户主目录
@@ -232,11 +232,18 @@ bool readConfig() {
   fclose(fp);
   return true;
 }
+void Fingerprint::asyncConfig() {
+  g_as608.detect_pin   = g_config.detect_pin;
+  g_as608.has_password = g_config.has_password;
+  g_as608.password     = g_config.password;
+  g_as608.chip_addr    = g_config.address;
+  g_as608.baud_rate    = g_config.baudrate;
+}
 
 /*
  * 写配置文件
 */
-bool writeConfig() {
+bool Fingerprint::writeConfig() {
   // 获取用户主目录
   char filename[256] = { 0 };
   sprintf(filename, "%s/.fpconfig", getenv("HOME"));
