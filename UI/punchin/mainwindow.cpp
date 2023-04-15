@@ -18,9 +18,6 @@ MainWindow::MainWindow(QWidget *parent)
     // connect(d_timer, &QTimer::timeout, this, onUIDReceived);
 
     //Timer for input delay
-    email_timer = new QTimer(this);
-    email_timer->setInterval(2000);
-    connect(email_timer, &QTimer::timeout, this,  &MainWindow::checkCourseStart);
     //connect(this, &MainWindow::passCardID, this, &AddStudentWindow::receiveVariable, Qt::QueuedConnection);
     rfidThread = std::thread(&MainWindow::rfidListener, this);
 
