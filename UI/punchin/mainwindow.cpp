@@ -18,7 +18,7 @@ MainWindow::MainWindow(QWidget *parent)
     // connect(d_timer, &QTimer::timeout, this, onUIDReceived);
 
     // Email Timer
-    email_timer email_timer = new QTimer(this);
+    email_timer = new QTimer(this);
     email_timer->setInterval(2000);
     connect(email_timer, &QTimer::timeout, this, &MainWindow::checkCourseStart);
 
