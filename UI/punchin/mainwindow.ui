@@ -55,16 +55,6 @@
      <string>Add New Course</string>
     </property>
    </widget>
-   <widget class="QGraphicsView" name="graphicsView">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>90</y>
-      <width>341</width>
-      <height>341</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
@@ -143,6 +133,16 @@
     </property>
     <property name="text">
      <string>View Student List</string>
+    </property>
+   </widget>
+   <widget class="QTableView" name="studentTableView">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>100</y>
+      <width>341</width>
+      <height>331</height>
+     </rect>
     </property>
    </widget>
   </widget>
