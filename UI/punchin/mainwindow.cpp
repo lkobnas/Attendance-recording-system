@@ -239,7 +239,30 @@ QList<QStringList> getSelectedData(QTableView* tableView) {
 
 void MainWindow::on_testButton_clicked()
 {
-    recordAttendanceWindow("41054466255110128");
+    QDateTime currentTime = QDateTime::currentDateTime();
+    //QString currentTimeText = currentTime.toString("dd/MM/yyyy hh:mm:ss");
+    QAbstractItemModel* model = ui->tableView->model();
+    QModelIndex datetimeIndex = model->index(0, 1, QModelIndex());
+    QModelIndex coursenameIndex = model->index(0, 0, QModelIndex());
+    QVariant datetimeData = model->data(datetimeIndex);
+    QVariant coursenameData = model->data(coursenameIndex);
+
+    QString courseName = coursenameData.toString();
+    QDateTime courseTime = QDateTime::fromString(datetimeData.toString(), "yyyy-MM-dd hh:mm");
+    if(courseTime.isNull()){
+        return;
+    }
+        //late email    
+    qDebug() << "late_email triggered";
+    Course course = cdb.getCourse(courseName);
+    QList<Student> studentList = course.studentList;    
+    Email email;
+    for(int i=0;i<studentList.size();i++){
+        qDebug() << studentList[i].email;
+        email.send_email_lateReminder(studentList[i].email.toStdString(),courseName.toStdString(),datetimeData.toString().toStdString());
+    }
+    
+    
 }
 
 void MainWindow::on_studentListButton_clicked()
