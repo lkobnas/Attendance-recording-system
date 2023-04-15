@@ -10,17 +10,16 @@
 #include <wiringSerial.h>
 #include <stdint.h>
 
-extern AS608 g_as608;
-extern int g_fd;
-extern int g_verbose;
-extern char  g_error_desc[128];
-extern uchar g_error_code;
-
 class Fingerprint{
 
     public:
         int fp_init();
         void fp_add(int address);
+        extern AS608 g_as608;
+        extern int g_fd;
+        extern int g_verbose;
+        extern char  g_error_desc[128];
+        extern uchar g_error_code;
 
     private:
 
