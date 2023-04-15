@@ -6,8 +6,9 @@ project(FingerprintTest)
 set(SOURCES 
     main_test.cpp
     fingerprint.cpp
-    as608.c
     utils.c
+    as608.c
+
 )
 
 set(CMAKE_CXX_STANDARD 11)

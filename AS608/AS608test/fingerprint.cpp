@@ -153,9 +153,9 @@ bool Fingerprint::readConfig() {
   sprintf(filename, "%s/.fpconfig", getenv("HOME"));
   
   // 主目录下的配置文件
-  if (access(filename, F_OK) == 0) { 
-    trimSpaceInFile(filename);
-    fp = fopen(filename, "r");
+  if (false){//access(filename, F_OK) == 0) { 
+    //trimSpaceInFile(filename);
+    //fp = fopen(filename, "r");
   }
   else {
     // 如果配置文件不存在，就在主目录下创建配置文件，并写入默认配置
