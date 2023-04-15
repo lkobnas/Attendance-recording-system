@@ -28,7 +28,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
-    rfidThread.detach();
+    //rfidThread.detach();
     rfidThread.join();
     delete ui;
 }
@@ -367,10 +367,7 @@ void MainWindow::recordAttendanceWindow(QString studentID)
     popup->setAttribute(Qt::WA_DeleteOnClose); // delete the popup automatically when it's closed
     QTimer::singleShot(3000, popup, &QMessageBox::close); // close the popup after 3 seconds
     popup->show(); 
-
-    
 }
-
 
 
 void MainWindow::onUIDReceived(const QString uid) {
