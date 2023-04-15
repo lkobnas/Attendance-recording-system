@@ -13,5 +13,6 @@ int main(){
     std::cout<< "result:" << result;
     // wiringPiSetup();
     // pinMode(1, INPUT);
-    fp.fp_add(9);
+    fp.fp_list();
+    //fp.fp_add(9);
 }

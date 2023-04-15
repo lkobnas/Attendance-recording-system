@@ -15,6 +15,8 @@ class Fingerprint{
     public:
         int fp_init();
         void fp_add(int address);
+        void fp_list();
+
     private:
 
         int  g_argc = 0;   // 参数个数，g_argc = argc - g_option_count

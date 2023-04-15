@@ -120,8 +120,22 @@ void Fingerprint::fp_add(int address)
     // 合并特征文件
     PS_RegModel() || PS_Exit();
     PS_StoreChar(2, address) || PS_Exit();
-
 }
+void Fingerprint::fp_list(){
+    int indexList[512] = { 0 };
+      PS_ReadIndexTable(indexList, 512) ||  PS_Exit();
+
+      int i = 0;
+      for (i = 0; i < 300; ++i) {
+        if (indexList[i] == -1)
+          break;
+        printf("%d\n", indexList[i]);
+      }
+      if (i == 0) {
+        printf("The database is empty!\n");
+      } 
+}
+
 void Fingerprint::atExitFunc() {
   if (g_verbose == 1)
     printf("Exit\n");
