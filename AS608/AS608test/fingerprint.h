@@ -1,5 +1,5 @@
-#include "./as608.h"
-#include "./utils.h"
+#include "as608.h"
+#include "utils.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,6 +9,12 @@
 #include <wiringPi.h>
 #include <wiringSerial.h>
 
+extern AS608 g_as608;
+extern int g_fd;
+extern int g_verbose;
+extern char  g_error_desc[128];
+extern uchar g_error_code;
+
 class Fingerprint{
 
     public:
@@ -16,11 +22,6 @@ class Fingerprint{
         void fp_add(int address);
 
     private:
-        extern AS608 g_as608;
-        extern int g_fd;
-        extern int g_verbose;
-        extern char  g_error_desc[128];
-        extern uchar g_error_code;
 
         int  g_argc = 0;   // 参数个数，g_argc = argc - g_option_count
         int  g_option_count = 0; // 选项个数-v、-h等
