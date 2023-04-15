@@ -155,6 +155,7 @@ void MainWindow::checkCourseStart(){
     if(courseTime.isNull()){
         return;
     }
+    qDebug() << courseTime.toString();
     if(courseTime == currentTime){
         //late email    
         qDebug() << "late_email triggered";
