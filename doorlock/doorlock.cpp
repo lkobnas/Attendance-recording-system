@@ -1,4 +1,4 @@
-#include "Doorlock.h"
+#include "doorlock.h"
 #include <wiringPi.h>
 #include <stdexcept>
 

@@ -27,6 +27,7 @@ public:
 
 public slots:
     void receiveCardID(QString cardid);
+    void receiveFPID(QString fpid);
 
 private slots:
     void on_sClearButton_clicked();
