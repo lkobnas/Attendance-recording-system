@@ -9,8 +9,8 @@ int main(){
     // wiringPiSetup();
     // pinMode(1, INPUT);
     fp.fp_list();
-    int fpID = fp.fp_add();
+    //int fpID = fp.fp_add();
 
     // int fpID = fp.fp_identify();
-    std::cout<<fpID;
+    //std::cout<<fpID;
 }
