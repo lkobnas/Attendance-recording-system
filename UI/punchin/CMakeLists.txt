@@ -6,14 +6,6 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
-
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Sql)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Sql)
-find_package(SQLite3 REQUIRED)
-
 set(PROJECT_SOURCES
         main.cpp
         mainwindow.h mainwindow.cpp mainwindow.ui
@@ -30,6 +22,15 @@ set(PROJECT_SOURCES
         ../../AS608/utils.c
         ../../AS608/as608.c
 )
+
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
+
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Sql)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Sql)
+find_package(SQLite3 REQUIRED)
+
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(punchin
@@ -54,7 +55,7 @@ else()
     endif()
 endif()
 
-target_link_libraries(punchin PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Sql sqlite3 wiringPi)
+target_link_libraries(punchin PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Sql sqlite3 wiringPi as608.o)
 
 set_target_properties(punchin PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
