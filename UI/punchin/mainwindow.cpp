@@ -442,7 +442,7 @@ void MainWindow::fingerprintIdentifyListener() {
             QMetaObject::invokeMethod(this, "onFPIDIdentifyReceived", Qt::QueuedConnection,
                                       Q_ARG(QString, qfpID));
         }
-        delay(3000); //Delay must be added in this thread to give time AS608 to process before next detection 
+        delay(2000); //Delay must be added in this thread to give time AS608 to process before next detection 
     }
 }
 
