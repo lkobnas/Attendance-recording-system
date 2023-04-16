@@ -78,21 +78,31 @@ int Fingerprint::fp_init(){
 return 0;
 }
 
+int findUnusedIndex(const int* indexList, const int size) {
+    bool found = false;
+    int index = -1;
+    for (int i = 0; i < 300 && !found; i++) {
+        for (int j = 0; j < size; j++) {
+            if (i == indexList[j]) {
+                break;
+            }
+            if (j == size - 1) {
+                found = true;
+                index = i;
+            }
+        }
+    }
+    return index;
+}
+
 int Fingerprint::fp_add()
 {
-    int fpID = -1;
-
+    int address = -1;
     int indexList[512] = { 0 };
-      PS_ReadIndexTable(indexList, 512) ||  PS_Exit();
-      int i = 0;
-      for (i = 0; i < 300; ++i) {
-        if (indexList[i] == -1)
-          break;
-        printf("%d\n", indexList[i]);
-      }
-      if (i == 0) {
-        fpID = 0;
-      } 
+    PS_ReadIndexTable(indexList, 512) ||  PS_Exit();
+
+    address = findUnusedIndex(indexList,512);
+
     printf("Please put your finger on the module.\n");
     if (waitUntilDetectFinger(5000)) {
       delay(500);
@@ -135,29 +145,30 @@ int Fingerprint::fp_add()
     }
     
     if (g_error_code != 0x00)
-      return -1;
+      PS_Exit();
 
     // 合并特征文件
     PS_RegModel() || PS_Exit();
     PS_StoreChar(2, address) || PS_Exit();
-return fpID;
+
+    return address;
 }
 void Fingerprint::fp_list(){
     int indexList[512] = { 0 };
       PS_ReadIndexTable(indexList, 512) ||  PS_Exit();
-
       int i = 0;
       for (i = 0; i < 300; ++i) {
+        printf("IndexList %d: %d",i,indexList[i]);
         if (indexList[i] == -1)
           break;
         printf("%d\n", indexList[i]);
-        
       }
       if (i == 0) {
         printf("The database is empty!\n");
       } 
+      int address = findUnusedIndex(indexList, 512);
+      printf("Address: %d",address);
 }
-
 
 int Fingerprint::fp_identify(){
      int pageID = 0;
@@ -174,7 +185,6 @@ int Fingerprint::fp_identify(){
         exit(2);
       }
     }
-
     PS_Identify(&pageID, &score) || PS_Exit();
     printf("Matched! pageID=%d score=%d\n", pageID, score); 
 
@@ -341,4 +351,5 @@ bool Fingerprint::writeConfig() {
   fprintf(fp, "serial=%s\n", g_config.serial);
 
   fclose(fp);
+  return true;
 }
