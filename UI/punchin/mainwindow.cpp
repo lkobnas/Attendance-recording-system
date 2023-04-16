@@ -7,6 +7,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     doorlock = new Doorlock(26);
+    fp.fp_init();
     init();
     //Timer for date/time display
     QTimer *timer = new QTimer(this);
