@@ -47,8 +47,8 @@ private:
     QString email;
     QString sid;
     QString cardID;
-    QByteArray photo;
-    QByteArray fpID;
+    QString photo;
+    QString fpID;
 };
 
 #endif // ADDSTUDENTWINDOW_H
