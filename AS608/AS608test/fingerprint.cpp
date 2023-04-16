@@ -90,6 +90,7 @@ int Fingerprint::fp_add()
         break;
       if(indexList[i]!=0){
         printf("pageID=%d",address);
+        address = i;
         break;
       }
     }
@@ -153,6 +154,7 @@ void Fingerprint::fp_list(){
 
       int i = 0;
       for (i = 0; i < 300; ++i) {
+        printf("IndexList %d: %d",i,indexList[i]);
         if (indexList[i] == -1)
           break;
         printf("%d\n", indexList[i]);
@@ -177,7 +179,6 @@ int Fingerprint::fp_identify(){
         exit(2);
       }
     }
-
     PS_Identify(&pageID, &score) || PS_Exit();
     printf("Matched! pageID=%d score=%d\n", pageID, score); 
 
@@ -344,4 +345,5 @@ bool Fingerprint::writeConfig() {
   fprintf(fp, "serial=%s\n", g_config.serial);
 
   fclose(fp);
+  return true;
 }

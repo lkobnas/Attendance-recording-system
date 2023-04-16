@@ -5,13 +5,8 @@ int main(){
 
     Fingerprint fp;
     int result = fp.fp_init();
-    // fp.syncConfig();
-    std::cout<< "result:" << result;
-    // wiringPiSetup();
-    // pinMode(1, INPUT);
+    //std::cout<< "result:" << result<<endl;
     fp.fp_list();
-    // int fpID = fp.fp_identify();
-    // std::cout<<fpID;
     int fpID = fp.fp_add();
     std::cout<< "fpID: "<<fpID;
 }
