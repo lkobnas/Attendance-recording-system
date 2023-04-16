@@ -137,6 +137,7 @@ void MainWindow::on_addNewStudentButton_clicked()
 void MainWindow::onAddStudentWindowClosed(){
     studentWindowValid = false;
     fpMode = 1;
+    qDebug()<<"onAddStudentWindowClosed";
 }
 
 void MainWindow::on_addNewCourseButton_clicked()
@@ -424,7 +425,7 @@ void MainWindow::on_deleteCourseButton_clicked()
 }
 
 void MainWindow::rfidListener() {
-    while (running) {
+    while (true) {
         std::string uid = rfid.get_uid();
         
         if (!uid.empty()) { 
