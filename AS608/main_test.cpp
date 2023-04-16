@@ -8,9 +8,11 @@ int main(){
     std::cout<< "result:" << result;
     // wiringPiSetup();
     // pinMode(1, INPUT);
-    fp.fp_list();
+    //fp.fp_list();
     //int fpID = fp.fp_add();
+    while(true){
+        int fpID = fp.fp_identify();
+        std::cout<<fpID;
+    }
 
-    // int fpID = fp.fp_identify();
-    //std::cout<<fpID;
 }
