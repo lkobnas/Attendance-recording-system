@@ -430,7 +430,7 @@ void MainWindow::rfidListener() {
 
 void MainWindow::fingerprintIdentifyListener() {
     while (running && (fpMode == 1)) {
-        int fpID = fp.fp_indentify();
+        int fpID = fp.fp_identify();
         if (!fpID==-1) { 
             QString qfpID = QString::number(fpID);
             QMetaObject::invokeMethod(this, "onFPIDIdentifyReceived", Qt::QueuedConnection,
@@ -441,8 +441,8 @@ void MainWindow::fingerprintIdentifyListener() {
 
 void MainWindow::fingerprintAddListener() {
     while (running && (fpMode == 2)) {
-        int fpID = fp.fp_add();
-        if (!fpID==-1) { 
+        bool result = fp.fp_add(fpID);
+        if (!result==-1) { 
             QString qfpID = QString::number(fpID);
             QMetaObject::invokeMethod(this, "onFPIDAddReceived", Qt::QueuedConnection,
                                       Q_ARG(QString, qfpID));

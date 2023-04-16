@@ -2,11 +2,6 @@
 #include <iostream>
 #include <wiringPi.h>
 int main(){
-    extern AS608 g_as608;
-    extern int g_fd;
-    extern int g_verbose;
-    extern char  g_error_desc[128];
-    extern uchar g_error_code;
 
     Fingerprint fp;
     int result = fp.fp_init();
@@ -17,5 +12,6 @@ int main(){
     fp.fp_list();
     // int fpID = fp.fp_identify();
     // std::cout<<fpID;
-    fp.fp_add(11);
+    int fpID = fp.fp_add();
+    std::cout<< "fpID: "<<fpID;
 }

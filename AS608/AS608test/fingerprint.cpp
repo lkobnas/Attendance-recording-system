@@ -78,8 +78,25 @@ int Fingerprint::fp_init(){
 return 0;
 }
 
-void Fingerprint::fp_add(int address)
+int Fingerprint::fp_add()
 {
+    int address = -1;
+    int indexList[512] = { 0 };
+    PS_ReadIndexTable(indexList, 512) ||  PS_Exit();
+
+    int i = 0;
+    for (i = 0; i < 300; ++i) {
+      if (indexList[i] == -1)
+        break;
+      if(indexList[i]!=0){
+        printf("pageID=%d",address);
+        break;
+      }
+    }
+    if (i == 0) {
+      address = 0;
+    } 
+
     printf("Please put your finger on the module.\n");
     if (waitUntilDetectFinger(5000)) {
       delay(500);
@@ -88,7 +105,7 @@ void Fingerprint::fp_add(int address)
     }
     else {
       printf("Error: Didn't detect finger!\n");
-      exit(1);
+      return -1;
     }
 
     // 判断用户是否抬起了手指，
@@ -104,12 +121,12 @@ void Fingerprint::fp_add(int address)
       }
       else {
         printf("Error: Didn't detect finger!\n");
-        exit(1);
+        return -1;
       }
     }
     else {
       printf("Error! Didn't raise your finger\n");
-      exit(1);
+      return -1;
     }
 
     int score = 0;
@@ -118,7 +135,7 @@ void Fingerprint::fp_add(int address)
     }
     else {
       printf("Not matched, raise your finger and put it on again.\n");
-      exit(1);
+      return -1;
     }
     
     if (g_error_code != 0x00)
@@ -127,6 +144,8 @@ void Fingerprint::fp_add(int address)
     // 合并特征文件
     PS_RegModel() || PS_Exit();
     PS_StoreChar(2, address) || PS_Exit();
+
+    return address;
 }
 void Fingerprint::fp_list(){
     int indexList[512] = { 0 };
