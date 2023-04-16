@@ -74,8 +74,6 @@ private slots:
 
     void onUIDReceived(const QString uid);
 
-    void onFPIDAddReceived(const QString fpid);
-
     void onFPIDIdentifyReceived(const QString fpid);
 
     void onAddStudentWindowClosed();
@@ -93,7 +91,6 @@ private:
     Fingerprint fp;
     Doorlock* doorlock;
     std::thread rfidThread;
-    std::thread fingerprintAddThread;
     std::thread fingerprintIdentifyThread;
     std::thread doorlockThread;
     int fpMode;
