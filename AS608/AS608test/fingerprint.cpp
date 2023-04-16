@@ -78,6 +78,23 @@ int Fingerprint::fp_init(){
 return 0;
 }
 
+int findUnusedIndex(const int* indexList, const int size) {
+    bool found = false;
+    int index = -1;
+    for (int i = 0; i < 300 && !found; i++) {
+        for (int j = 0; j < size; j++) {
+            if (i == indexList[j]) {
+                break;
+            }
+            if (j == size - 1) {
+                found = true;
+                index = i;
+            }
+        }
+    }
+    return index;
+}
+
 int Fingerprint::fp_add()
 {
     int address = -1;
@@ -151,7 +168,6 @@ int Fingerprint::fp_add()
 void Fingerprint::fp_list(){
     int indexList[512] = { 0 };
       PS_ReadIndexTable(indexList, 512) ||  PS_Exit();
-
       int i = 0;
       for (i = 0; i < 300; ++i) {
         printf("IndexList %d: %d",i,indexList[i]);
@@ -162,6 +178,8 @@ void Fingerprint::fp_list(){
       if (i == 0) {
         printf("The database is empty!\n");
       } 
+      int address = findUnusedIndex(indexList, 512);
+      printf("Address: %d",address);
 }
 
 int Fingerprint::fp_identify(){
