@@ -187,6 +187,9 @@ int Fingerprint::fp_identify(){
     }
     PS_Identify(&pageID, &score) || PS_Exit();
     printf("Matched! pageID=%d score=%d\n", pageID, score); 
+    if(score<10){
+      return -1;
+    }
 
 return pageID;
 }
