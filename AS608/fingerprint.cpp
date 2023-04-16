@@ -182,7 +182,7 @@ int Fingerprint::fp_identify(){
       delay(1);
       if ((count++) > 5000) {
         printf("Not detected the finger!\n");
-        exit(2);
+        return -1;
       }
     }
     PS_Identify(&pageID, &score) || PS_Exit();
