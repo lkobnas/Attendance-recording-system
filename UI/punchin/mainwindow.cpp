@@ -94,7 +94,7 @@ void MainWindow::init(){
     ui->tableView->setColumnWidth(0, 105);
     ui->tableView->setColumnWidth(1, 160);
     ui->tableView->setColumnWidth(2, 60);
-    ui->tableView->setColumnWidth(3, 40);
+    ui->tableView->setColumnWidth(3, 60);
 
     // Initialise Student Table
     sModel = new QStandardItemModel(this);
@@ -103,8 +103,8 @@ void MainWindow::init(){
     sModel->setHeaderData(1, Qt::Horizontal, "Arrived Students");
     ui->studentTableView->setModel(sModel);
     ui->studentTableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    ui->studentTableView->setColumnWidth(0, 150);
-    ui->studentTableView->setColumnWidth(1, 150);
+    ui->studentTableView->setColumnWidth(0, 170);
+    ui->studentTableView->setColumnWidth(1, 170);
 
     //ui->tableView->setHorizontalHeaderLabels(QStringList() << "Course Name" << "Date Time" << "Arrived/Total Students");
     updateTableView();
@@ -286,8 +286,12 @@ void MainWindow::on_testButton_clicked()
 
 void MainWindow::on_studentListButton_clicked()
 {
+    if(!adminMode){
+        QMessageBox::warning(this, "Permission Denied", "Please switch to admin mode");
+        return;
+    }
+
     QList<Student> studentList;
-    
     try{
         sdb.initDB();
         studentList  = sdb.getAllStudents();
@@ -442,8 +446,8 @@ void MainWindow::fingerprintIdentifyListener() {
 
 void MainWindow::fingerprintAddListener() {
     while (running && (fpMode == 2)) {
-        bool result = fp.fp_add(fpID);
-        if (!result==-1) { 
+        int fpID = fp.fp_add();
+        if (!fpID==-1) { 
             QString qfpID = QString::number(fpID);
             QMetaObject::invokeMethod(this, "onFPIDAddReceived", Qt::QueuedConnection,
                                       Q_ARG(QString, qfpID));
