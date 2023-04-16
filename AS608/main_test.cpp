@@ -11,7 +11,7 @@ int main(){
     //fp.fp_list();
     //int fpID = fp.fp_add();
     while(true){
-        delay(1000);
+        delay(5000);
         int fpID = fp.fp_identify();
         std::cout<<fpID;
     }

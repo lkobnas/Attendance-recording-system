@@ -181,7 +181,7 @@ int Fingerprint::fp_identify(){
       // while (digitalRead(1) == LOW) {
       delay(1);
       if ((count++) > 5000) {
-        printf("Not detected the finger!\n");
+        printf("Not detected the finger!\n"); 
         return -1;
       }
     }
