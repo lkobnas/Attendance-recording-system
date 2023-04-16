@@ -445,14 +445,14 @@ void MainWindow::fingerprintIdentifyListener() {
 }
 
 void MainWindow::fingerprintAddListener() {
-    while (running && (fpMode == 2)) {
-        int fpID = fp.fp_add();
-        if (!fpID==-1) { 
-            QString qfpID = QString::number(fpID);
-            QMetaObject::invokeMethod(this, "onFPIDAddReceived", Qt::QueuedConnection,
-                                      Q_ARG(QString, qfpID));
-        }
-    }
+    // while (running && (fpMode == 2)) {
+    //     int fpID = fp.fp_add();
+    //     if (!fpID==-1) { 
+    //         QString qfpID = QString::number(fpID);
+    //         QMetaObject::invokeMethod(this, "onFPIDAddReceived", Qt::QueuedConnection,
+    //                                   Q_ARG(QString, qfpID));
+    //     }
+    // }
 }
 
 void MainWindow::recordAttendanceWindow(QString studentID)
