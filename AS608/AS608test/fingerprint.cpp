@@ -101,19 +101,7 @@ int Fingerprint::fp_add()
     int indexList[512] = { 0 };
     PS_ReadIndexTable(indexList, 512) ||  PS_Exit();
 
-    int i = 0;
-    for (i = 0; i < 300; ++i) {
-      if (indexList[i] == -1)
-        break;
-      if(indexList[i]!=0){
-        printf("pageID=%d",address);
-        address = i;
-        break;
-      }
-    }
-    if (i == 0) {
-      address = 0;
-    } 
+    address = findUnusedIndex(indexList,512);
 
     printf("Please put your finger on the module.\n");
     if (waitUntilDetectFinger(5000)) {
