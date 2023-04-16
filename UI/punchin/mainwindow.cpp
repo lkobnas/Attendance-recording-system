@@ -137,7 +137,6 @@ void MainWindow::on_addNewStudentButton_clicked()
 void MainWindow::onAddStudentWindowClosed(){
     studentWindowValid = false;
     fpMode = 1;
-    fingerprintIdentifyListener();
     qDebug()<<"onAddStudentWindowClosed";
 }
 
@@ -426,7 +425,7 @@ void MainWindow::on_deleteCourseButton_clicked()
 }
 
 void MainWindow::rfidListener() {
-    while (true) {
+    while (running) {
         std::string uid = rfid.get_uid();
         
         if (!uid.empty()) { 
@@ -438,14 +437,16 @@ void MainWindow::rfidListener() {
 }
 
 void MainWindow::fingerprintIdentifyListener() {
-    while (running && (fpMode == 1)) {
-        int fpID = fp.fp_identify();
-        if (!fpID==-1) { 
-            QString qfpID = QString::number(fpID);
-            QMetaObject::invokeMethod(this, "onFPIDIdentifyReceived", Qt::QueuedConnection,
-                                      Q_ARG(QString, qfpID));
+    while (running) {
+        if((fpMode == 1)){
+            int fpID = fp.fp_identify();
+            if (!fpID==-1) { 
+                QString qfpID = QString::number(fpID);
+                QMetaObject::invokeMethod(this, "onFPIDIdentifyReceived", Qt::QueuedConnection,
+                                        Q_ARG(QString, qfpID));
+            }
+            delay(3000); //Delay must be added in this thread to give time AS608 to process before next detection 
         }
-        delay(3000); //Delay must be added in this thread to give time AS608 to process before next detection 
     }
 }
 
