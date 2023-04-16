@@ -7,6 +7,9 @@
 using namespace std;
 
 
+/// @brief PN532 checks if card is present and read
+/// @param  void
+/// @return Return uid_str to PN532
 string RFID::get_uid(void) {
     uint8_t buff[255];
     uint8_t uid[MIFARE_UID_MAX_LENGTH];

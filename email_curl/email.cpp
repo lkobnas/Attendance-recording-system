@@ -4,6 +4,8 @@
 #include <iostream>
 #include "email.h"
 
+/// @brief read a file named "credentials.txt" to obtain an API key used for authentication in an email system
+/// @return  file was successfully read and the API key was obtained, false otherwise
 bool Email::readCredentialsFile(){
     std::ifstream file("credentials.txt");
     std::string API_KEY;
@@ -57,6 +59,9 @@ bool Email::send_email_record(std::string recipient,std::string courseName){
     return true;  
 }
 
+/// @brief sends an email to a new student using the SendGrid email delivery service
+/// @param recipient Recipient email address
+/// @return returns true if the email was sent successfully
 bool Email::send_email_newStudent(std::string recipient){
     if(!readCredentialsFile()){
         return false;
@@ -86,6 +91,11 @@ bool Email::send_email_newStudent(std::string recipient){
     return true;  
 }
 
+/// @brief send_email_enrollToCourse in the Email class that sends an email to a recipient who has enrolled in a course, using SendGrid API
+/// @param recipient Recipient email address
+/// @param courseName coursename
+/// @param courseDatetime Course dates and times
+/// @return returns true if the email is sent successfully, and false otherwise
 bool Email::send_email_enrollToCourse(std::string recipient, std::string courseName, std::string courseDatetime){
     if(!readCredentialsFile()){
         return false;
@@ -116,6 +126,11 @@ bool Email::send_email_enrollToCourse(std::string recipient, std::string courseN
     return true;  
 }
 
+/// @brief send_email_lateReminder for a class Email which sends an email reminder to a recipient who is late for a course
+/// @param recipient Recipient email address
+/// @param courseName coursename
+/// @param courseDatetime Course dates and times
+/// @return the constructed command is executed using the system function, and the function returns true.
 bool Email::send_email_lateReminder(std::string recipient, std::string courseName, std::string courseDatetime){
     if(!readCredentialsFile()){
         return false;

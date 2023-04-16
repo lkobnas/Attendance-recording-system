@@ -1,0 +1,45 @@
+\hypertarget{course_d_b_8h_source}{}\doxysection{course\+DB.\+h}
+\label{course_d_b_8h_source}\index{database/courseDB.h@{database/courseDB.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ COURSEDB\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ COURSEDB\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}sqlite3.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}myException.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <QString>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <QByteArray>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <QList>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <QPixmap>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}studentDB.h"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}../email\_curl/email.h"{}}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_course}{Course}}\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ QString\ name;}
+\DoxyCodeLine{00016\ \ \ \ \ QString\ datetime;}
+\DoxyCodeLine{00017\ \ \ \ \ QList<Student>\ studentList;}
+\DoxyCodeLine{00018\ \ \ \ \ QList<Student>\ arrivedStudents;}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_course_d_b}{CourseDB}}\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_course_d_b_af310392b1ba647e7d0d320ac64fec301}{initDB}}();}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_course_d_b_a4b7e78db87d134769f842ab51aa3f0b4}{insertCourse}}(QString\ name,\ QString\ datetime,\ QString\ SIDString);}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_course_d_b_a28979532b65bae3adcbca940a89e7779}{updateArrived}}(QString\ name,\ QString\ SIDString);}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_course_d_b_a31f81ae3094414ea8f14dcceec6532ae}{deleteCourse}}(QString\ name);}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{struct_course}{Course}}\ \mbox{\hyperlink{class_course_d_b_afc10757467c711b2782bd1c1cb23b0fc}{getCourse}}(QString\ name);}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ QList<Course>\ \mbox{\hyperlink{class_course_d_b_ada1e9df01308d68dacc6a95730517a01}{getAllCourses}}();}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ callback(\textcolor{keywordtype}{void}*\ NotUsed,\ \textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}**\ argv,\ \textcolor{keywordtype}{char}**\ azColName);}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ QString\ listToString(QList<Student>\ studentList);}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ QList<Student>\ stringtoList(QString\ s);}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ updateStudentList(sqlite3*\ DB,\ \textcolor{keywordtype}{char}*\ messageError,\ QString\ courseName,\ QString\ datetime,\ QString\ studentList);}
+\DoxyCodeLine{00037\ \};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ COURSEDB\_H}}
+
+\end{DoxyCode}

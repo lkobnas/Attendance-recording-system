@@ -1,0 +1,86 @@
+\hypertarget{mainwindow_8h_source}{}\doxysection{mainwindow.\+h}
+\label{mainwindow_8h_source}\index{UI/punchin/mainwindow.h@{UI/punchin/mainwindow.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ MAINWINDOW\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ MAINWINDOW\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <QMainWindow>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <QStandardItemModel>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <sqlite3.h>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <QtCore>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <QtGui>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <QException>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <QWidget>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <QLineEdit>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <QPushButton>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <QMessageBox>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <QInputDialog>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <QTableView>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <QModelIndexList>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <QModelIndex>}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <QItemSelection>}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <thread>}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}addstudentwindow.h"{}}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}addcoursewindow.h"{}}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ "{}mainwindow.h"{}}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ "{}./ui\_mainwindow.h"{}}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ "{}../../PN532/rpi\_get\_uid.h"{}}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ QT\_BEGIN\_NAMESPACE}
+\DoxyCodeLine{00032\ \textcolor{keyword}{namespace\ }Ui\ \{\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_main_window}{MainWindow}};\ \}}
+\DoxyCodeLine{00033\ QT\_END\_NAMESPACE}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_main_window}{MainWindow}}\ :\ \textcolor{keyword}{public}\ QMainWindow}
+\DoxyCodeLine{00036\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ Q\_OBJECT}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{bool}\ adminMode\ =\ \textcolor{keyword}{true};\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00039\ \ \ \ \ QStandardItemModel*\ model;}
+\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{class_course_d_b}{CourseDB}}\ cdb;}
+\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{class_student_d_b}{StudentDB}}\ sdb;}
+\DoxyCodeLine{00042\ \ \ \ \ QList<Course>\ courseList;}
+\DoxyCodeLine{00043\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00044\ \ \ \ \ \mbox{\hyperlink{class_main_window}{MainWindow}}(QWidget\ *parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{class_main_window}{\string~MainWindow}}();}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{void}\ updateTableView();}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{keyword}{private}\ slots:}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{void}\ init();}
+\DoxyCodeLine{00050\ \ \ \ \ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{void}\ update();}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{void}\ updateDatetimeDisplay();}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{void}\ on\_addNewStudentButton\_clicked();}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{void}\ on\_addNewCourseButton\_clicked();}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{void}\ on\_actionAdministrator\_mode\_triggered();}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{void}\ on\_actionSwitch\_to\_student\_mode\_triggered();}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{void}\ on\_testButton\_clicked();}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{void}\ on\_studentListButton\_clicked();}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{void}\ on\_deleteCourseButton\_clicked();}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ cardCallback(\textcolor{keyword}{const}\ QString\ \&uid);}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{void}\ onUIDReceived(\textcolor{keyword}{const}\ std::string\ \&uid);}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00074\ \ \ \ \ Ui::MainWindow\ *ui;}
+\DoxyCodeLine{00075\ \ \ \ \ \mbox{\hyperlink{class_r_f_i_d}{RFID}}\ rfid;}
+\DoxyCodeLine{00076\ \ \ \ \ std::thread\ rfidThread;}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordtype}{void}\ rfidListener();}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{comment}{//std::function<void(const\ QString\&)>\ rfid\_callback\_;}}
+\DoxyCodeLine{00079\ \};}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ MAINWINDOW\_H}}
+
+\end{DoxyCode}

@@ -1,0 +1,216 @@
+PN532 NFC Library for Raspberry Pi, STM32, Arduino
+
+\hypertarget{md__p_n532__r_e_a_d_m_e_autotoc_md14}{}\doxysection{How to use?}\label{md__p_n532__r_e_a_d_m_e_autotoc_md14}
+\hypertarget{md__p_n532__r_e_a_d_m_e_autotoc_md15}{}\doxysubsection{For Raspberry Pi}\label{md__p_n532__r_e_a_d_m_e_autotoc_md15}
+\hypertarget{md__p_n532__r_e_a_d_m_e_autotoc_md16}{}\doxysubsubsection{Using SPI}\label{md__p_n532__r_e_a_d_m_e_autotoc_md16}
+
+\begin{DoxyEnumerate}
+\item Set I0\+I1\+:
+\end{DoxyEnumerate}
+\begin{DoxyItemize}
+\item I0 -\/-\/\texorpdfstring{$>$}{>} LOW
+\item I1 -\/-\/\texorpdfstring{$>$}{>} HIGH
+\end{DoxyItemize}
+\begin{DoxyEnumerate}
+\item Hardware Connection\+:
+\end{DoxyEnumerate}
+\begin{DoxyItemize}
+\item SCK -\/-\/\texorpdfstring{$>$}{>} SCK
+\item MISO -\/-\/\texorpdfstring{$>$}{>} MISO
+\item MOSI/\+SDA/\+TX -\/-\/\texorpdfstring{$>$}{>} MOSI
+\item NSS/\+SCL/\+RX -\/-\/\texorpdfstring{$>$}{>} D4 (GPIO 4 of BCM pinout) Optional\+:
+\item RSTPDN -\/-\/\texorpdfstring{$>$}{>} D20 (for hardware reset)
+\end{DoxyItemize}
+\begin{DoxyEnumerate}
+\item Modify the PN532 Init lines for SPI in {\ttfamily example/raspberrypi/rpi\+\_\+get\+\_\+uid.\+c}\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{PN532\_SPI\_Init(\&pn532);}
+\DoxyCodeLine{//PN532\_I2C\_Init(\&pn532);}
+\DoxyCodeLine{//PN532\_UART\_Init(\&pn532);}
+
+\end{DoxyCode}
+
+\item Compile with make\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cd\ examples/raspberrypi\ \&\&\ make}
+
+\end{DoxyCode}
+
+\item Run the demo with\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./rpi\_get\_uid.exe}
+
+\end{DoxyCode}
+
+\end{DoxyEnumerate}\hypertarget{md__p_n532__r_e_a_d_m_e_autotoc_md17}{}\doxysubsubsection{Using I2C}\label{md__p_n532__r_e_a_d_m_e_autotoc_md17}
+
+\begin{DoxyEnumerate}
+\item Set I0\+I1\+:
+\end{DoxyEnumerate}
+\begin{DoxyItemize}
+\item I0 -\/-\/\texorpdfstring{$>$}{>} HIGH
+\item I1 -\/-\/\texorpdfstring{$>$}{>} LOW
+\end{DoxyItemize}
+\begin{DoxyEnumerate}
+\item Hardware Connection\+:
+\end{DoxyEnumerate}
+\begin{DoxyItemize}
+\item MOSI/\+SDA/\+TX -\/-\/\texorpdfstring{$>$}{>} SDA
+\item NSS/\+SCL/\+RX -\/-\/\texorpdfstring{$>$}{>} SCL Optional\+:
+\item P32 -\/-\/\texorpdfstring{$>$}{>} D16 (for hardware request)
+\item RSTPDN -\/-\/\texorpdfstring{$>$}{>} D20 (for hardware reset)
+\end{DoxyItemize}
+\begin{DoxyEnumerate}
+\item Modify the PN532 Init lines for I2C in {\ttfamily example/raspberrypi/rpi\+\_\+get\+\_\+uid.\+c}\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//PN532\_SPI\_Init(\&pn532);}
+\DoxyCodeLine{PN532\_I2C\_Init(\&pn532);}
+\DoxyCodeLine{//PN532\_UART\_Init(\&pn532);}
+
+\end{DoxyCode}
+
+\item Compile with make\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cd\ examples/raspberrypi\ \&\&\ make}
+
+\end{DoxyCode}
+
+\item Run the demo with\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./rpi\_get\_uid.exe}
+
+\end{DoxyCode}
+
+\end{DoxyEnumerate}\hypertarget{md__p_n532__r_e_a_d_m_e_autotoc_md18}{}\doxysubsubsection{Using UART}\label{md__p_n532__r_e_a_d_m_e_autotoc_md18}
+
+\begin{DoxyEnumerate}
+\item Set I0\+I1\+:
+\end{DoxyEnumerate}
+\begin{DoxyItemize}
+\item I0 -\/-\/\texorpdfstring{$>$}{>} LOW
+\item I1 -\/-\/\texorpdfstring{$>$}{>} LOW
+\end{DoxyItemize}
+\begin{DoxyEnumerate}
+\item Hardware Connection\+:
+\end{DoxyEnumerate}
+\begin{DoxyItemize}
+\item MOSI/\+SDA/\+TX -\/-\/\texorpdfstring{$>$}{>} RX
+\item NSS/\+SCL/\+RX -\/-\/\texorpdfstring{$>$}{>} TX Optional\+:
+\item RSTPDN -\/-\/\texorpdfstring{$>$}{>} D20 (for hardware reset)
+\end{DoxyItemize}
+\begin{DoxyEnumerate}
+\item Modify the PN532 Init lines for UART in {\ttfamily example/raspberrypi/rpi\+\_\+get\+\_\+uid.\+c}\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//PN532\_SPI\_Init(\&pn532);}
+\DoxyCodeLine{//PN532\_I2C\_Init(\&pn532);}
+\DoxyCodeLine{PN532\_UART\_Init(\&pn532);}
+
+\end{DoxyCode}
+
+\item Compile with make\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cd\ examples/raspberrypi\ \&\&\ make}
+
+\end{DoxyCode}
+
+\item Run the demo with\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./rpi\_get\_uid.exe}
+
+\end{DoxyCode}
+
+\end{DoxyEnumerate}\hypertarget{md__p_n532__r_e_a_d_m_e_autotoc_md19}{}\doxysubsection{For Arduino UNO}\label{md__p_n532__r_e_a_d_m_e_autotoc_md19}
+Please first copy the files pn532.\+c, \mbox{\hyperlink{pn532_8h_source}{pn532.\+h}}, pn532\+\_\+uno.\+cpp and pn532\+\_\+uno.\+h to the libraries directory, which can be set up by Arduino IDE -\/-\/\texorpdfstring{$>$}{>} preference.
+
+Then you should also connect the serial port from your UNO to a PC for Serial Monitor.
+\begin{DoxyItemize}
+\item Baudrate\+: 115200.
+\end{DoxyItemize}\hypertarget{md__p_n532__r_e_a_d_m_e_autotoc_md20}{}\doxysubsubsection{Using SPI}\label{md__p_n532__r_e_a_d_m_e_autotoc_md20}
+
+\begin{DoxyEnumerate}
+\item Set I0\+I1\+:
+\end{DoxyEnumerate}
+\begin{DoxyItemize}
+\item I0 -\/-\/\texorpdfstring{$>$}{>} LOW
+\item I1 -\/-\/\texorpdfstring{$>$}{>} HIGH
+\end{DoxyItemize}
+\begin{DoxyEnumerate}
+\item Hardware Connection\+:
+\end{DoxyEnumerate}
+\begin{DoxyItemize}
+\item SCK -\/-\/\texorpdfstring{$>$}{>} Arduino D13
+\item MISO -\/-\/\texorpdfstring{$>$}{>} Arduino\+D12
+\item MOSI -\/-\/\texorpdfstring{$>$}{>} Arduino D11
+\item NSS -\/-\/\texorpdfstring{$>$}{>} Arduino D4
+\end{DoxyItemize}
+\begin{DoxyEnumerate}
+\item Open examples\textbackslash{}arduino\textbackslash{}uno\+\_\+get\+\_\+uid\textbackslash{} uno\+\_\+get\+\_\+uid.\+ino with Arduino IDE then change the PN532 Init lines for SPI\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{PN532\_SPI\_Init(\&pn532);}
+\DoxyCodeLine{//PN532\_I2C\_Init(\&pn532);}
+
+\end{DoxyCode}
+
+\item Compile and upload the demo to your Arduino UNO board\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{examples\(\backslash\)arduino\(\backslash\)uno\_get\_uid\(\backslash\)\ uno\_get\_uid.ino}
+
+\end{DoxyCode}
+
+\end{DoxyEnumerate}\hypertarget{md__p_n532__r_e_a_d_m_e_autotoc_md21}{}\doxysubsubsection{Using I2C}\label{md__p_n532__r_e_a_d_m_e_autotoc_md21}
+
+\begin{DoxyEnumerate}
+\item Set I0\+I1\+:
+\end{DoxyEnumerate}
+\begin{DoxyItemize}
+\item I0 -\/-\/\texorpdfstring{$>$}{>} HIGH
+\item I1 -\/-\/\texorpdfstring{$>$}{>} LOW
+\end{DoxyItemize}
+\begin{DoxyEnumerate}
+\item Hardware Connection\+:
+\end{DoxyEnumerate}
+\begin{DoxyItemize}
+\item SCL -\/-\/\texorpdfstring{$>$}{>} Arduino\+A5
+\item SDA -\/-\/\texorpdfstring{$>$}{>} Arduino\+A4
+\end{DoxyItemize}
+\begin{DoxyEnumerate}
+\item Open examples\textbackslash{}arduino\textbackslash{}uno\+\_\+get\+\_\+uid\textbackslash{}uno\+\_\+get\+\_\+uid.\+ino with Arduino IDE then change the PN532 Init lines for I2C\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//PN532\_SPI\_Init(\&pn532);}
+\DoxyCodeLine{PN532\_I2C\_Init(\&pn532);}
+
+\end{DoxyCode}
+
+\item Compile and upload the demo to your Arduino UNO board\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{examples\(\backslash\)arduino\(\backslash\)uno\_get\_uid\(\backslash\)uno\_get\_uid.ino}
+
+\end{DoxyCode}
+
+\end{DoxyEnumerate}\hypertarget{md__p_n532__r_e_a_d_m_e_autotoc_md22}{}\doxysubsection{For STM32}\label{md__p_n532__r_e_a_d_m_e_autotoc_md22}
+The demos are build on STM32\+F103\+CBT6, but you can port them with STM32\+Cube\+MX.
+
+
+\begin{DoxyEnumerate}
+\item Set I0\+I1\+:
+\end{DoxyEnumerate}
+\begin{DoxyItemize}
+\item I0 -\/-\/\texorpdfstring{$>$}{>} LOW
+\item I1 -\/-\/\texorpdfstring{$>$}{>} HIGH
+\end{DoxyItemize}
+\begin{DoxyEnumerate}
+\item Hardware connection\+:
+\end{DoxyEnumerate}
+\begin{DoxyItemize}
+\item SCK -\/-\/\texorpdfstring{$>$}{>} PA5
+\item MISO -\/-\/\texorpdfstring{$>$}{>} PA6
+\item MOSI -\/-\/\texorpdfstring{$>$}{>} PA7
+\item NSS -\/-\/\texorpdfstring{$>$}{>} PA4
+\item PA9 -\/-\/\texorpdfstring{$>$}{>} RX
+\item PA10 -\/-\/\texorpdfstring{$>$}{>} TX
+\end{DoxyItemize}
+\begin{DoxyEnumerate}
+\item Extract\+: pn532-\/lib\textbackslash{}examples\textbackslash{}stm32\textbackslash{}stm32.\+7z
+\item Open the project MDK-\/\+ARM\textbackslash{}pn532\+\_\+stm32.\+uvprojx with Keil V5
+\item Build and download the project to your STM32 board. 
+\end{DoxyEnumerate}
