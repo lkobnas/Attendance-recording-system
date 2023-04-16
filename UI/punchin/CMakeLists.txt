@@ -26,7 +26,7 @@ set(PROJECT_SOURCES
         ../../PN532/pn532_rpi.cpp
         ../../PN532/rpi_get_uid.cpp
         ../../doorlock/doorlock.cpp
-#        ../../AS608/fingerprint.cpp
+        ../../AS608/fingerprint.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
