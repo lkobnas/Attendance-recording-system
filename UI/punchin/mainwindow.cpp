@@ -31,7 +31,7 @@ MainWindow::MainWindow(QWidget *parent)
     fpMode = 1;
     rfidThread = std::thread(&MainWindow::rfidListener, this);
     fingerprintIdentifyThread = std::thread(&MainWindow::fingerprintIdentifyListener, this);
-    fingerprintAddThread = std::thread(&MainWindow::fingerprintAddListener, this);
+    //fingerprintAddThread = std::thread(&MainWindow::fingerprintAddListener, this);
 
 }
 
