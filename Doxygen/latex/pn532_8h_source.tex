@@ -1,0 +1,283 @@
+\hypertarget{pn532_8h_source}{}\doxysection{pn532.\+h}
+\label{pn532_8h_source}\index{PN532/pn532.h@{PN532/pn532.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/**************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ \ @file\ \ \ \ \ pn532.h}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ \ @author\ \ \ Yehui\ from\ Waveshare}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ \ @license\ \ BSD}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ \ }}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ \ Header\ file\ for\ pn532.c}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ \ }}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ \ Check\ out\ the\ links\ above\ for\ our\ tutorials\ and\ wiring\ diagrams\ }}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *\ \ These\ chips\ use\ SPI\ communicate.}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ \ }}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ Permission\ is\ hereby\ granted,\ free\ of\ charge,\ to\ any\ person\ obtaining\ a\ copy}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ of\ this\ software\ and\ associated\ documnetation\ files\ (the\ "{}Software"{}),\ to\ deal}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ in\ the\ Software\ without\ restriction,\ including\ without\ limitation\ the\ rights}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ to\ use,\ copy,\ modify,\ merge,\ publish,\ distribute,\ sublicense,\ and/or\ sell}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ copies\ of\ the\ Software,\ and\ to\ permit\ persons\ to\ \ whom\ the\ Software\ is}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ furished\ to\ do\ so,\ subject\ to\ the\ following\ conditions:}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *\ The\ above\ copyright\ notice\ and\ this\ permission\ notice\ shall\ be\ included\ in}}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ *\ all\ copies\ or\ substantial\ portions\ of\ the\ Software.}}
+\DoxyCodeLine{00020\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00021\ \textcolor{comment}{\ *\ THE\ SOFTWARE\ IS\ PROVIDED\ "{}AS\ IS"{},\ WITHOUT\ WARRANTY\ OF\ ANY\ KIND,\ EXPRESS\ OR}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ *\ IMPLIED,\ INCLUDING\ BUT\ NOT\ LIMITED\ TO\ THE\ WARRANTIES\ OF\ MERCHANTABILITY,}}
+\DoxyCodeLine{00023\ \textcolor{comment}{\ *\ FITNESS\ OR\ A\ PARTICULAR\ PURPOSE\ AND\ NONINFRINGEMENT.\ IN\ NO\ EVENT\ SHALL\ THE}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ *\ AUTHORS\ OR\ COPYRIGHT\ HOLDERS\ BE\ LIABLE\ FOR\ ANY\ CLAIM,\ DAMAGES\ OR\ OTHER}}
+\DoxyCodeLine{00025\ \textcolor{comment}{\ *\ LIABILITY\ WHETHER\ IN\ AN\ ACTION\ OF\ CONTRACT,\ TORT\ OR\ OTHERWISE,\ ARISING\ FROM,}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ *\ OUT\ OF\ OR\ IN\ CONNECTION\ WITH\ THE\ SOFTWARE\ OR\ THE\ USE\ OR\ OTHER\ DEALINGS\ IN}}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ *\ THE\ SOFTWARE.}}
+\DoxyCodeLine{00028\ \textcolor{comment}{\ **************************************************************************/}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#ifndef\ PN532\_H}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ PN532\_H}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00037\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ PN532\_PREAMBLE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x00)}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ PN532\_STARTCODE1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x00)}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ PN532\_STARTCODE2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0xFF)}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#define\ PN532\_POSTAMBLE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x00)}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ PN532\_HOSTTOPN532\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0xD4)}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#define\ PN532\_PN532TOHOST\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0xD5)}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{comment}{//\ PN532\ Commands}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#define\ PN532\_COMMAND\_DIAGNOSE\ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x00)}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#define\ PN532\_COMMAND\_GETFIRMWAREVERSION\ \ \ \ (0x02)}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#define\ PN532\_COMMAND\_GETGENERALSTATUS\ \ \ \ \ \ (0x04)}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#define\ PN532\_COMMAND\_READREGISTER\ \ \ \ \ \ \ \ \ \ (0x06)}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#define\ PN532\_COMMAND\_WRITEREGISTER\ \ \ \ \ \ \ \ \ (0x08)}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#define\ PN532\_COMMAND\_READGPIO\ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x0C)}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#define\ PN532\_COMMAND\_WRITEGPIO\ \ \ \ \ \ \ \ \ \ \ \ \ (0x0E)}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#define\ PN532\_COMMAND\_SETSERIALBAUDRATE\ \ \ \ \ (0x10)}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#define\ PN532\_COMMAND\_SETPARAMETERS\ \ \ \ \ \ \ \ \ (0x12)}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#define\ PN532\_COMMAND\_SAMCONFIGURATION\ \ \ \ \ \ (0x14)}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#define\ PN532\_COMMAND\_POWERDOWN\ \ \ \ \ \ \ \ \ \ \ \ \ (0x16)}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#define\ PN532\_COMMAND\_RFCONFIGURATION\ \ \ \ \ \ \ (0x32)}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#define\ PN532\_COMMAND\_RFREGULATIONTEST\ \ \ \ \ \ (0x58)}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#define\ PN532\_COMMAND\_INJUMPFORDEP\ \ \ \ \ \ \ \ \ \ (0x56)}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#define\ PN532\_COMMAND\_INJUMPFORPSL\ \ \ \ \ \ \ \ \ \ (0x46)}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#define\ PN532\_COMMAND\_INLISTPASSIVETARGET\ \ \ (0x4A)}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#define\ PN532\_COMMAND\_INATR\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x50)}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#define\ PN532\_COMMAND\_INPSL\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x4E)}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#define\ PN532\_COMMAND\_INDATAEXCHANGE\ \ \ \ \ \ \ \ (0x40)}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#define\ PN532\_COMMAND\_INCOMMUNICATETHRU\ \ \ \ \ (0x42)}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#define\ PN532\_COMMAND\_INDESELECT\ \ \ \ \ \ \ \ \ \ \ \ (0x44)}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#define\ PN532\_COMMAND\_INRELEASE\ \ \ \ \ \ \ \ \ \ \ \ \ (0x52)}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#define\ PN532\_COMMAND\_INSELECT\ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x54)}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#define\ PN532\_COMMAND\_INAUTOPOLL\ \ \ \ \ \ \ \ \ \ \ \ (0x60)}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#define\ PN532\_COMMAND\_TGINITASTARGET\ \ \ \ \ \ \ \ (0x8C)}}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#define\ PN532\_COMMAND\_TGSETGENERALBYTES\ \ \ \ \ (0x92)}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#define\ PN532\_COMMAND\_TGGETDATA\ \ \ \ \ \ \ \ \ \ \ \ \ (0x86)}}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#define\ PN532\_COMMAND\_TGSETDATA\ \ \ \ \ \ \ \ \ \ \ \ \ (0x8E)}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#define\ PN532\_COMMAND\_TGSETMETADATA\ \ \ \ \ \ \ \ \ (0x94)}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#define\ PN532\_COMMAND\_TGGETINITIATORCOMMAND\ (0x88)}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#define\ PN532\_COMMAND\_TGRESPONSETOINITIATOR\ (0x90)}}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#define\ PN532\_COMMAND\_TGGETTARGETSTATUS\ \ \ \ \ (0x8A)}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#define\ PN532\_RESPONSE\_INDATAEXCHANGE\ \ \ \ \ \ \ (0x41)}}
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#define\ PN532\_RESPONSE\_INLISTPASSIVETARGET\ \ (0x4B)}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\#define\ PN532\_WAKEUP\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x55)}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#define\ PN532\_SPI\_STATREAD\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x02)}}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#define\ PN532\_SPI\_DATAWRITE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x01)}}
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\#define\ PN532\_SPI\_DATAREAD\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x03)}}
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#define\ PN532\_SPI\_READY\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x01)}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\#define\ PN532\_I2C\_ADDRESS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x48\ >>\ 1)}}
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#define\ PN532\_I2C\_READBIT\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x01)}}
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\#define\ PN532\_I2C\_BUSY\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x00)}}
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#define\ PN532\_I2C\_READY\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x01)}}
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\#define\ PN532\_I2C\_READYTIMEOUT\ \ \ \ \ \ \ \ \ \ \ \ \ \ (20)}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\#define\ PN532\_MIFARE\_ISO14443A\ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x00)}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \textcolor{comment}{//\ Mifare\ Commands}}
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\#define\ MIFARE\_CMD\_AUTH\_A\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x60)}}
+\DoxyCodeLine{00102\ \textcolor{preprocessor}{\#define\ MIFARE\_CMD\_AUTH\_B\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x61)}}
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\#define\ MIFARE\_CMD\_READ\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x30)}}
+\DoxyCodeLine{00104\ \textcolor{preprocessor}{\#define\ MIFARE\_CMD\_WRITE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0xA0)}}
+\DoxyCodeLine{00105\ \textcolor{preprocessor}{\#define\ MIFARE\_CMD\_TRANSFER\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0xB0)}}
+\DoxyCodeLine{00106\ \textcolor{preprocessor}{\#define\ MIFARE\_CMD\_DECREMENT\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0xC0)}}
+\DoxyCodeLine{00107\ \textcolor{preprocessor}{\#define\ MIFARE\_CMD\_INCREMENT\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0xC1)}}
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\#define\ MIFARE\_CMD\_STORE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0xC2)}}
+\DoxyCodeLine{00109\ \textcolor{preprocessor}{\#define\ MIFARE\_ULTRALIGHT\_CMD\_WRITE\ \ \ \ \ \ \ \ \ (0xA2)}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \textcolor{preprocessor}{\#define\ MIFARE\_UID\_MAX\_LENGTH\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MIFARE\_UID\_TRIPLE\_LENGTH}}
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\#define\ MIFARE\_UID\_SINGLE\_LENGTH\ \ \ \ \ \ \ \ \ \ \ \ (4)}}
+\DoxyCodeLine{00113\ \textcolor{preprocessor}{\#define\ MIFARE\_UID\_DOUBLE\_LENGTH\ \ \ \ \ \ \ \ \ \ \ \ (7)}}
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\#define\ MIFARE\_UID\_TRIPLE\_LENGTH\ \ \ \ \ \ \ \ \ \ \ \ (10)}}
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\#define\ MIFARE\_KEY\_LENGTH\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (6)}}
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\#define\ MIFARE\_BLOCK\_LENGTH\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (16)}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \textcolor{comment}{//\ NTAG2xx\ Commands}}
+\DoxyCodeLine{00119\ \textcolor{preprocessor}{\#define\ NTAG2XX\_BLOCK\_LENGTH\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (4)}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \textcolor{comment}{//\ Prefixes\ for\ NDEF\ Records\ (to\ identify\ record\ type)}}
+\DoxyCodeLine{00122\ \textcolor{preprocessor}{\#define\ NDEF\_URIPREFIX\_NONE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x00)}}
+\DoxyCodeLine{00123\ \textcolor{preprocessor}{\#define\ NDEF\_URIPREFIX\_HTTP\_WWWDOT\ \ \ \ \ \ \ \ \ \ (0x01)}}
+\DoxyCodeLine{00124\ \textcolor{preprocessor}{\#define\ NDEF\_URIPREFIX\_HTTPS\_WWWDOT\ \ \ \ \ \ \ \ \ (0x02)}}
+\DoxyCodeLine{00125\ \textcolor{preprocessor}{\#define\ NDEF\_URIPREFIX\_HTTP\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x03)}}
+\DoxyCodeLine{00126\ \textcolor{preprocessor}{\#define\ NDEF\_URIPREFIX\_HTTPS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x04)}}
+\DoxyCodeLine{00127\ \textcolor{preprocessor}{\#define\ NDEF\_URIPREFIX\_TEL\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x05)}}
+\DoxyCodeLine{00128\ \textcolor{preprocessor}{\#define\ NDEF\_URIPREFIX\_MAILTO\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x06)}}
+\DoxyCodeLine{00129\ \textcolor{preprocessor}{\#define\ NDEF\_URIPREFIX\_FTP\_ANONAT\ \ \ \ \ \ \ \ \ \ \ (0x07)}}
+\DoxyCodeLine{00130\ \textcolor{preprocessor}{\#define\ NDEF\_URIPREFIX\_FTP\_FTPDOT\ \ \ \ \ \ \ \ \ \ \ (0x08)}}
+\DoxyCodeLine{00131\ \textcolor{preprocessor}{\#define\ NDEF\_URIPREFIX\_FTPS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x09)}}
+\DoxyCodeLine{00132\ \textcolor{preprocessor}{\#define\ NDEF\_URIPREFIX\_SFTP\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x0A)}}
+\DoxyCodeLine{00133\ \textcolor{preprocessor}{\#define\ NDEF\_URIPREFIX\_SMB\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x0B)}}
+\DoxyCodeLine{00134\ \textcolor{preprocessor}{\#define\ NDEF\_URIPREFIX\_NFS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x0C)}}
+\DoxyCodeLine{00135\ \textcolor{preprocessor}{\#define\ NDEF\_URIPREFIX\_FTP\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x0D)}}
+\DoxyCodeLine{00136\ \textcolor{preprocessor}{\#define\ NDEF\_URIPREFIX\_DAV\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x0E)}}
+\DoxyCodeLine{00137\ \textcolor{preprocessor}{\#define\ NDEF\_URIPREFIX\_NEWS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x0F)}}
+\DoxyCodeLine{00138\ \textcolor{preprocessor}{\#define\ NDEF\_URIPREFIX\_TELNET\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x10)}}
+\DoxyCodeLine{00139\ \textcolor{preprocessor}{\#define\ NDEF\_URIPREFIX\_IMAP\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x11)}}
+\DoxyCodeLine{00140\ \textcolor{preprocessor}{\#define\ NDEF\_URIPREFIX\_RTSP\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x12)}}
+\DoxyCodeLine{00141\ \textcolor{preprocessor}{\#define\ NDEF\_URIPREFIX\_URN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x13)}}
+\DoxyCodeLine{00142\ \textcolor{preprocessor}{\#define\ NDEF\_URIPREFIX\_POP\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x14)}}
+\DoxyCodeLine{00143\ \textcolor{preprocessor}{\#define\ NDEF\_URIPREFIX\_SIP\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x15)}}
+\DoxyCodeLine{00144\ \textcolor{preprocessor}{\#define\ NDEF\_URIPREFIX\_SIPS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x16)}}
+\DoxyCodeLine{00145\ \textcolor{preprocessor}{\#define\ NDEF\_URIPREFIX\_TFTP\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x17)}}
+\DoxyCodeLine{00146\ \textcolor{preprocessor}{\#define\ NDEF\_URIPREFIX\_BTSPP\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x18)}}
+\DoxyCodeLine{00147\ \textcolor{preprocessor}{\#define\ NDEF\_URIPREFIX\_BTL2CAP\ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x19)}}
+\DoxyCodeLine{00148\ \textcolor{preprocessor}{\#define\ NDEF\_URIPREFIX\_BTGOEP\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x1A)}}
+\DoxyCodeLine{00149\ \textcolor{preprocessor}{\#define\ NDEF\_URIPREFIX\_TCPOBEX\ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x1B)}}
+\DoxyCodeLine{00150\ \textcolor{preprocessor}{\#define\ NDEF\_URIPREFIX\_IRDAOBEX\ \ \ \ \ \ \ \ \ \ \ \ \ (0x1C)}}
+\DoxyCodeLine{00151\ \textcolor{preprocessor}{\#define\ NDEF\_URIPREFIX\_FILE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x1D)}}
+\DoxyCodeLine{00152\ \textcolor{preprocessor}{\#define\ NDEF\_URIPREFIX\_URN\_EPC\_ID\ \ \ \ \ \ \ \ \ \ \ (0x1E)}}
+\DoxyCodeLine{00153\ \textcolor{preprocessor}{\#define\ NDEF\_URIPREFIX\_URN\_EPC\_TAG\ \ \ \ \ \ \ \ \ \ (0x1F)}}
+\DoxyCodeLine{00154\ \textcolor{preprocessor}{\#define\ NDEF\_URIPREFIX\_URN\_EPC\_PAT\ \ \ \ \ \ \ \ \ \ (0x20)}}
+\DoxyCodeLine{00155\ \textcolor{preprocessor}{\#define\ NDEF\_URIPREFIX\_URN\_EPC\_RAW\ \ \ \ \ \ \ \ \ \ (0x21)}}
+\DoxyCodeLine{00156\ \textcolor{preprocessor}{\#define\ NDEF\_URIPREFIX\_URN\_EPC\ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x22)}}
+\DoxyCodeLine{00157\ \textcolor{preprocessor}{\#define\ NDEF\_URIPREFIX\_URN\_NFC\ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x23)}}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \textcolor{preprocessor}{\#define\ PN532\_GPIO\_VALIDATIONBIT\ \ \ \ \ \ \ \ \ \ \ \ (0x80)}}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \textcolor{comment}{/*\ Official\ PN532\ Errors\ Definitions\ */}}
+\DoxyCodeLine{00162\ \textcolor{preprocessor}{\#define\ PN532\_ERROR\_NONE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x00)}}
+\DoxyCodeLine{00163\ \textcolor{comment}{//\ Time\ Out,\ the\ target\ has\ not\ answered}}
+\DoxyCodeLine{00164\ \textcolor{preprocessor}{\#define\ PN532\_ERROR\_TIMEOUT\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x01)}}
+\DoxyCodeLine{00165\ \textcolor{comment}{//\ A\ CRC\ error\ has\ been\ detected\ by\ the\ CIU}}
+\DoxyCodeLine{00166\ \textcolor{preprocessor}{\#define\ PN532\_ERROR\_CRC\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x02)}}
+\DoxyCodeLine{00167\ \textcolor{comment}{//\ A\ Parity\ error\ has\ been\ detected\ by\ the\ CIU}}
+\DoxyCodeLine{00168\ \textcolor{preprocessor}{\#define\ PN532\_ERROR\_PARITY\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x03)}}
+\DoxyCodeLine{00169\ \textcolor{comment}{//\ During\ an\ anti-\/collision/select\ operation\ (ISO/IEC14443-\/3\ Type\ A\ and}}
+\DoxyCodeLine{00170\ \textcolor{comment}{//\ ISO/IEC18092\ 106\ kbps\ passive\ mode),\ an\ erroneous\ Bit\ Count\ has\ been}}
+\DoxyCodeLine{00171\ \textcolor{comment}{//\ detected}}
+\DoxyCodeLine{00172\ \textcolor{preprocessor}{\#define\ PN532\_ERROR\_COLLISION\_BITCOUNT\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x04)}}
+\DoxyCodeLine{00173\ \textcolor{comment}{//\ Framing\ error\ during\ MIFARE\ operation}}
+\DoxyCodeLine{00174\ \textcolor{preprocessor}{\#define\ PN532\_ERROR\_MIFARE\_FRAMING\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x05)}}
+\DoxyCodeLine{00175\ \textcolor{comment}{//\ An\ abnormal\ bit-\/collision\ has\ been\ detected\ during\ bit\ wise}}
+\DoxyCodeLine{00176\ \textcolor{comment}{//\ anti-\/collision\ at\ 106\ kbps}}
+\DoxyCodeLine{00177\ \textcolor{preprocessor}{\#define\ PN532\_ERROR\_COLLISION\_BITCOLLISION\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x06)}}
+\DoxyCodeLine{00178\ \textcolor{comment}{//\ Communication\ buffer\ size\ insufficien}}
+\DoxyCodeLine{00179\ \textcolor{preprocessor}{\#define\ PN532\_ERROR\_NOBUFS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x07)}}
+\DoxyCodeLine{00180\ \textcolor{comment}{//\ RF\ Buffer\ overflow\ has\ been\ detected\ by\ the\ CI}}
+\DoxyCodeLine{00181\ \textcolor{preprocessor}{\#define\ PN532\_ERROR\_RFNOBUFS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x09)}}
+\DoxyCodeLine{00182\ \textcolor{comment}{//\ In\ active\ communication\ mode,\ the\ RF\ field\ has\ not\ been\ switched\ on}}
+\DoxyCodeLine{00183\ \textcolor{comment}{//\ in\ time\ by\ the\ counterpart\ (as\ defined\ in\ NFCIP-\/1\ standard}}
+\DoxyCodeLine{00184\ \textcolor{preprocessor}{\#define\ PN532\_ERROR\_ACTIVE\_TOOSLOW\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x0a)}}
+\DoxyCodeLine{00185\ \textcolor{comment}{//\ RF\ Protocol\ error}}
+\DoxyCodeLine{00186\ \textcolor{preprocessor}{\#define\ PN532\_ERROR\_RFPROTO\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x0b)}}
+\DoxyCodeLine{00187\ \textcolor{comment}{//\ Temperature\ error:\ the\ internal\ temperature\ sensor\ has\ detected}}
+\DoxyCodeLine{00188\ \textcolor{comment}{//\ overheating,\ and\ therefore\ has\ automatically\ switched\ off\ the}}
+\DoxyCodeLine{00189\ \textcolor{comment}{//\ antenna\ drivers}}
+\DoxyCodeLine{00190\ \textcolor{preprocessor}{\#define\ PN532\_ERROR\_TOOHOT\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x0d)}}
+\DoxyCodeLine{00191\ \textcolor{comment}{//\ Internal\ buffer\ overflow}}
+\DoxyCodeLine{00192\ \textcolor{preprocessor}{\#define\ PN532\_ERROR\_INTERNAL\_NOBUFS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x0e)}}
+\DoxyCodeLine{00193\ \textcolor{comment}{//\ Invalid\ parameter\ (range,\ format...)}}
+\DoxyCodeLine{00194\ \textcolor{preprocessor}{\#define\ PN532\_ERROR\_INVAL\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x10)}}
+\DoxyCodeLine{00195\ \textcolor{comment}{//\ DEP\ Protocol:\ The\ PN533\ configured\ in\ target\ mode\ does\ not\ support}}
+\DoxyCodeLine{00196\ \textcolor{comment}{//\ the\ command\ received\ from\ the\ initiator\ (the\ command\ received\ is\ not}}
+\DoxyCodeLine{00197\ \textcolor{comment}{//\ one\ of\ the\ following:\ ATR\_REQ,\ WUP\_REQ,\ PSL\_REQ,\ DEP\_REQ,\ DSL\_REQ,}}
+\DoxyCodeLine{00198\ \textcolor{comment}{//\ RLS\_REQ)}}
+\DoxyCodeLine{00199\ \textcolor{preprocessor}{\#define\ PN532\_ERROR\_DEP\_INVALID\_COMMAND\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x12)}}
+\DoxyCodeLine{00200\ \textcolor{comment}{//\ DEP\ Protocol,\ MIFARE\ or\ ISO/IEC14443-\/4:\ The\ data\ format\ does\ not}}
+\DoxyCodeLine{00201\ \textcolor{comment}{//\ match\ to\ the\ specification.\ \ Depending\ on\ the\ RF\ protocol\ used,\ it}}
+\DoxyCodeLine{00202\ \textcolor{comment}{//\ can\ be:\ Bad\ length\ of\ RF\ received\ frame,\ Incorrect\ value\ of\ PCB\ or}}
+\DoxyCodeLine{00203\ \textcolor{comment}{//\ PFB,\ Invalid\ or\ unexpected\ RF\ received\ frame,\ NAD\ or\ DID\ incoherence.}}
+\DoxyCodeLine{00204\ \textcolor{preprocessor}{\#define\ PN532\_ERROR\_DEP\_BADDATA\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x13)}}
+\DoxyCodeLine{00205\ \textcolor{comment}{//\ MIFARE:\ Authentication\ error}}
+\DoxyCodeLine{00206\ \textcolor{preprocessor}{\#define\ PN532\_ERROR\_MIFARE\_AUTH\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x14)}}
+\DoxyCodeLine{00207\ \textcolor{comment}{//\ Target\ or\ Initiator\ does\ not\ support\ NFC\ Secur}}
+\DoxyCodeLine{00208\ \textcolor{preprocessor}{\#define\ PN532\_ERROR\_NOSECURE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x18)}}
+\DoxyCodeLine{00209\ \textcolor{comment}{//\ I2C\ bus\ line\ is\ Busy.\ A\ TDA\ transaction\ is\ on\ going}}
+\DoxyCodeLine{00210\ \textcolor{preprocessor}{\#define\ PN532\_ERROR\_I2CBUSY\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x19)}}
+\DoxyCodeLine{00211\ \textcolor{comment}{//\ ISO/IEC14443-\/3:\ UID\ Check\ byte\ is\ wrong}}
+\DoxyCodeLine{00212\ \textcolor{preprocessor}{\#define\ PN532\_ERROR\_UIDCHECKSUM\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x23)}}
+\DoxyCodeLine{00213\ \textcolor{comment}{//\ DEP\ Protocol:\ Invalid\ device\ state,\ the\ system\ is\ in\ a\ state\ which}}
+\DoxyCodeLine{00214\ \textcolor{comment}{//\ does\ not\ allow\ the\ operation}}
+\DoxyCodeLine{00215\ \textcolor{preprocessor}{\#define\ PN532\_ERROR\_DEPSTATE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x25)}}
+\DoxyCodeLine{00216\ \textcolor{comment}{//\ Operation\ not\ allowed\ in\ this\ configuration\ (host\ controller}}
+\DoxyCodeLine{00217\ \textcolor{comment}{//\ interface)}}
+\DoxyCodeLine{00218\ \textcolor{preprocessor}{\#define\ PN532\_ERROR\_HCIINVAL\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x26)}}
+\DoxyCodeLine{00219\ \textcolor{comment}{//\ This\ command\ is\ not\ acceptable\ due\ to\ the\ current\ context\ of\ the}}
+\DoxyCodeLine{00220\ \textcolor{comment}{//\ PN533\ (Initiator\ vs.\ Target,\ unknown\ target\ number,\ Target\ not\ in\ the}}
+\DoxyCodeLine{00221\ \textcolor{comment}{//\ good\ state,\ ...)}}
+\DoxyCodeLine{00222\ \textcolor{preprocessor}{\#define\ PN532\_ERROR\_CONTEXT\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x27)}}
+\DoxyCodeLine{00223\ \textcolor{comment}{//\ The\ PN533\ configured\ as\ target\ has\ been\ released\ by\ its\ initiator}}
+\DoxyCodeLine{00224\ \textcolor{preprocessor}{\#define\ PN532\_ERROR\_RELEASED\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x29)}}
+\DoxyCodeLine{00225\ \textcolor{comment}{//\ PN533\ and\ ISO/IEC14443-\/3B\ only:\ the\ ID\ of\ the\ card\ does\ not\ match,}}
+\DoxyCodeLine{00226\ \textcolor{comment}{//\ meaning\ that\ the\ expected\ card\ has\ been\ exchanged\ with\ another\ one.}}
+\DoxyCodeLine{00227\ \textcolor{preprocessor}{\#define\ PN532\_ERROR\_CARDSWAPPED\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x2a)}}
+\DoxyCodeLine{00228\ \textcolor{comment}{//\ PN533\ and\ ISO/IEC14443-\/3B\ only:\ the\ card\ previously\ activated\ has}}
+\DoxyCodeLine{00229\ \textcolor{comment}{//\ disappeared.}}
+\DoxyCodeLine{00230\ \textcolor{preprocessor}{\#define\ PN532\_ERROR\_NOCARD\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x2b)}}
+\DoxyCodeLine{00231\ \textcolor{comment}{//\ Mismatch\ between\ the\ NFCID3\ initiator\ and\ the\ NFCID3\ target\ in\ DEP}}
+\DoxyCodeLine{00232\ \textcolor{comment}{//\ 212/424\ kbps\ passive.}}
+\DoxyCodeLine{00233\ \textcolor{preprocessor}{\#define\ PN532\_ERROR\_MISMATCH\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x2c)}}
+\DoxyCodeLine{00234\ \textcolor{comment}{//\ An\ over-\/current\ event\ has\ been\ detected}}
+\DoxyCodeLine{00235\ \textcolor{preprocessor}{\#define\ PN532\_ERROR\_OVERCURRENT\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x2d)}}
+\DoxyCodeLine{00236\ \textcolor{comment}{//\ NAD\ missing\ in\ DEP\ frame}}
+\DoxyCodeLine{00237\ \textcolor{preprocessor}{\#define\ PN532\_ERROR\_NONAD\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x2e)}}
+\DoxyCodeLine{00238\ \textcolor{comment}{/*\ End:\ Official\ PN532\ Errors\ Definitions\ */}}
+\DoxyCodeLine{00239\ }
+\DoxyCodeLine{00240\ \textcolor{comment}{//\ Other\ Error\ Definitions}}
+\DoxyCodeLine{00241\ \textcolor{preprocessor}{\#define\ PN532\_STATUS\_ERROR\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (-\/1)}}
+\DoxyCodeLine{00242\ \textcolor{preprocessor}{\#define\ PN532\_STATUS\_OK\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0)}}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00244\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct___p_n532}{\_PN532}}\ \{}
+\DoxyCodeLine{00245\ \ \ \ \ int\ (*reset)(void);}
+\DoxyCodeLine{00246\ \ \ \ \ int\ (*read\_data)(uint8\_t*\ data,\ uint16\_t\ count);}
+\DoxyCodeLine{00247\ \ \ \ \ int\ (*write\_data)(uint8\_t\ *data,\ uint16\_t\ count);}
+\DoxyCodeLine{00248\ \ \ \ \ bool\ (*wait\_ready)(uint32\_t\ timeout);}
+\DoxyCodeLine{00249\ \ \ \ \ int\ (*wakeup)(void);}
+\DoxyCodeLine{00250\ \ \ \ \ void\ (*log)(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ log);}
+\DoxyCodeLine{00251\ \}\ \mbox{\hyperlink{struct___p_n532}{PN532}};}
+\DoxyCodeLine{00252\ }
+\DoxyCodeLine{00253\ }
+\DoxyCodeLine{00254\ \textcolor{keywordtype}{int}\ PN532\_WriteFrame(\mbox{\hyperlink{struct___p_n532}{PN532}}*\ pn532,\ uint8\_t*\ data,\ uint16\_t\ length);}
+\DoxyCodeLine{00255\ \textcolor{keywordtype}{int}\ PN532\_ReadFrame(\mbox{\hyperlink{struct___p_n532}{PN532}}*\ pn532,\ uint8\_t*\ buff,\ uint16\_t\ length);}
+\DoxyCodeLine{00256\ \textcolor{keywordtype}{int}\ PN532\_CallFunction(\mbox{\hyperlink{struct___p_n532}{PN532}}*\ pn532,\ uint8\_t\ command,\ uint8\_t*\ response,\ uint16\_t\ response\_length,\ uint8\_t*\ params,\ uint16\_t\ params\_length,\ uint32\_t\ timeout);}
+\DoxyCodeLine{00257\ \textcolor{keywordtype}{int}\ PN532\_GetFirmwareVersion(\mbox{\hyperlink{struct___p_n532}{PN532}}*\ pn532,\ uint8\_t*\ version);}
+\DoxyCodeLine{00258\ \textcolor{keywordtype}{int}\ PN532\_SamConfiguration(\mbox{\hyperlink{struct___p_n532}{PN532}}*\ pn532);}
+\DoxyCodeLine{00259\ \textcolor{keywordtype}{int}\ PN532\_ReadPassiveTarget(\mbox{\hyperlink{struct___p_n532}{PN532}}*\ pn532,\ uint8\_t*\ response,\ uint8\_t\ card\_baud,\ uint32\_t\ timeout);}
+\DoxyCodeLine{00260\ \textcolor{keywordtype}{int}\ PN532\_MifareClassicAuthenticateBlock(\mbox{\hyperlink{struct___p_n532}{PN532}}*\ pn532,\ uint8\_t*\ uid,\ uint8\_t\ uid\_length,\ uint16\_t\ block\_number,\ uint16\_t\ key\_number,\ uint8\_t*\ key);}
+\DoxyCodeLine{00261\ \textcolor{keywordtype}{int}\ PN532\_MifareClassicReadBlock(\mbox{\hyperlink{struct___p_n532}{PN532}}*\ pn532,\ uint8\_t*\ response,\ uint16\_t\ block\_number);}
+\DoxyCodeLine{00262\ \textcolor{keywordtype}{int}\ PN532\_MifareClassicWriteBlock(\mbox{\hyperlink{struct___p_n532}{PN532}}*\ pn532,\ uint8\_t*\ data,\ uint16\_t\ block\_number);}
+\DoxyCodeLine{00263\ \textcolor{keywordtype}{int}\ PN532\_Ntag2xxReadBlock(\mbox{\hyperlink{struct___p_n532}{PN532}}*\ pn532,\ uint8\_t*\ response,\ uint16\_t\ block\_number);}
+\DoxyCodeLine{00264\ \textcolor{keywordtype}{int}\ PN532\_Ntag2xxWriteBlock(\mbox{\hyperlink{struct___p_n532}{PN532}}*\ pn532,\ uint8\_t*\ data,\ uint16\_t\ block\_number);}
+\DoxyCodeLine{00265\ \textcolor{keywordtype}{int}\ PN532\_ReadGpio(\mbox{\hyperlink{struct___p_n532}{PN532}}*\ pn532,\ uint8\_t*\ pins\_state);}
+\DoxyCodeLine{00266\ \textcolor{keywordtype}{bool}\ PN532\_ReadGpioP(\mbox{\hyperlink{struct___p_n532}{PN532}}*\ pn532,\ uint8\_t\ pin\_number);}
+\DoxyCodeLine{00267\ \textcolor{keywordtype}{bool}\ PN532\_ReadGpioI(\mbox{\hyperlink{struct___p_n532}{PN532}}*\ pn532,\ uint8\_t\ pin\_number);}
+\DoxyCodeLine{00268\ \textcolor{keywordtype}{int}\ PN532\_WriteGpio(\mbox{\hyperlink{struct___p_n532}{PN532}}*\ pn532,\ uint8\_t*\ pins\_state);}
+\DoxyCodeLine{00269\ \textcolor{keywordtype}{int}\ PN532\_WriteGpioP(\mbox{\hyperlink{struct___p_n532}{PN532}}*\ pn532,\ uint8\_t\ pin\_number,\ \textcolor{keywordtype}{bool}\ pin\_state);}
+\DoxyCodeLine{00270\ }
+\DoxyCodeLine{00271\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00272\ \}}
+\DoxyCodeLine{00273\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00275\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{/*\ PN532\_H\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00276\ }
+\DoxyCodeLine{00277\ \textcolor{comment}{/*\ End\ of\ file\ */}}
+
+\end{DoxyCode}

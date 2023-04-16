@@ -1,6 +1,8 @@
 #include "studentDB.h"
 #include "courseDB.h"
 #include <iostream>
+/// @brief The StudentDB class is responsible for managing the student database, including inserting, deleting and querying single/all student information, etc. The CourseDB class is responsible for managing the course database, including inserting, deleting and querying single/all course information, etc. There is also a method to update student attendance information.
+/// @return Return 0 if the program is normal
 int main(){
     //// Testing students.db
     StudentDB db;

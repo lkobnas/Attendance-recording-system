@@ -1,0 +1,135 @@
+\hypertarget{class_course_d_b}{}\doxysection{Course\+DB Class Reference}
+\label{class_course_d_b}\index{CourseDB@{CourseDB}}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \mbox{\hyperlink{class_course_d_b_af310392b1ba647e7d0d320ac64fec301}{init\+DB}} ()
+\begin{DoxyCompactList}\small\item\em creating a new database file named \char`\"{}courses.\+db\char`\"{} and creating a new table named \char`\"{}\+COURSES\char`\"{} in the database \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{class_course_d_b_a4b7e78db87d134769f842ab51aa3f0b4}{insert\+Course}} (QString name, QString datetime, QString SIDString)
+\begin{DoxyCompactList}\small\item\em Insert a new course in the database with a list of names, dates and student IDs (SIDString), update the student list and send a confirmation email. \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{class_course_d_b_a28979532b65bae3adcbca940a89e7779}{update\+Arrived}} (QString name, QString SIDString)
+\begin{DoxyCompactList}\small\item\em Determine if a student is on the course list and determine if the course student is attending the course. \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{class_course_d_b_a31f81ae3094414ea8f14dcceec6532ae}{delete\+Course}} (QString name)
+\begin{DoxyCompactList}\small\item\em Delete a course name from the database. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{struct_course}{Course}} \mbox{\hyperlink{class_course_d_b_afc10757467c711b2782bd1c1cb23b0fc}{get\+Course}} (QString name)
+\begin{DoxyCompactList}\small\item\em Access to courses in the database and extraction of relevant student lists and related data. \end{DoxyCompactList}\item 
+static QList$<$ \mbox{\hyperlink{struct_course}{Course}} $>$ \mbox{\hyperlink{class_course_d_b_ada1e9df01308d68dacc6a95730517a01}{get\+All\+Courses}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves all courses from the database and returns them as QList$<$\+Course$>$. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_course_d_b_a3a1cdfddc732bde349e8fa88afca6d98}\label{class_course_d_b_a3a1cdfddc732bde349e8fa88afca6d98}} 
+static int {\bfseries callback} (void $\ast$Not\+Used, int argc, char $\ast$$\ast$argv, char $\ast$$\ast$az\+Col\+Name)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_course_d_b_a31f81ae3094414ea8f14dcceec6532ae}\label{class_course_d_b_a31f81ae3094414ea8f14dcceec6532ae}} 
+\index{CourseDB@{CourseDB}!deleteCourse@{deleteCourse}}
+\index{deleteCourse@{deleteCourse}!CourseDB@{CourseDB}}
+\doxysubsubsection{\texorpdfstring{deleteCourse()}{deleteCourse()}}
+{\footnotesize\ttfamily bool Course\+DB\+::delete\+Course (\begin{DoxyParamCaption}\item[{QString}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Delete a course name from the database. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & the name of the course to be deleted \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+successful deletion returns true 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_course_d_b_ada1e9df01308d68dacc6a95730517a01}\label{class_course_d_b_ada1e9df01308d68dacc6a95730517a01}} 
+\index{CourseDB@{CourseDB}!getAllCourses@{getAllCourses}}
+\index{getAllCourses@{getAllCourses}!CourseDB@{CourseDB}}
+\doxysubsubsection{\texorpdfstring{getAllCourses()}{getAllCourses()}}
+{\footnotesize\ttfamily QList$<$ \mbox{\hyperlink{struct_course}{Course}} $>$ Course\+DB\+::get\+All\+Courses (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Retrieves all courses from the database and returns them as QList$<$\+Course$>$. 
+
+\begin{DoxyReturn}{Returns}
+course 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_course_d_b_afc10757467c711b2782bd1c1cb23b0fc}\label{class_course_d_b_afc10757467c711b2782bd1c1cb23b0fc}} 
+\index{CourseDB@{CourseDB}!getCourse@{getCourse}}
+\index{getCourse@{getCourse}!CourseDB@{CourseDB}}
+\doxysubsubsection{\texorpdfstring{getCourse()}{getCourse()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_course}{Course}} Course\+DB\+::get\+Course (\begin{DoxyParamCaption}\item[{QString}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Access to courses in the database and extraction of relevant student lists and related data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & akes a QString argument name representing the name of the course, and returns a \mbox{\hyperlink{struct_course}{Course}} object \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Data returned to the course 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_course_d_b_af310392b1ba647e7d0d320ac64fec301}\label{class_course_d_b_af310392b1ba647e7d0d320ac64fec301}} 
+\index{CourseDB@{CourseDB}!initDB@{initDB}}
+\index{initDB@{initDB}!CourseDB@{CourseDB}}
+\doxysubsubsection{\texorpdfstring{initDB()}{initDB()}}
+{\footnotesize\ttfamily bool Course\+DB\+::init\+DB (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+creating a new database file named \char`\"{}courses.\+db\char`\"{} and creating a new table named \char`\"{}\+COURSES\char`\"{} in the database 
+
+\begin{DoxyReturn}{Returns}
+true 
+
+false 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_course_d_b_a4b7e78db87d134769f842ab51aa3f0b4}\label{class_course_d_b_a4b7e78db87d134769f842ab51aa3f0b4}} 
+\index{CourseDB@{CourseDB}!insertCourse@{insertCourse}}
+\index{insertCourse@{insertCourse}!CourseDB@{CourseDB}}
+\doxysubsubsection{\texorpdfstring{insertCourse()}{insertCourse()}}
+{\footnotesize\ttfamily bool Course\+DB\+::insert\+Course (\begin{DoxyParamCaption}\item[{QString}]{name,  }\item[{QString}]{datetime,  }\item[{QString}]{SIDString }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Insert a new course in the database with a list of names, dates and student IDs (SIDString), update the student list and send a confirmation email. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & coursename \\
+\hline
+{\em datetime} & coursedatatime \\
+\hline
+{\em SIDString} & student IDs \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{struct_course}{Course}} not added so return false 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_course_d_b_a28979532b65bae3adcbca940a89e7779}\label{class_course_d_b_a28979532b65bae3adcbca940a89e7779}} 
+\index{CourseDB@{CourseDB}!updateArrived@{updateArrived}}
+\index{updateArrived@{updateArrived}!CourseDB@{CourseDB}}
+\doxysubsubsection{\texorpdfstring{updateArrived()}{updateArrived()}}
+{\footnotesize\ttfamily bool Course\+DB\+::update\+Arrived (\begin{DoxyParamCaption}\item[{QString}]{course\+Name,  }\item[{QString}]{target\+SID }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Determine if a student is on the course list and determine if the course student is attending the course. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em course\+Name} & coursename \\
+\hline
+{\em target\+SID} & the student ID of the student who has arrived for the course \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Be a course student and take the course back true 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+database/course\+DB.\+h\item 
+database/course\+DB.\+cpp\end{DoxyCompactItemize}
