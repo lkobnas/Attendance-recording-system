@@ -1,4 +1,5 @@
 #include "fingerprint.h"
+#include <wiringPi.h>
 
 bool Fingerprint::waitUntilDetectFinger(int wait_time) {
   while (true) {
@@ -40,6 +41,12 @@ int Fingerprint::fp_init(){
     g_config.baudrate = 57600;
     g_config.detect_pin = 1; 
     strcpy(g_config.serial, "/dev/ttyAMA0");
+
+    g_as608.detect_pin   = g_config.detect_pin;
+    g_as608.has_password = g_config.has_password;
+    g_as608.password     = g_config.password;
+    g_as608.chip_addr    = g_config.address;
+    g_as608.baud_rate    = g_config.baudrate;
 
     writeConfig(); 
 
@@ -136,7 +143,7 @@ void Fingerprint::fp_list(){
       } 
 }
 
-void Fingerprint::fp_identify(){
+int Fingerprint::fp_identify(){
      int pageID = 0;
     int score = 0;
     
@@ -144,6 +151,7 @@ void Fingerprint::fp_identify(){
     int count = 0;
     printf("Please put your finger on the moudle\n");
     while (digitalRead(g_as608.detect_pin) == LOW) {
+      // while (digitalRead(1) == LOW) {
       delay(1);
       if ((count++) > 5000) {
         printf("Not detected the finger!\n");
@@ -153,6 +161,8 @@ void Fingerprint::fp_identify(){
 
     PS_Identify(&pageID, &score) || PS_Exit();
     printf("Matched! pageID=%d score=%d\n", pageID, score); 
+
+return pageID;
 }
 
 void Fingerprint::atExitFunc() {

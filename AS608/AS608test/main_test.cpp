@@ -10,10 +10,12 @@ int main(){
 
     Fingerprint fp;
     int result = fp.fp_init();
+    // fp.syncConfig();
     std::cout<< "result:" << result;
     // wiringPiSetup();
     // pinMode(1, INPUT);
     fp.fp_list();
-    fp.fp_identify();
-    //fp.fp_add(9);
+    // int fpID = fp.fp_identify();
+    // std::cout<<fpID;
+    fp.fp_add(11);
 }

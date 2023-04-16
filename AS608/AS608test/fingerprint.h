@@ -16,7 +16,7 @@ class Fingerprint{
         int fp_init();
         void fp_add(int address);
         void fp_list();
-        void fp_identify();
+        int fp_identify();
 
     private:
 
