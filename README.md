@@ -85,12 +85,72 @@ All scheduled classes and attendance records are saved into the local database. 
 
 <h2> Getting Started </h2>
 
-<h3> Prerequisites </h3>
+<h3> Software </h3>
+<h4> Prerequisites </h4>
+
+1. E-mail
+
 <br>
 
-<h3> Installation </h3>
+2. Database
 <br>
 
+```
+sudo apt-get install sqlite3 libsqlite3-dev
+```
+
+<br>
+
+3. UI
+<br>
+
+## Required packages
+
+Install the QT5 and Qwt development packages:
+
+```
+    sudo apt-get install qtdeclarative5-dev-tools
+    sudo apt-get install libqwt-qt5-dev
+    sudo apt-get install qtbase5-dev
+```
+
+<br>
+
+4. GPIO
+<br>
+<h4> Installation </h4>
+
+## Building the project
+
+```
+    mkdir build && cd build
+    cmake ..
+    make
+```
+
+## Running the project
+
+```
+    ./punchin
+```
+
+<br>
+
+<h3> Hardware </h3>
+<h4> Prerequisites </h4>
+
+1. RFID/NFC-PN532
+
+2. Fingerprint-AS608
+
+<br>
+<h4> Installation </h4>
+
+1. RFID/NFC-PN532
+<br>
+
+2. Fingerprint-AS608
+<br>
 <br>
 
 <h2> Contributors </h2>
@@ -105,6 +165,10 @@ All scheduled classes and attendance records are saved into the local database. 
 ([HengyuY](https://github.com/HengyuY)) - Hengyu Yang (2822511Y) <br>
 ([Yyyyy0512](https://github.com/Yyyyy0512)) - Jin Yang (2803454Y) <br>
 <br>
+<br>
+
+<h2> Test </h2>
+
 <br>
 
 <h2> Project Planning </h2>
