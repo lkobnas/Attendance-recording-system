@@ -76,6 +76,8 @@ private slots:
 
     void onFPIDIdentifyReceived(const QString fpid);
 
+    void onFPIDAddReceived(QString fpid);
+
     void onAddStudentWindowClosed();
 
 signals:
@@ -105,7 +107,6 @@ private:
     void d_resetFunctionRunningFlag();
 
     void rfidListener();
-    void fingerprintAddListener();
     void fingerprintIdentifyListener();
     void recordAttendanceWindow(QString studentID);
     void doorControl();
