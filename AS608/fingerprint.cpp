@@ -177,14 +177,14 @@ int Fingerprint::fp_identify(){
     // 检测手指是否存在
     int count = 0;
     printf("Please put your finger on the moudle\n");
-    while (digitalRead(g_as608.detect_pin) == LOW) {
-      // while (digitalRead(1) == LOW) {
-      delay(1);
-      if ((count++) > 5000) {
-        printf("Not detected the finger!\n"); 
-        return -1;
-      }
-    }
+    // while (digitalRead(g_as608.detect_pin) == LOW) {
+    //   // while (digitalRead(1) == LOW) {
+    //   delay(1);
+    //   if ((count++) > 5000) {
+    //     printf("Not detected the finger!\n"); 
+    //     return -1;
+    //   }
+    // }
     PS_Identify(&pageID, &score) || PS_Exit();
     printf("Matched! pageID=%d score=%d\n", pageID, score); 
 
