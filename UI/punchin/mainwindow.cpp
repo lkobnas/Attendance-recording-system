@@ -137,7 +137,7 @@ void MainWindow::on_addNewStudentButton_clicked()
 void MainWindow::onAddStudentWindowClosed(){
     studentWindowValid = false;
     fpMode = 1;
-    fingerprintIdentifyThread = std::thread(&MainWindow::fingerprintIdentifyListener, this);
+    fingerprintIdentifyListener();
     qDebug()<<"onAddStudentWindowClosed";
 }
 
