@@ -7,6 +7,6 @@ int main(){
     int result = fp.fp_init();
     //std::cout<< "result:" << result<<endl;
     fp.fp_list();
-    int fpID = fp.fp_add();
-    std::cout<< "fpID: "<<fpID;
+    //int fpID = fp.fp_add();
+    //std::cout<< "fpID: "<<fpID;
 }
