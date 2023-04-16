@@ -55,7 +55,7 @@ else()
     endif()
 endif()
 
-target_link_libraries(punchin PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Sql sqlite3 wiringPi as608.o)
+target_link_libraries(punchin PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Sql sqlite3 wiringPi)
 
 set_target_properties(punchin PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
