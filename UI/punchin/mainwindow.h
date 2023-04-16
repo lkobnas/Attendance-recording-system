@@ -90,7 +90,7 @@ private:
     bool studentWindowValid;
 
     RFID rfid;
-    //FINGERPRINT fp;
+    Fingerprint fp;
     Doorlock* doorlock;
     std::thread rfidThread;
     std::thread fingerprintAddThread;
