@@ -4,6 +4,8 @@
 
 
 
+/// @brief MainWindow Constructor
+/// @param parent Passing parent object
 AddStudentWindow::AddStudentWindow(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::AddStudentWindow)
@@ -13,11 +15,13 @@ AddStudentWindow::AddStudentWindow(QWidget *parent) :
     setWindowTitle("Add New Student");
 }
 
+/// @brief MainWindow Destructor
 AddStudentWindow::~AddStudentWindow()
 {
     delete ui;
 }
 
+/// @brief add 'Student' clear button
 void AddStudentWindow::on_sClearButton_clicked()
 {
     ui->sNameLineEdit->clear();
@@ -25,6 +29,8 @@ void AddStudentWindow::on_sClearButton_clicked()
     ui->sSIDLineEdit->clear();
 }
 
+/// @brief Detected ID card
+/// @param cardid ID card
 void AddStudentWindow::receiveCardID(QString cardid)
 {
     qDebug()<< "receiveCardID: "<<cardid;
@@ -36,6 +42,7 @@ void AddStudentWindow::receiveCardID(QString cardid)
     ui->sCardButton->update();
 }
 
+/// @brief add student card button
 void AddStudentWindow::on_sCardButton_clicked()
 {
     QMessageBox::information(this, "Scan your card", "Place your card on the card reader until this button turn green");
@@ -54,6 +61,7 @@ void AddStudentWindow::on_sPhotoButton_clicked()
 }
 
 
+/// @brief Add 'Course' button
 void AddStudentWindow::on_sAddButton_clicked()
 {
 
@@ -100,6 +108,7 @@ return;
 }
 
 
+/// @brief add 'Student' close button
 void AddStudentWindow::on_pushButton_clicked()
 {
     this->close();

@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 
 #include <QMessageBox>
+/// @brief Time to open new UI
+/// @param parent 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -30,6 +32,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 }
 
+/// @brief add rfid
 MainWindow::~MainWindow()
 {
     if (rfidThread.joinable()) {
@@ -39,6 +42,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+/// @brief Manage student (arrival time and status) and course information
 void MainWindow::init(){
     setWindowTitle("PunchIN - Stduent Mode");
     QFont font = ui->mDateTimeLabel->font();
@@ -99,11 +103,13 @@ void MainWindow::init(){
     updateTableView();
 }
 
+/// @brief course start 
 void MainWindow::update(){
     updateDatetimeDisplay();
     checkCourseStart();
 }
 
+/// @brief add new student button
 void MainWindow::on_addNewStudentButton_clicked()
 {
     if(adminMode){
@@ -119,10 +125,12 @@ void MainWindow::on_addNewStudentButton_clicked()
     }
 }
 
+/// @brief add student window close
 void MainWindow::onAddStudentWindowClosed(){
     studentWindowValid = false;
 }
 
+/// @brief add new course button
 void MainWindow::on_addNewCourseButton_clicked()
 {
     if(adminMode){
@@ -135,6 +143,7 @@ void MainWindow::on_addNewCourseButton_clicked()
     }
 }
 
+/// @brief update date and time
 void MainWindow::updateDatetimeDisplay()
 {
     QDateTime datetime = QDateTime::currentDateTime();
@@ -143,6 +152,7 @@ void MainWindow::updateDatetimeDisplay()
     
 }
 
+/// @brief update course table
 void MainWindow::updateTableView()
 {
     try{
@@ -166,6 +176,7 @@ void MainWindow::updateTableView()
     updateStudentTable();
 }
 
+/// @brief check course strart
 void MainWindow::checkCourseStart(){
     QDateTime currentTime = QDateTime::currentDateTime();
     //QString currentTimeText = currentTime.toString("dd/MM/yyyy hh:mm:ss");
@@ -216,6 +227,7 @@ void MainWindow::checkCourseStart(){
     }
 }
 
+/// @brief Enter your password to log in and manage the system
 void MainWindow::on_actionAdministrator_mode_triggered()
 {
     if(adminMode == false){
@@ -233,6 +245,7 @@ void MainWindow::on_actionAdministrator_mode_triggered()
     }
 }
 
+/// @brief Convert to student mode
 void MainWindow::on_actionSwitch_to_student_mode_triggered()
 {
     if(adminMode == true){
@@ -241,6 +254,7 @@ void MainWindow::on_actionSwitch_to_student_mode_triggered()
     }
 }
 
+/// @brief Sending late arrival reminder emails to students
 void MainWindow::on_testButton_clicked()
 {
     QDateTime currentTime = QDateTime::currentDateTime();
@@ -267,6 +281,7 @@ void MainWindow::on_testButton_clicked()
     }
 }
 
+/// @brief Click on the 'Student' button and add your name, student ID and email details
 void MainWindow::on_studentListButton_clicked()
 {
     QList<Student> studentList;
@@ -321,6 +336,9 @@ void MainWindow::on_studentListButton_clicked()
     popupWindow->exec();
 }
 
+/// @brief Detects if the mouse is pressed on the course button
+/// @param tableView 
+/// @return 
 QList<QStringList> getSelectedData(QTableView* tableView) {
     QList<QStringList> selectedData;
 
@@ -341,6 +359,7 @@ QList<QStringList> getSelectedData(QTableView* tableView) {
     return selectedData;
 }
 
+/// @brief update student table
 void MainWindow::updateStudentTable(){
 
     QAbstractItemModel* model = ui->tableView->model();
@@ -377,6 +396,7 @@ void MainWindow::updateStudentTable(){
     
 }
 
+/// @brief delete Course Button
 void MainWindow::on_deleteCourseButton_clicked()
 {
     QList<QStringList> selectedData = getSelectedData(ui->tableView);
@@ -401,6 +421,7 @@ void MainWindow::on_deleteCourseButton_clicked()
 
 }
 
+/// @brief listens for RFID signals 
 void MainWindow::rfidListener() {
     while (true) {
         std::string uid = rfid.get_uid();
@@ -413,6 +434,8 @@ void MainWindow::rfidListener() {
     }
 }
 
+/// @brief record Attendance Window
+/// @param studentID 
 void MainWindow::recordAttendanceWindow(QString studentID)
 {
     //doorlock
@@ -431,6 +454,8 @@ void MainWindow::d_resetFunctionRunningFlag(){
     d_functionRunning = false;
 }
 
+/// @brief Student card detected, attendance list updated and emailed
+/// @param uid 
 void MainWindow::onUIDReceived(const QString uid) {
     //update database arrived
     if (!d_functionRunning) {
