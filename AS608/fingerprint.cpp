@@ -199,7 +199,7 @@ void Fingerprint::atExitFunc() {
 }
 bool Fingerprint::PS_Exit() {
   printf("ERROR! code=%02X, desc=%s\n", g_error_code, PS_GetErrorDesc());
-  //exit(2);
+  exit(2);
   return true;
 }
 
