@@ -43,18 +43,9 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     running = false;
-    while(rfidThread.joinable()) {
-        rfidThread.detach();
-        rfidThread.join();
-    }
-    while(fingerprintIdentifyThread.joinable()) {
-        fingerprintIdentifyThread.detach();
-        fingerprintIdentifyThread.join();
-    }
-    while(doorlockThread.joinable()) {
-        doorlockThread.detach();
-        doorlockThread.join();
-    }
+    rfidThread.join();
+    fingerprintIdentifyThread.join();
+    doorlockThread.join();
     delete ui;
 }
 
