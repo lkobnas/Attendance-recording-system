@@ -92,7 +92,7 @@ void MainWindow::init(){
     ui->tableView->setModel(model);
     ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
     // Set the column widths and header titles
-    ui->tableView->setColumnWidth(0, 105);
+    ui->tableView->setColumnWidth(0, 120);
     ui->tableView->setColumnWidth(1, 160);
     ui->tableView->setColumnWidth(2, 60);
     ui->tableView->setColumnWidth(3, 60);
@@ -549,7 +549,7 @@ void MainWindow::onFPIDIdentifyReceived(QString fpid){
         }
     }
     if(student.sid.isEmpty()){
-        QMessageBox* popup = new QMessageBox(QMessageBox::Warning, "Invalid Fingerprint", "Fingerprint is registered in the system", QMessageBox::Close, nullptr);
+        QMessageBox* popup = new QMessageBox(QMessageBox::Warning, "Invalid Fingerprint", "Fingerprint is not registered in the system", QMessageBox::Close, nullptr);
         popup->setAttribute(Qt::WA_DeleteOnClose); // delete the popup automatically when it's closed
         QTimer::singleShot(3000, popup, &QMessageBox::close); // close the popup after 3 seconds
         popup->show(); 
