@@ -102,7 +102,7 @@ void MainWindow::init(){
     ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
     // Set the column widths and header titles
     ui->tableView->setColumnWidth(0, 110);
-    ui->tableView->setColumnWidth(1, 155);
+    ui->tableView->setColumnWidth(1, 158);
     ui->tableView->setColumnWidth(2, 60);
     ui->tableView->setColumnWidth(3, 60);
 
@@ -114,7 +114,7 @@ void MainWindow::init(){
     ui->studentTableView->setModel(sModel);
     ui->studentTableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->studentTableView->setColumnWidth(0, 170);
-    ui->studentTableView->setColumnWidth(1, 170);
+    ui->studentTableView->setColumnWidth(1, 169);
 
     //ui->tableView->setHorizontalHeaderLabels(QStringList() << "Course Name" << "Date Time" << "Arrived/Total Students");
     updateTableView();
@@ -222,7 +222,7 @@ void MainWindow::checkCourseStart(){
             qDebug()<< studentList[i].email;
         }
         email_timer->start();
-    }else if(currentTime > courseTime.addMSecs(1000*60*1)){ // TEST for 1 min
+    }else if(currentTime > courseTime.addMSecs(1000*60*15)){ // TEST for 1 min
         //delete course
         try{
             qDebug() << "auto_delete triggered";
@@ -270,28 +270,12 @@ void MainWindow::on_actionSwitch_to_student_mode_triggered()
 
 void MainWindow::on_testButton_clicked()
 {
-    QDateTime currentTime = QDateTime::currentDateTime();
-    //QString currentTimeText = currentTime.toString("dd/MM/yyyy hh:mm:ss");
-    QAbstractItemModel* model = ui->tableView->model();
-    QModelIndex datetimeIndex = model->index(0, 1, QModelIndex());
-    QModelIndex coursenameIndex = model->index(0, 0, QModelIndex());
-    QVariant datetimeData = model->data(datetimeIndex);
-    QVariant coursenameData = model->data(coursenameIndex);
+    rfidThread.wait();
+    fingerprintIdentifyThread.wait();
+    doorlockThread.wait();
 
-    QString courseName = coursenameData.toString();
-    QDateTime courseTime = QDateTime::fromString(datetimeData.toString(), "yyyy-MM-dd hh:mm");
-    if(courseTime.isNull()){
-        return;
-    }
-        //late email    
-    qDebug() << "late_email triggered";
-    Course course = cdb.getCourse(courseName);
-    QList<Student> studentList = course.studentList;    
-    Email email;
-    for(int i=0;i<studentList.size();i++){
-        qDebug() << studentList[i].email;
-        email.send_email_lateReminder(studentList[i].email.toStdString(),courseName.toStdString(),datetimeData.toString().toStdString());
-    }
+    // Call the base class closeEvent() method to actually close the window
+    QMainWindow::closeEvent(event);
 }
 
 void MainWindow::on_studentListButton_clicked()
@@ -465,7 +449,7 @@ void MainWindow::fingerprintIdentifyListener() {
                 QMetaObject::invokeMethod(this, "onFPIDAddReceived", Qt::QueuedConnection,
                                         Q_ARG(QString, qfpID));
             }           
-        }delay(3000); //Delay must be added in this thread to give time AS608 to process before next detection 
+        }delay(2000); //Delay must be added in this thread to give time AS608 to process before next detection 
     }
 }
 
