@@ -25,13 +25,19 @@ Tired of taking attendance by hand? This project will surely help you out! Punch
 
 <h2> <br> Table of content </h2>
 <ul>
-  <li><a href="#section-1">Features</a></li>
-  <li><a href="#section-2">System design</a></li>
-  <li><a href="#section-3">Getting Started!</a></li>
+  <li><a href="#features">Features</a></li>
+  <li><a href="#required-hardware">Required Hardware</a></li>
+  <li><a href="#system-design">System Design</a></li>
+  <li><a href="#getting-started">Getting Started!</a></li>
+  <li><a href="#test">Test</a></li>
+  <li><a href="#project-planning">Project Planning</a></li>
+  <li><a href="#contributors">Contributors</a></li>
+  <li><a href="#references">References</a></li>
+  <li><a href="#acknowledgements">Acknowledgements</a></li>
 </ul>
 
 
-<h2> <br> Features </h2>
+<h2 id="features"> <br> Features </h2>
 
 <h3> 1. Take attendance with two methods </h3>
 
@@ -71,7 +77,8 @@ All scheduled classes and attendance records are saved into the local database. 
 
 <h3> 5. Doorlock control </h3>
 
-A doorlock will be opened for student who has just Punched in. In this project, we will use a LED to simulate the door unlocking process
+A doorlock will be opened for student who has just Punched in. In this project, we will use a LED to simulate the door unlocking process.
+We originally intended to use GPIO to control the door lock, but the output power of the GPIO was not sufficient to drive the door lock to open. Therefore, we modified the high-level duration of GPIO26 according to the power-on time required by the door lock. When the LED light turns on, it means that the door lock has been opened. If we need to control the door lock using GPIO, a feasible solution is to use a relay to control whether the door lock is powered on. The current value output by the GPIO port of the Raspberry Pi can meet the condition for opening the relay, so we can use GPIO to control the relay and thus control the door lock. From a code perspective, we only need to control the high-level duration of the GPIO port, so there is basically no difference in code implementation.
 
 <br>
 
@@ -79,7 +86,7 @@ A doorlock will be opened for student who has just Punched in. In this project, 
 
 <br>
 
-<h2> Hardware </h2>
+<h2 id="required-hardware"> Required Hardware </h2>
 
 1. Raspberry Pi 4B 2G (Microprocessor)
 2. 7" 800*480 TN Touch Monitor (Front panel)
@@ -88,11 +95,11 @@ A doorlock will be opened for student who has just Punched in. In this project, 
 
 <br>
 
-<h2> System Design </h2>
+<h2 id="system-design"> System Design </h2>
 
 1. Circuit Diagram
 
-<img src="images/circuit_diagram.png" alt="circuit_diagram" width="800" height="355" style="margin-left:25px">
+<img src="images/circuit_diagram.jpeg" alt="circuit_diagram" width="800" height="500" style="margin-left:25px">
 <br>
 <br>
 
@@ -104,8 +111,7 @@ A doorlock will be opened for student who has just Punched in. In this project, 
 <br>
 <br>
 
-<h2> Getting Started </h2>
-<br>
+<h2 id="getting-started"> Getting Started </h2>
 <h3><b> Hardware </b></h3>
 <h3> Prerequisites </h3>
 <br>
@@ -163,8 +169,10 @@ Connect the LED positive pin to RaspberryPi GPIO pin 26, LED negative pin to Ras
 <h3> Prerequisites </h3>
 <br>
 1. E-mail
+
 <br>
 Download curl library 
+
 ```
 sudo apt-get install curl.
 ```
@@ -277,21 +285,21 @@ Running the project
 <br>
 
 
-<h2> Test </h2>
+<h2 id="test"> Test </h2>
 We are using Google Test in the project. Click the following link for more details!
 
 ([Testing Page](./Test)) <br>
 <br>
 <br>
 
-<h2> Project Planning </h2>
+<h2 id="project-planning"> Project Planning </h2>
 
 [GitHub Projects - PunchIN Project Planning](https://github.com/users/lkobnas/projects/1)
 <br>
 <br>
 
 
-<h2> Contributors </h2>
+<h2 id="contributors"> Contributors </h2>
 <a href="https://github.com/lkobnas/Attendance-recording-system/graphs/contributors">
   <img width="38px" style ="margin-right:20px" src="https://contrib.rocks/image?repo=lkobnas/Attendance-recording-system" />
 </a>
@@ -305,7 +313,7 @@ We are using Google Test in the project. Click the following link for more detai
 <br>
 <br>
 
-<h2> References </h2>
+<h2 id="references"> References </h2>
 
 GPIO Pinout of Raspberry Pi 4B (2G)
 <br>
@@ -317,6 +325,7 @@ A PN532 library, which gives PN532 libraries for Rspberry Pi, STM32 and Arduino.
 
 [PN532-library](https://github.com/soonuse/pn532-lib)
 <br>
+
 A AS608 library writen by C, while most library of AS608 are writen by Python.
 
 [AS608-library](https://github.com/soonuse/pn532-lib)
@@ -331,7 +340,7 @@ SendGrid: A cloud-based email delivery platform that provides a simple, reliable
 <br>
 
 
-<h2> Acknowledgements </h2>
+<h2 id="acknowledgements"> Acknowledgements </h2>
 
 * Logo Design and Inspiration  ([Wix](https://www.wix.com/logo/maker))
 * Creating Icon ([Flaticon](https://www.flaticon.com/))

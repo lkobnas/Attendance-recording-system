@@ -67,8 +67,6 @@ private slots:
 
     void on_actionSwitch_to_student_mode_triggered();
 
-    void on_testButton_clicked();
-
     void on_studentListButton_clicked();
 
     void on_deleteCourseButton_clicked();
