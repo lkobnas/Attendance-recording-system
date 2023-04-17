@@ -1,6 +1,9 @@
 #include "fingerprint.h"
 #include <wiringPi.h>
 
+/// @brief Wait until user place his finger on the sensor
+/// @param wait_time is the waiting time for the user to place his finger
+/// @return true : user placed his finger, false: otherwise
 bool Fingerprint::waitUntilDetectFinger(int wait_time) {
   while (true) {
     if (PS_DetectFinger()) {
@@ -16,6 +19,9 @@ bool Fingerprint::waitUntilDetectFinger(int wait_time) {
   }
 }
 
+/// @brief Wait until user lift his finger on the sensor
+/// @param wait_time is the waiting time for the user to lift his finger
+/// @return true : user lifted his finger, false: otherwise
 bool Fingerprint::waitUntilNotDetectFinger(int wait_time) {
   while (true) {
     if (!PS_DetectFinger()) {
@@ -31,6 +37,8 @@ bool Fingerprint::waitUntilNotDetectFinger(int wait_time) {
   }
 }
 
+/// @brief 
+/// @return 1: wiringPi setup failed, 2: serial device setup failed, 0: Sensor init succeed
 int Fingerprint::fp_init(){
     g_config.address = 0xffffffff;
     g_config.password= 0x00000000;
@@ -69,6 +77,10 @@ int Fingerprint::fp_init(){
 return 0;
 }
 
+/// @brief Find unused index in fingersensor and return its address
+/// @param indexList is the fingerprint index library
+/// @param size is indexlist size
+/// @return -1: Sensor memory full, otherwise: fingerprint address
 int findUnusedIndex(const int* indexList, const int size) {
     bool found = false;
     int index = -1;
@@ -86,6 +98,8 @@ int findUnusedIndex(const int* indexList, const int size) {
     return index;
 }
 
+/// @brief Enroll user fingerprint data in to an empty memory, return
+/// @return fingerprint address
 int Fingerprint::fp_enroll(){
     int address = -1;
     int indexList[512] = { 0 };
@@ -117,6 +131,8 @@ int Fingerprint::fp_enroll(){
 return pageID;
 }
 
+/// @brief 
+/// @return 
 int Fingerprint::fp_add()
 {
     int address = -1;

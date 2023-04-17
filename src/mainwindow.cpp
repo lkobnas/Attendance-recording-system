@@ -185,6 +185,7 @@ void MainWindow::updateTableView()
     try{
         courseList = cdb.getAllCourses();
         model->removeRows(0, model->rowCount());
+        ui->tableView->update();
         model->setRowCount(courseList.size());
         for(int i=0;i<courseList.size();i++){
             model->setData(model->index(i,0),courseList[i].name);
