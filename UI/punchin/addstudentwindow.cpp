@@ -2,8 +2,6 @@
 #include "ui_addstudentwindow.h"
 
 
-
-
 /// @brief MainWindow Constructor
 /// @param parent Passing parent object
 AddStudentWindow::AddStudentWindow(QWidget *parent) :
@@ -42,7 +40,19 @@ void AddStudentWindow::receiveCardID(QString cardid)
     ui->sCardButton->update();
 }
 
+void AddStudentWindow::receiveFPID(QString fpid)
 /// @brief add student card button
+{
+    qDebug()<< "receiveFPID: "<<fpid;
+    fpID = fpid;
+    QPalette pal = ui->sFpButton->palette();
+    pal.setColor(QPalette::Button, QColor(Qt::green));
+    ui->sFpButton->setAutoFillBackground(true);
+    ui->sFpButton->setPalette(pal);
+    ui->sFpButton->update();
+}
+
+
 void AddStudentWindow::on_sCardButton_clicked()
 {
     QMessageBox::information(this, "Scan your card", "Place your card on the card reader until this button turn green");
@@ -51,13 +61,7 @@ void AddStudentWindow::on_sCardButton_clicked()
 
 void AddStudentWindow::on_sFpButton_clicked()
 {
-
-}
-
-
-void AddStudentWindow::on_sPhotoButton_clicked()
-{
-
+    QMessageBox::information(this, "Scan your finger", "Place your finger on the fingerprint sensor, wait for 1 second, \n then lift your finger up and place it again until the button turn green");
 }
 
 
@@ -80,15 +84,15 @@ void AddStudentWindow::on_sAddButton_clicked()
         QMessageBox::warning(this, "Error adding student", "Student ID cannot be empty.");
         return;
     } 
-    // TODO Check rfid card
     if(cardID.isEmpty()){
         QMessageBox::warning(this, "Error adding student", "Student card have not registered");
         return;
     }
-
+    if(fpID.isEmpty()){
+        QMessageBox::warning(this, "No fingerprint detected", "Fingerprint is not registered");
+    }    
 
     photo = "photoDataHere";
-    fpID = "fingerprintDataHere";
     // Insert new student data to database
     try{
         sdb.insertStudent(sid,name,email,cardID,photo,fpID);
@@ -101,7 +105,7 @@ void AddStudentWindow::on_sAddButton_clicked()
         }
     }
     email_curl.send_email_newStudent(email.toStdString());
-    QMessageBox::information(this, "Insert successful", "New student " +name+ " added to database");
+    QMessageBox::information(this, "Insert successful", "New student : " +name+ " , added to PunchIN");
     close();
 
 return;

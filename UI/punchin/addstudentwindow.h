@@ -27,6 +27,7 @@ public:
 
 public slots:
     void receiveCardID(QString cardid);
+    void receiveFPID(QString fpid);
 
 private slots:
     void on_sClearButton_clicked();
@@ -34,8 +35,6 @@ private slots:
     void on_sCardButton_clicked();
 
     void on_sFpButton_clicked();
-
-    void on_sPhotoButton_clicked();
 
     void on_sAddButton_clicked();
 
@@ -48,8 +47,8 @@ private:
     QString email;
     QString sid;
     QString cardID;
-    QByteArray photo;
-    QByteArray fpID;
+    QString photo;
+    QString fpID;
 };
 
 #endif // ADDSTUDENTWINDOW_H

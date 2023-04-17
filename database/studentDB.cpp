@@ -45,7 +45,7 @@ bool StudentDB::initDB()
 /// @param picture a byte array of the student's photo
 /// @param fpId a byte array of the student's fingerprint ID
 /// @return The function returns true if the student was successfully inserted into the database
-bool StudentDB::insertStudent(QString sid, QString name, QString email, QString cardId, QByteArray picture, QByteArray fpId)
+bool StudentDB::insertStudent(QString sid, QString name, QString email, QString cardId, QString picture, QString fpId)
 {
 
 	sqlite3* DB;
@@ -263,8 +263,8 @@ QList<Student> StudentDB::getAllStudents() {
         s.name = QString::fromUtf8(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2)));
         s.email = QString::fromUtf8(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 3)));
         s.cardId = QString::fromUtf8(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 4)));
-		s.picture = QByteArray(reinterpret_cast<const char*>(sqlite3_column_blob(stmt, 5)));
-        s.fpId = QByteArray(reinterpret_cast<const char*>(sqlite3_column_blob(stmt, 6)));
+		s.picture = QString::fromUtf8(reinterpret_cast<const char*>(sqlite3_column_blob(stmt, 5)));
+        s.fpId = QString::fromUtf8(reinterpret_cast<const char*>(sqlite3_column_blob(stmt, 6)));
                            
         students.append(s);
     }

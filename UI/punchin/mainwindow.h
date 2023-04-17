@@ -27,6 +27,8 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include "../../PN532/rpi_get_uid.h"
+#include "../../doorlock/doorlock.h"
+#include "../../AS608/fingerprint.h"          
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -72,17 +74,32 @@ private slots:
 
     void onUIDReceived(const QString uid);
 
+    void onFPIDIdentifyReceived(const QString fpid);
+
+    void onFPIDAddReceived(QString fpid);
+
     void onAddStudentWindowClosed();
 
 signals:
     void passCardID(QString cardID);
+    void passFpID(QString fpID);
 
 private:
     Ui::MainWindow *ui; 
     AddStudentWindow* sWindow; 
     bool studentWindowValid;
+
     RFID rfid;
+    Fingerprint fp;
+    Doorlock* doorlock;
     std::thread rfidThread;
+    std::thread fingerprintIdentifyThread;
+    std::thread doorlockThread;
+    int fpMode;
+    bool running;
+    bool door;
+
+
     QTimer* email_timer;
     QTimer* delay_timer;
     bool e_functionRunning;
@@ -91,7 +108,9 @@ private:
     void d_resetFunctionRunningFlag();
 
     void rfidListener();
+    void fingerprintIdentifyListener();
     void recordAttendanceWindow(QString studentID);
-    //std::function<void(const QString&)> rfid_callback_;
+    void doorControl();
+
 };
 #endif // MAINWINDOW_H

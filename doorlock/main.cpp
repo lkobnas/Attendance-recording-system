@@ -1,15 +1,10 @@
 #include <iostream>
-#include "GpioController.h"
+#include "Doorlock.h"
 
 int main() {
     try {
-        GpioController gpio(26);
-
-        gpio.setPinHigh();
-        gpio.delayMillis(5000);
-
-        gpio.setPinLow();
-        gpio.delayMillis(1000);
+        Doorlock gpio(26);
+        gpio.run();
     }
     catch (const std::runtime_error& e) {
         std::cerr << e.what() << std::endl;

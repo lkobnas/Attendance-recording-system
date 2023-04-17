@@ -4,7 +4,6 @@
 #include "sqlite3.h"
 #include "myException.h"
 #include <QString>
-#include <QByteArray>
 #include <QList>
 #include <QPixmap>
 
@@ -15,8 +14,8 @@ struct Student
     QString name;
     QString email;
     QString cardId;
-    QByteArray picture;
-    QByteArray fpId;
+    QString picture;
+    QString fpId;
 };
 
 
@@ -24,7 +23,7 @@ class StudentDB {
     
     public:
         static bool initDB();
-        static bool insertStudent(QString sid, QString name, QString email, QString cardId, QByteArray picture, QByteArray fpId);
+        static bool insertStudent(QString sid, QString name, QString email, QString cardId, QString picture, QString fpId);
         static bool deleteStudent(QString sid);
         static bool checkStudentExist(QString sid);
         static Student getStudent(QString sid);

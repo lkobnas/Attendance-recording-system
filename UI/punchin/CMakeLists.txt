@@ -1,18 +1,10 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(punchin VERSION 0.1 LANGUAGES CXX)
+project(punchin VERSION 0.1)
 
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
-
-set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
-
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Sql)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Sql)
-find_package(SQLite3 REQUIRED)
 
 set(PROJECT_SOURCES
         main.cpp
@@ -25,7 +17,20 @@ set(PROJECT_SOURCES
         ../../PN532/pn532.cpp
         ../../PN532/pn532_rpi.cpp
         ../../PN532/rpi_get_uid.cpp
+        ../../doorlock/doorlock.cpp
+        ../../AS608/fingerprint.cpp
+        ../../AS608/utils.c
+        ../../AS608/as608.c
 )
+
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
+
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Sql)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Sql)
+find_package(SQLite3 REQUIRED)
+
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(punchin

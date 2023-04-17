@@ -8,6 +8,8 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    doorlock = new Doorlock(26);
+    fp.fp_init();
     init();
     //Timer for date/time display
     QTimer *timer = new QTimer(this);
@@ -17,27 +19,41 @@ MainWindow::MainWindow(QWidget *parent)
     //Timer for input delay
     delay_timer = new QTimer(this);
     delay_timer->setInterval(1500);
-    //connect(delay_timer, SIGNAL(timeout()),this,SLOT(onUIDReceived(const QString)));
     connect(delay_timer, &QTimer::timeout, this, &MainWindow::d_resetFunctionRunningFlag);
     d_functionRunning = false;
 
     // Email Timer
     email_timer = new QTimer(this);
     email_timer->setInterval(2000);
-    //connect(email_timer, &QTimer::timeout, this, &MainWindow::checkCourseStart);
+    connect(email_timer, &QTimer::timeout, this, &MainWindow::e_resetFunctionRunningFlag);
+    e_functionRunning = false;
 
     //Timer for input delay
     //connect(this, &MainWindow::passCardID, this, &AddStudentWindow::receiveVariable, Qt::QueuedConnection);
+    running = true;
+    fpMode = 1;
     rfidThread = std::thread(&MainWindow::rfidListener, this);
+    fingerprintIdentifyThread = std::thread(&MainWindow::fingerprintIdentifyListener, this);
+    doorlockThread = std::thread(&MainWindow::doorControl, this);
+    
 
 }
 
 /// @brief add rfid
 MainWindow::~MainWindow()
 {
-    if (rfidThread.joinable()) {
+    running = false;
+    while(rfidThread.joinable()) {
         rfidThread.detach();
         rfidThread.join();
+    }
+    while(fingerprintIdentifyThread.joinable()) {
+        fingerprintIdentifyThread.detach();
+        fingerprintIdentifyThread.join();
+    }
+    while(doorlockThread.joinable()) {
+        doorlockThread.detach();
+        doorlockThread.join();
     }
     delete ui;
 }
@@ -58,7 +74,7 @@ void MainWindow::init(){
     font.setBold(false);
     ui->labelUpcomingCourse->setFont(font);
 
-    
+    door = false;
     studentWindowValid = false;
     try{
         cdb.initDB();
@@ -84,10 +100,10 @@ void MainWindow::init(){
     ui->tableView->setModel(model);
     ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
     // Set the column widths and header titles
-    ui->tableView->setColumnWidth(0, 105);
-    ui->tableView->setColumnWidth(1, 160);
+    ui->tableView->setColumnWidth(0, 110);
+    ui->tableView->setColumnWidth(1, 158);
     ui->tableView->setColumnWidth(2, 60);
-    ui->tableView->setColumnWidth(3, 40);
+    ui->tableView->setColumnWidth(3, 60);
 
     // Initialise Student Table
     sModel = new QStandardItemModel(this);
@@ -96,8 +112,8 @@ void MainWindow::init(){
     sModel->setHeaderData(1, Qt::Horizontal, "Arrived Students");
     ui->studentTableView->setModel(sModel);
     ui->studentTableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    ui->studentTableView->setColumnWidth(0, 150);
-    ui->studentTableView->setColumnWidth(1, 150);
+    ui->studentTableView->setColumnWidth(0, 170);
+    ui->studentTableView->setColumnWidth(1, 169);
 
     //ui->tableView->setHorizontalHeaderLabels(QStringList() << "Course Name" << "Date Time" << "Arrived/Total Students");
     updateTableView();
@@ -113,8 +129,10 @@ void MainWindow::update(){
 void MainWindow::on_addNewStudentButton_clicked()
 {
     if(adminMode){
+        fpMode = 2;
         sWindow = new AddStudentWindow(this);
         connect(this, &MainWindow::passCardID, sWindow, &AddStudentWindow::receiveCardID);
+        connect(this, &MainWindow::passFpID, sWindow, &AddStudentWindow::receiveFPID);
         connect(sWindow, &QDialog::finished, this, &MainWindow::onAddStudentWindowClosed);
         studentWindowValid = true;
         //sWindow->setModal(true);
@@ -128,6 +146,7 @@ void MainWindow::on_addNewStudentButton_clicked()
 /// @brief add student window close
 void MainWindow::onAddStudentWindowClosed(){
     studentWindowValid = false;
+    fpMode = 1;
 }
 
 /// @brief add new course button
@@ -157,6 +176,7 @@ void MainWindow::updateTableView()
 {
     try{
         courseList = cdb.getAllCourses();
+        model->removeRows(0, model->rowCount());
         model->setRowCount(courseList.size());
         for(int i=0;i<courseList.size();i++){
             model->setData(model->index(i,0),courseList[i].name);
@@ -193,9 +213,11 @@ void MainWindow::checkCourseStart(){
     }
  
     if(qAbs(currentTime.secsTo(courseTime)) <= 1){ 
-        if(email_timer->isActive()){
+        if(e_functionRunning){
             return;
         }
+        e_functionRunning = true;
+        email_timer->start();
         //late email    
         qDebug() << "late_email triggered";
         Course course = cdb.getCourse(courseName);
@@ -206,7 +228,7 @@ void MainWindow::checkCourseStart(){
             qDebug()<< studentList[i].email;
         }
         email_timer->start();
-    }else if(currentTime > courseTime.addMSecs(1000*60*1)){ // TEST for 1 min
+    }else if(currentTime > courseTime.addMSecs(1000*60*15)){ // TEST for 1 min
         //delete course
         try{
             qDebug() << "auto_delete triggered";
@@ -257,35 +279,25 @@ void MainWindow::on_actionSwitch_to_student_mode_triggered()
 /// @brief Sending late arrival reminder emails to students
 void MainWindow::on_testButton_clicked()
 {
-    QDateTime currentTime = QDateTime::currentDateTime();
-    //QString currentTimeText = currentTime.toString("dd/MM/yyyy hh:mm:ss");
-    QAbstractItemModel* model = ui->tableView->model();
-    QModelIndex datetimeIndex = model->index(0, 1, QModelIndex());
-    QModelIndex coursenameIndex = model->index(0, 0, QModelIndex());
-    QVariant datetimeData = model->data(datetimeIndex);
-    QVariant coursenameData = model->data(coursenameIndex);
+    running=false;
+    rfidThread.join();
+    fingerprintIdentifyThread.join();
+    doorlockThread.join();
 
-    QString courseName = coursenameData.toString();
-    QDateTime courseTime = QDateTime::fromString(datetimeData.toString(), "yyyy-MM-dd hh:mm");
-    if(courseTime.isNull()){
-        return;
-    }
-        //late email    
-    qDebug() << "late_email triggered";
-    Course course = cdb.getCourse(courseName);
-    QList<Student> studentList = course.studentList;    
-    Email email;
-    for(int i=0;i<studentList.size();i++){
-        qDebug() << studentList[i].email;
-        email.send_email_lateReminder(studentList[i].email.toStdString(),courseName.toStdString(),datetimeData.toString().toStdString());
-    }
+    // Call the base class closeEvent() method to actually close the window
+    
+    close();
 }
 
 /// @brief Click on the 'Student' button and add your name, student ID and email details
 void MainWindow::on_studentListButton_clicked()
 {
+    if(!adminMode){
+        QMessageBox::warning(this, "Permission Denied", "Please switch to admin mode");
+        return;
+    }
+
     QList<Student> studentList;
-    
     try{
         sdb.initDB();
         studentList  = sdb.getAllStudents();
@@ -399,6 +411,10 @@ void MainWindow::updateStudentTable(){
 /// @brief delete Course Button
 void MainWindow::on_deleteCourseButton_clicked()
 {
+    if(!adminMode){
+        QMessageBox::warning(this, "Permission Denied", "Please switch to admin mode");
+        return;
+    }
     QList<QStringList> selectedData = getSelectedData(ui->tableView);
     if(selectedData.size()<1){
         QMessageBox::warning(this, "Error deleting course", "Please select a course");
@@ -418,12 +434,11 @@ void MainWindow::on_deleteCourseButton_clicked()
         QMessageBox::information(this, "Success", "Course deleted");
         updateTableView();
     }
-
 }
 
 /// @brief listens for RFID signals 
 void MainWindow::rfidListener() {
-    while (true) {
+    while (running) {
         std::string uid = rfid.get_uid();
         
         if (!uid.empty()) { 
@@ -434,13 +449,38 @@ void MainWindow::rfidListener() {
     }
 }
 
+
+void MainWindow::fingerprintIdentifyListener() {
+    while (running) {
+        if(fpMode == 1){    //Identify mode: Active in MainWindow
+            int fpID = fp.fp_identify();
+            if (!(fpID==-1)) { 
+                QString qfpID = QString::number(fpID);
+                QMetaObject::invokeMethod(this, "onFPIDIdentifyReceived", Qt::QueuedConnection,
+                                        Q_ARG(QString, qfpID));
+            }
+        }else if(fpMode == 2){  //Enroll mode: Active in AddStudentWindow
+            int fpID = fp.fp_enroll();
+            qDebug() <<"fpID: "<<fpID;
+            if (!(fpID==-1)) { 
+                QString qfpID = QString::number(fpID);
+                
+                QMetaObject::invokeMethod(this, "onFPIDAddReceived", Qt::QueuedConnection,
+                                        Q_ARG(QString, qfpID));
+            }           
+        }delay(2000); //Delay must be added in this thread to give time AS608 to process before next detection 
+    }
+}
+
+
+
 /// @brief record Attendance Window
 /// @param studentID 
+
 void MainWindow::recordAttendanceWindow(QString studentID)
 {
-    //doorlock
-    qDebug() << "recordAttendanceWindow triggered";
-    QString s = "Your attendance have been recorded, your SID: "+studentID;
+    door = true;
+    QString s = "Student with SID: "+studentID+" . Your attendance have been recorded";
     QMessageBox* popup = new QMessageBox(QMessageBox::Information, "Success", s, QMessageBox::Close, nullptr);
     popup->setAttribute(Qt::WA_DeleteOnClose); // delete the popup automatically when it's closed
     QTimer::singleShot(3000, popup, &QMessageBox::close); // close the popup after 3 seconds
@@ -458,11 +498,11 @@ void MainWindow::d_resetFunctionRunningFlag(){
 /// @param uid 
 void MainWindow::onUIDReceived(const QString uid) {
     //update database arrived
-    if (!d_functionRunning) {
-        d_functionRunning = true;
-        delay_timer->start();
-        // Function code here
-    }
+   // if (d_functionRunning) {
+   //     return;    
+   // }
+   // d_functionRunning = true;
+   // delay_timer->start();
 
     if(studentWindowValid){       
         connect(this, &MainWindow::passCardID, sWindow, 
@@ -520,7 +560,74 @@ void MainWindow::onUIDReceived(const QString uid) {
     email_curl.send_email_record(student.email.toStdString(), courseName.toStdString());
     recordAttendanceWindow(student.sid);
     updateTableView();
-    // Update the UI with the RFID input
+}
+
+
+void MainWindow::onFPIDIdentifyReceived(QString fpid){
+  Student student;
+    try{
+        student = sdb.getStudentByFPID(fpid);
+    }catch(QException &e){
+        const MyException* myException = dynamic_cast<const MyException*>(&e);
+        if (myException) {
+            QString errorMessage = myException->message();
+            QMessageBox::warning(this, "Student database error", errorMessage);
+            return;
+        }
+    }
+    if(student.sid.isEmpty()){
+        QMessageBox* popup = new QMessageBox(QMessageBox::Warning, "Invalid Fingerprint", "Fingerprint is not registered in the system", QMessageBox::Close, nullptr);
+        popup->setAttribute(Qt::WA_DeleteOnClose); // delete the popup automatically when it's closed
+        QTimer::singleShot(3000, popup, &QMessageBox::close); // close the popup after 3 seconds
+        popup->show(); 
+        return;
+    }
+    QAbstractItemModel* model = ui->tableView->model();
+    QModelIndex firstIndex = model->index(0, 0, QModelIndex());
+    // Get the data stored in the first index
+    QVariant data = model->data(firstIndex);
+    // Convert the data to a QString if necessary
+    QString courseName = data.toString();
+    if(courseName.isEmpty()){
+        QMessageBox* popup = new QMessageBox(QMessageBox::Warning, "No coming class", "No upcoming class", QMessageBox::Close, nullptr);
+        popup->setAttribute(Qt::WA_DeleteOnClose); // delete the popup automatically when it's closed
+        QTimer::singleShot(3000, popup, &QMessageBox::close); // close the popup after 3 seconds
+        popup->show(); 
+        return;
+    }
+    try{
+        cdb.updateArrived(courseName, student.sid);
+    }catch(QException &e){
+        const MyException* myException = dynamic_cast<const MyException*>(&e);
+        if (myException) {
+            QString errorMessage = myException->message();
+            QMessageBox::warning(this, "Failed to record attendance", errorMessage);
+            return;
+        }
+    }    
+    // Send Attendance recorded email
+    Email email_curl;
+    email_curl.send_email_record(student.email.toStdString(), courseName.toStdString());
+    recordAttendanceWindow(student.sid);
+    updateTableView();
+}
+
+void MainWindow::onFPIDAddReceived(QString fpid){
+    qDebug()<<"onFPIDAddReceived emit";
+    connect(this, &MainWindow::passFpID, sWindow, 
+    [=](const QVariant& value) {
+        sWindow->receiveFPID(value.toString());
+    }, Qt::QueuedConnection);
+    // Emit the signal with the variable
+    emit passFpID(fpid);        
+    return;
 
 }
 
+void MainWindow::doorControl(){
+    if(door){
+        doorlock->run();
+        door = false;
+    }
+
+}
