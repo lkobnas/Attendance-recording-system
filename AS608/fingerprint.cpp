@@ -104,14 +104,19 @@ int Fingerprint::fp_enroll(){
     int count = 0;
     printf("Please put your finger on the moudle\n");
     while (digitalRead(g_as608.detect_pin) == LOW) {
-      delay(1);
-      if ((count++) > 5000) {
-        printf("Not detected the finger!\n");
+      if(waitUntilDetectFinger(2000)){
+        break;
+      }else{
+        printf("No finger detected!\n");
+        return -1;
       }
-      return -1;
+      // if ((count++) > 5000) {
+      //   printf("No finger detected!\n");
+      // }
     }     
     int pageID = address;
     PS_Enroll(&pageID) || PS_Exit();
+    printf("After PS_ENROLL");
 return pageID;
 }
 
