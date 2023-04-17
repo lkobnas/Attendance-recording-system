@@ -445,9 +445,10 @@ void MainWindow::fingerprintIdentifyListener() {
             }
         }else if(fpMode == 2){  //Enroll mode: Active in AddStudentWindow
             int fpID = fp.fp_enroll();
+            qDebug() <<"fpID: "<<fpID;
             if (!fpID==-1) { 
                 QString qfpID = QString::number(fpID);
-                qDebug() <<"fpID: "<<fpID;
+                
                 QMetaObject::invokeMethod(this, "onFPIDAddReceived", Qt::QueuedConnection,
                                         Q_ARG(QString, qfpID));
             }           

@@ -112,7 +112,7 @@ int Fingerprint::fp_enroll(){
     }     
     int pageID = address;
     PS_Enroll(&pageID) || PS_Exit();
-return address;
+return pageID;
 }
 
 int Fingerprint::fp_add()
