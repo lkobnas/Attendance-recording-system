@@ -436,23 +436,22 @@ void MainWindow::rfidListener() {
 
 void MainWindow::fingerprintIdentifyListener() {
     while (running) {
-        if(fpMode == 1){
+        if(fpMode == 1){    //Identify mode: Active in MainWindow
             int fpID = fp.fp_identify();
             if (!fpID==-1) { 
                 QString qfpID = QString::number(fpID);
                 QMetaObject::invokeMethod(this, "onFPIDIdentifyReceived", Qt::QueuedConnection,
                                         Q_ARG(QString, qfpID));
             }
-            delay(3000); //Delay must be added in this thread to give time AS608 to process before next detection 
-        }else if(fpMode == 2){
+        }else if(fpMode == 2){  //Enroll mode: Active in AddStudentWindow
             int fpID = fp.fp_enroll();
             if (!fpID==-1) { 
                 QString qfpID = QString::number(fpID);
+                qDebug() <<"fpID: "<<fpID;
                 QMetaObject::invokeMethod(this, "onFPIDAddReceived", Qt::QueuedConnection,
                                         Q_ARG(QString, qfpID));
-            }
-            delay(3000);             
-        }
+            }           
+        }delay(3000); //Delay must be added in this thread to give time AS608 to process before next detection 
     }
 }
 
@@ -586,6 +585,7 @@ void MainWindow::onFPIDIdentifyReceived(QString fpid){
 }
 
 void MainWindow::onFPIDAddReceived(QString fpid){
+    qDebug()<<"onFPIDAddReceived emit";
     connect(this, &MainWindow::passFpID, sWindow, 
     [=](const QVariant& value) {
         sWindow->receiveFPID(value.toString());
