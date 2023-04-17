@@ -34,8 +34,6 @@ string RFID::get_uid(void) {
     } else {
         cout<<"\r\n Card founded ";
         for (uint8_t i = 0; i < uid_len; i++) {
-            //printf("%02x ", uid[i]);
-            //cout<<hex<<static_cast<int>(uid[i])<<" ";
             uid_str += to_string(uid[i]);
         }
         //cout<<"\r\n"<<uid_str;
