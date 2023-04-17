@@ -2,7 +2,7 @@
 
 #include <QApplication>
 
-/// @brief open UI screen
+/// @brief Start MainWindow
 /// @param argc 
 /// @param argv 
 /// @return 

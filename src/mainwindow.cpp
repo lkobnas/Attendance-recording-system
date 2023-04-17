@@ -1,8 +1,7 @@
 #include "mainwindow.h"
-
 #include <QMessageBox>
-/// @brief Time to open new UI
-/// @param parent 
+/// @brief MainWindow Constructor
+/// @param parent points to QMainWindow from main
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -37,7 +36,7 @@ MainWindow::MainWindow(QWidget *parent)
     
 }
 
-/// @brief add rfid
+/// @brief MainWindow Destructor
 MainWindow::~MainWindow()
 {
     running = false;
@@ -67,7 +66,7 @@ void MainWindow::on_actionClose_triggered()
     close();
 }
 
-/// @brief Manage student (arrival time and status) and course information
+/// @brief Initialise UI, doorlock and variable for checking studentwindow, read course database and display on tableview
 void MainWindow::init(){
     setWindowTitle("PunchIN - Stduent Mode");
     QFont font = ui->mDateTimeLabel->font();
@@ -125,7 +124,6 @@ void MainWindow::init(){
     ui->studentTableView->setColumnWidth(0, 170);
     ui->studentTableView->setColumnWidth(1, 169);
 
-    //ui->tableView->setHorizontalHeaderLabels(QStringList() << "Course Name" << "Date Time" << "Arrived/Total Students");
     updateTableView();
 }
 
@@ -135,7 +133,7 @@ void MainWindow::update(){
     checkCourseStart();
 }
 
-/// @brief add new student button
+/// @brief Open add student window when button is clicked
 void MainWindow::on_addNewStudentButton_clicked()
 {
     if(adminMode){
@@ -153,13 +151,13 @@ void MainWindow::on_addNewStudentButton_clicked()
     }
 }
 
-/// @brief add student window close
+/// @brief change fingerprint detect mode when add student window is closed
 void MainWindow::onAddStudentWindowClosed(){
     studentWindowValid = false;
     fpMode = 1;
 }
 
-/// @brief add new course button
+/// @brief Open a add course window when button is clicked
 void MainWindow::on_addNewCourseButton_clicked()
 {
     if(adminMode){
@@ -172,7 +170,7 @@ void MainWindow::on_addNewCourseButton_clicked()
     }
 }
 
-/// @brief update date and time
+/// @brief update date and time display on mainwindow
 void MainWindow::updateDatetimeDisplay()
 {
     QDateTime datetime = QDateTime::currentDateTime();
@@ -206,7 +204,7 @@ void MainWindow::updateTableView()
     updateStudentTable();
 }
 
-/// @brief check course strart
+/// @brief check if any course is starting
 void MainWindow::checkCourseStart(){
     QDateTime currentTime = QDateTime::currentDateTime();
     //QString currentTimeText = currentTime.toString("dd/MM/yyyy hh:mm:ss");
@@ -259,7 +257,7 @@ void MainWindow::checkCourseStart(){
     }
 }
 
-/// @brief Enter your password to log in and manage the system
+/// @brief Change to administrator mode
 void MainWindow::on_actionAdministrator_mode_triggered()
 {
     if(adminMode == false){
@@ -277,7 +275,7 @@ void MainWindow::on_actionAdministrator_mode_triggered()
     }
 }
 
-/// @brief Convert to student mode
+/// @brief Change to student mode
 void MainWindow::on_actionSwitch_to_student_mode_triggered()
 {
     if(adminMode == true){
@@ -286,20 +284,7 @@ void MainWindow::on_actionSwitch_to_student_mode_triggered()
     }
 }
 
-/// @brief Sending late arrival reminder emails to students
-void MainWindow::on_testButton_clicked()
-{
-    running=false;
-    rfidThread.join();
-    fingerprintIdentifyThread.join();
-    doorlockThread.join();
-
-    // Call the base class closeEvent() method to actually close the window
-    
-    close();
-}
-
-/// @brief Click on the 'Student' button and add your name, student ID and email details
+/// @brief Open student list when button is clicked
 void MainWindow::on_studentListButton_clicked()
 {
     if(!adminMode){
@@ -358,7 +343,7 @@ void MainWindow::on_studentListButton_clicked()
     popupWindow->exec();
 }
 
-/// @brief Detects if the mouse is pressed on the course button
+/// @brief Get selected course in the tableview
 /// @param tableView 
 /// @return 
 QList<QStringList> getSelectedData(QTableView* tableView) {
@@ -381,7 +366,7 @@ QList<QStringList> getSelectedData(QTableView* tableView) {
     return selectedData;
 }
 
-/// @brief update student table
+/// @brief update student table with upcoming course
 void MainWindow::updateStudentTable(){
 
     QAbstractItemModel* model = ui->tableView->model();
@@ -418,7 +403,7 @@ void MainWindow::updateStudentTable(){
     
 }
 
-/// @brief delete Course Button
+/// @brief Delete selected course when button is clicked
 void MainWindow::on_deleteCourseButton_clicked()
 {
     if(!adminMode){
@@ -446,7 +431,7 @@ void MainWindow::on_deleteCourseButton_clicked()
     }
 }
 
-/// @brief listens for RFID signals 
+/// @brief Listener for RFID reader
 void MainWindow::rfidListener() {
     while (running) {
         std::string uid = rfid.get_uid();
@@ -460,6 +445,7 @@ void MainWindow::rfidListener() {
 }
 
 
+/// @brief Listener for fingerprint sensor
 void MainWindow::fingerprintIdentifyListener() {
     while (running) {
         if(fpMode == 1){    //Identify mode: Active in MainWindow
@@ -484,9 +470,8 @@ void MainWindow::fingerprintIdentifyListener() {
 
 
 
-/// @brief record Attendance Window
+/// @brief Record student attendance when rfid or fingerprint detected
 /// @param studentID 
-
 void MainWindow::recordAttendanceWindow(QString studentID)
 {
     door = true;
@@ -497,22 +482,18 @@ void MainWindow::recordAttendanceWindow(QString studentID)
     popup->show(); 
 }
 
+/// @brief email timer running flag
 void MainWindow::e_resetFunctionRunningFlag(){
     e_functionRunning = false;
 }
+/// @brief delay timer running flag
 void MainWindow::d_resetFunctionRunningFlag(){
     d_functionRunning = false;
 }
 
-/// @brief Student card detected, attendance list updated and emailed
-/// @param uid 
+/// @brief Triggered whe Student card detected, update attendance list updated and send attendance record email
+/// @param uid is student card id that return by rfid.cpp
 void MainWindow::onUIDReceived(const QString uid) {
-    //update database arrived
-   // if (d_functionRunning) {
-   //     return;    
-   // }
-   // d_functionRunning = true;
-   // delay_timer->start();
 
     if(studentWindowValid){       
         connect(this, &MainWindow::passCardID, sWindow, 
@@ -573,6 +554,8 @@ void MainWindow::onUIDReceived(const QString uid) {
 }
 
 
+/// @brief Triggered whe Student card detected, update attendance list updated and send attendance record email
+/// @param fpid 
 void MainWindow::onFPIDIdentifyReceived(QString fpid){
   Student student;
     try{
@@ -622,6 +605,8 @@ void MainWindow::onFPIDIdentifyReceived(QString fpid){
     updateTableView();
 }
 
+/// @brief Triggered when add student window is opened, fingerprint sensor will switch to add mode and emit fpID to addstudentwindow.cpp
+/// @param fpid 
 void MainWindow::onFPIDAddReceived(QString fpid){
     qDebug()<<"onFPIDAddReceived emit";
     connect(this, &MainWindow::passFpID, sWindow, 
@@ -634,6 +619,7 @@ void MainWindow::onFPIDAddReceived(QString fpid){
 
 }
 
+/// @brief Trigger Door Control function
 void MainWindow::doorControl(){
     while(running){
         if(door){

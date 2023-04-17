@@ -2,6 +2,9 @@
 #include <wiringPi.h>
 #include <stdexcept>
 
+
+/// @brief Initialise WiringPi library and GPIO pin mode
+/// @param p 
 void Doorlock::init(int p){
     pin = p;
     if (wiringPiSetupGpio() == -1) {
@@ -9,6 +12,7 @@ void Doorlock::init(int p){
     }
     pinMode(pin, OUTPUT);
 }
+/// @brief Run the doorlock opening sequence
 void Doorlock::run(){
     setPinHigh();
     delayMillis(1500);

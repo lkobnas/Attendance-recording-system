@@ -4,6 +4,7 @@
 #include <QException>
 #include <QString>
 
+/// @brief A Class for handling self defined exception. Inherits QException from QT library
 class MyException : public QException {
 public:
     MyException(QString message) : m_message(message) {}

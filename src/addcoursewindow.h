@@ -9,6 +9,7 @@ namespace Ui {
 class AddCourseWindow;
 }
 
+/// @brief A class for add course window. Inherits from QDialog
 class AddCourseWindow : public QDialog
 {
     Q_OBJECT

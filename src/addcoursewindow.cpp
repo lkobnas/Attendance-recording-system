@@ -10,7 +10,7 @@
 #include <QMessageBox>
 #include <QException>
 
-/// @brief MainWindow Constructor
+/// @brief AddCourseWindow Constructor
 /// @param parent Passing parent object
 AddCourseWindow::AddCourseWindow(QWidget *parent) :
     QDialog(parent),
@@ -24,13 +24,13 @@ AddCourseWindow::AddCourseWindow(QWidget *parent) :
     ui->dateTimeEdit->setDisplayFormat("yyyy-MM-dd hh:mm");
 }
 
-/// @brief MainWindow Destructor
+/// @brief AddCourseWindow Destructor
 AddCourseWindow::~AddCourseWindow()
 {
     delete ui;
 }
 
-/// @brief Add 'Course' button
+/// @brief Validate all fields and add course to database
 void AddCourseWindow::on_cAddButton_clicked()
 {
     QString name = ui->cNameLineEdit->text();
@@ -74,7 +74,7 @@ void AddCourseWindow::on_cAddButton_clicked()
 return;
 }
 
-/// @brief add 'Course' clear button
+/// @brief Clear all input fields
 void AddCourseWindow::on_cClearButton_clicked()
 {
     ui->cNameLineEdit->clear();
@@ -82,7 +82,7 @@ void AddCourseWindow::on_cClearButton_clicked()
 }
 
 
-/// @brief add 'Course' close button
+/// @brief Close add course window
 void AddCourseWindow::on_closeButton_clicked()
 {
     this->close();

@@ -3,7 +3,7 @@
 
 #include <string>
 
-/// @brief 
+/// @brief A Class for managing email types and template using SendGrid
 class Email{
 
 public:
