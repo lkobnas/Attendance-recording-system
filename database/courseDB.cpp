@@ -4,7 +4,7 @@ using namespace std;
 
 
 /**
- * @brief 
+ * @brief creating a new database file named "courses.db" and creating a new table named "COURSES" in the database
  * 
  * @return true 
  * @return false 
@@ -41,6 +41,11 @@ bool CourseDB::initDB()
 	return true;
 }
 
+/// @brief Insert a new course in the database with a list of names, dates and student IDs (SIDString), update the student list and send a confirmation email
+/// @param name coursename
+/// @param datetime coursedatatime
+/// @param SIDString student IDs
+/// @return Course not added so return false
 bool CourseDB::insertCourse(QString name, QString datetime, QString SIDString)
 {
 
@@ -147,6 +152,13 @@ QList<Student> CourseDB::stringtoList(QString s){
     return studentList;
 }
 
+/// @brief Update course student list, students receive confirmation email
+/// @param DB database
+/// @param messageError  a string messageError for capturing error messages
+/// @param courseName coursename
+/// @param datetime date and time of the course datetime
+/// @param inputList a string inputList representing a list of students to add or remove from the course
+/// @return method returns true on success
 bool CourseDB::updateStudentList(sqlite3* DB, char* messageError, QString courseName, QString datetime, QString inputList){
     inputList.replace(" ","");
     QList<QString> ilist = inputList.split(",");
@@ -209,6 +221,10 @@ bool CourseDB::updateStudentList(sqlite3* DB, char* messageError, QString course
     return true;
 }
 
+/// @brief Determine if a student is on the course list and determine if the course student is attending the course
+/// @param courseName coursename
+/// @param targetSID the student ID of the student who has arrived for the course
+/// @return Be a course student and take the course back true
 bool CourseDB::updateArrived(QString courseName, QString targetSID){
     targetSID.replace(" ","");
     
@@ -263,6 +279,9 @@ bool CourseDB::updateArrived(QString courseName, QString targetSID){
     return true;
 }
 
+/// @brief Delete a course name from the database
+/// @param name the name of the course to be deleted
+/// @return successful deletion returns true
 bool CourseDB::deleteCourse(QString name)
 {
 	sqlite3* DB;
@@ -286,6 +305,9 @@ bool CourseDB::deleteCourse(QString name)
 	return true;
 }
 
+/// @brief Access to courses in the database and extraction of relevant student lists and related data
+/// @param name akes a QString argument name representing the name of the course, and returns a Course object
+/// @return Data returned to the course
 Course CourseDB::getCourse(QString name){
 
     QString sql = "SELECT * FROM COURSES WHERE NAME = ?;";
@@ -324,6 +346,8 @@ Course CourseDB::getCourse(QString name){
     return course;
 }
 
+/// @brief Retrieves all courses from the database and returns them as QList<Course>.
+/// @return course
 QList<Course> CourseDB::getAllCourses() {
     QList<Course> courses;
     sqlite3_stmt* stmt;

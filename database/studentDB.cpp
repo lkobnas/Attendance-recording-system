@@ -3,6 +3,8 @@
 #include <QSqlDatabase>
 using namespace std;
 
+/// @brief Initialise the list of students in the database
+/// @return Execute successfully, return true
 bool StudentDB::initDB()
 {
     sqlite3* DB;
@@ -35,6 +37,14 @@ bool StudentDB::initDB()
 	return true;
 }
 
+/// @brief The database insert inserts a new student information consisting of six parameters: sid (student ID), name, email, cardId (student card ID), picture (number of bytes for the student's photo) and fpId (number of bytes for the student's fingerprint ID).
+/// @param sid student ID
+/// @param name student name
+/// @param email student email
+/// @param cardId student card ID
+/// @param picture a byte array of the student's photo
+/// @param fpId a byte array of the student's fingerprint ID
+/// @return The function returns true if the student was successfully inserted into the database
 bool StudentDB::insertStudent(QString sid, QString name, QString email, QString cardId, QString picture, QString fpId)
 {
 
@@ -68,6 +78,9 @@ bool StudentDB::insertStudent(QString sid, QString name, QString email, QString 
 	
     return true;
 }
+/// @brief Remove a student from the STUDENTS table in the SQLite database
+/// @param sid student ID
+/// @return true
 bool StudentDB::deleteStudent(QString sid)
 {
     if(!checkStudentExist(sid)){
@@ -94,6 +107,9 @@ bool StudentDB::deleteStudent(QString sid)
 
 	return true;
 }
+/// @brief check if a student with a given sid exists in the database
+/// @param sid student ID
+/// @return true
 bool StudentDB::checkStudentExist(QString sid)
 {
     QString sql = "SELECT * FROM STUDENTS WHERE SID = ?;";
@@ -121,6 +137,9 @@ bool StudentDB::checkStudentExist(QString sid)
 return true;
 }
 
+/// @brief takes a QString sid as input and returns a Student object
+/// @param sid student ID
+/// @return statement is finalized using sqlite3_finalize, and the Student object is returned
 Student StudentDB::getStudent(QString sid){
 
     QString sql = "SELECT * FROM STUDENTS WHERE SID = ?;";
@@ -153,6 +172,9 @@ Student StudentDB::getStudent(QString sid){
     return student;
 }
 
+/// @brief takes a cardID string parameter and returns a Student object
+/// @param cardID student card ID
+/// @return returns the Student object with the retrieved data
 Student StudentDB::getStudentByCardID(QString cardID){
 
     QString sql = "SELECT * FROM STUDENTS WHERE CARDID = ?;";
@@ -185,6 +207,9 @@ Student StudentDB::getStudentByCardID(QString cardID){
     return student;
 }
 
+/// @brief  retrieves a student's information from the STUDENTS table in an SQLite database based on their fingerprint ID
+/// @param fpID a byte array of the student's fingerprint ID
+/// @return returns the Student object with the retrieved data
 Student StudentDB::getStudentByFPID(QString fpID){
 
     QString sql = "SELECT * FROM STUDENTS WHERE FPID = ?;";
@@ -217,6 +242,8 @@ Student StudentDB::getStudentByFPID(QString fpID){
     return student;
 }
 
+/// @brief Get all student records from the SQLite database students.db and return them encapsulated in a QList
+/// @return returns the Student object with the retrieved data
 QList<Student> StudentDB::getAllStudents() {
     QList<Student> students;
     sqlite3_stmt* stmt;

@@ -1,0 +1,75 @@
+\hypertarget{test_student_d_b_8h_source}{}\doxysection{test\+Student\+DB.\+h}
+\label{test_student_d_b_8h_source}\index{database/Test/testStudentDB.h@{database/Test/testStudentDB.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ TESTSTUDENTDB\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ TESTSTUDENTDB\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}studentDB.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}studentDB.cpp"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <gtest/gtest.h>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \mbox{\hyperlink{class_student_d_b}{StudentDB}}\ sdb;}
+\DoxyCodeLine{00009\ TEST(studentDB\_test,\ studentDB\_init)\ \{}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \ \ \ \ EXPECT\_EQ(sdb.\mbox{\hyperlink{class_student_d_b_a28b1fc4c78fa28c401cf823d20203870}{initDB}}(),\textcolor{keyword}{true});}
+\DoxyCodeLine{00012\ \}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ TEST(studentDB\_test,\ studentDB\_insertStudent)\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ EXPECT\_EQ(sdb.\mbox{\hyperlink{class_student_d_b_a8bf44f012e50d6fef2ed45e7df92c37f}{insertStudent}}(\textcolor{stringliteral}{"{}9553252Q"{}},\textcolor{stringliteral}{"{}John\ Wick"{}},\textcolor{stringliteral}{"{}9553252Q@student.gla.ac.uk"{}},\textcolor{stringliteral}{"{}5A-\/8D-\/B3-\/33-\/3A"{}},\textcolor{stringliteral}{"{}picturedata266501"{}},\textcolor{stringliteral}{"{}005391582938538479183749187349183749817498317491873948174981798374198DAFADFAFHDKJHAKHkfdjahdfkjahfkdjahdfkuakeaf931"{}}),\textcolor{keyword}{true});\ }
+\DoxyCodeLine{00016\ \ \ \ \ EXPECT\_ANY\_THROW(sdb.\mbox{\hyperlink{class_student_d_b_a8bf44f012e50d6fef2ed45e7df92c37f}{insertStudent}}(\textcolor{stringliteral}{"{}9553252Q"{}},\textcolor{stringliteral}{"{}John\ Wick"{}},\textcolor{stringliteral}{"{}9553252Q@student.gla.ac.uk"{}},\textcolor{stringliteral}{"{}5A-\/8D-\/B3-\/33-\/3A"{}},\textcolor{stringliteral}{"{}picturedata266501"{}},\textcolor{stringliteral}{"{}005391582938538479183749187349183749817498317491873948174981798374198DAFADFAFHDKJHAKHkfdjahdfkjahfkdjahdfkuakeaf931"{}}));\ }
+\DoxyCodeLine{00017\ \ \ \ \ EXPECT\_EQ(sdb.\mbox{\hyperlink{class_student_d_b_a8bf44f012e50d6fef2ed45e7df92c37f}{insertStudent}}(\textcolor{stringliteral}{"{}3559320A"{}},\textcolor{stringliteral}{"{}Test\ Name2"{}},\textcolor{stringliteral}{"{}3559320A@student.gla.ac.uk"{}},\textcolor{stringliteral}{"{}9C-\/3A-\/92-\/D3-\/2B"{}},\textcolor{stringliteral}{"{}picturedata9957401"{}},\textcolor{stringliteral}{"{}178035125132183749187349183749817498317491873948174981798374198DAFADFAFHDKJHAKHkfdjahdfkjahfkdjahdfkuakeaf931"{}}),\textcolor{keyword}{true});}
+\DoxyCodeLine{00018\ \ \ \ \ EXPECT\_EQ(sdb.\mbox{\hyperlink{class_student_d_b_a8bf44f012e50d6fef2ed45e7df92c37f}{insertStudent}}(\textcolor{stringliteral}{"{}2426734L"{}},\textcolor{stringliteral}{"{}A"{}},\textcolor{stringliteral}{"{}email@email.com"{}},\textcolor{stringliteral}{"{}cardID"{}},\textcolor{stringliteral}{"{}"{}},\textcolor{stringliteral}{"{}"{}}),\textcolor{keyword}{true});}
+\DoxyCodeLine{00019\ \ \ \ \ EXPECT\_EQ(sdb.\mbox{\hyperlink{class_student_d_b_a8bf44f012e50d6fef2ed45e7df92c37f}{insertStudent}}(\textcolor{stringliteral}{"{}2993326W"{}},\textcolor{stringliteral}{"{}B\ C"{}},\textcolor{stringliteral}{"{}2993326W@student.gla.ac.uk"{}},\textcolor{stringliteral}{"{}cardIDDD"{}},\textcolor{stringliteral}{"{}"{}},\textcolor{stringliteral}{"{}"{}}),\textcolor{keyword}{true});}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ TEST(studentDB\_test,\ studentDB\_checkStudentExist)\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ EXPECT\_EQ(sdb.\mbox{\hyperlink{class_student_d_b_a77c06dcacdf92b1ca2be118e05491667}{checkStudentExist}}(\textcolor{stringliteral}{"{}3559320A"{}}),\textcolor{keyword}{true});}
+\DoxyCodeLine{00025\ \ \ \ \ EXPECT\_EQ(sdb.\mbox{\hyperlink{class_student_d_b_a77c06dcacdf92b1ca2be118e05491667}{checkStudentExist}}(\textcolor{stringliteral}{"{}9553252Q"{}}),\textcolor{keyword}{true});}
+\DoxyCodeLine{00026\ \ \ \ \ EXPECT\_EQ(sdb.\mbox{\hyperlink{class_student_d_b_a77c06dcacdf92b1ca2be118e05491667}{checkStudentExist}}(\textcolor{stringliteral}{"{}NOTEXIST"{}}),\textcolor{keyword}{false});}
+\DoxyCodeLine{00027\ \ \ \ \ EXPECT\_EQ(sdb.\mbox{\hyperlink{class_student_d_b_a77c06dcacdf92b1ca2be118e05491667}{checkStudentExist}}(\textcolor{stringliteral}{"{}2993326W"{}}),\textcolor{keyword}{true});}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ TEST(studentDB\_test,\ studentDB\_getStudent)\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ EXPECT\_EQ(sdb.\mbox{\hyperlink{class_student_d_b_af18e20bdf62fa2408a22876f9590ffd5}{getStudent}}(\textcolor{stringliteral}{"{}3559320A"{}}).sid,\textcolor{stringliteral}{"{}3559320A"{}});}
+\DoxyCodeLine{00033\ \ \ \ \ EXPECT\_EQ(sdb.\mbox{\hyperlink{class_student_d_b_af18e20bdf62fa2408a22876f9590ffd5}{getStudent}}(\textcolor{stringliteral}{"{}9553252Q"{}}).email,\textcolor{stringliteral}{"{}9553252Q@student.gla.ac.uk"{}});}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{comment}{//EXPECT}}
+\DoxyCodeLine{00035\ \ \ \ \ EXPECT\_EQ(sdb.\mbox{\hyperlink{class_student_d_b_af18e20bdf62fa2408a22876f9590ffd5}{getStudent}}(\textcolor{stringliteral}{"{}NOTEXIST"{}}).name,\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00036\ \}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ TEST(studentDB\_test,\ studentDB\_getStudentByCardID)\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ EXPECT\_EQ(sdb.\mbox{\hyperlink{class_student_d_b_aec7543fe050aac224e1d50ee16aeeb82}{getStudentByCardID}}(\textcolor{stringliteral}{"{}9C-\/3A-\/92-\/D3-\/2B"{}}).fpId,\textcolor{stringliteral}{"{}178035125132183749187349183749817498317491873948174981798374198DAFADFAFHDKJHAKHkfdjahdfkjahfkdjahdfkuakeaf931"{}});}
+\DoxyCodeLine{00040\ \ \ \ \ EXPECT\_EQ(sdb.\mbox{\hyperlink{class_student_d_b_aec7543fe050aac224e1d50ee16aeeb82}{getStudentByCardID}}(\textcolor{stringliteral}{"{}5A-\/8D-\/B3-\/33-\/3A"{}}).email,\textcolor{stringliteral}{"{}9553252Q@student.gla.ac.uk"{}});}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{comment}{//EXPECT}}
+\DoxyCodeLine{00042\ \ \ \ \ EXPECT\_EQ(sdb.\mbox{\hyperlink{class_student_d_b_aec7543fe050aac224e1d50ee16aeeb82}{getStudentByCardID}}(\textcolor{stringliteral}{"{}NOTEXIST"{}}).name,\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00043\ \}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ TEST(studentDB\_test,\ studentDB\_getStudentByFPID)\ \{}
+\DoxyCodeLine{00046\ \ \ \ \ EXPECT\_EQ(sdb.\mbox{\hyperlink{class_student_d_b_a4bb67084428edf4f6cfb91643daaa693}{getStudentByFPID}}(\textcolor{stringliteral}{"{}178035125132183749187349183749817498317491873948174981798374198DAFADFAFHDKJHAKHkfdjahdfkjahfkdjahdfkuakeaf931"{}}).sid,\textcolor{stringliteral}{"{}3559320A"{}});}
+\DoxyCodeLine{00047\ \ \ \ \ EXPECT\_EQ(sdb.\mbox{\hyperlink{class_student_d_b_a4bb67084428edf4f6cfb91643daaa693}{getStudentByFPID}}(\textcolor{stringliteral}{"{}005391582938538479183749187349183749817498317491873948174981798374198DAFADFAFHDKJHAKHkfdjahdfkjahfkdjahdfkuakeaf931"{}}).picture,\textcolor{stringliteral}{"{}picturedata266501"{}});}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{comment}{//EXPECT}}
+\DoxyCodeLine{00049\ \ \ \ \ EXPECT\_EQ(sdb.\mbox{\hyperlink{class_student_d_b_a4bb67084428edf4f6cfb91643daaa693}{getStudentByFPID}}(\textcolor{stringliteral}{"{}NOTEXIST"{}}).name,\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00050\ \}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ TEST(studentDB\_test,\ studentDB\_deleteStudent)\ \{}
+\DoxyCodeLine{00053\ \ \ \ \ EXPECT\_EQ(sdb.\mbox{\hyperlink{class_student_d_b_ad523ce3b196a299535f8855a5c60a93a}{deleteStudent}}(\textcolor{stringliteral}{"{}3559320A"{}}),\textcolor{keyword}{true});}
+\DoxyCodeLine{00054\ \ \ \ \ EXPECT\_EQ(sdb.\mbox{\hyperlink{class_student_d_b_ad523ce3b196a299535f8855a5c60a93a}{deleteStudent}}(\textcolor{stringliteral}{"{}NOTEXIST"{}}),\textcolor{keyword}{false});}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ TEST(studentDB\_test,\ studentDB\_getAllStudent)\ \{}
+\DoxyCodeLine{00059\ \ \ \ \ QList<Student>\ studentlist;}
+\DoxyCodeLine{00060\ \ \ \ \ EXPECT\_NO\_FATAL\_FAILURE(studentlist\ =\ sdb.\mbox{\hyperlink{class_student_d_b_a92d37eccdeabd6de04972d36caedccc9}{getAllStudents}}());}
+\DoxyCodeLine{00061\ \ \ \ \ EXPECT\_EQ(studentlist[0].cardId,\textcolor{stringliteral}{"{}5A-\/8D-\/B3-\/33-\/3A"{}});}
+\DoxyCodeLine{00062\ \ \ \ \ EXPECT\_EQ(studentlist[0].fpId,\textcolor{stringliteral}{"{}005391582938538479183749187349183749817498317491873948174981798374198DAFADFAFHDKJHAKHkfdjahdfkjahfkdjahdfkuakeaf931"{}});}
+\DoxyCodeLine{00063\ \ \ \ \ EXPECT\_EQ(studentlist[0].picture,\textcolor{stringliteral}{"{}picturedata266501"{}});}
+\DoxyCodeLine{00064\ \ \ \ \ EXPECT\_EQ(studentlist[1].picture,\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00065\ \ \ \ \ }
+\DoxyCodeLine{00066\ \}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -1,0 +1,28 @@
+\hypertarget{email_8h_source}{}\doxysection{email.\+h}
+\label{email_8h_source}\index{email\_curl/email.h@{email\_curl/email.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ EMAIL\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ EMAIL\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_email}{Email}}\{}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_email_af5c194f8670d4e2fb6153c9c3bf15c48}{send\_email\_record}}(std::string\ recipient,\ std::string\ courseName);}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_email_aad6b1fc223be02eb81439a843ea37320}{send\_email\_newStudent}}(std::string\ recipient);}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_email_aff8985b743a5077a71222685c3c46551}{send\_email\_enrollToCourse}}(std::string\ recipient,\ std::string\ courseName,\ std::string\ courseDatetime);}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_email_a3522905a60977cac1c8d99d4c911f3ee}{send\_email\_lateReminder}}(std::string\ recipient,\ std::string\ courseName,\ std::string\ courseDatetime);}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_email_af94727858b272dfb14a9f1224a8f2da1}{readCredentialsFile}}();}
+\DoxyCodeLine{00018\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00019\ \ \ \ \ std::string\ api\_key;}
+\DoxyCodeLine{00020\ \ \ \ \ std::string\ sender\ ;}
+\DoxyCodeLine{00021\ \ \ \ \ std::string\ templateID;}
+\DoxyCodeLine{00022\ \};}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

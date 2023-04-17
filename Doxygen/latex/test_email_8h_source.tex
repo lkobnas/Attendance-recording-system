@@ -1,0 +1,34 @@
+\hypertarget{test_email_8h_source}{}\doxysection{test\+Email.\+h}
+\label{test_email_8h_source}\index{email\_curl/Test/testEmail.h@{email\_curl/Test/testEmail.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ TESTEMAIL\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ TESTEMAIL\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}email.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}email.cpp"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <gtest/gtest.h>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \mbox{\hyperlink{class_email}{Email}}\ email;}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ TEST(email\_test,\ readCredentialsFile)\ \{}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \ \ \ \ EXPECT\_EQ(email.\mbox{\hyperlink{class_email_af94727858b272dfb14a9f1224a8f2da1}{readCredentialsFile}}(),\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00014\ \}}
+\DoxyCodeLine{00015\ TEST(email\_test,\ send\_email\_record)\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ EXPECT\_EQ(email.\mbox{\hyperlink{class_email_af5c194f8670d4e2fb6153c9c3bf15c48}{send\_email\_record}}(\textcolor{stringliteral}{"{}eng5220.group38@gmail.com"{}},\textcolor{stringliteral}{"{}ENG5220"{}}),\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00017\ \}}
+\DoxyCodeLine{00018\ TEST(email\_test,\ send\_email\_newStudent)\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ EXPECT\_EQ(email.\mbox{\hyperlink{class_email_aad6b1fc223be02eb81439a843ea37320}{send\_email\_newStudent}}(\textcolor{stringliteral}{"{}eng5220.group38@gmail.com"{}}),\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00020\ \}}
+\DoxyCodeLine{00021\ TEST(email\_test,\ send\_email\_enrollToCourse)\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ EXPECT\_EQ(email.\mbox{\hyperlink{class_email_aff8985b743a5077a71222685c3c46551}{send\_email\_enrollToCourse}}(\textcolor{stringliteral}{"{}eng5220.group38@gmail.com"{}},\textcolor{stringliteral}{"{}ENG5220"{}},\textcolor{stringliteral}{"{}04/05/2023\ 13:50"{}}),\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00023\ \}}
+\DoxyCodeLine{00024\ TEST(email\_test,\ send\_email\_lateReminder)\ \{}
+\DoxyCodeLine{00025\ \ \ \ \ EXPECT\_EQ(email.\mbox{\hyperlink{class_email_a3522905a60977cac1c8d99d4c911f3ee}{send\_email\_lateReminder}}(\textcolor{stringliteral}{"{}eng5220.group38@gmail.com"{}},\textcolor{stringliteral}{"{}ENG5220"{}},\textcolor{stringliteral}{"{}04/05/2023\ 13:50"{}}),\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00026\ \}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}
