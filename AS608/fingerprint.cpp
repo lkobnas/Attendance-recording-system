@@ -95,6 +95,21 @@ int findUnusedIndex(const int* indexList, const int size) {
     return index;
 }
 
+// int Fingerprint::fp_enroll(){
+//       int count = 0;
+//     printf("Please put your finger on the moudle\n");
+//     while (digitalRead(g_as608.detect_pin) == LOW) {
+//       delay(1);
+//       if ((count++) > 5000) {
+//         printf("Not detected the finger!\n");
+//         exit(2);
+//       }
+//     }
+        
+//     int pageID = 0;
+//     PS_Enroll(&pageID) || PS_Exit();
+// }
+
 int Fingerprint::fp_add()
 {
     int address = -1;
@@ -105,7 +120,7 @@ int Fingerprint::fp_add()
 
     printf("Please put your finger on the module.\n");
     if (waitUntilDetectFinger(5000)) {
-      delay(500);
+      //delay(500);
       PS_GetImage() || PS_Exit();
       PS_GenChar(1) || PS_Exit();
     }
@@ -117,11 +132,11 @@ int Fingerprint::fp_add()
     // 判断用户是否抬起了手指，
     printf("Ok.\nPlease raise your finger!\n");
     if (waitUntilNotDetectFinger(5000)) {
-      delay(100);
+      //delay(100);
       printf("Ok.\nPlease put your finger again!\n");
       // 第二次录入指纹
       if (waitUntilDetectFinger(5000)) {
-        delay(500);
+        //delay(500);
         PS_GetImage() || PS_Exit();
         PS_GenChar(2) || PS_Exit();
       }
