@@ -96,19 +96,6 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QPushButton" name="testButton">
-    <property name="geometry">
-     <rect>
-      <x>420</x>
-      <y>10</y>
-      <width>89</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Test</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="deleteCourseButton">
     <property name="geometry">
      <rect>
@@ -187,6 +174,7 @@
     </property>
     <addaction name="actionAdministrator_mode"/>
     <addaction name="actionSwitch_to_student_mode"/>
+    <addaction name="actionClose"/>
    </widget>
    <addaction name="menuMenu"/>
   </widget>
@@ -202,6 +190,11 @@
    </property>
    <property name="text">
     <string>Switch to student mode</string>
+   </property>
+  </action>
+  <action name="actionClose">
+   <property name="text">
+    <string>Close</string>
    </property>
   </action>
  </widget>

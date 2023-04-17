@@ -3,9 +3,8 @@
 #include <QString>
 #include <thread>
 
-#include "rpi_get_uid.h"
+#include "rfid.h"
 using namespace std;
-
 
 /// @brief PN532 checks if card is present and read
 /// @param  void

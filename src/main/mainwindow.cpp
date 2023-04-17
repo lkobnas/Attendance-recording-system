@@ -44,18 +44,29 @@ MainWindow::~MainWindow()
 {
     running = false;
     while(rfidThread.joinable()) {
-        rfidThread.detach();
         rfidThread.join();
     }
     while(fingerprintIdentifyThread.joinable()) {
-        fingerprintIdentifyThread.detach();
         fingerprintIdentifyThread.join();
     }
     while(doorlockThread.joinable()) {
-        doorlockThread.detach();
         doorlockThread.join();
     }
     delete ui;
+}
+void MainWindow::on_actionClose_triggered()
+{
+    running = false;
+    while(rfidThread.joinable()) {
+        rfidThread.join();
+    }
+    while(fingerprintIdentifyThread.joinable()) {
+        fingerprintIdentifyThread.join();
+    }
+    while(doorlockThread.joinable()) {
+        doorlockThread.join();
+    }
+    close();
 }
 
 /// @brief Manage student (arrival time and status) and course information

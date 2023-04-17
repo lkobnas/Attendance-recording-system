@@ -1,5 +1,5 @@
-#include "as608.h"
-#include "utils.h"
+#include "AS608_lib/as608.h"
+#include "AS608_lib/utils.h"
 
 #include <stdio.h>
 #include <stdlib.h>

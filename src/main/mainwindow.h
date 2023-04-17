@@ -26,9 +26,9 @@
 #include "addcoursewindow.h"
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
-#include "../../PN532/rpi_get_uid.h"
-#include "../../doorlock/doorlock.h"
-#include "../../AS608/fingerprint.h"          
+#include "../PN532/rfid.h"
+#include "../doorlock/doorlock.h"
+#include "../AS608/fingerprint.h"          
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -79,6 +79,8 @@ private slots:
     void onFPIDAddReceived(QString fpid);
 
     void onAddStudentWindowClosed();
+
+    void on_actionClose_triggered();
 
 signals:
     void passCardID(QString cardID);
