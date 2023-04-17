@@ -275,7 +275,8 @@ void MainWindow::on_testButton_clicked()
     doorlockThread.wait();
 
     // Call the base class closeEvent() method to actually close the window
-    QMainWindow::closeEvent(this);
+    
+    close();
 }
 
 void MainWindow::on_studentListButton_clicked()
