@@ -373,7 +373,7 @@ QList<QStringList> getSelectedData(QTableView* tableView) {
     //Iterate over the selected indexes and add the corresponding data to the list
     for (const QModelIndex& index : selectedIndexes) {
         QStringList rowData;
-        const QStandardItemModel* todel = static_cast<const QStandardItemModel*>(tableView->model());
+        const QStandardItemModel* tmodel = static_cast<const QStandardItemModel*>(tableView->model());
         rowData.append(tmodel->data(tmodel->index(index.row(), 0)).toString());      
         selectedData.append(rowData);
     }
