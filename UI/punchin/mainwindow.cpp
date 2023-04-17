@@ -445,7 +445,7 @@ void MainWindow::fingerprintIdentifyListener() {
             }
             delay(3000); //Delay must be added in this thread to give time AS608 to process before next detection 
         }else if(fpMode == 2){
-            int fpID = fp.fp_add();
+            int fpID = fp.fp_enroll();
             if (!fpID==-1) { 
                 QString qfpID = QString::number(fpID);
                 QMetaObject::invokeMethod(this, "onFPIDAddReceived", Qt::QueuedConnection,

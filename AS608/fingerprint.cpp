@@ -95,20 +95,25 @@ int findUnusedIndex(const int* indexList, const int size) {
     return index;
 }
 
-// int Fingerprint::fp_enroll(){
-//       int count = 0;
-//     printf("Please put your finger on the moudle\n");
-//     while (digitalRead(g_as608.detect_pin) == LOW) {
-//       delay(1);
-//       if ((count++) > 5000) {
-//         printf("Not detected the finger!\n");
-//         exit(2);
-//       }
-//     }
-        
-//     int pageID = 0;
-//     PS_Enroll(&pageID) || PS_Exit();
-// }
+int Fingerprint::fp_enroll(){
+    int address = -1;
+    int indexList[512] = { 0 };
+    PS_ReadIndexTable(indexList, 512) ||  PS_Exit();
+
+    address = findUnusedIndex(indexList,512);  
+    int count = 0;
+    printf("Please put your finger on the moudle\n");
+    while (digitalRead(g_as608.detect_pin) == LOW) {
+      delay(1);
+      if ((count++) > 5000) {
+        printf("Not detected the finger!\n");
+        return -1;
+      }
+    }     
+    int pageID = address;
+    PS_Enroll(&pageID) || PS_Exit();
+return address;
+}
 
 int Fingerprint::fp_add()
 {
@@ -215,8 +220,7 @@ void Fingerprint::atExitFunc() {
     serialClose(g_fd); 
 }
 bool Fingerprint::PS_Exit() {
-  printf("ERROR! code=%02X, desc=%s\n", g_error_code, PS_GetErrorDesc());
-  //exit(2);
+  printf("Recurring: code=%02X, desc=%s\n", g_error_code, PS_GetErrorDesc());
   return false;
 }
 

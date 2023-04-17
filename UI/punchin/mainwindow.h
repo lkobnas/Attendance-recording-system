@@ -110,6 +110,6 @@ private:
     void fingerprintIdentifyListener();
     void recordAttendanceWindow(QString studentID);
     void doorControl();
-    //std::function<void(const QString&)> rfid_callback_;
+
 };
 #endif // MAINWINDOW_H

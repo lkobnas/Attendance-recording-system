@@ -21,6 +21,7 @@ class Fingerprint{
     public:
         int fp_init();
         int fp_add();
+        int fp_enroll();
 
         void fp_list();
         int fp_identify();
