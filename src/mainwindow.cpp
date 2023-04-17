@@ -209,8 +209,7 @@ void MainWindow::updateTableView()
 /// @brief check course strart
 void MainWindow::checkCourseStart(){
     QDateTime currentTime = QDateTime::currentDateTime();
-    //QString currentTimeText = currentTime.toString("dd/MM/yyyy hh:mm:ss");
-    QAbstractItemModel* model = ui->tableView->model();
+
     QModelIndex datetimeIndex = model->index(0, 1, QModelIndex());
     QModelIndex coursenameIndex = model->index(0, 0, QModelIndex());
     QVariant datetimeData = model->data(datetimeIndex);
@@ -326,31 +325,32 @@ void MainWindow::on_studentListButton_clicked()
     popupWindow->resize(500, 300);
 
     // Create a new QTableView and set its model to a QStandardItemModel with 3 columns
-    QTableView* tableView = new QTableView(popupWindow);
+    QTableView* sltableView = new QTableView(popupWindow);
     // Create a QStandardItemModel to represent the data source for the table view
-    model = new QStandardItemModel(this);
-    model->setRowCount(studentList.size());
-    model->setColumnCount(3);
-    model->setHeaderData(0, Qt::Horizontal, "Name");
-    model->setHeaderData(1, Qt::Horizontal, "Student ID");
-    model->setHeaderData(2, Qt::Horizontal, "Email");
+
+    QStandardItemModel* slmodel= new QStandardItemModel(this);
+    slmodel->setRowCount(studentList.size());
+    slmodel->setColumnCount(3);
+    slmodel->setHeaderData(0, Qt::Horizontal, "Name");
+    slmodel->setHeaderData(1, Qt::Horizontal, "Student ID");
+    slmodel->setHeaderData(2, Qt::Horizontal, "Email");
     // Create a QTableView object and set the model for the view
-    tableView->setModel(model);
-    tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    sltableView->setModel(slmodel);
+    sltableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
     // Set the column widths and header titles
-    tableView->setColumnWidth(0, 140);
-    tableView->setColumnWidth(1, 105);
-    tableView->setColumnWidth(2, 220);
+    sltableView->setColumnWidth(0, 140);
+    sltableView->setColumnWidth(1, 105);
+    sltableView->setColumnWidth(2, 220);
 
     for(int i=0; i<studentList.size();i++){
-        model->setData(model->index(i,0),studentList[i].name);
-        model->setData(model->index(i,1),studentList[i].sid);
-        model->setData(model->index(i,2),studentList[i].email);
+        slmodel->setData(slmodel->index(i,0),studentList[i].name);
+        slmodel->setData(slmodel->index(i,1),studentList[i].sid);
+        slmodel->setData(slmodel->index(i,2),studentList[i].email);
     }
 
     // Add the table view to a layout and set the layout for the popup window
     QVBoxLayout* layout = new QVBoxLayout(popupWindow);
-    layout->addWidget(tableView);
+    layout->addWidget(sltableView);
     
     popupWindow->setLayout(layout);
 
@@ -373,8 +373,8 @@ QList<QStringList> getSelectedData(QTableView* tableView) {
     //Iterate over the selected indexes and add the corresponding data to the list
     for (const QModelIndex& index : selectedIndexes) {
         QStringList rowData;
-        const QStandardItemModel* model = static_cast<const QStandardItemModel*>(tableView->model());
-        rowData.append(model->data(model->index(index.row(), 0)).toString());      
+        const QStandardItemModel* todel = static_cast<const QStandardItemModel*>(tableView->model());
+        rowData.append(tmodel->data(tmodel->index(index.row(), 0)).toString());      
         selectedData.append(rowData);
     }
 
@@ -384,7 +384,6 @@ QList<QStringList> getSelectedData(QTableView* tableView) {
 /// @brief update student table
 void MainWindow::updateStudentTable(){
 
-    QAbstractItemModel* model = ui->tableView->model();
     QModelIndex coursenameIndex = model->index(0, 0, QModelIndex());
     QVariant coursenameData = model->data(coursenameIndex);
     QString courseName = coursenameData.toString();
@@ -592,7 +591,6 @@ void MainWindow::onFPIDIdentifyReceived(QString fpid){
         popup->show(); 
         return;
     }
-    QAbstractItemModel* model = ui->tableView->model();
     QModelIndex firstIndex = model->index(0, 0, QModelIndex());
     // Get the data stored in the first index
     QVariant data = model->data(firstIndex);
