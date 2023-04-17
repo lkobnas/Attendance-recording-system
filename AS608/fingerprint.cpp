@@ -32,9 +32,6 @@ bool Fingerprint::waitUntilNotDetectFinger(int wait_time) {
 }
 
 int Fingerprint::fp_init(){
-      // 1.读取配置文件，获得芯片地址和通信密码
-//   if (!readConfig())
-//     exit(1);
     g_config.address = 0xffffffff;
     g_config.password= 0x00000000;
     g_config.has_password = 0;
@@ -54,26 +51,20 @@ int Fingerprint::fp_init(){
   if (g_verbose == 1)
     printConfig();
   
-  // 3.初始化wiringPi库
   if (-1 == wiringPiSetup()) {
     printf("wiringPi setup failed!\n");
     return 1;
   }
 
-  // 4.检测是否有手指放上的GPIO端口，设为输入模式
   pinMode(g_config.detect_pin, INPUT);
 
-  // 5.打开串口
 	if((g_fd = serialOpen(g_config.serial, g_config.baudrate)) < 0)	{
 		fprintf(stderr,"Unable to open serial device: %s\n", strerror(errno));
 		return 2;
 	}
 
-  // 6.注册退出函数(打印一些信息、关闭串口等)
   atexit(atExitFunc);
 
-  // 7.初始化 AS608 模块
-  // 地址 密码
   PS_Setup(g_config.address, g_config.password) ||  PS_Exit();
 return 0;
 }
@@ -111,13 +102,18 @@ int Fingerprint::fp_enroll(){
         printf("No finger detected!\n");
         return -1;
       }
-      // if ((count++) > 5000) {
-      //   printf("No finger detected!\n");
-      // }
     }     
     int pageID = address;
     PS_Enroll(&pageID) || PS_Exit();
-    printf("After PS_ENROLL");
+    indexList[512] = { 0 };
+    PS_ReadIndexTable(indexList, 512) ||  PS_Exit();
+    for(int i=0;i<300;++i){
+      if(indexList[i]==pageID)
+        break;
+      
+      if(indexList[i]==-1)
+        return -1;
+    }
 return pageID;
 }
 
@@ -131,7 +127,6 @@ int Fingerprint::fp_add()
 
     printf("Please put your finger on the module.\n");
     if (waitUntilDetectFinger(5000)) {
-      //delay(500);
       PS_GetImage() || PS_Exit();
       PS_GenChar(1) || PS_Exit();
     }
@@ -140,12 +135,12 @@ int Fingerprint::fp_add()
       return -1;
     }
 
-    // 判断用户是否抬起了手指，
+    // check if finger lifted
     printf("Ok.\nPlease raise your finger!\n");
     if (waitUntilNotDetectFinger(5000)) {
       //delay(100);
       printf("Ok.\nPlease put your finger again!\n");
-      // 第二次录入指纹
+      // second record
       if (waitUntilDetectFinger(5000)) {
         //delay(500);
         PS_GetImage() || PS_Exit();
@@ -173,7 +168,6 @@ int Fingerprint::fp_add()
     if (g_error_code != 0x00)
       PS_Exit();
 
-    // 合并特征文件
     PS_RegModel() || PS_Exit();
     PS_StoreChar(2, address) || PS_Exit();
 
@@ -200,7 +194,7 @@ int Fingerprint::fp_identify(){
      int pageID = 0;
     int score = 0;
     
-    // 检测手指是否存在
+    // Check if finger exist
     int count = 0;
     printf("Please put your finger on the moudle\n");
     while (digitalRead(g_as608.detect_pin) == LOW) {
@@ -241,7 +235,7 @@ void Fingerprint::printConfig() {
   printf("detect_pin=%d\n",   g_config.detect_pin);
 }
 
-// 同步g_config变量内容和其他变量内容
+// Sync config and other variables
 void Fingerprint::syncConfig() {
   g_as608.detect_pin   = g_config.detect_pin;
   g_as608.has_password = g_config.has_password;
@@ -250,22 +244,17 @@ void Fingerprint::syncConfig() {
   g_as608.baud_rate    = g_config.baudrate;
 }
 
-// 读取配置文件
 bool Fingerprint::readConfig() {
   FILE* fp;
 
-  // 获取用户主目录
   char filename[256] = { 0 };
   sprintf(filename, "%s/.fpconfig", getenv("HOME"));
   
-  // 主目录下的配置文件
   if (false){//access(filename, F_OK) == 0) { 
     //trimSpaceInFile(filename);
     //fp = fopen(filename, "r");
   }
   else {
-    // 如果配置文件不存在，就在主目录下创建配置文件，并写入默认配置
-    // 设置默认值
     g_config.address = 0xffffffff;
     g_config.password= 0x00000000;
     g_config.has_password = 0;
@@ -292,7 +281,6 @@ bool Fingerprint::readConfig() {
   while (!feof(fp)) {
     fgets(line, 32, fp);
     
-    // 分割字符串，得到key和value
     if (tmp = strtok(line, "="))
       trim(tmp, key);
     else
@@ -304,7 +292,6 @@ bool Fingerprint::readConfig() {
     while (!tmp)
       tmp = strtok(NULL, "=");
 
-    // 如果数值以 0x 开头
     int offset = 0;
     if (value[0] == '0' && (value[1] == 'x' || value[1] == 'X'))
       offset = 2;
@@ -314,10 +301,10 @@ bool Fingerprint::readConfig() {
     }
     else if (strcmp(key, "password") == 0) {
       if (strcmp(value, "none") == 0 || strcmp(value, "false") == 0) {
-        g_config.has_password = 0; // 无密码
+        g_config.has_password = 0; 
       }
       else {
-        g_config.has_password = 1; // 有密码
+        g_config.has_password = 1; 
         g_config.password = toUInt(value+offset);
       }
     }
@@ -355,10 +342,9 @@ void Fingerprint::asyncConfig() {
 }
 
 /*
- * 写配置文件
+ * Write config file
 */
 bool Fingerprint::writeConfig() {
-  // 获取用户主目录
   char filename[256] = { 0 };
   sprintf(filename, "%s/.fpconfig", getenv("HOME"));
   
