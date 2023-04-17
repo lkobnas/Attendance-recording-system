@@ -1,0 +1,11 @@
+digraph "PN532_CallFunction"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="PN532_CallFunction",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="PN532_WriteFrame",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$pn532_8cpp.html#a69de98d80406ff97f062c67d0bfb3cef",tooltip=": Write a frame to the PN532 of at most length bytes in size. Note that less than length bytes might ..."];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="PN532_ReadFrame",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$pn532_8cpp.html#a4e5a0ec49ff921bd45850ea499bf7f53",tooltip=": Read a response frame from the PN532 of at most length bytes in size. Note that less than length by..."];
+}

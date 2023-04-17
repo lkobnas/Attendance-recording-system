@@ -1,0 +1,42 @@
+digraph "Fingerprint::fp_enroll"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Fingerprint::fp_enroll",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="PS_ReadIndexTable",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$as608_8c.html#acb2580d314bfbc7441b71c3c4b32f065"];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="GenOrder",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$as608_8c.html#a88a530a911a08cd67c405240f213c288"];
+  Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="Split",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$as608_8c.html#af07c2aad9f2691a326cb46af75274c4c"];
+  Node3 -> Node5 [color="midnightblue",fontsize="10",style="solid"];
+  Node5 [label="Calibrate",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$as608_8c.html#a5f676c801c8da12f6d5577e09ee91c29"];
+  Node2 -> Node6 [color="midnightblue",fontsize="10",style="solid"];
+  Node6 [label="SendOrder",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$as608_8c.html#ac7154ff58efa2c20e7032f41973dcfa3"];
+  Node6 -> Node7 [color="midnightblue",fontsize="10",style="solid"];
+  Node7 [label="PrintBuf",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$as608_8c.html#a3d8886be110e0a7634efb4b469fcfdb4"];
+  Node2 -> Node8 [color="midnightblue",fontsize="10",style="solid"];
+  Node8 [label="RecvReply",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$as608_8c.html#acb590a97dc06fed947b2cc0aa489f788"];
+  Node8 -> Node7 [color="midnightblue",fontsize="10",style="solid"];
+  Node2 -> Node9 [color="midnightblue",fontsize="10",style="solid"];
+  Node9 [label="Check",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$as608_8c.html#a045b373f7ff5a933154978bbc7a2da6b"];
+  Node9 -> Node10 [color="midnightblue",fontsize="10",style="solid"];
+  Node10 [label="Merge",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$as608_8c.html#afe3350364056dcef1a4b3cafb9af7150"];
+  Node9 -> Node5 [color="midnightblue",fontsize="10",style="solid"];
+  Node1 -> Node11 [color="midnightblue",fontsize="10",style="solid"];
+  Node11 [label="Fingerprint::PS_Exit",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_fingerprint.html#a0e9156666a243c52f3895323cae3e4df"];
+  Node1 -> Node12 [color="midnightblue",fontsize="10",style="solid"];
+  Node12 [label="findUnusedIndex",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$fingerprint_8cpp.html#ad898004c62f46acbaeada57aaa9a5c99",tooltip="Find unused index in fingersensor and return its address. "];
+  Node1 -> Node13 [color="midnightblue",fontsize="10",style="solid"];
+  Node13 [label="Fingerprint::waitUntilDetect\lFinger",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_fingerprint.html#a959742eb41b55d7c020efb112ccd5a0f",tooltip="Wait until user place his finger on the sensor. "];
+  Node13 -> Node14 [color="midnightblue",fontsize="10",style="solid"];
+  Node14 [label="PS_DetectFinger",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$as608_8c.html#afba869bff98f6cbdbfd50eebf101e9d1"];
+  Node1 -> Node15 [color="midnightblue",fontsize="10",style="solid"];
+  Node15 [label="PS_Enroll",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$as608_8c.html#a67aebf4a0d272ea7b5232d69e2626fc3"];
+  Node15 -> Node3 [color="midnightblue",fontsize="10",style="solid"];
+  Node15 -> Node6 [color="midnightblue",fontsize="10",style="solid"];
+  Node15 -> Node8 [color="midnightblue",fontsize="10",style="solid"];
+  Node15 -> Node9 [color="midnightblue",fontsize="10",style="solid"];
+  Node15 -> Node10 [color="midnightblue",fontsize="10",style="solid"];
+}

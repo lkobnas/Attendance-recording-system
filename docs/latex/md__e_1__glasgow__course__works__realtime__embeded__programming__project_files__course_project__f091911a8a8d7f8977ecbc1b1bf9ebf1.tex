@@ -1,0 +1,401 @@
+在树莓派上使用\+A\+S608模块，本项目实现了所有官方用户开发手册中列出的功能，函数声明在 {\ttfamily \hyperlink{as608_8h}{as608.\+h}}中。用户可直接调用相应的函数与\+A\+S608模块进行通信。
+
+另外，项目中有一个命令行程序，可以在终端下通过命令与模块进行交互。
+
+\subsection*{一、\+A\+S608}
+
+\subsubsection*{1. 简介}
+
+数据均存储在模块内，指纹容量300枚(0-\/299)。
+
+芯片内设有一个 72\+K 字节的图像缓冲区与二个 512 bytes(256 字)大小的特征文件 缓冲区，名字分别称为：{\ttfamily Image\+Buffer}，{\ttfamily Char\+Buffer1}，{\ttfamily Char\+Buffer2}。用户可以通过指 令读写任意一个缓冲区。{\ttfamily Char\+Buffer1} 或 {\ttfamily Char\+Buffer2} 既可以用于存放普通特征文件也 可以用于存放模板特征文件。
+
+\subsubsection*{2. 工作流程}
+
+录入指纹流程：
+
+
+
+搜索指纹流程：
+
+
+
+A\+S608模块内部内置了手指探测电路，用户可读取状态引脚(\+W\+A\+K)判断有无手指按下。在本项目组，{\ttfamily \hyperlink{as608_8h}{as608.\+h}}中的全局变量{\ttfamily g\+\_\+detect\+\_\+pin}就是指该引脚与树莓派的哪个\+G\+P\+I\+O端口相连的。($<$font color=\char`\"{}red\char`\"{}$>$注意：引脚编码方式是{\ttfamily wiring\+Pi}编码$<$/font$>$)。读取该引脚的输入信号，高电平意味着模块上有手指存在，否则不存在，等待几秒后，如果一直检测不到手指，就报错。
+
+\subsubsection*{3. 芯片地址和密码}
+
+默认地址是{\ttfamily 0xffffffff}，默认密码是{\ttfamily 0x00000000}，如果不自己设置其他密码，就不需要向模块验证密码，否则，与模块通信的第一条指令必须是验证密码{\ttfamily \hyperlink{as608_8c_a45a9810f3281670bff70b96a150f5c09}{P\+S\+\_\+\+Vfy\+Pwd()}}。
+
+\subsection*{二、项目-\/函数库}
+
+把本项目根目录下的{\ttfamily \hyperlink{as608_8h}{as608.\+h}}和{\ttfamily \hyperlink{as608_8c}{as608.\+c}}拷贝到你的程序目录下即可。
+
+\subsubsection*{1. 模块参数变量}
+
+
+\begin{DoxyCode}
+1 \{C++\}
+2 // typedef unsigned int uint;
+3 
+4 typedef struct AS608\_Module\_Info \{
+5   uint status;      // 状态寄存器 0
+6   uint model;       // 传感器类型 0-15
+7   uint capacity;    // 指纹容量，300
+8   uint secure\_level;    // 安全等级 1/2/3/4/5，默认为3
+9   uint packet\_size;     // 数据包大小 32/64/128/256 bytes，默认为128
+10   uint baud\_rate;       // 波特率系数 
+11   uint chip\_addr;       // 设备(芯片)地址                  
+12   uint password;        // 通信密码
+13   char product\_sn[12];        // 产品型号
+14   char software\_version[12];  // 软件版本号
+15   char manufacture[12];       // 厂家名称
+16   char sensor\_name[12];       // 传感器名称
+17 
+18   uint detect\_pin;      // AS608的WAK引脚连接的树莓派GPIO引脚号
+19   uint has\_password;    // 是否有密码
+20 \} AS608;
+21 
+22 extern AS608 g\_as608;
+\end{DoxyCode}
+
+
+\subsubsection*{2. 全局变量}
+
+使用树莓派的硬件进行串口通信，需要额外配置一下(关闭板载蓝牙功能等)，参考 \href{https://blog.csdn.net/guet_gjl/article/details/85164072}{\tt C\+S\+D\+N-\/树莓派利用串口进行通信}。
+
+
+\begin{DoxyItemize}
+\item {\ttfamily int g\+\_\+fd}：打开串口的文件描述符。
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}
+\hyperlink{as608_8c_ac09e95a250275ca69c109f7bbadfef43}{g\_fd} = serialOpen(\textcolor{stringliteral}{"/dev/ttyAMA0"}, 9600);  \textcolor{comment}{// 9600是波特率}
+\end{DoxyCode}
+
+
+
+\begin{DoxyItemize}
+\item {\ttfamily int g\+\_\+verbose}：函数工作过程中输出到屏幕上信息量。为{\ttfamily 0}则显示的很少，主要是传输数据包时会显示进度条。为{\ttfamily 1}则显示详细信息，如发送的指令包内容和接收的指令包内容等。为{\ttfamily 其他}数值则不显示任何信息。
+\item {\ttfamily int g\+\_\+error\+\_\+code}：模块返回的错误码 以及 自定义的错误代码。
+\item {\ttfamily char g\+\_\+error\+\_\+desc\mbox{[}128\mbox{]}}：错误代码 的含义。可通过{\ttfamily char$\ast$ \hyperlink{as608_8c_af8cb71ea77ec9b32ca50d4732a6a7b67}{P\+S\+\_\+\+Get\+Error\+Desc()}}函数获得。
+\end{DoxyItemize}
+
+\subsubsection*{3. 函数}
+
+在{\ttfamily \hyperlink{as608_8c}{as608.\+c}}中每个函数前都有详细注释。
+
+\subsubsection*{4. 如何使用}
+
+把本项目根目录下的{\ttfamily \hyperlink{as608_8h}{as608.\+h}}和{\ttfamily \hyperlink{as608_8c}{as608.\+c}}拷贝到你的程序目录下并包含头文件。
+
+还需要包含 {\ttfamily $<$wiring\+Pi.\+h$>$} 和 {\ttfamily $<$wiring\+Serial.\+h$>$}。
+
+最基础的使用如下：
+
+
+\begin{DoxyCode}
+\textcolor{preprocessor}{#include <stdio.h>}
+\textcolor{preprocessor}{#include <wiringPi.h>}
+\textcolor{preprocessor}{#include <wiringSerial.h>}
+\textcolor{preprocessor}{#include "\hyperlink{as608_8h}{as608.h}"}          \textcolor{comment}{// 包含头文件}
+
+\textcolor{comment}{// 声明全局变量【定义在as608.c】}
+\textcolor{keyword}{extern} \hyperlink{struct_a_s608___module___info}{AS608} \hyperlink{as608_8c_a19c3a0b67af18ae8b8d187e21bcc6398}{g\_as608};
+\textcolor{keyword}{extern} \textcolor{keywordtype}{int} \hyperlink{as608_8c_ac09e95a250275ca69c109f7bbadfef43}{g\_fd};
+\textcolor{keyword}{extern} \textcolor{keywordtype}{int} \hyperlink{as608_8c_af27e3faeb692ec7ae78672182717dd18}{g\_verbose};
+\textcolor{keyword}{extern} \textcolor{keywordtype}{char}  \hyperlink{as608_8c_a017d41f37a65f0f9222622b307688824}{g\_error\_desc}[];
+\textcolor{keyword}{extern} \hyperlink{as608_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar} \hyperlink{as608_8c_a6957ac1dcfb11e11e72f60f78d16de53}{g\_error\_code};
+
+\textcolor{keywordtype}{int} \hyperlink{_a_s608_2_test_2test_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}() \{
+    \textcolor{comment}{// 给全局变量赋值}
+    g\_as608.\hyperlink{struct_a_s608___module___info_aacc9cf7ae2d65e95f537eafe420f7cd0}{detect\_pin} = 1; 
+    g\_as608.\hyperlink{struct_a_s608___module___info_a0fdbc2c11983db5b9007005be490be89}{has\_password} = 0;  \textcolor{comment}{// 没有密码}
+    g\_verbose = 0;       \textcolor{comment}{// 显示少量输出信息}
+
+    \textcolor{comment}{// 初始化wiringPi库}
+    \textcolor{keywordflow}{if} (-1 == wiringPiSetup())
+        \textcolor{keywordflow}{return} 1;
+
+    \textcolor{comment}{// 设置g\_detect\_pin引脚为输入模式}
+    pinMode(g\_as608.\hyperlink{struct_a_s608___module___info_aacc9cf7ae2d65e95f537eafe420f7cd0}{detect\_pin}, INPUT);
+
+    \textcolor{comment}{// 打开串口}
+    \textcolor{keywordflow}{if} ((g\_fd = serialOpen(\textcolor{stringliteral}{"/dev/ttyAMA0"}, 9600)) < 0)
+        \textcolor{keywordflow}{return} 2;
+
+    \textcolor{comment}{// 初始化AS608模块}
+    \textcolor{keywordflow}{if} (\hyperlink{as608_8c_a522a62d36aeebd23459b2343a84a1972}{PS\_Setup}(0xfffffff, 0x00000000) == 0)
+        \textcolor{keywordflow}{return} 3;
+
+    \textcolor{comment}{/****************************************/}
+
+    \textcolor{comment}{// do something}
+
+    \textcolor{comment}{/****************************************/}
+
+    \textcolor{comment}{// 关闭串口}
+    serialClose(g\_fd);
+
+    \textcolor{keywordflow}{return} 0;
+\}
+\end{DoxyCode}
+
+
+检测手指
+
+A\+S608使用的是电阻屏，可以通过检测{\ttfamily W\+A\+K}引脚的电平高低来判断模块上是否有手指。
+
+
+\begin{DoxyCode}
+\textcolor{comment}{// as608.h 中有一个封装函数}
+\textcolor{comment}{// 检测到手指，返回true，否则返回false}
+\textcolor{comment}{// 前提是配置了 g\_as608.detect\_pin,  即AS608的WAK引脚}
+\textcolor{keywordtype}{bool} \hyperlink{as608_8c_afba869bff98f6cbdbfd50eebf101e9d1}{PS\_DetectFinger}();
+\end{DoxyCode}
+
+
+在{\ttfamily exanmple/main.\+c}中有两个函数
+
+
+\begin{DoxyCode}
+1 \{C++\}
+2 // 阻塞至检测到手指，最长阻塞wait\_time毫秒
+3 bool waitUntilDetectFinger(int wait\_time) \{
+4     while (true) \{
+5         if (PS\_DetectFinger())
+6             return true;
+7         else \{
+8             delay(100);
+9             wait\_time -= 100;
+10             if (wait\_time < 0)
+11                 return false;
+12         \}
+13     \}
+14 \}
+15 
+16 // 阻塞至检测不到手指，最长阻塞wait\_time毫秒
+17 bool waitUntilDetectFinger(int wait\_time) \{
+18     while (true) \{
+19         if (PS\_DetectFinger())
+20             return true;
+21         else \{
+22             delay(100);
+23             wait\_time -= 100;
+24             if (wait\_time < 0)
+25                 return false;
+26         \}
+27     \}
+28 \}
+\end{DoxyCode}
+
+
+录入指纹
+
+
+\begin{DoxyCode}
+\textcolor{keywordtype}{bool} newFingerprint(\textcolor{keywordtype}{int} pageID) \{
+    printf(\textcolor{stringliteral}{"Please put your finger on the module.\(\backslash\)n"});
+    \textcolor{keywordflow}{if} (waitUntilDetectFinger(5000)) \{
+        delay(500);
+        \hyperlink{as608_8c_ab93b7b3b367d82fc358845a0713e77db}{PS\_GetImage}();
+        \hyperlink{as608_8c_ac515c3ff7dce6a27509f9352cd0f1943}{PS\_GenChar}(1);
+    \}
+    \textcolor{keywordflow}{else} \{
+        printf(\textcolor{stringliteral}{"Error: Didn't detect finger!\(\backslash\)n"});
+        exit(1);
+    \}
+
+    \textcolor{comment}{// 判断用户是否抬起了手指，}
+    printf(\textcolor{stringliteral}{"Ok.\(\backslash\)nPlease raise your finger!\(\backslash\)n"});
+    \textcolor{keywordflow}{if} (waitUntilNotDetectFinger(5000)) \{
+        delay(100);
+        printf(\textcolor{stringliteral}{"Ok.\(\backslash\)nPlease put your finger again!\(\backslash\)n"});
+        \textcolor{comment}{// 第二次录入指纹}
+        \textcolor{keywordflow}{if} (waitUntilDetectFinger(5000)) \{
+            delay(500);
+            \hyperlink{as608_8c_ab93b7b3b367d82fc358845a0713e77db}{PS\_GetImage}();
+            \hyperlink{as608_8c_ac515c3ff7dce6a27509f9352cd0f1943}{PS\_GenChar}(2);
+        \}
+        \textcolor{keywordflow}{else} \{
+            printf(\textcolor{stringliteral}{"Error: Didn't detect finger!\(\backslash\)n"});
+            exit(1);
+        \}
+    \}
+    \textcolor{keywordflow}{else} \{
+        printf(\textcolor{stringliteral}{"Error! Didn't raise your finger\(\backslash\)n"});
+        exit(1);
+    \}
+
+    \textcolor{keywordtype}{int} score = 0;
+    \textcolor{keywordflow}{if} (\hyperlink{as608_8c_aaa413f6e387308e85a872533e9c2428a}{PS\_Match}(&score)) \{
+        printf(\textcolor{stringliteral}{"Matched! score=%d\(\backslash\)n"}, score);
+    \}
+    \textcolor{keywordflow}{else} \{
+        printf(\textcolor{stringliteral}{"Not matched, raise your finger and put it on again.\(\backslash\)n"});
+        exit(1);
+    \}
+
+    \textcolor{comment}{// 合并特征文件}
+    \hyperlink{as608_8c_a42e7c83b9eae8089de6a4fa22b63af16}{PS\_RegModel}();
+    \hyperlink{as608_8c_a23adbcbb36764d9b638bb9c7caea5b30}{PS\_StoreChar}(2, pageID);
+
+    printf(\textcolor{stringliteral}{"OK! New fingerprint saved to pageID=%d\(\backslash\)n"}, pageID);
+\}
+\end{DoxyCode}
+
+
+\subsection*{三、命令行程序}
+
+\subsubsection*{1. 编译运行}
+
+
+\begin{DoxyCode}
+1 cd example
+2 make
+3 ./fp  # 第一次使用，让程序初始化
+4 alias fp=./fp # 以后可以使用fp，而不用加前缀"./"
+\end{DoxyCode}
+
+
+\subsubsection*{2. 修改配置文件}
+
+方法一：编辑 {\ttfamily $\sim$/.fpconfig} ：执行{\ttfamily vim $\sim$/.fpconfig}
+
+
+\begin{DoxyCode}
+1 address=0xffffffff
+2 password=none
+3 baudrate=9600
+4 detect\_pin=1
+5 serial=/dev/ttyAMA0
+\end{DoxyCode}
+
+
+方法二：使用命令
+
+
+\begin{DoxyItemize}
+\item {\ttfamily fp cfgaddr \mbox{[}address\mbox{]}} ：修改address
+\item {\ttfamily fp cfgpwd \mbox{[}password\mbox{]}}：修改password
+\item {\ttfamily fp cfgserial \mbox{[}serial\+File\mbox{]}}：修改串口通信端口
+\item {\ttfamily fp cfgbaud \mbox{[}baudrate\mbox{]}}：修改通信波特率
+\item {\ttfamily fp cfgpin \mbox{[}G\+P\+I\+O\+\_\+pin\mbox{]}}：修改检测手指是否存在 对于的\+G\+P\+I\+O引脚
+\end{DoxyItemize}
+
+\subsubsection*{3. 如何使用}
+
+{\ttfamily fp -\/h} ：显示使用帮助
+
+
+\begin{DoxyCode}
+A command line program to interact with \hyperlink{struct_a_s608___module___info}{AS608} module.
+
+Usage:
+  ./fp [command] [param] [option]
+
+Available Commands:
+-------------------------------------------------------------------------
+  command  | param     | description
+-------------------------------------------------------------------------
+  cfgaddr   [addr]     \hyperlink{struct___config}{Config} address in local config file
+  cfgpwd    [pwd]      \hyperlink{struct___config}{Config} password in local config file
+  cfgserial [serialFile] \hyperlink{struct___config}{Config} serial port in local config file. Default:/dev/ttyAMA0
+  cfgbaud   [rate]     \hyperlink{struct___config}{Config} baud rate in local config file
+  cfgpin    [GPIO\_pin] \hyperlink{struct___config}{Config} GPIO pin to detect finger in local confilg file
+
+  add       [pID]      Add a \textcolor{keyword}{new} fingerprint to database. (Read twice) 
+  enroll    []         Add a \textcolor{keyword}{new} fingerprint to database. (Read only once)
+  \textcolor{keyword}{delete}    [pID \{count\}]  Delete one or contiguous fingerprints.
+  empty     []         Empty the database.
+  search    []         Collect fingerprint and search in database.
+  identify  []         Search
+  count     []         Get the count of registered fingerprints.
+  list      []         Show the registered fingerprints list.
+  info      []         Show the basic parameters of the module.
+  random    []         Generate a random number.(0~2^32)
+
+  getimage  []         Collect a fingerprint and store to ImageBuffer.
+  upimage   [filename] Download finger image to ras-pi in ImageBuffer of the module
+  downimage [filename] Upload finger image to module
+  genchar   [cID]      Generate fingerprint feature from ImageBuffer.
+  match     []         Accurate comparison of CharBuffer1 and CharBuffer2
+                         feature files.
+  regmodel  []         \hyperlink{as608_8c_afe3350364056dcef1a4b3cafb9af7150}{Merge} the characteristic file in CharBuffer1 and
+                         CharBuffer2 and then generate the \textcolor{keyword}{template}, the
+                         results are stored in CharBuffer1 and CharBuffer2.
+  storechar [cID pID]  Save the \textcolor{keyword}{template} file in CharBuffer1 or CharBuffer2
+                         to the flash database location with the PageID number
+  loadchar  [cID pID]  Reads the fingerprint \textcolor{keyword}{template} with the ID specified
+                         in the flash database into the \textcolor{keyword}{template} buffer,
+                         CharBuffer1 or CharBuffer2
+  readinf   [filename] Read the FLASH Info Page (512bytes), and save to file
+  writenote     [page \{note\}]   Write note loacted in pageID=page
+  readnote      [page]          Read note loacted in pageID=page
+  upchar        [cID filename]  Download feature file in CharBufferID to ras-pi
+  downchar      [cID filename]  Upload feature file in loacl disk to module
+  setpwd        [pwd]           Set password
+  vfypwd        [pwd]           Verify password
+  packetsize    [\{size\}]        Show or Set data packet size
+  baudrate      [\{rate\}]        Show or Set baud rate
+  level         [\{level\}]       Show or Set secure level(1~5)
+  address       [\{addr\}]        Show or Set secure level(1~5)
+
+Avaiable options:
+  -h    Show help
+  -v    Shwo details while excute the order
+
+Usage:
+  ./fp [command] [param] [option]
+\end{DoxyCode}
+
+
+{\bfseries 注意事项}
+
+
+\begin{DoxyItemize}
+\item 选项 {\ttfamily -\/v} 或 {\ttfamily -\/h} $<$font color=\char`\"{}red\char`\"{}$>$必须写到最后面$<$/font$>$，否则可能出错
+\item {\ttfamily \mbox{[}\mbox{]}}中为命令对应的参数，{\ttfamily \{\}}中的表示可选。
+\end{DoxyItemize}
+
+\subsubsection*{4. 示例}
+
+
+\begin{DoxyCode}
+1 # 录指纹(采集两次)，保存到指纹库的第7号位置
+2 fp add 7
+3 # 录指纹(采集一次)，返回保存的位置id号
+4 fp enroll
+5 
+6 # 删除指纹库中第5号指纹
+7 fp delete 5
+8 # 删除指纹库中第0号至第19号(共20个)
+9 fp delete 0 20
+10 
+11 # 采集并比对指纹，以下3条均可
+12 fp search
+13 fp hsearch  # high speed search
+14 fp identity
+15 
+16 # 列出指纹库中的指纹ID
+17 fp list
+18 
+19 # 显示当前的芯片地址
+20 fp address
+21 # 设置芯片地址为0xefefefef
+22 fp address 0xefefefef  # 前缀0x可省略
+23 
+24 # 设置密码为0xcc0825cc
+25 fp setpwd 0xcc0825cc
+\end{DoxyCode}
+
+
+【以下图片以实际执行输出为准，可能有差别之处】
+
+
+
+
+
+\subsection*{E\+N\+D}
+
+\href{mailto:leopard.c@outlook.com}{\tt leopard.\+c@outlook.\+com} 

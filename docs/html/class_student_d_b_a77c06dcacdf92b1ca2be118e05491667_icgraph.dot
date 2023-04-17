@@ -1,0 +1,19 @@
+digraph "StudentDB::checkStudentExist"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="StudentDB::checkStudentExist",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="CourseDB::insertCourse",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_course_d_b.html#a4b7e78db87d134769f842ab51aa3f0b4",tooltip="Insert a new course in the database with a list of names, dates and student IDs (SIDString), update the student list and send a confirmation email. "];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="AddCourseWindow::on\l_cAddButton_clicked",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_add_course_window.html#a6352af0f6a82eb9b773cdf5c535bbcc5",tooltip="Validate all fields and add course to database. "];
+  Node2 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="TEST",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$test_course_d_b_8h.html#a35b7740d4da26be157134580b3785b20"];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="CourseDB::stringtoList",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_course_d_b.html#a2b7bc837a8a08c6c6272a1b3e6a4f3cc"];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="CourseDB::updateStudentList",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_course_d_b.html#a0a71cd964ea94d514a465b11cb65c437",tooltip="Update course student list, students receive confirmation email. "];
+  Node1 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="TEST",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$test_student_d_b_8h.html#ae2259b87631dc29dec246dac5079d2ff"];
+}

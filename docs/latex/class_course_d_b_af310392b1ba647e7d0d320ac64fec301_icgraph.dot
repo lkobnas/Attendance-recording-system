@@ -1,0 +1,15 @@
+digraph "CourseDB::initDB"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="CourseDB::initDB",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="AddCourseWindow::AddCourse\lWindow",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_add_course_window.html#a819c3f448d2e1cab1f2a71e6aa58b3f1",tooltip="AddCourseWindow Constructor. "];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="TEST",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$test_course_d_b_8h.html#aacfbb55866bd48e1fcaf0f4340b114ef"];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="MainWindow::init",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_main_window.html#a671e7e5b0a3a7a3fb1cf44c5c8377952",tooltip="Initialise UI, doorlock and variable for checking studentwindow, read course database and display on ..."];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node5 [label="MainWindow::MainWindow",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_main_window.html#a996c5a2b6f77944776856f08ec30858d",tooltip="MainWindow Constructor. "];
+}

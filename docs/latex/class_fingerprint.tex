@@ -1,0 +1,348 @@
+\hypertarget{class_fingerprint}{}\section{Fingerprint Class Reference}
+\label{class_fingerprint}\index{Fingerprint@{Fingerprint}}
+
+
+A class for managing the fingerprint sensor.  
+
+
+
+
+{\ttfamily \#include $<$fingerprint.\+h$>$}
+
+
+
+Collaboration diagram for Fingerprint\+:
+% FIG 0
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{class_fingerprint_ad199706762803a08154e147d82b0c867}{fp\+\_\+init} ()
+\item 
+int \hyperlink{class_fingerprint_a1cc52c07387ff07cc26427cb9d3f3d71}{fp\+\_\+add} ()
+\begin{DoxyCompactList}\small\item\em Enroll user fingerprint data in to an empty memory, read user finger twice. \end{DoxyCompactList}\item 
+int \hyperlink{class_fingerprint_a15586c8d302933731eca34e4242edbb2}{fp\+\_\+enroll} ()
+\begin{DoxyCompactList}\small\item\em Enroll user fingerprint data in to an empty memory, only read user finger one. \end{DoxyCompactList}\item 
+void \hyperlink{class_fingerprint_a33ad88ae9e4c9d7277a465905e989dc6}{fp\+\_\+list} ()
+\begin{DoxyCompactList}\small\item\em List all fingerprint I\+D in sensor memory, for debug use only. \end{DoxyCompactList}\item 
+int \hyperlink{class_fingerprint_a402792facf78e1ffa848dc95437478e8}{fp\+\_\+identify} ()
+\begin{DoxyCompactList}\small\item\em Check and compare user fingerprint. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{class_fingerprint_a959742eb41b55d7c020efb112ccd5a0f}{wait\+Until\+Detect\+Finger} (int wait\+\_\+time)
+\begin{DoxyCompactList}\small\item\em Wait until user place his finger on the sensor. \end{DoxyCompactList}\item 
+bool \hyperlink{class_fingerprint_a11b1faa271d7283c02c754cc4bffb8bf}{wait\+Until\+Not\+Detect\+Finger} (int wait\+\_\+time)
+\begin{DoxyCompactList}\small\item\em Wait until user lift his finger on the sensor. \end{DoxyCompactList}\item 
+void \hyperlink{class_fingerprint_ae0ffc91fd782dd1ab090fdd28726f911}{print\+Config} ()
+\item 
+bool \hyperlink{class_fingerprint_aac04dbf5582f4120838faa0c00316012}{read\+Config} ()
+\item 
+bool \hyperlink{class_fingerprint_a2dd5fc3b9f6486b66fdb150b070609ef}{write\+Config} ()
+\item 
+void \hyperlink{class_fingerprint_ad9c2578b52ab75983271ea55d402ef25}{async\+Config} ()
+\item 
+void \hyperlink{class_fingerprint_a23218cbe7b1fb8ebc5ea971d769a25a9}{sync\+Config} ()
+\item 
+bool \hyperlink{class_fingerprint_a0e9156666a243c52f3895323cae3e4df}{P\+S\+\_\+\+Exit} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{class_fingerprint_a39df0d3a3476373bb5f52e51c3493990}{at\+Exit\+Func} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{class_fingerprint_a6c26e2b5a81ca5c64c071ccb7015203a}{g\+\_\+argc} = 0
+\item 
+int \hyperlink{class_fingerprint_aa15d4217dbabc0f81f1cf974e9d0210e}{g\+\_\+option\+\_\+count} = 0
+\item 
+char \hyperlink{class_fingerprint_a3721a87997e433ce249cf39273ff7ef2}{g\+\_\+command} \mbox{[}16\mbox{]} = \{ 0 \}
+\item 
+\hyperlink{utils_8h_a772a20383bc9b7aed79e9cc41bf87b13}{Config} \hyperlink{class_fingerprint_a024d7d3de7d047b02358fac4625d0c6c}{g\+\_\+config}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A class for managing the fingerprint sensor. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_fingerprint_ad9c2578b52ab75983271ea55d402ef25}{}\index{Fingerprint@{Fingerprint}!async\+Config@{async\+Config}}
+\index{async\+Config@{async\+Config}!Fingerprint@{Fingerprint}}
+\subsubsection[{async\+Config()}]{\setlength{\rightskip}{0pt plus 5cm}void Fingerprint\+::async\+Config (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{class_fingerprint_ad9c2578b52ab75983271ea55d402ef25}
+
+
+Here is the caller graph for this function\+:
+% FIG 1
+
+
+\hypertarget{class_fingerprint_a39df0d3a3476373bb5f52e51c3493990}{}\index{Fingerprint@{Fingerprint}!at\+Exit\+Func@{at\+Exit\+Func}}
+\index{at\+Exit\+Func@{at\+Exit\+Func}!Fingerprint@{Fingerprint}}
+\subsubsection[{at\+Exit\+Func()}]{\setlength{\rightskip}{0pt plus 5cm}void Fingerprint\+::at\+Exit\+Func (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\label{class_fingerprint_a39df0d3a3476373bb5f52e51c3493990}
+
+
+Here is the caller graph for this function\+:
+% FIG 2
+
+
+\hypertarget{class_fingerprint_a1cc52c07387ff07cc26427cb9d3f3d71}{}\index{Fingerprint@{Fingerprint}!fp\+\_\+add@{fp\+\_\+add}}
+\index{fp\+\_\+add@{fp\+\_\+add}!Fingerprint@{Fingerprint}}
+\subsubsection[{fp\+\_\+add()}]{\setlength{\rightskip}{0pt plus 5cm}int Fingerprint\+::fp\+\_\+add (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_fingerprint_a1cc52c07387ff07cc26427cb9d3f3d71}
+
+
+Enroll user fingerprint data in to an empty memory, read user finger twice. 
+
+\begin{DoxyReturn}{Returns}
+fingerprint address 
+\end{DoxyReturn}
+
+
+Here is the call graph for this function\+:
+% FIG 3
+
+
+\hypertarget{class_fingerprint_a15586c8d302933731eca34e4242edbb2}{}\index{Fingerprint@{Fingerprint}!fp\+\_\+enroll@{fp\+\_\+enroll}}
+\index{fp\+\_\+enroll@{fp\+\_\+enroll}!Fingerprint@{Fingerprint}}
+\subsubsection[{fp\+\_\+enroll()}]{\setlength{\rightskip}{0pt plus 5cm}int Fingerprint\+::fp\+\_\+enroll (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_fingerprint_a15586c8d302933731eca34e4242edbb2}
+
+
+Enroll user fingerprint data in to an empty memory, only read user finger one. 
+
+\begin{DoxyReturn}{Returns}
+fingerprint address 
+\end{DoxyReturn}
+
+
+Here is the call graph for this function\+:
+% FIG 4
+
+
+
+
+Here is the caller graph for this function\+:
+% FIG 5
+
+
+\hypertarget{class_fingerprint_a402792facf78e1ffa848dc95437478e8}{}\index{Fingerprint@{Fingerprint}!fp\+\_\+identify@{fp\+\_\+identify}}
+\index{fp\+\_\+identify@{fp\+\_\+identify}!Fingerprint@{Fingerprint}}
+\subsubsection[{fp\+\_\+identify()}]{\setlength{\rightskip}{0pt plus 5cm}int Fingerprint\+::fp\+\_\+identify (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_fingerprint_a402792facf78e1ffa848dc95437478e8}
+
+
+Check and compare user fingerprint. 
+
+\begin{DoxyReturn}{Returns}
+-\/1\+: fingerprint not found, otherwise\+: fingerprint address 
+\end{DoxyReturn}
+
+
+Here is the call graph for this function\+:
+% FIG 6
+
+
+
+
+Here is the caller graph for this function\+:
+% FIG 7
+
+
+\hypertarget{class_fingerprint_ad199706762803a08154e147d82b0c867}{}\index{Fingerprint@{Fingerprint}!fp\+\_\+init@{fp\+\_\+init}}
+\index{fp\+\_\+init@{fp\+\_\+init}!Fingerprint@{Fingerprint}}
+\subsubsection[{fp\+\_\+init()}]{\setlength{\rightskip}{0pt plus 5cm}int Fingerprint\+::fp\+\_\+init (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_fingerprint_ad199706762803a08154e147d82b0c867}
+\begin{DoxyReturn}{Returns}
+1\+: wiring\+Pi setup failed, 2\+: serial device setup failed, 0\+: Sensor init succeed 
+\end{DoxyReturn}
+
+
+Here is the call graph for this function\+:
+% FIG 8
+
+
+
+
+Here is the caller graph for this function\+:
+% FIG 9
+
+
+\hypertarget{class_fingerprint_a33ad88ae9e4c9d7277a465905e989dc6}{}\index{Fingerprint@{Fingerprint}!fp\+\_\+list@{fp\+\_\+list}}
+\index{fp\+\_\+list@{fp\+\_\+list}!Fingerprint@{Fingerprint}}
+\subsubsection[{fp\+\_\+list()}]{\setlength{\rightskip}{0pt plus 5cm}void Fingerprint\+::fp\+\_\+list (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_fingerprint_a33ad88ae9e4c9d7277a465905e989dc6}
+
+
+List all fingerprint I\+D in sensor memory, for debug use only. 
+
+
+
+Here is the call graph for this function\+:
+% FIG 10
+
+
+\hypertarget{class_fingerprint_ae0ffc91fd782dd1ab090fdd28726f911}{}\index{Fingerprint@{Fingerprint}!print\+Config@{print\+Config}}
+\index{print\+Config@{print\+Config}!Fingerprint@{Fingerprint}}
+\subsubsection[{print\+Config()}]{\setlength{\rightskip}{0pt plus 5cm}void Fingerprint\+::print\+Config (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{class_fingerprint_ae0ffc91fd782dd1ab090fdd28726f911}
+
+
+Here is the caller graph for this function\+:
+% FIG 11
+
+
+\hypertarget{class_fingerprint_a0e9156666a243c52f3895323cae3e4df}{}\index{Fingerprint@{Fingerprint}!P\+S\+\_\+\+Exit@{P\+S\+\_\+\+Exit}}
+\index{P\+S\+\_\+\+Exit@{P\+S\+\_\+\+Exit}!Fingerprint@{Fingerprint}}
+\subsubsection[{P\+S\+\_\+\+Exit()}]{\setlength{\rightskip}{0pt plus 5cm}bool Fingerprint\+::\+P\+S\+\_\+\+Exit (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{class_fingerprint_a0e9156666a243c52f3895323cae3e4df}
+
+
+Here is the caller graph for this function\+:
+% FIG 12
+
+
+\hypertarget{class_fingerprint_aac04dbf5582f4120838faa0c00316012}{}\index{Fingerprint@{Fingerprint}!read\+Config@{read\+Config}}
+\index{read\+Config@{read\+Config}!Fingerprint@{Fingerprint}}
+\subsubsection[{read\+Config()}]{\setlength{\rightskip}{0pt plus 5cm}bool Fingerprint\+::read\+Config (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{class_fingerprint_aac04dbf5582f4120838faa0c00316012}
+
+
+Here is the call graph for this function\+:
+% FIG 13
+
+
+\hypertarget{class_fingerprint_a23218cbe7b1fb8ebc5ea971d769a25a9}{}\index{Fingerprint@{Fingerprint}!sync\+Config@{sync\+Config}}
+\index{sync\+Config@{sync\+Config}!Fingerprint@{Fingerprint}}
+\subsubsection[{sync\+Config()}]{\setlength{\rightskip}{0pt plus 5cm}void Fingerprint\+::sync\+Config (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{class_fingerprint_a23218cbe7b1fb8ebc5ea971d769a25a9}
+\hypertarget{class_fingerprint_a959742eb41b55d7c020efb112ccd5a0f}{}\index{Fingerprint@{Fingerprint}!wait\+Until\+Detect\+Finger@{wait\+Until\+Detect\+Finger}}
+\index{wait\+Until\+Detect\+Finger@{wait\+Until\+Detect\+Finger}!Fingerprint@{Fingerprint}}
+\subsubsection[{wait\+Until\+Detect\+Finger(int wait\+\_\+time)}]{\setlength{\rightskip}{0pt plus 5cm}bool Fingerprint\+::wait\+Until\+Detect\+Finger (
+\begin{DoxyParamCaption}
+\item[{int}]{wait\+\_\+time}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{class_fingerprint_a959742eb41b55d7c020efb112ccd5a0f}
+
+
+Wait until user place his finger on the sensor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em wait\+\_\+time} & is the waiting time for the user to place his finger \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true \+: user placed his finger, false\+: otherwise 
+\end{DoxyReturn}
+
+
+Here is the call graph for this function\+:
+% FIG 14
+
+
+
+
+Here is the caller graph for this function\+:
+% FIG 15
+
+
+\hypertarget{class_fingerprint_a11b1faa271d7283c02c754cc4bffb8bf}{}\index{Fingerprint@{Fingerprint}!wait\+Until\+Not\+Detect\+Finger@{wait\+Until\+Not\+Detect\+Finger}}
+\index{wait\+Until\+Not\+Detect\+Finger@{wait\+Until\+Not\+Detect\+Finger}!Fingerprint@{Fingerprint}}
+\subsubsection[{wait\+Until\+Not\+Detect\+Finger(int wait\+\_\+time)}]{\setlength{\rightskip}{0pt plus 5cm}bool Fingerprint\+::wait\+Until\+Not\+Detect\+Finger (
+\begin{DoxyParamCaption}
+\item[{int}]{wait\+\_\+time}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{class_fingerprint_a11b1faa271d7283c02c754cc4bffb8bf}
+
+
+Wait until user lift his finger on the sensor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em wait\+\_\+time} & is the waiting time for the user to lift his finger \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true \+: user lifted his finger, false\+: otherwise 
+\end{DoxyReturn}
+
+
+Here is the call graph for this function\+:
+% FIG 16
+
+
+
+
+Here is the caller graph for this function\+:
+% FIG 17
+
+
+\hypertarget{class_fingerprint_a2dd5fc3b9f6486b66fdb150b070609ef}{}\index{Fingerprint@{Fingerprint}!write\+Config@{write\+Config}}
+\index{write\+Config@{write\+Config}!Fingerprint@{Fingerprint}}
+\subsubsection[{write\+Config()}]{\setlength{\rightskip}{0pt plus 5cm}bool Fingerprint\+::write\+Config (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{class_fingerprint_a2dd5fc3b9f6486b66fdb150b070609ef}
+
+
+Here is the caller graph for this function\+:
+% FIG 18
+
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_fingerprint_a6c26e2b5a81ca5c64c071ccb7015203a}{}\index{Fingerprint@{Fingerprint}!g\+\_\+argc@{g\+\_\+argc}}
+\index{g\+\_\+argc@{g\+\_\+argc}!Fingerprint@{Fingerprint}}
+\subsubsection[{g\+\_\+argc}]{\setlength{\rightskip}{0pt plus 5cm}int Fingerprint\+::g\+\_\+argc = 0\hspace{0.3cm}{\ttfamily [private]}}\label{class_fingerprint_a6c26e2b5a81ca5c64c071ccb7015203a}
+\hypertarget{class_fingerprint_a3721a87997e433ce249cf39273ff7ef2}{}\index{Fingerprint@{Fingerprint}!g\+\_\+command@{g\+\_\+command}}
+\index{g\+\_\+command@{g\+\_\+command}!Fingerprint@{Fingerprint}}
+\subsubsection[{g\+\_\+command}]{\setlength{\rightskip}{0pt plus 5cm}char Fingerprint\+::g\+\_\+command\mbox{[}16\mbox{]} = \{ 0 \}\hspace{0.3cm}{\ttfamily [private]}}\label{class_fingerprint_a3721a87997e433ce249cf39273ff7ef2}
+\hypertarget{class_fingerprint_a024d7d3de7d047b02358fac4625d0c6c}{}\index{Fingerprint@{Fingerprint}!g\+\_\+config@{g\+\_\+config}}
+\index{g\+\_\+config@{g\+\_\+config}!Fingerprint@{Fingerprint}}
+\subsubsection[{g\+\_\+config}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Config} Fingerprint\+::g\+\_\+config\hspace{0.3cm}{\ttfamily [private]}}\label{class_fingerprint_a024d7d3de7d047b02358fac4625d0c6c}
+\hypertarget{class_fingerprint_aa15d4217dbabc0f81f1cf974e9d0210e}{}\index{Fingerprint@{Fingerprint}!g\+\_\+option\+\_\+count@{g\+\_\+option\+\_\+count}}
+\index{g\+\_\+option\+\_\+count@{g\+\_\+option\+\_\+count}!Fingerprint@{Fingerprint}}
+\subsubsection[{g\+\_\+option\+\_\+count}]{\setlength{\rightskip}{0pt plus 5cm}int Fingerprint\+::g\+\_\+option\+\_\+count = 0\hspace{0.3cm}{\ttfamily [private]}}\label{class_fingerprint_aa15d4217dbabc0f81f1cf974e9d0210e}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Glasgow Course Works/\+Realtime Embeded Programming/\+Project files/\+Course\+Project/\+Attendance-\/recording-\/system/src/\+A\+S608/\hyperlink{fingerprint_8h}{fingerprint.\+h}\item 
+E\+:/\+Glasgow Course Works/\+Realtime Embeded Programming/\+Project files/\+Course\+Project/\+Attendance-\/recording-\/system/src/\+A\+S608/\hyperlink{fingerprint_8cpp}{fingerprint.\+cpp}\end{DoxyCompactItemize}

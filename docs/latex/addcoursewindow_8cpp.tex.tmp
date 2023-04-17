@@ -1,0 +1,11 @@
+\hypertarget{addcoursewindow_8cpp}{}\section{E\+:/\+Glasgow Course Works/\+Realtime Embeded Programming/\+Project files/\+Course\+Project/\+Attendance-\/recording-\/system/src/addcoursewindow.cpp File Reference}
+\label{addcoursewindow_8cpp}\index{E\+:/\+Glasgow Course Works/\+Realtime Embeded Programming/\+Project files/\+Course\+Project/\+Attendance-\/recording-\/system/src/addcoursewindow.\+cpp@{E\+:/\+Glasgow Course Works/\+Realtime Embeded Programming/\+Project files/\+Course\+Project/\+Attendance-\/recording-\/system/src/addcoursewindow.\+cpp}}
+{\ttfamily \#include \char`\"{}addcoursewindow.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}ui\+\_\+addcoursewindow.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$Q\+Widget$>$}\\*
+{\ttfamily \#include $<$Q\+Line\+Edit$>$}\\*
+{\ttfamily \#include $<$Q\+Push\+Button$>$}\\*
+{\ttfamily \#include $<$Q\+Message\+Box$>$}\\*
+{\ttfamily \#include $<$Q\+Exception$>$}\\*
+Include dependency graph for addcoursewindow.\+cpp\+:
+% FIG 0

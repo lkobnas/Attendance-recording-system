@@ -1,0 +1,13 @@
+digraph "MainWindow::on_addNewStudentButton_clicked"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="MainWindow::on_addNewStudent\lButton_clicked",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="AddStudentWindow::receive\lCardID",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_add_student_window.html#a490e2551e9c9e2ef1c30b5ec6ae9da46",tooltip="Received student cardID from MainWindow, change button to green when succeed. "];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="AddStudentWindow::receiveFPID",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_add_student_window.html#aa609ee6902208d9711365e0e6c390654",tooltip="Received student fingerprint from MainWindow, change button to green when succeed. "];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="MainWindow::onAddStudent\lWindowClosed",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_main_window.html#afe50cd282014bcb4698a892d2710cdac",tooltip="change fingerprint detect mode when add student window is closed "];
+}

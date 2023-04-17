@@ -1,0 +1,217 @@
+\hypertarget{class_email}{}\section{Email Class Reference}
+\label{class_email}\index{Email@{Email}}
+
+
+A Class for managing email types and template using Send\+Grid.  
+
+
+
+
+{\ttfamily \#include $<$email.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{class_email_af5c194f8670d4e2fb6153c9c3bf15c48}{send\+\_\+email\+\_\+record} (std\+::string recipient, std\+::string course\+Name)
+\begin{DoxyCompactList}\small\item\em Send email using Send\+Grid with pre-\/designed dynamic templates. \end{DoxyCompactList}\item 
+bool \hyperlink{class_email_aad6b1fc223be02eb81439a843ea37320}{send\+\_\+email\+\_\+new\+Student} (std\+::string recipient)
+\begin{DoxyCompactList}\small\item\em sends an email to a new student using the Send\+Grid email delivery service \end{DoxyCompactList}\item 
+bool \hyperlink{class_email_aff8985b743a5077a71222685c3c46551}{send\+\_\+email\+\_\+enroll\+To\+Course} (std\+::string recipient, std\+::string course\+Name, std\+::string course\+Datetime)
+\begin{DoxyCompactList}\small\item\em send\+\_\+email\+\_\+enroll\+To\+Course in the \hyperlink{class_email}{Email} class that sends an email to a recipient who has enrolled in a course, using Send\+Grid A\+P\+I \end{DoxyCompactList}\item 
+bool \hyperlink{class_email_a3522905a60977cac1c8d99d4c911f3ee}{send\+\_\+email\+\_\+late\+Reminder} (std\+::string recipient, std\+::string course\+Name, std\+::string course\+Datetime)
+\begin{DoxyCompactList}\small\item\em send\+\_\+email\+\_\+late\+Reminder for a class \hyperlink{class_email}{Email} which sends an email reminder to a recipient who is late for a course \end{DoxyCompactList}\item 
+bool \hyperlink{class_email_af94727858b272dfb14a9f1224a8f2da1}{read\+Credentials\+File} ()
+\begin{DoxyCompactList}\small\item\em read a file named \char`\"{}credentials.\+txt\char`\"{} to obtain an A\+P\+I key used for authentication in an email system \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \hyperlink{class_email_a3cc04c3d71f2cc129fe985b4d65d5ea2}{api\+\_\+key}
+\item 
+std\+::string \hyperlink{class_email_a95234a482f358f57b7c7bd32111e622c}{sender}
+\item 
+std\+::string \hyperlink{class_email_af7f2e392dcec52a6ce310ff0fa4d37a7}{template\+I\+D}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A Class for managing email types and template using Send\+Grid. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_email_af94727858b272dfb14a9f1224a8f2da1}{}\index{Email@{Email}!read\+Credentials\+File@{read\+Credentials\+File}}
+\index{read\+Credentials\+File@{read\+Credentials\+File}!Email@{Email}}
+\subsubsection[{read\+Credentials\+File()}]{\setlength{\rightskip}{0pt plus 5cm}bool Email\+::read\+Credentials\+File (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_email_af94727858b272dfb14a9f1224a8f2da1}
+
+
+read a file named \char`\"{}credentials.\+txt\char`\"{} to obtain an A\+P\+I key used for authentication in an email system 
+
+\begin{DoxyReturn}{Returns}
+file was successfully read and the A\+P\+I key was obtained, false otherwise 
+\end{DoxyReturn}
+
+
+Here is the caller graph for this function\+:
+% FIG 0
+
+
+\hypertarget{class_email_aff8985b743a5077a71222685c3c46551}{}\index{Email@{Email}!send\+\_\+email\+\_\+enroll\+To\+Course@{send\+\_\+email\+\_\+enroll\+To\+Course}}
+\index{send\+\_\+email\+\_\+enroll\+To\+Course@{send\+\_\+email\+\_\+enroll\+To\+Course}!Email@{Email}}
+\subsubsection[{send\+\_\+email\+\_\+enroll\+To\+Course(std\+::string recipient, std\+::string course\+Name, std\+::string course\+Datetime)}]{\setlength{\rightskip}{0pt plus 5cm}bool Email\+::send\+\_\+email\+\_\+enroll\+To\+Course (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{recipient, }
+\item[{std\+::string}]{course\+Name, }
+\item[{std\+::string}]{course\+Datetime}
+\end{DoxyParamCaption}
+)}\label{class_email_aff8985b743a5077a71222685c3c46551}
+
+
+send\+\_\+email\+\_\+enroll\+To\+Course in the \hyperlink{class_email}{Email} class that sends an email to a recipient who has enrolled in a course, using Send\+Grid A\+P\+I 
+
+
+\begin{DoxyParams}{Parameters}
+{\em recipient} & Recipient email address \\
+\hline
+{\em course\+Name} & coursename \\
+\hline
+{\em course\+Datetime} & \hyperlink{struct_course}{Course} dates and times \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns true if the email is sent successfully, and false otherwise 
+\end{DoxyReturn}
+
+
+Here is the call graph for this function\+:
+% FIG 1
+
+
+
+
+Here is the caller graph for this function\+:
+% FIG 2
+
+
+\hypertarget{class_email_a3522905a60977cac1c8d99d4c911f3ee}{}\index{Email@{Email}!send\+\_\+email\+\_\+late\+Reminder@{send\+\_\+email\+\_\+late\+Reminder}}
+\index{send\+\_\+email\+\_\+late\+Reminder@{send\+\_\+email\+\_\+late\+Reminder}!Email@{Email}}
+\subsubsection[{send\+\_\+email\+\_\+late\+Reminder(std\+::string recipient, std\+::string course\+Name, std\+::string course\+Datetime)}]{\setlength{\rightskip}{0pt plus 5cm}bool Email\+::send\+\_\+email\+\_\+late\+Reminder (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{recipient, }
+\item[{std\+::string}]{course\+Name, }
+\item[{std\+::string}]{course\+Datetime}
+\end{DoxyParamCaption}
+)}\label{class_email_a3522905a60977cac1c8d99d4c911f3ee}
+
+
+send\+\_\+email\+\_\+late\+Reminder for a class \hyperlink{class_email}{Email} which sends an email reminder to a recipient who is late for a course 
+
+
+\begin{DoxyParams}{Parameters}
+{\em recipient} & Recipient email address \\
+\hline
+{\em course\+Name} & coursename \\
+\hline
+{\em course\+Datetime} & \hyperlink{struct_course}{Course} dates and times \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the constructed command is executed using the system function, and the function returns true. 
+\end{DoxyReturn}
+
+
+Here is the call graph for this function\+:
+% FIG 3
+
+
+
+
+Here is the caller graph for this function\+:
+% FIG 4
+
+
+\hypertarget{class_email_aad6b1fc223be02eb81439a843ea37320}{}\index{Email@{Email}!send\+\_\+email\+\_\+new\+Student@{send\+\_\+email\+\_\+new\+Student}}
+\index{send\+\_\+email\+\_\+new\+Student@{send\+\_\+email\+\_\+new\+Student}!Email@{Email}}
+\subsubsection[{send\+\_\+email\+\_\+new\+Student(std\+::string recipient)}]{\setlength{\rightskip}{0pt plus 5cm}bool Email\+::send\+\_\+email\+\_\+new\+Student (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{recipient}
+\end{DoxyParamCaption}
+)}\label{class_email_aad6b1fc223be02eb81439a843ea37320}
+
+
+sends an email to a new student using the Send\+Grid email delivery service 
+
+
+\begin{DoxyParams}{Parameters}
+{\em recipient} & Recipient email address \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns true if the email was sent successfully 
+\end{DoxyReturn}
+
+
+Here is the call graph for this function\+:
+% FIG 5
+
+
+
+
+Here is the caller graph for this function\+:
+% FIG 6
+
+
+\hypertarget{class_email_af5c194f8670d4e2fb6153c9c3bf15c48}{}\index{Email@{Email}!send\+\_\+email\+\_\+record@{send\+\_\+email\+\_\+record}}
+\index{send\+\_\+email\+\_\+record@{send\+\_\+email\+\_\+record}!Email@{Email}}
+\subsubsection[{send\+\_\+email\+\_\+record(std\+::string recipient, std\+::string course\+Name)}]{\setlength{\rightskip}{0pt plus 5cm}bool Email\+::send\+\_\+email\+\_\+record (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{recipient, }
+\item[{std\+::string}]{course\+Name}
+\end{DoxyParamCaption}
+)}\label{class_email_af5c194f8670d4e2fb6153c9c3bf15c48}
+
+
+Send email using Send\+Grid with pre-\/designed dynamic templates. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em recipient} & \\
+\hline
+{\em email\+\_\+type} & \\
+\hline
+{\em recipient} & Recipient email address \\
+\hline
+{\em email\+\_\+type} & 1\+: send attendance recorded email, 2\+: send new account confirmation email \\
+\hline
+\end{DoxyParams}
+
+
+Here is the call graph for this function\+:
+% FIG 7
+
+
+
+
+Here is the caller graph for this function\+:
+% FIG 8
+
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_email_a3cc04c3d71f2cc129fe985b4d65d5ea2}{}\index{Email@{Email}!api\+\_\+key@{api\+\_\+key}}
+\index{api\+\_\+key@{api\+\_\+key}!Email@{Email}}
+\subsubsection[{api\+\_\+key}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string Email\+::api\+\_\+key\hspace{0.3cm}{\ttfamily [private]}}\label{class_email_a3cc04c3d71f2cc129fe985b4d65d5ea2}
+\hypertarget{class_email_a95234a482f358f57b7c7bd32111e622c}{}\index{Email@{Email}!sender@{sender}}
+\index{sender@{sender}!Email@{Email}}
+\subsubsection[{sender}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string Email\+::sender\hspace{0.3cm}{\ttfamily [private]}}\label{class_email_a95234a482f358f57b7c7bd32111e622c}
+\hypertarget{class_email_af7f2e392dcec52a6ce310ff0fa4d37a7}{}\index{Email@{Email}!template\+I\+D@{template\+I\+D}}
+\index{template\+I\+D@{template\+I\+D}!Email@{Email}}
+\subsubsection[{template\+I\+D}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string Email\+::template\+I\+D\hspace{0.3cm}{\ttfamily [private]}}\label{class_email_af7f2e392dcec52a6ce310ff0fa4d37a7}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Glasgow Course Works/\+Realtime Embeded Programming/\+Project files/\+Course\+Project/\+Attendance-\/recording-\/system/src/email\+\_\+curl/\hyperlink{email_8h}{email.\+h}\item 
+E\+:/\+Glasgow Course Works/\+Realtime Embeded Programming/\+Project files/\+Course\+Project/\+Attendance-\/recording-\/system/src/email\+\_\+curl/\hyperlink{email_8cpp}{email.\+cpp}\end{DoxyCompactItemize}

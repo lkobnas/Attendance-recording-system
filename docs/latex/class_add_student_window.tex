@@ -1,0 +1,250 @@
+\hypertarget{class_add_student_window}{}\section{Add\+Student\+Window Class Reference}
+\label{class_add_student_window}\index{Add\+Student\+Window@{Add\+Student\+Window}}
+
+
+A class for add student window. Inherits from Q\+Dialog.  
+
+
+
+
+{\ttfamily \#include $<$addstudentwindow.\+h$>$}
+
+
+
+Inheritance diagram for Add\+Student\+Window\+:
+% FIG 0
+
+
+Collaboration diagram for Add\+Student\+Window\+:
+% FIG 1
+\subsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_add_student_window_a490e2551e9c9e2ef1c30b5ec6ae9da46}{receive\+Card\+I\+D} (Q\+String cardid)
+\begin{DoxyCompactList}\small\item\em Received student card\+I\+D from \hyperlink{class_main_window}{Main\+Window}, change button to green when succeed. \end{DoxyCompactList}\item 
+void \hyperlink{class_add_student_window_aa609ee6902208d9711365e0e6c390654}{receive\+F\+P\+I\+D} (Q\+String fpid)
+\begin{DoxyCompactList}\small\item\em Received student fingerprint from \hyperlink{class_main_window}{Main\+Window}, change button to green when succeed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_add_student_window_a9b1648c23f475584aa17a421eac88ba3}{Add\+Student\+Window} (Q\+Widget $\ast$parent=nullptr)
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_add_student_window}{Add\+Student\+Window} Constructor. \end{DoxyCompactList}\item 
+\hyperlink{class_add_student_window_ae1a1934b001bdd8ffd596f22f3f2adc5}{$\sim$\+Add\+Student\+Window} ()
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_add_student_window}{Add\+Student\+Window} Destructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Slots}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_add_student_window_a1ae1b6d7b409187db660f128b40f9113}{on\+\_\+s\+Clear\+Button\+\_\+clicked} ()
+\begin{DoxyCompactList}\small\item\em Clear all input fields. \end{DoxyCompactList}\item 
+void \hyperlink{class_add_student_window_a9393f0d9cefd4b7dab0945070a454f86}{on\+\_\+s\+Card\+Button\+\_\+clicked} ()
+\begin{DoxyCompactList}\small\item\em Show guidelines when card button is clicked. \end{DoxyCompactList}\item 
+void \hyperlink{class_add_student_window_a7575673f89e1dc3c8c4c93cf98ea366b}{on\+\_\+s\+Fp\+Button\+\_\+clicked} ()
+\begin{DoxyCompactList}\small\item\em Show guidelines when fingerprint button is clicked. \end{DoxyCompactList}\item 
+void \hyperlink{class_add_student_window_ac8a09f059cf9f6e4824295dd937fdd33}{on\+\_\+s\+Add\+Button\+\_\+clicked} ()
+\begin{DoxyCompactList}\small\item\em Validate all input fields and add student to database. \end{DoxyCompactList}\item 
+void \hyperlink{class_add_student_window_a8a88cf8d46ed8dbef0996ab452dd862d}{on\+\_\+push\+Button\+\_\+clicked} ()
+\begin{DoxyCompactList}\small\item\em Close add student window. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_student_d_b}{Student\+D\+B} \hyperlink{class_add_student_window_adf04fd6670ba62ad2a13094d212909c1}{sdb}
+\item 
+\hyperlink{class_email}{Email} \hyperlink{class_add_student_window_ad25a9a896058bf5abec04d7032a39e6d}{email\+\_\+curl}
+\item 
+Ui\+::\+Add\+Student\+Window $\ast$ \hyperlink{class_add_student_window_adc49461d9eefe5bd96e98493b8c7bea1}{ui}
+\item 
+Q\+String \hyperlink{class_add_student_window_ac20a7ba74b98aaeb38d7ccc0538b84c4}{name}
+\item 
+Q\+String \hyperlink{class_add_student_window_aeda6e327834bf049690c1841c6d7f1fa}{email}
+\item 
+Q\+String \hyperlink{class_add_student_window_adb45ee9e1dc3ca24f730a8906d9c9d5f}{sid}
+\item 
+Q\+String \hyperlink{class_add_student_window_a1363adcf5d8ff58990543e580152ad04}{card\+I\+D}
+\item 
+Q\+String \hyperlink{class_add_student_window_aa76e592816f530eb55c3424542712c0d}{photo}
+\item 
+Q\+String \hyperlink{class_add_student_window_a0aef9353c6c0a3c88773dcc9ae9fba4d}{fp\+I\+D}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A class for add student window. Inherits from Q\+Dialog. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_add_student_window_a9b1648c23f475584aa17a421eac88ba3}{}\index{Add\+Student\+Window@{Add\+Student\+Window}!Add\+Student\+Window@{Add\+Student\+Window}}
+\index{Add\+Student\+Window@{Add\+Student\+Window}!Add\+Student\+Window@{Add\+Student\+Window}}
+\subsubsection[{Add\+Student\+Window(\+Q\+Widget $\ast$parent=nullptr)}]{\setlength{\rightskip}{0pt plus 5cm}Add\+Student\+Window\+::\+Add\+Student\+Window (
+\begin{DoxyParamCaption}
+\item[{Q\+Widget $\ast$}]{parent = {\ttfamily nullptr}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [explicit]}}\label{class_add_student_window_a9b1648c23f475584aa17a421eac88ba3}
+
+
+\hyperlink{class_add_student_window}{Add\+Student\+Window} Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & Passing parent object \\
+\hline
+\end{DoxyParams}
+
+
+Here is the call graph for this function\+:
+% FIG 2
+
+
+\hypertarget{class_add_student_window_ae1a1934b001bdd8ffd596f22f3f2adc5}{}\index{Add\+Student\+Window@{Add\+Student\+Window}!````~Add\+Student\+Window@{$\sim$\+Add\+Student\+Window}}
+\index{````~Add\+Student\+Window@{$\sim$\+Add\+Student\+Window}!Add\+Student\+Window@{Add\+Student\+Window}}
+\subsubsection[{$\sim$\+Add\+Student\+Window()}]{\setlength{\rightskip}{0pt plus 5cm}Add\+Student\+Window\+::$\sim$\+Add\+Student\+Window (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_add_student_window_ae1a1934b001bdd8ffd596f22f3f2adc5}
+
+
+\hyperlink{class_add_student_window}{Add\+Student\+Window} Destructor. 
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_add_student_window_a8a88cf8d46ed8dbef0996ab452dd862d}{}\index{Add\+Student\+Window@{Add\+Student\+Window}!on\+\_\+push\+Button\+\_\+clicked@{on\+\_\+push\+Button\+\_\+clicked}}
+\index{on\+\_\+push\+Button\+\_\+clicked@{on\+\_\+push\+Button\+\_\+clicked}!Add\+Student\+Window@{Add\+Student\+Window}}
+\subsubsection[{on\+\_\+push\+Button\+\_\+clicked}]{\setlength{\rightskip}{0pt plus 5cm}void Add\+Student\+Window\+::on\+\_\+push\+Button\+\_\+clicked (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}\label{class_add_student_window_a8a88cf8d46ed8dbef0996ab452dd862d}
+
+
+Close add student window. 
+
+\hypertarget{class_add_student_window_ac8a09f059cf9f6e4824295dd937fdd33}{}\index{Add\+Student\+Window@{Add\+Student\+Window}!on\+\_\+s\+Add\+Button\+\_\+clicked@{on\+\_\+s\+Add\+Button\+\_\+clicked}}
+\index{on\+\_\+s\+Add\+Button\+\_\+clicked@{on\+\_\+s\+Add\+Button\+\_\+clicked}!Add\+Student\+Window@{Add\+Student\+Window}}
+\subsubsection[{on\+\_\+s\+Add\+Button\+\_\+clicked}]{\setlength{\rightskip}{0pt plus 5cm}void Add\+Student\+Window\+::on\+\_\+s\+Add\+Button\+\_\+clicked (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}\label{class_add_student_window_ac8a09f059cf9f6e4824295dd937fdd33}
+
+
+Validate all input fields and add student to database. 
+
+
+
+Here is the call graph for this function\+:
+% FIG 3
+
+
+\hypertarget{class_add_student_window_a9393f0d9cefd4b7dab0945070a454f86}{}\index{Add\+Student\+Window@{Add\+Student\+Window}!on\+\_\+s\+Card\+Button\+\_\+clicked@{on\+\_\+s\+Card\+Button\+\_\+clicked}}
+\index{on\+\_\+s\+Card\+Button\+\_\+clicked@{on\+\_\+s\+Card\+Button\+\_\+clicked}!Add\+Student\+Window@{Add\+Student\+Window}}
+\subsubsection[{on\+\_\+s\+Card\+Button\+\_\+clicked}]{\setlength{\rightskip}{0pt plus 5cm}void Add\+Student\+Window\+::on\+\_\+s\+Card\+Button\+\_\+clicked (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}\label{class_add_student_window_a9393f0d9cefd4b7dab0945070a454f86}
+
+
+Show guidelines when card button is clicked. 
+
+\hypertarget{class_add_student_window_a1ae1b6d7b409187db660f128b40f9113}{}\index{Add\+Student\+Window@{Add\+Student\+Window}!on\+\_\+s\+Clear\+Button\+\_\+clicked@{on\+\_\+s\+Clear\+Button\+\_\+clicked}}
+\index{on\+\_\+s\+Clear\+Button\+\_\+clicked@{on\+\_\+s\+Clear\+Button\+\_\+clicked}!Add\+Student\+Window@{Add\+Student\+Window}}
+\subsubsection[{on\+\_\+s\+Clear\+Button\+\_\+clicked}]{\setlength{\rightskip}{0pt plus 5cm}void Add\+Student\+Window\+::on\+\_\+s\+Clear\+Button\+\_\+clicked (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}\label{class_add_student_window_a1ae1b6d7b409187db660f128b40f9113}
+
+
+Clear all input fields. 
+
+\hypertarget{class_add_student_window_a7575673f89e1dc3c8c4c93cf98ea366b}{}\index{Add\+Student\+Window@{Add\+Student\+Window}!on\+\_\+s\+Fp\+Button\+\_\+clicked@{on\+\_\+s\+Fp\+Button\+\_\+clicked}}
+\index{on\+\_\+s\+Fp\+Button\+\_\+clicked@{on\+\_\+s\+Fp\+Button\+\_\+clicked}!Add\+Student\+Window@{Add\+Student\+Window}}
+\subsubsection[{on\+\_\+s\+Fp\+Button\+\_\+clicked}]{\setlength{\rightskip}{0pt plus 5cm}void Add\+Student\+Window\+::on\+\_\+s\+Fp\+Button\+\_\+clicked (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}\label{class_add_student_window_a7575673f89e1dc3c8c4c93cf98ea366b}
+
+
+Show guidelines when fingerprint button is clicked. 
+
+\hypertarget{class_add_student_window_a490e2551e9c9e2ef1c30b5ec6ae9da46}{}\index{Add\+Student\+Window@{Add\+Student\+Window}!receive\+Card\+I\+D@{receive\+Card\+I\+D}}
+\index{receive\+Card\+I\+D@{receive\+Card\+I\+D}!Add\+Student\+Window@{Add\+Student\+Window}}
+\subsubsection[{receive\+Card\+I\+D}]{\setlength{\rightskip}{0pt plus 5cm}void Add\+Student\+Window\+::receive\+Card\+I\+D (
+\begin{DoxyParamCaption}
+\item[{Q\+String}]{cardid}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}\label{class_add_student_window_a490e2551e9c9e2ef1c30b5ec6ae9da46}
+
+
+Received student card\+I\+D from \hyperlink{class_main_window}{Main\+Window}, change button to green when succeed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cardid} & is the student card\+I\+D \\
+\hline
+\end{DoxyParams}
+
+
+Here is the caller graph for this function\+:
+% FIG 4
+
+
+\hypertarget{class_add_student_window_aa609ee6902208d9711365e0e6c390654}{}\index{Add\+Student\+Window@{Add\+Student\+Window}!receive\+F\+P\+I\+D@{receive\+F\+P\+I\+D}}
+\index{receive\+F\+P\+I\+D@{receive\+F\+P\+I\+D}!Add\+Student\+Window@{Add\+Student\+Window}}
+\subsubsection[{receive\+F\+P\+I\+D}]{\setlength{\rightskip}{0pt plus 5cm}void Add\+Student\+Window\+::receive\+F\+P\+I\+D (
+\begin{DoxyParamCaption}
+\item[{Q\+String}]{fpid}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}\label{class_add_student_window_aa609ee6902208d9711365e0e6c390654}
+
+
+Received student fingerprint from \hyperlink{class_main_window}{Main\+Window}, change button to green when succeed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fpid} & add student card button \\
+\hline
+\end{DoxyParams}
+
+
+Here is the caller graph for this function\+:
+% FIG 5
+
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_add_student_window_a1363adcf5d8ff58990543e580152ad04}{}\index{Add\+Student\+Window@{Add\+Student\+Window}!card\+I\+D@{card\+I\+D}}
+\index{card\+I\+D@{card\+I\+D}!Add\+Student\+Window@{Add\+Student\+Window}}
+\subsubsection[{card\+I\+D}]{\setlength{\rightskip}{0pt plus 5cm}Q\+String Add\+Student\+Window\+::card\+I\+D\hspace{0.3cm}{\ttfamily [private]}}\label{class_add_student_window_a1363adcf5d8ff58990543e580152ad04}
+\hypertarget{class_add_student_window_aeda6e327834bf049690c1841c6d7f1fa}{}\index{Add\+Student\+Window@{Add\+Student\+Window}!email@{email}}
+\index{email@{email}!Add\+Student\+Window@{Add\+Student\+Window}}
+\subsubsection[{email}]{\setlength{\rightskip}{0pt plus 5cm}Q\+String Add\+Student\+Window\+::email\hspace{0.3cm}{\ttfamily [private]}}\label{class_add_student_window_aeda6e327834bf049690c1841c6d7f1fa}
+\hypertarget{class_add_student_window_ad25a9a896058bf5abec04d7032a39e6d}{}\index{Add\+Student\+Window@{Add\+Student\+Window}!email\+\_\+curl@{email\+\_\+curl}}
+\index{email\+\_\+curl@{email\+\_\+curl}!Add\+Student\+Window@{Add\+Student\+Window}}
+\subsubsection[{email\+\_\+curl}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Email} Add\+Student\+Window\+::email\+\_\+curl\hspace{0.3cm}{\ttfamily [private]}}\label{class_add_student_window_ad25a9a896058bf5abec04d7032a39e6d}
+\hypertarget{class_add_student_window_a0aef9353c6c0a3c88773dcc9ae9fba4d}{}\index{Add\+Student\+Window@{Add\+Student\+Window}!fp\+I\+D@{fp\+I\+D}}
+\index{fp\+I\+D@{fp\+I\+D}!Add\+Student\+Window@{Add\+Student\+Window}}
+\subsubsection[{fp\+I\+D}]{\setlength{\rightskip}{0pt plus 5cm}Q\+String Add\+Student\+Window\+::fp\+I\+D\hspace{0.3cm}{\ttfamily [private]}}\label{class_add_student_window_a0aef9353c6c0a3c88773dcc9ae9fba4d}
+\hypertarget{class_add_student_window_ac20a7ba74b98aaeb38d7ccc0538b84c4}{}\index{Add\+Student\+Window@{Add\+Student\+Window}!name@{name}}
+\index{name@{name}!Add\+Student\+Window@{Add\+Student\+Window}}
+\subsubsection[{name}]{\setlength{\rightskip}{0pt plus 5cm}Q\+String Add\+Student\+Window\+::name\hspace{0.3cm}{\ttfamily [private]}}\label{class_add_student_window_ac20a7ba74b98aaeb38d7ccc0538b84c4}
+\hypertarget{class_add_student_window_aa76e592816f530eb55c3424542712c0d}{}\index{Add\+Student\+Window@{Add\+Student\+Window}!photo@{photo}}
+\index{photo@{photo}!Add\+Student\+Window@{Add\+Student\+Window}}
+\subsubsection[{photo}]{\setlength{\rightskip}{0pt plus 5cm}Q\+String Add\+Student\+Window\+::photo\hspace{0.3cm}{\ttfamily [private]}}\label{class_add_student_window_aa76e592816f530eb55c3424542712c0d}
+\hypertarget{class_add_student_window_adf04fd6670ba62ad2a13094d212909c1}{}\index{Add\+Student\+Window@{Add\+Student\+Window}!sdb@{sdb}}
+\index{sdb@{sdb}!Add\+Student\+Window@{Add\+Student\+Window}}
+\subsubsection[{sdb}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Student\+D\+B} Add\+Student\+Window\+::sdb\hspace{0.3cm}{\ttfamily [private]}}\label{class_add_student_window_adf04fd6670ba62ad2a13094d212909c1}
+\hypertarget{class_add_student_window_adb45ee9e1dc3ca24f730a8906d9c9d5f}{}\index{Add\+Student\+Window@{Add\+Student\+Window}!sid@{sid}}
+\index{sid@{sid}!Add\+Student\+Window@{Add\+Student\+Window}}
+\subsubsection[{sid}]{\setlength{\rightskip}{0pt plus 5cm}Q\+String Add\+Student\+Window\+::sid\hspace{0.3cm}{\ttfamily [private]}}\label{class_add_student_window_adb45ee9e1dc3ca24f730a8906d9c9d5f}
+\hypertarget{class_add_student_window_adc49461d9eefe5bd96e98493b8c7bea1}{}\index{Add\+Student\+Window@{Add\+Student\+Window}!ui@{ui}}
+\index{ui@{ui}!Add\+Student\+Window@{Add\+Student\+Window}}
+\subsubsection[{ui}]{\setlength{\rightskip}{0pt plus 5cm}Ui\+::\+Add\+Student\+Window$\ast$ Add\+Student\+Window\+::ui\hspace{0.3cm}{\ttfamily [private]}}\label{class_add_student_window_adc49461d9eefe5bd96e98493b8c7bea1}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Glasgow Course Works/\+Realtime Embeded Programming/\+Project files/\+Course\+Project/\+Attendance-\/recording-\/system/src/\hyperlink{addstudentwindow_8h}{addstudentwindow.\+h}\item 
+E\+:/\+Glasgow Course Works/\+Realtime Embeded Programming/\+Project files/\+Course\+Project/\+Attendance-\/recording-\/system/src/\hyperlink{addstudentwindow_8cpp}{addstudentwindow.\+cpp}\end{DoxyCompactItemize}

@@ -1,0 +1,721 @@
+\hypertarget{class_main_window}{}\section{Main\+Window Class Reference}
+\label{class_main_window}\index{Main\+Window@{Main\+Window}}
+
+
+A class to wrap the Q\+T generated header file and handle G\+U\+I functionality. Inherits from Q\+Main\+Window.  
+
+
+
+
+{\ttfamily \#include $<$mainwindow.\+h$>$}
+
+
+
+Inheritance diagram for Main\+Window\+:
+% FIG 0
+
+
+Collaboration diagram for Main\+Window\+:
+% FIG 1
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_main_window_a82a7b54e994898bed076451f4b572d89}{pass\+Card\+I\+D} (Q\+String card\+I\+D)
+\item 
+void \hyperlink{class_main_window_accff5edcedb8592226612c32a3a861d4}{pass\+Fp\+I\+D} (Q\+String fp\+I\+D)
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_main_window_a996c5a2b6f77944776856f08ec30858d}{Main\+Window} (Q\+Widget $\ast$parent=nullptr)
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_main_window}{Main\+Window} Constructor. \end{DoxyCompactList}\item 
+\hyperlink{class_main_window_ae98d00a93bc118200eeef9f9bba1dba7}{$\sim$\+Main\+Window} ()
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_main_window}{Main\+Window} Destructor. \end{DoxyCompactList}\item 
+void \hyperlink{class_main_window_a31ebff8b2a54cfd5f634c82253f3ffdd}{update\+Table\+View} ()
+\begin{DoxyCompactList}\small\item\em update course table \end{DoxyCompactList}\item 
+void \hyperlink{class_main_window_ae72f434e60eb56c5ba1f18c1a0edd2ba}{update\+Student\+Table} ()
+\begin{DoxyCompactList}\small\item\em update student table with upcoming course \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Slots}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_main_window_a671e7e5b0a3a7a3fb1cf44c5c8377952}{init} ()
+\begin{DoxyCompactList}\small\item\em Initialise U\+I, doorlock and variable for checking studentwindow, read course database and display on tableview. \end{DoxyCompactList}\item 
+void \hyperlink{class_main_window_a128f71880d4b9683149023fc46fcc9f8}{update} ()
+\begin{DoxyCompactList}\small\item\em course start \end{DoxyCompactList}\item 
+void \hyperlink{class_main_window_a719a423fa05029712c4d67b938f4a551}{update\+Datetime\+Display} ()
+\begin{DoxyCompactList}\small\item\em update date and time display on mainwindow \end{DoxyCompactList}\item 
+void \hyperlink{class_main_window_a8ebe9859eb33fda652cf463cc24fac67}{check\+Course\+Start} ()
+\begin{DoxyCompactList}\small\item\em check if any course is starting \end{DoxyCompactList}\item 
+void \hyperlink{class_main_window_aaf19111b868ab633946d093bf0c2eb76}{on\+\_\+add\+New\+Student\+Button\+\_\+clicked} ()
+\begin{DoxyCompactList}\small\item\em Open add student window when button is clicked. \end{DoxyCompactList}\item 
+void \hyperlink{class_main_window_aa977314d191cfe595b9e29e25f80ede8}{on\+\_\+add\+New\+Course\+Button\+\_\+clicked} ()
+\begin{DoxyCompactList}\small\item\em Open a add course window when button is clicked. \end{DoxyCompactList}\item 
+void \hyperlink{class_main_window_a1db37ef042ec5f2d06a4a4eddb93b899}{on\+\_\+action\+Administrator\+\_\+mode\+\_\+triggered} ()
+\begin{DoxyCompactList}\small\item\em Change to administrator mode. \end{DoxyCompactList}\item 
+void \hyperlink{class_main_window_aafa2658cd70c8c0c7bda3033e3ea40c9}{on\+\_\+action\+Switch\+\_\+to\+\_\+student\+\_\+mode\+\_\+triggered} ()
+\begin{DoxyCompactList}\small\item\em Change to student mode. \end{DoxyCompactList}\item 
+void \hyperlink{class_main_window_a310da50ca415fb33ba5ea524198d34f9}{on\+\_\+test\+Button\+\_\+clicked} ()
+\item 
+void \hyperlink{class_main_window_a617480870497fabb561137928b2231e6}{on\+\_\+student\+List\+Button\+\_\+clicked} ()
+\begin{DoxyCompactList}\small\item\em Open student list when button is clicked. \end{DoxyCompactList}\item 
+void \hyperlink{class_main_window_aae46cc5898251c119f8dcd282d4e2539}{on\+\_\+delete\+Course\+Button\+\_\+clicked} ()
+\begin{DoxyCompactList}\small\item\em Delete selected course when button is clicked. \end{DoxyCompactList}\item 
+void \hyperlink{class_main_window_ac8e92844161faf8c2dd4a11e69a57b11}{on\+U\+I\+D\+Received} (const Q\+String uid)
+\begin{DoxyCompactList}\small\item\em Triggered whe \hyperlink{struct_student}{Student} card detected, update attendance list updated and send attendance record email. \end{DoxyCompactList}\item 
+void \hyperlink{class_main_window_a12c1711cb7ef466a1ccb9d31fc6e2657}{on\+F\+P\+I\+D\+Identify\+Received} (const Q\+String fpid)
+\begin{DoxyCompactList}\small\item\em Triggered whe \hyperlink{struct_student}{Student} card detected, update attendance list updated and send attendance record email. \end{DoxyCompactList}\item 
+void \hyperlink{class_main_window_a48b5324cb6ef02b6153ef22da4304fe2}{on\+F\+P\+I\+D\+Add\+Received} (Q\+String fpid)
+\begin{DoxyCompactList}\small\item\em Triggered when add student window is opened, fingerprint sensor will switch to add mode and emit fp\+I\+D to \hyperlink{addstudentwindow_8cpp}{addstudentwindow.\+cpp}. \end{DoxyCompactList}\item 
+void \hyperlink{class_main_window_afe50cd282014bcb4698a892d2710cdac}{on\+Add\+Student\+Window\+Closed} ()
+\begin{DoxyCompactList}\small\item\em change fingerprint detect mode when add student window is closed \end{DoxyCompactList}\item 
+void \hyperlink{class_main_window_a189b458b701fa572969a22f8718ce5b0}{on\+\_\+action\+Close\+\_\+triggered} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_main_window_a65bbafe4bc6f641952f4675fc672a664}{e\+\_\+reset\+Function\+Running\+Flag} ()
+\begin{DoxyCompactList}\small\item\em email timer running flag \end{DoxyCompactList}\item 
+void \hyperlink{class_main_window_a2aa013d9a84e2a19d9cfc876df26b71d}{d\+\_\+reset\+Function\+Running\+Flag} ()
+\begin{DoxyCompactList}\small\item\em delay timer running flag \end{DoxyCompactList}\item 
+void \hyperlink{class_main_window_af35c36df2b6650b0ea50d6afa5c24874}{rfid\+Listener} ()
+\begin{DoxyCompactList}\small\item\em Listener for \hyperlink{class_r_f_i_d}{R\+F\+I\+D} reader. \end{DoxyCompactList}\item 
+void \hyperlink{class_main_window_a9abddf234c9231f465917c318b3ba6b2}{fingerprint\+Identify\+Listener} ()
+\begin{DoxyCompactList}\small\item\em Listener for fingerprint sensor. \end{DoxyCompactList}\item 
+void \hyperlink{class_main_window_a57fcf83e8fc3f5bfcab4ae81240bf119}{record\+Attendance\+Window} (Q\+String student\+I\+D)
+\begin{DoxyCompactList}\small\item\em Record student attendance when rfid or fingerprint detected. \end{DoxyCompactList}\item 
+void \hyperlink{class_main_window_a12bf819145965a9b41a9bae976be2870}{door\+Control} ()
+\begin{DoxyCompactList}\small\item\em Trigger Door Control function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{class_main_window_af5c03c6632d910a4a733ff21f5613cc5}{admin\+Mode} = false
+\item 
+Q\+Standard\+Item\+Model $\ast$ \hyperlink{class_main_window_aa1a1f8ce9c37a7ac70d21402759638b3}{model}
+\item 
+Q\+Standard\+Item\+Model $\ast$ \hyperlink{class_main_window_a9e29f365cc9fb25a1fa34c8ea81e406b}{s\+Model}
+\item 
+\hyperlink{class_course_d_b}{Course\+D\+B} \hyperlink{class_main_window_a38cdde30de1c2211dc81a739ed1af6aa}{cdb}
+\item 
+\hyperlink{class_student_d_b}{Student\+D\+B} \hyperlink{class_main_window_a36cba3be5ce45e891732fc37f909f160}{sdb}
+\item 
+Q\+List$<$ \hyperlink{struct_course}{Course} $>$ \hyperlink{class_main_window_a0c800a8b8fe1c75097adf279dc1dfc85}{course\+List}
+\item 
+Ui\+::\+Main\+Window $\ast$ \hyperlink{class_main_window_a35466a70ed47252a0191168126a352a5}{ui}
+\item 
+\hyperlink{class_add_student_window}{Add\+Student\+Window} $\ast$ \hyperlink{class_main_window_aad218c6ea271c5f52b8b9f8772b51e23}{s\+Window}
+\item 
+bool \hyperlink{class_main_window_a222458b690e6b51b1fd78f24475743e8}{student\+Window\+Valid}
+\item 
+\hyperlink{class_r_f_i_d}{R\+F\+I\+D} \hyperlink{class_main_window_a3731e42d8e85714bda210c44605974df}{rfid}
+\item 
+\hyperlink{class_fingerprint}{Fingerprint} \hyperlink{class_main_window_ae9b267fa7badc7c10d9f03ab6dd99a21}{fp}
+\item 
+\hyperlink{class_doorlock}{Doorlock} \hyperlink{class_main_window_a1238bb71f8626ea3d2423c70bce5424e}{doorlock}
+\item 
+std\+::thread \hyperlink{class_main_window_a34e32ec4b55f9259776c82da9c7364ac}{rfid\+Thread}
+\item 
+std\+::thread \hyperlink{class_main_window_ae27e65bcfce4d59fd1b51328b44e5a3f}{fingerprint\+Identify\+Thread}
+\item 
+std\+::thread \hyperlink{class_main_window_a7e5c1368e92535153288333135ab9c1f}{doorlock\+Thread}
+\item 
+int \hyperlink{class_main_window_a122902405a566547943551c2e1a01b51}{fp\+Mode}
+\item 
+bool \hyperlink{class_main_window_a3565b914d8d79bc20add7c9b669b738c}{running}
+\item 
+bool \hyperlink{class_main_window_ab9804d41deeb12dcc418fcb56aacefb4}{door}
+\item 
+Q\+Timer $\ast$ \hyperlink{class_main_window_a145bbdf02640590c1d953827a139fb48}{email\+\_\+timer}
+\item 
+Q\+Timer $\ast$ \hyperlink{class_main_window_a96bf5b586be34a9e3a42cf556c089968}{delay\+\_\+timer}
+\item 
+bool \hyperlink{class_main_window_a37f37771700fd6774a1074c6654c41bf}{e\+\_\+function\+Running}
+\item 
+bool \hyperlink{class_main_window_af58e1c4e884964d4e4376c5bbbe5ef66}{d\+\_\+function\+Running}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A class to wrap the Q\+T generated header file and handle G\+U\+I functionality. Inherits from Q\+Main\+Window. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_main_window_a996c5a2b6f77944776856f08ec30858d}{}\index{Main\+Window@{Main\+Window}!Main\+Window@{Main\+Window}}
+\index{Main\+Window@{Main\+Window}!Main\+Window@{Main\+Window}}
+\subsubsection[{Main\+Window(\+Q\+Widget $\ast$parent=nullptr)}]{\setlength{\rightskip}{0pt plus 5cm}Main\+Window\+::\+Main\+Window (
+\begin{DoxyParamCaption}
+\item[{Q\+Widget $\ast$}]{parent = {\ttfamily nullptr}}
+\end{DoxyParamCaption}
+)}\label{class_main_window_a996c5a2b6f77944776856f08ec30858d}
+
+
+\hyperlink{class_main_window}{Main\+Window} Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & points to Q\+Main\+Window from main \\
+\hline
+\end{DoxyParams}
+
+
+Here is the call graph for this function\+:
+% FIG 2
+
+
+\hypertarget{class_main_window_ae98d00a93bc118200eeef9f9bba1dba7}{}\index{Main\+Window@{Main\+Window}!````~Main\+Window@{$\sim$\+Main\+Window}}
+\index{````~Main\+Window@{$\sim$\+Main\+Window}!Main\+Window@{Main\+Window}}
+\subsubsection[{$\sim$\+Main\+Window()}]{\setlength{\rightskip}{0pt plus 5cm}Main\+Window\+::$\sim$\+Main\+Window (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_main_window_ae98d00a93bc118200eeef9f9bba1dba7}
+
+
+\hyperlink{class_main_window}{Main\+Window} Destructor. 
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_main_window_a8ebe9859eb33fda652cf463cc24fac67}{}\index{Main\+Window@{Main\+Window}!check\+Course\+Start@{check\+Course\+Start}}
+\index{check\+Course\+Start@{check\+Course\+Start}!Main\+Window@{Main\+Window}}
+\subsubsection[{check\+Course\+Start}]{\setlength{\rightskip}{0pt plus 5cm}void Main\+Window\+::check\+Course\+Start (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}\label{class_main_window_a8ebe9859eb33fda652cf463cc24fac67}
+
+
+check if any course is starting 
+
+
+
+Here is the call graph for this function\+:
+% FIG 3
+
+
+
+
+Here is the caller graph for this function\+:
+% FIG 4
+
+
+\hypertarget{class_main_window_a2aa013d9a84e2a19d9cfc876df26b71d}{}\index{Main\+Window@{Main\+Window}!d\+\_\+reset\+Function\+Running\+Flag@{d\+\_\+reset\+Function\+Running\+Flag}}
+\index{d\+\_\+reset\+Function\+Running\+Flag@{d\+\_\+reset\+Function\+Running\+Flag}!Main\+Window@{Main\+Window}}
+\subsubsection[{d\+\_\+reset\+Function\+Running\+Flag()}]{\setlength{\rightskip}{0pt plus 5cm}void Main\+Window\+::d\+\_\+reset\+Function\+Running\+Flag (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{class_main_window_a2aa013d9a84e2a19d9cfc876df26b71d}
+
+
+delay timer running flag 
+
+
+
+Here is the caller graph for this function\+:
+% FIG 5
+
+
+\hypertarget{class_main_window_a12bf819145965a9b41a9bae976be2870}{}\index{Main\+Window@{Main\+Window}!door\+Control@{door\+Control}}
+\index{door\+Control@{door\+Control}!Main\+Window@{Main\+Window}}
+\subsubsection[{door\+Control()}]{\setlength{\rightskip}{0pt plus 5cm}void Main\+Window\+::door\+Control (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{class_main_window_a12bf819145965a9b41a9bae976be2870}
+
+
+Trigger Door Control function. 
+
+
+
+Here is the call graph for this function\+:
+% FIG 6
+
+
+
+
+Here is the caller graph for this function\+:
+% FIG 7
+
+
+\hypertarget{class_main_window_a65bbafe4bc6f641952f4675fc672a664}{}\index{Main\+Window@{Main\+Window}!e\+\_\+reset\+Function\+Running\+Flag@{e\+\_\+reset\+Function\+Running\+Flag}}
+\index{e\+\_\+reset\+Function\+Running\+Flag@{e\+\_\+reset\+Function\+Running\+Flag}!Main\+Window@{Main\+Window}}
+\subsubsection[{e\+\_\+reset\+Function\+Running\+Flag()}]{\setlength{\rightskip}{0pt plus 5cm}void Main\+Window\+::e\+\_\+reset\+Function\+Running\+Flag (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{class_main_window_a65bbafe4bc6f641952f4675fc672a664}
+
+
+email timer running flag 
+
+
+
+Here is the caller graph for this function\+:
+% FIG 8
+
+
+\hypertarget{class_main_window_a9abddf234c9231f465917c318b3ba6b2}{}\index{Main\+Window@{Main\+Window}!fingerprint\+Identify\+Listener@{fingerprint\+Identify\+Listener}}
+\index{fingerprint\+Identify\+Listener@{fingerprint\+Identify\+Listener}!Main\+Window@{Main\+Window}}
+\subsubsection[{fingerprint\+Identify\+Listener()}]{\setlength{\rightskip}{0pt plus 5cm}void Main\+Window\+::fingerprint\+Identify\+Listener (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{class_main_window_a9abddf234c9231f465917c318b3ba6b2}
+
+
+Listener for fingerprint sensor. 
+
+
+
+Here is the call graph for this function\+:
+% FIG 9
+
+
+
+
+Here is the caller graph for this function\+:
+% FIG 10
+
+
+\hypertarget{class_main_window_a671e7e5b0a3a7a3fb1cf44c5c8377952}{}\index{Main\+Window@{Main\+Window}!init@{init}}
+\index{init@{init}!Main\+Window@{Main\+Window}}
+\subsubsection[{init}]{\setlength{\rightskip}{0pt plus 5cm}void Main\+Window\+::init (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}\label{class_main_window_a671e7e5b0a3a7a3fb1cf44c5c8377952}
+
+
+Initialise U\+I, doorlock and variable for checking studentwindow, read course database and display on tableview. 
+
+
+
+Here is the call graph for this function\+:
+% FIG 11
+
+
+
+
+Here is the caller graph for this function\+:
+% FIG 12
+
+
+\hypertarget{class_main_window_a1db37ef042ec5f2d06a4a4eddb93b899}{}\index{Main\+Window@{Main\+Window}!on\+\_\+action\+Administrator\+\_\+mode\+\_\+triggered@{on\+\_\+action\+Administrator\+\_\+mode\+\_\+triggered}}
+\index{on\+\_\+action\+Administrator\+\_\+mode\+\_\+triggered@{on\+\_\+action\+Administrator\+\_\+mode\+\_\+triggered}!Main\+Window@{Main\+Window}}
+\subsubsection[{on\+\_\+action\+Administrator\+\_\+mode\+\_\+triggered}]{\setlength{\rightskip}{0pt plus 5cm}void Main\+Window\+::on\+\_\+action\+Administrator\+\_\+mode\+\_\+triggered (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}\label{class_main_window_a1db37ef042ec5f2d06a4a4eddb93b899}
+
+
+Change to administrator mode. 
+
+\hypertarget{class_main_window_a189b458b701fa572969a22f8718ce5b0}{}\index{Main\+Window@{Main\+Window}!on\+\_\+action\+Close\+\_\+triggered@{on\+\_\+action\+Close\+\_\+triggered}}
+\index{on\+\_\+action\+Close\+\_\+triggered@{on\+\_\+action\+Close\+\_\+triggered}!Main\+Window@{Main\+Window}}
+\subsubsection[{on\+\_\+action\+Close\+\_\+triggered}]{\setlength{\rightskip}{0pt plus 5cm}void Main\+Window\+::on\+\_\+action\+Close\+\_\+triggered (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}\label{class_main_window_a189b458b701fa572969a22f8718ce5b0}
+\hypertarget{class_main_window_aafa2658cd70c8c0c7bda3033e3ea40c9}{}\index{Main\+Window@{Main\+Window}!on\+\_\+action\+Switch\+\_\+to\+\_\+student\+\_\+mode\+\_\+triggered@{on\+\_\+action\+Switch\+\_\+to\+\_\+student\+\_\+mode\+\_\+triggered}}
+\index{on\+\_\+action\+Switch\+\_\+to\+\_\+student\+\_\+mode\+\_\+triggered@{on\+\_\+action\+Switch\+\_\+to\+\_\+student\+\_\+mode\+\_\+triggered}!Main\+Window@{Main\+Window}}
+\subsubsection[{on\+\_\+action\+Switch\+\_\+to\+\_\+student\+\_\+mode\+\_\+triggered}]{\setlength{\rightskip}{0pt plus 5cm}void Main\+Window\+::on\+\_\+action\+Switch\+\_\+to\+\_\+student\+\_\+mode\+\_\+triggered (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}\label{class_main_window_aafa2658cd70c8c0c7bda3033e3ea40c9}
+
+
+Change to student mode. 
+
+\hypertarget{class_main_window_aa977314d191cfe595b9e29e25f80ede8}{}\index{Main\+Window@{Main\+Window}!on\+\_\+add\+New\+Course\+Button\+\_\+clicked@{on\+\_\+add\+New\+Course\+Button\+\_\+clicked}}
+\index{on\+\_\+add\+New\+Course\+Button\+\_\+clicked@{on\+\_\+add\+New\+Course\+Button\+\_\+clicked}!Main\+Window@{Main\+Window}}
+\subsubsection[{on\+\_\+add\+New\+Course\+Button\+\_\+clicked}]{\setlength{\rightskip}{0pt plus 5cm}void Main\+Window\+::on\+\_\+add\+New\+Course\+Button\+\_\+clicked (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}\label{class_main_window_aa977314d191cfe595b9e29e25f80ede8}
+
+
+Open a add course window when button is clicked. 
+
+
+
+Here is the call graph for this function\+:
+% FIG 13
+
+
+\hypertarget{class_main_window_aaf19111b868ab633946d093bf0c2eb76}{}\index{Main\+Window@{Main\+Window}!on\+\_\+add\+New\+Student\+Button\+\_\+clicked@{on\+\_\+add\+New\+Student\+Button\+\_\+clicked}}
+\index{on\+\_\+add\+New\+Student\+Button\+\_\+clicked@{on\+\_\+add\+New\+Student\+Button\+\_\+clicked}!Main\+Window@{Main\+Window}}
+\subsubsection[{on\+\_\+add\+New\+Student\+Button\+\_\+clicked}]{\setlength{\rightskip}{0pt plus 5cm}void Main\+Window\+::on\+\_\+add\+New\+Student\+Button\+\_\+clicked (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}\label{class_main_window_aaf19111b868ab633946d093bf0c2eb76}
+
+
+Open add student window when button is clicked. 
+
+
+
+Here is the call graph for this function\+:
+% FIG 14
+
+
+\hypertarget{class_main_window_aae46cc5898251c119f8dcd282d4e2539}{}\index{Main\+Window@{Main\+Window}!on\+\_\+delete\+Course\+Button\+\_\+clicked@{on\+\_\+delete\+Course\+Button\+\_\+clicked}}
+\index{on\+\_\+delete\+Course\+Button\+\_\+clicked@{on\+\_\+delete\+Course\+Button\+\_\+clicked}!Main\+Window@{Main\+Window}}
+\subsubsection[{on\+\_\+delete\+Course\+Button\+\_\+clicked}]{\setlength{\rightskip}{0pt plus 5cm}void Main\+Window\+::on\+\_\+delete\+Course\+Button\+\_\+clicked (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}\label{class_main_window_aae46cc5898251c119f8dcd282d4e2539}
+
+
+Delete selected course when button is clicked. 
+
+
+
+Here is the call graph for this function\+:
+% FIG 15
+
+
+\hypertarget{class_main_window_a617480870497fabb561137928b2231e6}{}\index{Main\+Window@{Main\+Window}!on\+\_\+student\+List\+Button\+\_\+clicked@{on\+\_\+student\+List\+Button\+\_\+clicked}}
+\index{on\+\_\+student\+List\+Button\+\_\+clicked@{on\+\_\+student\+List\+Button\+\_\+clicked}!Main\+Window@{Main\+Window}}
+\subsubsection[{on\+\_\+student\+List\+Button\+\_\+clicked}]{\setlength{\rightskip}{0pt plus 5cm}void Main\+Window\+::on\+\_\+student\+List\+Button\+\_\+clicked (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}\label{class_main_window_a617480870497fabb561137928b2231e6}
+
+
+Open student list when button is clicked. 
+
+
+
+Here is the call graph for this function\+:
+% FIG 16
+
+
+\hypertarget{class_main_window_a310da50ca415fb33ba5ea524198d34f9}{}\index{Main\+Window@{Main\+Window}!on\+\_\+test\+Button\+\_\+clicked@{on\+\_\+test\+Button\+\_\+clicked}}
+\index{on\+\_\+test\+Button\+\_\+clicked@{on\+\_\+test\+Button\+\_\+clicked}!Main\+Window@{Main\+Window}}
+\subsubsection[{on\+\_\+test\+Button\+\_\+clicked}]{\setlength{\rightskip}{0pt plus 5cm}void Main\+Window\+::on\+\_\+test\+Button\+\_\+clicked (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}\label{class_main_window_a310da50ca415fb33ba5ea524198d34f9}
+\hypertarget{class_main_window_afe50cd282014bcb4698a892d2710cdac}{}\index{Main\+Window@{Main\+Window}!on\+Add\+Student\+Window\+Closed@{on\+Add\+Student\+Window\+Closed}}
+\index{on\+Add\+Student\+Window\+Closed@{on\+Add\+Student\+Window\+Closed}!Main\+Window@{Main\+Window}}
+\subsubsection[{on\+Add\+Student\+Window\+Closed}]{\setlength{\rightskip}{0pt plus 5cm}void Main\+Window\+::on\+Add\+Student\+Window\+Closed (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}\label{class_main_window_afe50cd282014bcb4698a892d2710cdac}
+
+
+change fingerprint detect mode when add student window is closed 
+
+
+
+Here is the caller graph for this function\+:
+% FIG 17
+
+
+\hypertarget{class_main_window_a48b5324cb6ef02b6153ef22da4304fe2}{}\index{Main\+Window@{Main\+Window}!on\+F\+P\+I\+D\+Add\+Received@{on\+F\+P\+I\+D\+Add\+Received}}
+\index{on\+F\+P\+I\+D\+Add\+Received@{on\+F\+P\+I\+D\+Add\+Received}!Main\+Window@{Main\+Window}}
+\subsubsection[{on\+F\+P\+I\+D\+Add\+Received}]{\setlength{\rightskip}{0pt plus 5cm}void Main\+Window\+::on\+F\+P\+I\+D\+Add\+Received (
+\begin{DoxyParamCaption}
+\item[{Q\+String}]{fpid}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}\label{class_main_window_a48b5324cb6ef02b6153ef22da4304fe2}
+
+
+Triggered when add student window is opened, fingerprint sensor will switch to add mode and emit fp\+I\+D to \hyperlink{addstudentwindow_8cpp}{addstudentwindow.\+cpp}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fpid} & \\
+\hline
+\end{DoxyParams}
+
+
+Here is the call graph for this function\+:
+% FIG 18
+
+
+\hypertarget{class_main_window_a12c1711cb7ef466a1ccb9d31fc6e2657}{}\index{Main\+Window@{Main\+Window}!on\+F\+P\+I\+D\+Identify\+Received@{on\+F\+P\+I\+D\+Identify\+Received}}
+\index{on\+F\+P\+I\+D\+Identify\+Received@{on\+F\+P\+I\+D\+Identify\+Received}!Main\+Window@{Main\+Window}}
+\subsubsection[{on\+F\+P\+I\+D\+Identify\+Received}]{\setlength{\rightskip}{0pt plus 5cm}void Main\+Window\+::on\+F\+P\+I\+D\+Identify\+Received (
+\begin{DoxyParamCaption}
+\item[{const Q\+String}]{fpid}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}\label{class_main_window_a12c1711cb7ef466a1ccb9d31fc6e2657}
+
+
+Triggered whe \hyperlink{struct_student}{Student} card detected, update attendance list updated and send attendance record email. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fpid} & \\
+\hline
+\end{DoxyParams}
+
+
+Here is the call graph for this function\+:
+% FIG 19
+
+
+\hypertarget{class_main_window_ac8e92844161faf8c2dd4a11e69a57b11}{}\index{Main\+Window@{Main\+Window}!on\+U\+I\+D\+Received@{on\+U\+I\+D\+Received}}
+\index{on\+U\+I\+D\+Received@{on\+U\+I\+D\+Received}!Main\+Window@{Main\+Window}}
+\subsubsection[{on\+U\+I\+D\+Received}]{\setlength{\rightskip}{0pt plus 5cm}void Main\+Window\+::on\+U\+I\+D\+Received (
+\begin{DoxyParamCaption}
+\item[{const Q\+String}]{uid}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}\label{class_main_window_ac8e92844161faf8c2dd4a11e69a57b11}
+
+
+Triggered whe \hyperlink{struct_student}{Student} card detected, update attendance list updated and send attendance record email. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em uid} & is student card id that return by \hyperlink{rfid_8cpp}{rfid.\+cpp} \\
+\hline
+\end{DoxyParams}
+
+
+Here is the call graph for this function\+:
+% FIG 20
+
+
+\hypertarget{class_main_window_a82a7b54e994898bed076451f4b572d89}{}\index{Main\+Window@{Main\+Window}!pass\+Card\+I\+D@{pass\+Card\+I\+D}}
+\index{pass\+Card\+I\+D@{pass\+Card\+I\+D}!Main\+Window@{Main\+Window}}
+\subsubsection[{pass\+Card\+I\+D}]{\setlength{\rightskip}{0pt plus 5cm}void Main\+Window\+::pass\+Card\+I\+D (
+\begin{DoxyParamCaption}
+\item[{Q\+String}]{card\+I\+D}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}\label{class_main_window_a82a7b54e994898bed076451f4b572d89}
+
+
+Here is the caller graph for this function\+:
+% FIG 21
+
+
+\hypertarget{class_main_window_accff5edcedb8592226612c32a3a861d4}{}\index{Main\+Window@{Main\+Window}!pass\+Fp\+I\+D@{pass\+Fp\+I\+D}}
+\index{pass\+Fp\+I\+D@{pass\+Fp\+I\+D}!Main\+Window@{Main\+Window}}
+\subsubsection[{pass\+Fp\+I\+D}]{\setlength{\rightskip}{0pt plus 5cm}void Main\+Window\+::pass\+Fp\+I\+D (
+\begin{DoxyParamCaption}
+\item[{Q\+String}]{fp\+I\+D}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}\label{class_main_window_accff5edcedb8592226612c32a3a861d4}
+
+
+Here is the caller graph for this function\+:
+% FIG 22
+
+
+\hypertarget{class_main_window_a57fcf83e8fc3f5bfcab4ae81240bf119}{}\index{Main\+Window@{Main\+Window}!record\+Attendance\+Window@{record\+Attendance\+Window}}
+\index{record\+Attendance\+Window@{record\+Attendance\+Window}!Main\+Window@{Main\+Window}}
+\subsubsection[{record\+Attendance\+Window(\+Q\+String student\+I\+D)}]{\setlength{\rightskip}{0pt plus 5cm}void Main\+Window\+::record\+Attendance\+Window (
+\begin{DoxyParamCaption}
+\item[{Q\+String}]{student\+I\+D}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{class_main_window_a57fcf83e8fc3f5bfcab4ae81240bf119}
+
+
+Record student attendance when rfid or fingerprint detected. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em student\+I\+D} & \\
+\hline
+\end{DoxyParams}
+
+
+Here is the caller graph for this function\+:
+% FIG 23
+
+
+\hypertarget{class_main_window_af35c36df2b6650b0ea50d6afa5c24874}{}\index{Main\+Window@{Main\+Window}!rfid\+Listener@{rfid\+Listener}}
+\index{rfid\+Listener@{rfid\+Listener}!Main\+Window@{Main\+Window}}
+\subsubsection[{rfid\+Listener()}]{\setlength{\rightskip}{0pt plus 5cm}void Main\+Window\+::rfid\+Listener (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{class_main_window_af35c36df2b6650b0ea50d6afa5c24874}
+
+
+Listener for \hyperlink{class_r_f_i_d}{R\+F\+I\+D} reader. 
+
+
+
+Here is the call graph for this function\+:
+% FIG 24
+
+
+
+
+Here is the caller graph for this function\+:
+% FIG 25
+
+
+\hypertarget{class_main_window_a128f71880d4b9683149023fc46fcc9f8}{}\index{Main\+Window@{Main\+Window}!update@{update}}
+\index{update@{update}!Main\+Window@{Main\+Window}}
+\subsubsection[{update}]{\setlength{\rightskip}{0pt plus 5cm}void Main\+Window\+::update (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}\label{class_main_window_a128f71880d4b9683149023fc46fcc9f8}
+
+
+course start 
+
+
+
+Here is the call graph for this function\+:
+% FIG 26
+
+
+
+
+Here is the caller graph for this function\+:
+% FIG 27
+
+
+\hypertarget{class_main_window_a719a423fa05029712c4d67b938f4a551}{}\index{Main\+Window@{Main\+Window}!update\+Datetime\+Display@{update\+Datetime\+Display}}
+\index{update\+Datetime\+Display@{update\+Datetime\+Display}!Main\+Window@{Main\+Window}}
+\subsubsection[{update\+Datetime\+Display}]{\setlength{\rightskip}{0pt plus 5cm}void Main\+Window\+::update\+Datetime\+Display (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}\label{class_main_window_a719a423fa05029712c4d67b938f4a551}
+
+
+update date and time display on mainwindow 
+
+
+
+Here is the caller graph for this function\+:
+% FIG 28
+
+
+\hypertarget{class_main_window_ae72f434e60eb56c5ba1f18c1a0edd2ba}{}\index{Main\+Window@{Main\+Window}!update\+Student\+Table@{update\+Student\+Table}}
+\index{update\+Student\+Table@{update\+Student\+Table}!Main\+Window@{Main\+Window}}
+\subsubsection[{update\+Student\+Table()}]{\setlength{\rightskip}{0pt plus 5cm}void Main\+Window\+::update\+Student\+Table (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_main_window_ae72f434e60eb56c5ba1f18c1a0edd2ba}
+
+
+update student table with upcoming course 
+
+
+
+Here is the call graph for this function\+:
+% FIG 29
+
+
+
+
+Here is the caller graph for this function\+:
+% FIG 30
+
+
+\hypertarget{class_main_window_a31ebff8b2a54cfd5f634c82253f3ffdd}{}\index{Main\+Window@{Main\+Window}!update\+Table\+View@{update\+Table\+View}}
+\index{update\+Table\+View@{update\+Table\+View}!Main\+Window@{Main\+Window}}
+\subsubsection[{update\+Table\+View()}]{\setlength{\rightskip}{0pt plus 5cm}void Main\+Window\+::update\+Table\+View (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_main_window_a31ebff8b2a54cfd5f634c82253f3ffdd}
+
+
+update course table 
+
+
+
+Here is the call graph for this function\+:
+% FIG 31
+
+
+
+
+Here is the caller graph for this function\+:
+% FIG 32
+
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_main_window_af5c03c6632d910a4a733ff21f5613cc5}{}\index{Main\+Window@{Main\+Window}!admin\+Mode@{admin\+Mode}}
+\index{admin\+Mode@{admin\+Mode}!Main\+Window@{Main\+Window}}
+\subsubsection[{admin\+Mode}]{\setlength{\rightskip}{0pt plus 5cm}bool Main\+Window\+::admin\+Mode = false\hspace{0.3cm}{\ttfamily [private]}}\label{class_main_window_af5c03c6632d910a4a733ff21f5613cc5}
+\hypertarget{class_main_window_a38cdde30de1c2211dc81a739ed1af6aa}{}\index{Main\+Window@{Main\+Window}!cdb@{cdb}}
+\index{cdb@{cdb}!Main\+Window@{Main\+Window}}
+\subsubsection[{cdb}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Course\+D\+B} Main\+Window\+::cdb\hspace{0.3cm}{\ttfamily [private]}}\label{class_main_window_a38cdde30de1c2211dc81a739ed1af6aa}
+\hypertarget{class_main_window_a0c800a8b8fe1c75097adf279dc1dfc85}{}\index{Main\+Window@{Main\+Window}!course\+List@{course\+List}}
+\index{course\+List@{course\+List}!Main\+Window@{Main\+Window}}
+\subsubsection[{course\+List}]{\setlength{\rightskip}{0pt plus 5cm}Q\+List$<${\bf Course}$>$ Main\+Window\+::course\+List\hspace{0.3cm}{\ttfamily [private]}}\label{class_main_window_a0c800a8b8fe1c75097adf279dc1dfc85}
+\hypertarget{class_main_window_af58e1c4e884964d4e4376c5bbbe5ef66}{}\index{Main\+Window@{Main\+Window}!d\+\_\+function\+Running@{d\+\_\+function\+Running}}
+\index{d\+\_\+function\+Running@{d\+\_\+function\+Running}!Main\+Window@{Main\+Window}}
+\subsubsection[{d\+\_\+function\+Running}]{\setlength{\rightskip}{0pt plus 5cm}bool Main\+Window\+::d\+\_\+function\+Running\hspace{0.3cm}{\ttfamily [private]}}\label{class_main_window_af58e1c4e884964d4e4376c5bbbe5ef66}
+\hypertarget{class_main_window_a96bf5b586be34a9e3a42cf556c089968}{}\index{Main\+Window@{Main\+Window}!delay\+\_\+timer@{delay\+\_\+timer}}
+\index{delay\+\_\+timer@{delay\+\_\+timer}!Main\+Window@{Main\+Window}}
+\subsubsection[{delay\+\_\+timer}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Timer$\ast$ Main\+Window\+::delay\+\_\+timer\hspace{0.3cm}{\ttfamily [private]}}\label{class_main_window_a96bf5b586be34a9e3a42cf556c089968}
+\hypertarget{class_main_window_ab9804d41deeb12dcc418fcb56aacefb4}{}\index{Main\+Window@{Main\+Window}!door@{door}}
+\index{door@{door}!Main\+Window@{Main\+Window}}
+\subsubsection[{door}]{\setlength{\rightskip}{0pt plus 5cm}bool Main\+Window\+::door\hspace{0.3cm}{\ttfamily [private]}}\label{class_main_window_ab9804d41deeb12dcc418fcb56aacefb4}
+\hypertarget{class_main_window_a1238bb71f8626ea3d2423c70bce5424e}{}\index{Main\+Window@{Main\+Window}!doorlock@{doorlock}}
+\index{doorlock@{doorlock}!Main\+Window@{Main\+Window}}
+\subsubsection[{doorlock}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Doorlock} Main\+Window\+::doorlock\hspace{0.3cm}{\ttfamily [private]}}\label{class_main_window_a1238bb71f8626ea3d2423c70bce5424e}
+\hypertarget{class_main_window_a7e5c1368e92535153288333135ab9c1f}{}\index{Main\+Window@{Main\+Window}!doorlock\+Thread@{doorlock\+Thread}}
+\index{doorlock\+Thread@{doorlock\+Thread}!Main\+Window@{Main\+Window}}
+\subsubsection[{doorlock\+Thread}]{\setlength{\rightskip}{0pt plus 5cm}std\+::thread Main\+Window\+::doorlock\+Thread\hspace{0.3cm}{\ttfamily [private]}}\label{class_main_window_a7e5c1368e92535153288333135ab9c1f}
+\hypertarget{class_main_window_a37f37771700fd6774a1074c6654c41bf}{}\index{Main\+Window@{Main\+Window}!e\+\_\+function\+Running@{e\+\_\+function\+Running}}
+\index{e\+\_\+function\+Running@{e\+\_\+function\+Running}!Main\+Window@{Main\+Window}}
+\subsubsection[{e\+\_\+function\+Running}]{\setlength{\rightskip}{0pt plus 5cm}bool Main\+Window\+::e\+\_\+function\+Running\hspace{0.3cm}{\ttfamily [private]}}\label{class_main_window_a37f37771700fd6774a1074c6654c41bf}
+\hypertarget{class_main_window_a145bbdf02640590c1d953827a139fb48}{}\index{Main\+Window@{Main\+Window}!email\+\_\+timer@{email\+\_\+timer}}
+\index{email\+\_\+timer@{email\+\_\+timer}!Main\+Window@{Main\+Window}}
+\subsubsection[{email\+\_\+timer}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Timer$\ast$ Main\+Window\+::email\+\_\+timer\hspace{0.3cm}{\ttfamily [private]}}\label{class_main_window_a145bbdf02640590c1d953827a139fb48}
+\hypertarget{class_main_window_ae27e65bcfce4d59fd1b51328b44e5a3f}{}\index{Main\+Window@{Main\+Window}!fingerprint\+Identify\+Thread@{fingerprint\+Identify\+Thread}}
+\index{fingerprint\+Identify\+Thread@{fingerprint\+Identify\+Thread}!Main\+Window@{Main\+Window}}
+\subsubsection[{fingerprint\+Identify\+Thread}]{\setlength{\rightskip}{0pt plus 5cm}std\+::thread Main\+Window\+::fingerprint\+Identify\+Thread\hspace{0.3cm}{\ttfamily [private]}}\label{class_main_window_ae27e65bcfce4d59fd1b51328b44e5a3f}
+\hypertarget{class_main_window_ae9b267fa7badc7c10d9f03ab6dd99a21}{}\index{Main\+Window@{Main\+Window}!fp@{fp}}
+\index{fp@{fp}!Main\+Window@{Main\+Window}}
+\subsubsection[{fp}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Fingerprint} Main\+Window\+::fp\hspace{0.3cm}{\ttfamily [private]}}\label{class_main_window_ae9b267fa7badc7c10d9f03ab6dd99a21}
+\hypertarget{class_main_window_a122902405a566547943551c2e1a01b51}{}\index{Main\+Window@{Main\+Window}!fp\+Mode@{fp\+Mode}}
+\index{fp\+Mode@{fp\+Mode}!Main\+Window@{Main\+Window}}
+\subsubsection[{fp\+Mode}]{\setlength{\rightskip}{0pt plus 5cm}int Main\+Window\+::fp\+Mode\hspace{0.3cm}{\ttfamily [private]}}\label{class_main_window_a122902405a566547943551c2e1a01b51}
+\hypertarget{class_main_window_aa1a1f8ce9c37a7ac70d21402759638b3}{}\index{Main\+Window@{Main\+Window}!model@{model}}
+\index{model@{model}!Main\+Window@{Main\+Window}}
+\subsubsection[{model}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Standard\+Item\+Model$\ast$ Main\+Window\+::model\hspace{0.3cm}{\ttfamily [private]}}\label{class_main_window_aa1a1f8ce9c37a7ac70d21402759638b3}
+\hypertarget{class_main_window_a3731e42d8e85714bda210c44605974df}{}\index{Main\+Window@{Main\+Window}!rfid@{rfid}}
+\index{rfid@{rfid}!Main\+Window@{Main\+Window}}
+\subsubsection[{rfid}]{\setlength{\rightskip}{0pt plus 5cm}{\bf R\+F\+I\+D} Main\+Window\+::rfid\hspace{0.3cm}{\ttfamily [private]}}\label{class_main_window_a3731e42d8e85714bda210c44605974df}
+\hypertarget{class_main_window_a34e32ec4b55f9259776c82da9c7364ac}{}\index{Main\+Window@{Main\+Window}!rfid\+Thread@{rfid\+Thread}}
+\index{rfid\+Thread@{rfid\+Thread}!Main\+Window@{Main\+Window}}
+\subsubsection[{rfid\+Thread}]{\setlength{\rightskip}{0pt plus 5cm}std\+::thread Main\+Window\+::rfid\+Thread\hspace{0.3cm}{\ttfamily [private]}}\label{class_main_window_a34e32ec4b55f9259776c82da9c7364ac}
+\hypertarget{class_main_window_a3565b914d8d79bc20add7c9b669b738c}{}\index{Main\+Window@{Main\+Window}!running@{running}}
+\index{running@{running}!Main\+Window@{Main\+Window}}
+\subsubsection[{running}]{\setlength{\rightskip}{0pt plus 5cm}bool Main\+Window\+::running\hspace{0.3cm}{\ttfamily [private]}}\label{class_main_window_a3565b914d8d79bc20add7c9b669b738c}
+\hypertarget{class_main_window_a36cba3be5ce45e891732fc37f909f160}{}\index{Main\+Window@{Main\+Window}!sdb@{sdb}}
+\index{sdb@{sdb}!Main\+Window@{Main\+Window}}
+\subsubsection[{sdb}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Student\+D\+B} Main\+Window\+::sdb\hspace{0.3cm}{\ttfamily [private]}}\label{class_main_window_a36cba3be5ce45e891732fc37f909f160}
+\hypertarget{class_main_window_a9e29f365cc9fb25a1fa34c8ea81e406b}{}\index{Main\+Window@{Main\+Window}!s\+Model@{s\+Model}}
+\index{s\+Model@{s\+Model}!Main\+Window@{Main\+Window}}
+\subsubsection[{s\+Model}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Standard\+Item\+Model$\ast$ Main\+Window\+::s\+Model\hspace{0.3cm}{\ttfamily [private]}}\label{class_main_window_a9e29f365cc9fb25a1fa34c8ea81e406b}
+\hypertarget{class_main_window_a222458b690e6b51b1fd78f24475743e8}{}\index{Main\+Window@{Main\+Window}!student\+Window\+Valid@{student\+Window\+Valid}}
+\index{student\+Window\+Valid@{student\+Window\+Valid}!Main\+Window@{Main\+Window}}
+\subsubsection[{student\+Window\+Valid}]{\setlength{\rightskip}{0pt plus 5cm}bool Main\+Window\+::student\+Window\+Valid\hspace{0.3cm}{\ttfamily [private]}}\label{class_main_window_a222458b690e6b51b1fd78f24475743e8}
+\hypertarget{class_main_window_aad218c6ea271c5f52b8b9f8772b51e23}{}\index{Main\+Window@{Main\+Window}!s\+Window@{s\+Window}}
+\index{s\+Window@{s\+Window}!Main\+Window@{Main\+Window}}
+\subsubsection[{s\+Window}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Add\+Student\+Window}$\ast$ Main\+Window\+::s\+Window\hspace{0.3cm}{\ttfamily [private]}}\label{class_main_window_aad218c6ea271c5f52b8b9f8772b51e23}
+\hypertarget{class_main_window_a35466a70ed47252a0191168126a352a5}{}\index{Main\+Window@{Main\+Window}!ui@{ui}}
+\index{ui@{ui}!Main\+Window@{Main\+Window}}
+\subsubsection[{ui}]{\setlength{\rightskip}{0pt plus 5cm}Ui\+::\+Main\+Window$\ast$ Main\+Window\+::ui\hspace{0.3cm}{\ttfamily [private]}}\label{class_main_window_a35466a70ed47252a0191168126a352a5}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Glasgow Course Works/\+Realtime Embeded Programming/\+Project files/\+Course\+Project/\+Attendance-\/recording-\/system/src/\hyperlink{mainwindow_8h}{mainwindow.\+h}\item 
+E\+:/\+Glasgow Course Works/\+Realtime Embeded Programming/\+Project files/\+Course\+Project/\+Attendance-\/recording-\/system/src/\hyperlink{mainwindow_8cpp}{mainwindow.\+cpp}\end{DoxyCompactItemize}

@@ -1,0 +1,20 @@
+digraph "E:/Glasgow Course Works/Realtime Embeded Programming/Project files/CourseProject/Attendance-recording-system/src" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_21abc70e16bc01c891fab1fdb2dfa975 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="Attendance-recording-system" fontname="Helvetica", fontsize="10", URL="dir_21abc70e16bc01c891fab1fdb2dfa975.html"]
+  subgraph clusterdir_5efe15e50f941378dbaefc0e60bb55bf {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_5efe15e50f941378dbaefc0e60bb55bf.html"];
+    dir_5efe15e50f941378dbaefc0e60bb55bf [shape=plaintext label="src"];
+    dir_b3255a4687f8767dd653a975ef6d9c5b [shape=box label="AS608" color="red" fillcolor="white" style="filled" URL="dir_b3255a4687f8767dd653a975ef6d9c5b.html"];
+    dir_59761aae5c38257df89346c8991fc1e2 [shape=box label="database" color="red" fillcolor="white" style="filled" URL="dir_59761aae5c38257df89346c8991fc1e2.html"];
+    dir_bdd212af480d639e47cc70cf6c3b8efb [shape=box label="doorlock" color="red" fillcolor="white" style="filled" URL="dir_bdd212af480d639e47cc70cf6c3b8efb.html"];
+    dir_180249faa8f80232629226df367626a4 [shape=box label="email_curl" color="red" fillcolor="white" style="filled" URL="dir_180249faa8f80232629226df367626a4.html"];
+    dir_6ba198b2c67eb44e1dbfbf0b7cf97e6c [shape=box label="PN532" color="red" fillcolor="white" style="filled" URL="dir_6ba198b2c67eb44e1dbfbf0b7cf97e6c.html"];
+  }
+  }
+  dir_59761aae5c38257df89346c8991fc1e2->dir_180249faa8f80232629226df367626a4 [headlabel="1", labeldistance=1.5 headhref="dir_000009_000011.html"];
+  dir_5efe15e50f941378dbaefc0e60bb55bf->dir_59761aae5c38257df89346c8991fc1e2 [headlabel="2", labeldistance=1.5 headhref="dir_000005_000009.html"];
+  dir_5efe15e50f941378dbaefc0e60bb55bf->dir_bdd212af480d639e47cc70cf6c3b8efb [headlabel="1", labeldistance=1.5 headhref="dir_000005_000015.html"];
+}

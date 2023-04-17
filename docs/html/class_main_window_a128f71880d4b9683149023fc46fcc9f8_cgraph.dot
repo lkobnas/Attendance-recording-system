@@ -1,0 +1,30 @@
+digraph "MainWindow::update"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="MainWindow::update",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="MainWindow::updateDatetime\lDisplay",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_main_window.html#a719a423fa05029712c4d67b938f4a551",tooltip="update date and time display on mainwindow "];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="MainWindow::checkCourseStart",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_main_window.html#a8ebe9859eb33fda652cf463cc24fac67",tooltip="check if any course is starting "];
+  Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="CourseDB::getCourse",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_course_d_b.html#afc10757467c711b2782bd1c1cb23b0fc",tooltip="Access to courses in the database and extraction of relevant student lists and related data..."];
+  Node3 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="Email::send_email_lateReminder",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_email.html#a3522905a60977cac1c8d99d4c911f3ee",tooltip="send_email_lateReminder for a class Email which sends an email reminder to a recipient who is late fo..."];
+  Node5 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="Email::readCredentialsFile",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_email.html#af94727858b272dfb14a9f1224a8f2da1",tooltip="read a file named \"credentials.txt\" to obtain an API key used for authentication in an email system ..."];
+  Node3 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="CourseDB::deleteCourse",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_course_d_b.html#a31f81ae3094414ea8f14dcceec6532ae",tooltip="Delete a course name from the database. "];
+  Node3 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="MyException::message",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_my_exception.html#a7371232a66d68dcd8c8c6363b434c0db"];
+  Node3 -> Node9 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="MainWindow::updateTableView",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_main_window.html#a31ebff8b2a54cfd5f634c82253f3ffdd",tooltip="update course table "];
+  Node9 -> Node10 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="CourseDB::getAllCourses",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_course_d_b.html#ada1e9df01308d68dacc6a95730517a01",tooltip="Retrieves all courses from the database and returns them as QList<Course>. "];
+  Node9 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 -> Node11 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="MainWindow::updateStudent\lTable",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_main_window.html#ae72f434e60eb56c5ba1f18c1a0edd2ba",tooltip="update student table with upcoming course "];
+  Node11 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}
