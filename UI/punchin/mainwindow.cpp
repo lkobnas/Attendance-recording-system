@@ -270,9 +270,9 @@ void MainWindow::on_actionSwitch_to_student_mode_triggered()
 
 void MainWindow::on_testButton_clicked()
 {
-    rfidThread.wait();
-    fingerprintIdentifyThread.wait();
-    doorlockThread.wait();
+    rfidThread.join();
+    fingerprintIdentifyThread.join();
+    doorlockThread.join();
 
     // Call the base class closeEvent() method to actually close the window
     
