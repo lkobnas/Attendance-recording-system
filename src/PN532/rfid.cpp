@@ -26,23 +26,19 @@ string RFID::get_uid(void) {
     }
     PN532_SamConfiguration(&pn532);
     cout<<"Waiting for RFID/NFC card...\r\n";
-    while (1)
-    {
-        // Check if a card is available to read
-        uid_len = PN532_ReadPassiveTarget(&pn532, uid, PN532_MIFARE_ISO14443A, 1000);
-        if (uid_len == PN532_STATUS_ERROR) {
-            cout<<".";
-            fflush(stdout);
-        } else {
-            cout<<"\r\n Card founded ";
-            for (uint8_t i = 0; i < uid_len; i++) {
-                //printf("%02x ", uid[i]);
-                //cout<<hex<<static_cast<int>(uid[i])<<" ";
-                uid_str += to_string(uid[i]);
-            }
-            //cout<<"\r\n"<<uid_str;
-            break;
+    // Check if a card is available to read
+    uid_len = PN532_ReadPassiveTarget(&pn532, uid, PN532_MIFARE_ISO14443A, 1000);
+    if (uid_len == PN532_STATUS_ERROR) {
+        cout<<".";
+        fflush(stdout);
+    } else {
+        cout<<"\r\n Card founded ";
+        for (uint8_t i = 0; i < uid_len; i++) {
+            //printf("%02x ", uid[i]);
+            //cout<<hex<<static_cast<int>(uid[i])<<" ";
+            uid_str += to_string(uid[i]);
         }
+        //cout<<"\r\n"<<uid_str;
     }
 return uid_str;
 }

@@ -1,9 +1,10 @@
 #include <iostream>
-#include "doorlock.h"
+#include "../doorlock.h"
 
 int main() {
     try {
-        Doorlock gpio(26);
+        Doorlock gpio;
+        gpio.init(26);
         gpio.run();
     }
     catch (const std::runtime_error& e) {

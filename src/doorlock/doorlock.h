@@ -3,7 +3,7 @@
 
 class Doorlock {
 public:
-    Doorlock(int pin);
+    void init(int pin);
     void run();
 private:
     int pin;

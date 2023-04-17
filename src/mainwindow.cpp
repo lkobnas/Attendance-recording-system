@@ -8,7 +8,6 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    doorlock = new Doorlock(26);
     fp.fp_init();
     init();
     //Timer for date/time display
@@ -36,7 +35,6 @@ MainWindow::MainWindow(QWidget *parent)
     fingerprintIdentifyThread = std::thread(&MainWindow::fingerprintIdentifyListener, this);
     doorlockThread = std::thread(&MainWindow::doorControl, this);
     
-
 }
 
 /// @brief add rfid
@@ -86,6 +84,7 @@ void MainWindow::init(){
     ui->labelUpcomingCourse->setFont(font);
 
     door = false;
+    doorlock.init(26);
     studentWindowValid = false;
     try{
         cdb.initDB();
@@ -636,9 +635,11 @@ void MainWindow::onFPIDAddReceived(QString fpid){
 }
 
 void MainWindow::doorControl(){
-    if(door){
-        doorlock->run();
-        door = false;
+    while(running){
+        if(door){
+            doorlock.run();
+            door = false;
+        }
     }
 
 }

@@ -2,19 +2,18 @@
 #include <wiringPi.h>
 #include <stdexcept>
 
-Doorlock::Doorlock(int pin) : pin(pin) {
+void Doorlock::init(int p){
+    pin = p;
     if (wiringPiSetupGpio() == -1) {
         throw std::runtime_error("wiringPi setup failed");
     }
     pinMode(pin, OUTPUT);
 }
-
 void Doorlock::run(){
-    Doorlock gpio(26);
-    gpio.setPinHigh();
-    gpio.delayMillis(5000);
-    gpio.setPinLow();
-    gpio.delayMillis(1000);
+    setPinHigh();
+    delayMillis(1500);
+    setPinLow();
+    delayMillis(1000);
 }
 
 void Doorlock::setPinHigh() {
