@@ -36,6 +36,12 @@ Tired of taking attendance by hand? This project will surely help you out! Punch
   <li><a href="#acknowledgements">Acknowledgements</a></li>
 </ul>
 
+<h2>PunchIN!</h2>
+<br>
+<img src="images/punchin.jpeg" alt="UI" width="800" height="500" style="margin-left:25px">
+<br>
+<br>
+
 <h2>Watch our Demo video here :</h2>
 
 <h3>
