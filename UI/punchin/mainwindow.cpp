@@ -402,6 +402,10 @@ void MainWindow::updateStudentTable(){
 
 void MainWindow::on_deleteCourseButton_clicked()
 {
+    if(!adminMode){
+        QMessageBox::warning(this, "Permission Denied", "Please switch to admin mode");
+        return;
+    }
     QList<QStringList> selectedData = getSelectedData(ui->tableView);
     if(selectedData.size()<1){
         QMessageBox::warning(this, "Error deleting course", "Please select a course");
