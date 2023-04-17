@@ -134,7 +134,27 @@ When open device, COM number should be choosen, we can check the  "Windows Devic
 <h4> Prerequisites </h4>
 
 1. E-mail
+<br>
 
+* Create a SendGrid account and get an API key
+<br>
+Go to the SendGrid website at https://sendgrid.com/.
+<br>
+Click on the "Sign Up" button located in the top-right corner of the website.
+<br>
+Fill in your email address, password, and complete the reCAPTCHA to create an account.
+<br>
+Once you have created an account, log in to the SendGrid dashboard.
+<br>
+In the dashboard, click on the "Settings" button in the left-hand navigation menu.
+<br>
+Select "API Keys" from the list of options.
+<br>
+Click on the "Create API Key" button.
+<br>
+Give your API key a name, select the permissions you want to grant it, and click on the "Create & View" button.
+<br>
+Your new API key will now be displayed on the screen. Make sure to copy and securely store the API key somewhere safe, as it will only be displayed once.
 <br>
 
 2. Database
@@ -174,13 +194,21 @@ Install WiringPi
 ```
     sudo apt-get install wiringpi
 ```
-<br>
 <h4> Installation </h4>
+
+## Setting up E-mail credentials
+
+```
+    cd src/main
+    mkdir build
+    cd build
+    touch credentials.txt
+```
+Then copy the API key we got and paste it into the "credentials.txt", make sure the API key in the first row of txt file.
 
 ## Building the project
 
 ```
-    mkdir build && cd build
     cmake ..
     make
 ```
