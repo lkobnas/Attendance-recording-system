@@ -23,6 +23,14 @@ Tired of taking attendance by hand? This project will surely help you out! Punch
 
 <br>
 
+<h2> <br> Table of content </h2>
+<ul>
+  <li><a href="#section-1">Features</a></li>
+  <li><a href="#section-2">System design</a></li>
+  <li><a href="#section-3">Getting Started!</a></li>
+</ul>
+
+
 <h2> <br> Features </h2>
 
 <h3> 1. Take attendance with two methods </h3>
@@ -35,18 +43,23 @@ Tired of taking attendance by hand? This project will surely help you out! Punch
 
 <h3> 2. Friendly UI design </h3>
 
-Intuitive UI design with three operation modes:
+Intuitive UI design with various features:
 
-- Attendance Taking mode
-- User Registration mode 
-- Class Scheduling mode
+- Attendance Taking
+- Add Student to PunchIN
+- Add Course to PunchIN
+- Administrative Mode
+- Real-time Course Table
+- Expecting and Arrived student table
 
 <br>
 
 <h3> 3. Email notification </h3>
 
-- A confirmation email will be sent out automatically when a student has punched in
-- A reminder email will be sent to students who registered in a class but did not show up on time
+- Confirmation email will be sent to new registered student
+- Confirmation email will be sent to student who has been enrolled to a new course
+- Confirmation email will be sent out automatically when a student has punched in
+- Reminder email will be sent to students who registered in a class but did not show up on time
 
 <br>
 
@@ -56,7 +69,13 @@ All scheduled classes and attendance records are saved into the local database. 
 
 <br>
 
-<h2> Maximum Flexibility! </h2>
+<h3> 5. Doorlock control </h3>
+
+A doorlock will be opened for student who has just Punched in. In this project, we will use a LED to simulate the door unlocking process
+
+<br>
+
+<b> Maximum Flexibility! </b>
 
 <br>
 
@@ -86,23 +105,23 @@ All scheduled classes and attendance records are saved into the local database. 
 <br>
 
 <h2> Getting Started </h2>
-
-
-
-<h3> Hardware </h3>
-<h4> Prerequisites </h4>
-
+<br>
+<h3><b> Hardware </b></h3>
+<h3> Prerequisites </h3>
+<br>
 1. RFID/NFC-PN532
 <br>
 <img src="images/pn532.jpg" alt="pn532 module" width="400" height="400">
 <br>
-
 2. Fingerprint-AS608
 <br>
 <img src="images/as608.png" alt="as608 module" width="400" height="400">
 <br>
-<h4> Installation </h4>
+<br>
+<br>
 
+<h3> Installation </h3>
+<br>
 1. RFID/NFC-PN532
 <br>
 We follow the steps of connection to connect our PN532 NFC module to the Raspberry Pi 4B: 
@@ -110,32 +129,47 @@ We follow the steps of connection to connect our PN532 NFC module to the Raspber
 <br>
 The exact pin definition of Raspberry Pi 4B can be seen in the reference.
 <br>
-
 2. Fingerprint-AS608
 <br>
+
 We find a pin definition for our AS608 module, when connecting to a Raspberry, we only use pin 1-6, in our attendence project, we define pin5 of AS608 connect to GPIO 1(Use WiringPi definition here) of Raspberry Pi.
+
 <br>
 <img src="images/as608_connection.png" alt="as608 connection" width="600" height="400">
 <br>
+
 Using a fingerprint test software SYDemo to verify every function in the AS608 module, such as adding fingerprint, deleting finerprints and list all fingerprint index. 
 <br>
+
 It need a TTL-USB converter to make communication between AS608 and PC possibile.
+
 <br>
 <img src="images/TTL_to_USB.jpg" alt="as608 module" width="400" height="500">
 <br>
+
 When open device, COM number should be choosen, we can check the  "Windows Device Console" to confirm the COM number of TTL-USB, and open device with this COM number.
+
 <br>
 <img src="images/as608test.png" alt="as608 module test software" width="600" height="500">
 
+<br>
+<br>
+3. Doorlock/LED
+<br>
+Connect the LED positive pin to RaspberryPi GPIO pin 26, LED negative pin to Raspberry Pi Ground pin.
 
 <br>
-
-<h3> Software </h3>
-<h4> Prerequisites </h4>
-
+<h3><b> Software </b></h3>
+<h3> Prerequisites </h3>
+<br>
 1. E-mail
 <br>
+Download curl library 
+```
+sudo apt-get install curl.
+```
 
+<br>
 * Create a SendGrid account and get an API key
 <br>
 Go to the SendGrid website at https://sendgrid.com/.
@@ -156,19 +190,19 @@ Give your API key a name, select the permissions you want to grant it, and click
 <br>
 Your new API key will now be displayed on the screen. Make sure to copy and securely store the API key somewhere safe, as it will only be displayed once.
 <br>
-
+<br>
 2. Database
+
 <br>
 
 ```
 sudo apt-get install sqlite3 libsqlite3-dev
 ```
 
-
-3. UI
 <br>
+3. UI
 
-## Required packages
+<br>
 
 Install the QT5 and Qwt development packages:
 
@@ -178,9 +212,10 @@ Install the QT5 and Qwt development packages:
     sudo apt-get install qtbase5-dev
 ```
 
-
+<br>
 4. GPIO
 <br>
+
 Check if WiringPi installed in Raspberry Pi
 
 ```
@@ -188,38 +223,73 @@ Check if WiringPi installed in Raspberry Pi
 ```
 
 <br>
-Install WiringPi
+5. Install wiringPi
 <br>
 
 ```
     sudo apt-get install wiringpi
 ```
-<h4> Installation </h4>
-
-## Setting up E-mail credentials
+<br>
+6. Cmake
+<br>
 
 ```
-    cd src/main
-    mkdir build
-    cd build
+    sudo apt-get install cmake
+```
+<br>
+<br>
+<h3> Installation </h3>
+<br>
+Clone PunchIN here!
+
+```
+git clone https://github.com/lkobnas/Attendance-recording-system.git
+```
+<br>
+Create build folder
+
+```
+cd Attendance-recording-system/src
+mkdir build && cd build
+```
+<br>
+Create E-mail credentials file inside the build folder
+
+```
     touch credentials.txt
 ```
 Then copy the API key we got and paste it into the "credentials.txt", make sure the API key in the first row of txt file.
 
-## Building the project
+<br>
+Building the project
 
 ```
     cmake ..
     make
 ```
-
-## Running the project
+<br>
+Running the project
 
 ```
     ./punchin
 ```
 
 <br>
+
+
+<h2> Test </h2>
+We are using Google Test in the project. Click the following link for more details!
+
+([Testing Page](./Test)) <br>
+<br>
+<br>
+
+<h2> Project Planning </h2>
+
+[GitHub Projects - PunchIN Project Planning](https://github.com/users/lkobnas/projects/1)
+<br>
+<br>
+
 
 <h2> Contributors </h2>
 <a href="https://github.com/lkobnas/Attendance-recording-system/graphs/contributors">
@@ -232,16 +302,6 @@ Then copy the API key we got and paste it into the "credentials.txt", make sure 
 ([37Sniper](https://github.com/37Sniper)) - Chenguang Wang (2826966W) <br>
 ([HengyuY](https://github.com/HengyuY)) - Hengyu Yang (2822511Y) <br>
 ([Yyyyy0512](https://github.com/Yyyyy0512)) - Jin Yang (2803454Y) <br>
-<br>
-<br>
-
-<h2> Test </h2>
-
-<br>
-
-<h2> Project Planning </h2>
-
-[GitHub Projects - PunchIN Project Planning](https://github.com/users/lkobnas/projects/1)
 <br>
 <br>
 
@@ -277,6 +337,9 @@ SendGrid: A cloud-based email delivery platform that provides a simple, reliable
 * Creating Icon ([Flaticon](https://www.flaticon.com/))
 * Making contributor section ([contributor.img](https://contrib.rocks/))
 * Creating graph and diagram ([Lucidchart](https://www.lucidchart.com/pages/))
+
+<br>
+<br>
 
 
 <!-- MARKDOWN LINKS & IMAGES -->

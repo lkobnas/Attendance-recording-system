@@ -2,7 +2,6 @@
 
 ## Setup
 ```
-cd email_curl/Test
 mkdir build && cd build
 camke ..
 make
