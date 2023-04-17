@@ -1,0 +1,31 @@
+digraph "MainWindow::onUIDReceived"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="MainWindow::onUIDReceived",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="AddStudentWindow::receive\lCardID",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_add_student_window.html#a490e2551e9c9e2ef1c30b5ec6ae9da46",tooltip="Received student cardID from MainWindow, change button to green when succeed. "];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="StudentDB::getStudentByCardID",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_student_d_b.html#aec7543fe050aac224e1d50ee16aeeb82",tooltip="takes a cardID string parameter and returns a Student object "];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="MyException::message",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_my_exception.html#a7371232a66d68dcd8c8c6363b434c0db"];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="CourseDB::updateArrived",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_course_d_b.html#a28979532b65bae3adcbca940a89e7779",tooltip="Determine if a student is on the course list and determine if the course student is attending the cou..."];
+  Node1 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="Email::send_email_record",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_email.html#af5c194f8670d4e2fb6153c9c3bf15c48",tooltip="Send email using SendGrid with pre-designed dynamic templates. "];
+  Node6 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="Email::readCredentialsFile",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_email.html#af94727858b272dfb14a9f1224a8f2da1",tooltip="read a file named \"credentials.txt\" to obtain an API key used for authentication in an email system ..."];
+  Node1 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="MainWindow::recordAttendance\lWindow",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_main_window.html#a57fcf83e8fc3f5bfcab4ae81240bf119",tooltip="Record student attendance when rfid or fingerprint detected. "];
+  Node1 -> Node9 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="MainWindow::updateTableView",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_main_window.html#a31ebff8b2a54cfd5f634c82253f3ffdd",tooltip="update course table "];
+  Node9 -> Node10 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="CourseDB::getAllCourses",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_course_d_b.html#ada1e9df01308d68dacc6a95730517a01",tooltip="Retrieves all courses from the database and returns them as QList<Course>. "];
+  Node9 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 -> Node11 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="MainWindow::updateStudent\lTable",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_main_window.html#ae72f434e60eb56c5ba1f18c1a0edd2ba",tooltip="update student table with upcoming course "];
+  Node11 -> Node12 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="CourseDB::getCourse",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_course_d_b.html#afc10757467c711b2782bd1c1cb23b0fc",tooltip="Access to courses in the database and extraction of relevant student lists and related data..."];
+  Node11 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

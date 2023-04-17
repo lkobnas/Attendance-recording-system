@@ -1,0 +1,13 @@
+digraph "E:/Glasgow Course Works/Realtime Embeded Programming/Project files/CourseProject/Attendance-recording-system" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_d2e777da32129d0916c133da14d58dc0 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="CourseProject" fontname="Helvetica", fontsize="10", URL="dir_d2e777da32129d0916c133da14d58dc0.html"]
+  subgraph clusterdir_21abc70e16bc01c891fab1fdb2dfa975 {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_21abc70e16bc01c891fab1fdb2dfa975.html"];
+    dir_21abc70e16bc01c891fab1fdb2dfa975 [shape=plaintext label="Attendance-recording-system"];
+    dir_5efe15e50f941378dbaefc0e60bb55bf [shape=box label="src" color="red" fillcolor="white" style="filled" URL="dir_5efe15e50f941378dbaefc0e60bb55bf.html"];
+  }
+  }
+}

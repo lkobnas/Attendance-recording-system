@@ -1,0 +1,901 @@
+\hypertarget{as608_8c}{}\section{E\+:/\+Glasgow Course Works/\+Realtime Embeded Programming/\+Project files/\+Course\+Project/\+Attendance-\/recording-\/system/src/\+A\+S608/\+A\+S608\+\_\+lib/as608.c File Reference}
+\label{as608_8c}\index{E\+:/\+Glasgow Course Works/\+Realtime Embeded Programming/\+Project files/\+Course\+Project/\+Attendance-\/recording-\/system/src/\+A\+S608/\+A\+S608\+\_\+lib/as608.\+c@{E\+:/\+Glasgow Course Works/\+Realtime Embeded Programming/\+Project files/\+Course\+Project/\+Attendance-\/recording-\/system/src/\+A\+S608/\+A\+S608\+\_\+lib/as608.\+c}}
+{\ttfamily \#include \char`\"{}as608.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$unistd.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$math.\+h$>$}\\*
+{\ttfamily \#include $<$stdarg.\+h$>$}\\*
+{\ttfamily \#include $<$wiring\+Pi.\+h$>$}\\*
+{\ttfamily \#include $<$wiring\+Serial.\+h$>$}\\*
+{\ttfamily \#include $<$stdint.\+h$>$}\\*
+Include dependency graph for as608.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{as608_8c_af07c2aad9f2691a326cb46af75274c4c}{Split} (\hyperlink{as608_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint} num, \hyperlink{as608_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar} $\ast$buf, int count)
+\item 
+bool \hyperlink{as608_8c_afe3350364056dcef1a4b3cafb9af7150}{Merge} (\hyperlink{as608_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint} $\ast$num, const \hyperlink{as608_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar} $\ast$start\+Addr, int count)
+\item 
+void \hyperlink{as608_8c_a3d8886be110e0a7634efb4b469fcfdb4}{Print\+Buf} (const \hyperlink{as608_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar} $\ast$buf, int size)
+\item 
+int \hyperlink{as608_8c_a5f676c801c8da12f6d5577e09ee91c29}{Calibrate} (const \hyperlink{as608_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar} $\ast$buf, int size)
+\item 
+bool \hyperlink{as608_8c_a045b373f7ff5a933154978bbc7a2da6b}{Check} (const \hyperlink{as608_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar} $\ast$buf, int size)
+\item 
+int \hyperlink{as608_8c_ac7154ff58efa2c20e7032f41973dcfa3}{Send\+Order} (const \hyperlink{as608_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar} $\ast$order, int size)
+\item 
+bool \hyperlink{as608_8c_acb590a97dc06fed947b2cc0aa489f788}{Recv\+Reply} (\hyperlink{as608_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar} $\ast$hex, int size)
+\item 
+void \hyperlink{as608_8c_a27526a33736ab15d0fda08a1e871a1f0}{Print\+Process} (int done, int all)
+\item 
+bool \hyperlink{as608_8c_a193e9fecc5834f81fccec24f83952e50}{Recv\+Packet} (\hyperlink{as608_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar} $\ast$p\+Data, int valid\+Data\+Size)
+\item 
+bool \hyperlink{as608_8c_a6c5b72551e2544793a5ba2cb0448bcbd}{Send\+Packet} (\hyperlink{as608_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar} $\ast$p\+Data, int valid\+Data\+Size)
+\item 
+int \hyperlink{as608_8c_a88a530a911a08cd67c405240f213c288}{Gen\+Order} (\hyperlink{as608_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar} order\+Code, const char $\ast$fmt,...)
+\item 
+bool \hyperlink{as608_8c_a522a62d36aeebd23459b2343a84a1972}{P\+S\+\_\+\+Setup} (\hyperlink{as608_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint} chip\+Addr, \hyperlink{as608_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint} password)
+\item 
+bool \hyperlink{as608_8c_ab93b7b3b367d82fc358845a0713e77db}{P\+S\+\_\+\+Get\+Image} ()
+\item 
+bool \hyperlink{as608_8c_ac515c3ff7dce6a27509f9352cd0f1943}{P\+S\+\_\+\+Gen\+Char} (\hyperlink{as608_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar} buffer\+I\+D)
+\item 
+bool \hyperlink{as608_8c_aaa413f6e387308e85a872533e9c2428a}{P\+S\+\_\+\+Match} (int $\ast$p\+Score)
+\item 
+bool \hyperlink{as608_8c_afa46dca32feecddcfaf1de5b1b67d650}{P\+S\+\_\+\+Search} (\hyperlink{as608_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar} buffer\+I\+D, int start\+Page\+I\+D, int count, int $\ast$p\+Page\+I\+D, int $\ast$p\+Score)
+\item 
+bool \hyperlink{as608_8c_a42e7c83b9eae8089de6a4fa22b63af16}{P\+S\+\_\+\+Reg\+Model} ()
+\item 
+bool \hyperlink{as608_8c_a23adbcbb36764d9b638bb9c7caea5b30}{P\+S\+\_\+\+Store\+Char} (\hyperlink{as608_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar} buffer\+I\+D, int page\+I\+D)
+\item 
+bool \hyperlink{as608_8c_a12a0eb56a685718f339333019923d990}{P\+S\+\_\+\+Load\+Char} (\hyperlink{as608_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar} buffer\+I\+D, int page\+I\+D)
+\item 
+bool \hyperlink{as608_8c_a5290e687341aa0c1711f71f078525830}{P\+S\+\_\+\+Up\+Char} (\hyperlink{as608_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar} buffer\+I\+D, const char $\ast$filename)
+\item 
+bool \hyperlink{as608_8c_aae1adff03625be979fceff80c16550ed}{P\+S\+\_\+\+Down\+Char} (\hyperlink{as608_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar} buffer\+I\+D, const char $\ast$filename)
+\item 
+bool \hyperlink{as608_8c_a530324613d04e0515428f8ff3b6579e6}{P\+S\+\_\+\+Up\+Image} (const char $\ast$filename)
+\item 
+bool \hyperlink{as608_8c_aa6c23f88f68296970cec84242fe77d44}{P\+S\+\_\+\+Down\+Image} (const char $\ast$filename)
+\item 
+bool \hyperlink{as608_8c_a82ea8192ceafe51a1626e839b711ab10}{P\+S\+\_\+\+Delete\+Char} (int start\+Page\+I\+D, int count)
+\item 
+bool \hyperlink{as608_8c_a326d4b3793b5d7aacaac4c18694d62be}{P\+S\+\_\+\+Empty} ()
+\item 
+bool \hyperlink{as608_8c_a62423f4f40bab88d575cb7bf63db03e9}{P\+S\+\_\+\+Write\+Reg} (int reg\+I\+D, int value)
+\item 
+bool \hyperlink{as608_8c_aa19a000c64177c5ad0641db80b0c0031}{P\+S\+\_\+\+Read\+Sys\+Para} ()
+\item 
+bool \hyperlink{as608_8c_a67aebf4a0d272ea7b5232d69e2626fc3}{P\+S\+\_\+\+Enroll} (int $\ast$p\+Page\+I\+D)
+\item 
+bool \hyperlink{as608_8c_a3ed25a66cf830d909aae5856b7a881c1}{P\+S\+\_\+\+Identify} (int $\ast$p\+Page\+I\+D, int $\ast$p\+Score)
+\item 
+bool \hyperlink{as608_8c_a07af17571c09361328900819d9c7d571}{P\+S\+\_\+\+Set\+Pwd} (\hyperlink{as608_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint} pwd)
+\item 
+bool \hyperlink{as608_8c_a45a9810f3281670bff70b96a150f5c09}{P\+S\+\_\+\+Vfy\+Pwd} (\hyperlink{as608_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint} pwd)
+\item 
+bool \hyperlink{as608_8c_a91f4e3c59f8f808f31d72d7cd91c67ee}{P\+S\+\_\+\+Get\+Random\+Code} (\hyperlink{as608_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint} $\ast$p\+Random)
+\item 
+bool \hyperlink{as608_8c_a376f4934c767f09495a63723b516ac81}{P\+S\+\_\+\+Set\+Chip\+Addr} (\hyperlink{as608_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint} addr)
+\item 
+bool \hyperlink{as608_8c_aae99149f45a9a8b433a327d86094e116}{P\+S\+\_\+\+Read\+I\+N\+Fpage} (\hyperlink{as608_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar} $\ast$p\+Info, int p\+Info\+Size)
+\item 
+bool \hyperlink{as608_8c_ab1dd8a8523f905c63d26ef1f2ced8ddd}{P\+S\+\_\+\+Write\+Notepad} (int note\+Page\+I\+D, \hyperlink{as608_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar} $\ast$p\+Content, int content\+Size)
+\item 
+bool \hyperlink{as608_8c_ab05d2d2863b9d09dbb04734dee938f98}{P\+S\+\_\+\+Read\+Notepad} (int note\+Page\+I\+D, \hyperlink{as608_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar} $\ast$p\+Content, int content\+Size)
+\item 
+bool \hyperlink{as608_8c_ad45d831c5a5ab8f94a0992c5bb54a0dd}{P\+S\+\_\+\+High\+Speed\+Search} (\hyperlink{as608_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar} buffer\+I\+D, int start\+Page\+I\+D, int count, int $\ast$p\+Page\+I\+D, int $\ast$p\+Score)
+\item 
+bool \hyperlink{as608_8c_ac6141ed8850680abfa4d5d066aedd1ec}{P\+S\+\_\+\+Valid\+Templete\+Num} (int $\ast$p\+Valid\+N)
+\item 
+bool \hyperlink{as608_8c_acb2580d314bfbc7441b71c3c4b32f065}{P\+S\+\_\+\+Read\+Index\+Table} (int $\ast$index\+List, int size)
+\item 
+bool \hyperlink{as608_8c_afba869bff98f6cbdbfd50eebf101e9d1}{P\+S\+\_\+\+Detect\+Finger} ()
+\item 
+bool \hyperlink{as608_8c_ad28ac4064aa9104fc44bcb7182140bf2}{P\+S\+\_\+\+Set\+Baud\+Rate} (int value)
+\item 
+bool \hyperlink{as608_8c_af4c4c9a990ce91bc94fc8f18cdc29c16}{P\+S\+\_\+\+Set\+Secure\+Level} (int level)
+\item 
+bool \hyperlink{as608_8c_ade14404cbee79a0b3d22f5e21cd5da14}{P\+S\+\_\+\+Set\+Packet\+Size} (int size)
+\item 
+bool \hyperlink{as608_8c_a09284b1462d70fed411138c3080b0f34}{P\+S\+\_\+\+Get\+All\+Info} ()
+\item 
+bool \hyperlink{as608_8c_a2bfb02a967e1becc8c4526434a81fbd6}{P\+S\+\_\+\+Flush} ()
+\item 
+char $\ast$ \hyperlink{as608_8c_af8cb71ea77ec9b32ca50d4732a6a7b67}{P\+S\+\_\+\+Get\+Error\+Desc} ()
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{as608_8h_a9197ad0f779226c93b1f290b5a7d8dd0}{A\+S608} \hyperlink{as608_8c_a19c3a0b67af18ae8b8d187e21bcc6398}{g\+\_\+as608}
+\item 
+int \hyperlink{as608_8c_ac09e95a250275ca69c109f7bbadfef43}{g\+\_\+fd}
+\item 
+int \hyperlink{as608_8c_af27e3faeb692ec7ae78672182717dd18}{g\+\_\+verbose}
+\item 
+char \hyperlink{as608_8c_a017d41f37a65f0f9222622b307688824}{g\+\_\+error\+\_\+desc} \mbox{[}128\mbox{]}
+\item 
+\hyperlink{as608_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar} \hyperlink{as608_8c_a6957ac1dcfb11e11e72f60f78d16de53}{g\+\_\+error\+\_\+code}
+\item 
+\hyperlink{as608_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar} \hyperlink{as608_8c_a1370cd4d8d1b75bc97a0b5b6bc8c8cc4}{g\+\_\+order} \mbox{[}64\mbox{]} = \{ 0 \}
+\item 
+\hyperlink{as608_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar} \hyperlink{as608_8c_ac2de4cbe169f0ebe7eb4931a884b3faf}{g\+\_\+reply} \mbox{[}64\mbox{]} = \{ 0 \}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{as608_8c_a5f676c801c8da12f6d5577e09ee91c29}{}\index{as608.\+c@{as608.\+c}!Calibrate@{Calibrate}}
+\index{Calibrate@{Calibrate}!as608.\+c@{as608.\+c}}
+\subsubsection[{Calibrate(const uchar $\ast$buf, int size)}]{\setlength{\rightskip}{0pt plus 5cm}int Calibrate (
+\begin{DoxyParamCaption}
+\item[{const {\bf uchar} $\ast$}]{buf, }
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)}\label{as608_8c_a5f676c801c8da12f6d5577e09ee91c29}
+
+
+Here is the caller graph for this function\+:
+% FIG 1
+
+
+\hypertarget{as608_8c_a045b373f7ff5a933154978bbc7a2da6b}{}\index{as608.\+c@{as608.\+c}!Check@{Check}}
+\index{Check@{Check}!as608.\+c@{as608.\+c}}
+\subsubsection[{Check(const uchar $\ast$buf, int size)}]{\setlength{\rightskip}{0pt plus 5cm}bool Check (
+\begin{DoxyParamCaption}
+\item[{const {\bf uchar} $\ast$}]{buf, }
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)}\label{as608_8c_a045b373f7ff5a933154978bbc7a2da6b}
+
+
+Here is the call graph for this function\+:
+% FIG 2
+
+
+
+
+Here is the caller graph for this function\+:
+% FIG 3
+
+
+\hypertarget{as608_8c_a88a530a911a08cd67c405240f213c288}{}\index{as608.\+c@{as608.\+c}!Gen\+Order@{Gen\+Order}}
+\index{Gen\+Order@{Gen\+Order}!as608.\+c@{as608.\+c}}
+\subsubsection[{Gen\+Order(uchar order\+Code, const char $\ast$fmt,...)}]{\setlength{\rightskip}{0pt plus 5cm}int Gen\+Order (
+\begin{DoxyParamCaption}
+\item[{{\bf uchar}}]{order\+Code, }
+\item[{const char $\ast$}]{fmt, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)}\label{as608_8c_a88a530a911a08cd67c405240f213c288}
+
+
+Here is the call graph for this function\+:
+% FIG 4
+
+
+
+
+Here is the caller graph for this function\+:
+% FIG 5
+
+
+\hypertarget{as608_8c_afe3350364056dcef1a4b3cafb9af7150}{}\index{as608.\+c@{as608.\+c}!Merge@{Merge}}
+\index{Merge@{Merge}!as608.\+c@{as608.\+c}}
+\subsubsection[{Merge(uint $\ast$num, const uchar $\ast$start\+Addr, int count)}]{\setlength{\rightskip}{0pt plus 5cm}bool Merge (
+\begin{DoxyParamCaption}
+\item[{{\bf uint} $\ast$}]{num, }
+\item[{const {\bf uchar} $\ast$}]{start\+Addr, }
+\item[{int}]{count}
+\end{DoxyParamCaption}
+)}\label{as608_8c_afe3350364056dcef1a4b3cafb9af7150}
+
+
+Here is the caller graph for this function\+:
+% FIG 6
+
+
+\hypertarget{as608_8c_a3d8886be110e0a7634efb4b469fcfdb4}{}\index{as608.\+c@{as608.\+c}!Print\+Buf@{Print\+Buf}}
+\index{Print\+Buf@{Print\+Buf}!as608.\+c@{as608.\+c}}
+\subsubsection[{Print\+Buf(const uchar $\ast$buf, int size)}]{\setlength{\rightskip}{0pt plus 5cm}void Print\+Buf (
+\begin{DoxyParamCaption}
+\item[{const {\bf uchar} $\ast$}]{buf, }
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)}\label{as608_8c_a3d8886be110e0a7634efb4b469fcfdb4}
+
+
+Here is the caller graph for this function\+:
+% FIG 7
+
+
+\hypertarget{as608_8c_a27526a33736ab15d0fda08a1e871a1f0}{}\index{as608.\+c@{as608.\+c}!Print\+Process@{Print\+Process}}
+\index{Print\+Process@{Print\+Process}!as608.\+c@{as608.\+c}}
+\subsubsection[{Print\+Process(int done, int all)}]{\setlength{\rightskip}{0pt plus 5cm}void Print\+Process (
+\begin{DoxyParamCaption}
+\item[{int}]{done, }
+\item[{int}]{all}
+\end{DoxyParamCaption}
+)}\label{as608_8c_a27526a33736ab15d0fda08a1e871a1f0}
+
+
+Here is the caller graph for this function\+:
+% FIG 8
+
+
+\hypertarget{as608_8c_a82ea8192ceafe51a1626e839b711ab10}{}\index{as608.\+c@{as608.\+c}!P\+S\+\_\+\+Delete\+Char@{P\+S\+\_\+\+Delete\+Char}}
+\index{P\+S\+\_\+\+Delete\+Char@{P\+S\+\_\+\+Delete\+Char}!as608.\+c@{as608.\+c}}
+\subsubsection[{P\+S\+\_\+\+Delete\+Char(int start\+Page\+I\+D, int count)}]{\setlength{\rightskip}{0pt plus 5cm}bool P\+S\+\_\+\+Delete\+Char (
+\begin{DoxyParamCaption}
+\item[{int}]{start\+Page\+I\+D, }
+\item[{int}]{count}
+\end{DoxyParamCaption}
+)}\label{as608_8c_a82ea8192ceafe51a1626e839b711ab10}
+
+
+Here is the call graph for this function\+:
+% FIG 9
+
+
+\hypertarget{as608_8c_afba869bff98f6cbdbfd50eebf101e9d1}{}\index{as608.\+c@{as608.\+c}!P\+S\+\_\+\+Detect\+Finger@{P\+S\+\_\+\+Detect\+Finger}}
+\index{P\+S\+\_\+\+Detect\+Finger@{P\+S\+\_\+\+Detect\+Finger}!as608.\+c@{as608.\+c}}
+\subsubsection[{P\+S\+\_\+\+Detect\+Finger()}]{\setlength{\rightskip}{0pt plus 5cm}bool P\+S\+\_\+\+Detect\+Finger (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{as608_8c_afba869bff98f6cbdbfd50eebf101e9d1}
+
+
+Here is the caller graph for this function\+:
+% FIG 10
+
+
+\hypertarget{as608_8c_aae1adff03625be979fceff80c16550ed}{}\index{as608.\+c@{as608.\+c}!P\+S\+\_\+\+Down\+Char@{P\+S\+\_\+\+Down\+Char}}
+\index{P\+S\+\_\+\+Down\+Char@{P\+S\+\_\+\+Down\+Char}!as608.\+c@{as608.\+c}}
+\subsubsection[{P\+S\+\_\+\+Down\+Char(uchar buffer\+I\+D, const char $\ast$filename)}]{\setlength{\rightskip}{0pt plus 5cm}bool P\+S\+\_\+\+Down\+Char (
+\begin{DoxyParamCaption}
+\item[{{\bf uchar}}]{buffer\+I\+D, }
+\item[{const char $\ast$}]{filename}
+\end{DoxyParamCaption}
+)}\label{as608_8c_aae1adff03625be979fceff80c16550ed}
+
+
+Here is the call graph for this function\+:
+% FIG 11
+
+
+\hypertarget{as608_8c_aa6c23f88f68296970cec84242fe77d44}{}\index{as608.\+c@{as608.\+c}!P\+S\+\_\+\+Down\+Image@{P\+S\+\_\+\+Down\+Image}}
+\index{P\+S\+\_\+\+Down\+Image@{P\+S\+\_\+\+Down\+Image}!as608.\+c@{as608.\+c}}
+\subsubsection[{P\+S\+\_\+\+Down\+Image(const char $\ast$filename)}]{\setlength{\rightskip}{0pt plus 5cm}bool P\+S\+\_\+\+Down\+Image (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{filename}
+\end{DoxyParamCaption}
+)}\label{as608_8c_aa6c23f88f68296970cec84242fe77d44}
+
+
+Here is the call graph for this function\+:
+% FIG 12
+
+
+\hypertarget{as608_8c_a326d4b3793b5d7aacaac4c18694d62be}{}\index{as608.\+c@{as608.\+c}!P\+S\+\_\+\+Empty@{P\+S\+\_\+\+Empty}}
+\index{P\+S\+\_\+\+Empty@{P\+S\+\_\+\+Empty}!as608.\+c@{as608.\+c}}
+\subsubsection[{P\+S\+\_\+\+Empty()}]{\setlength{\rightskip}{0pt plus 5cm}bool P\+S\+\_\+\+Empty (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{as608_8c_a326d4b3793b5d7aacaac4c18694d62be}
+
+
+Here is the call graph for this function\+:
+% FIG 13
+
+
+\hypertarget{as608_8c_a67aebf4a0d272ea7b5232d69e2626fc3}{}\index{as608.\+c@{as608.\+c}!P\+S\+\_\+\+Enroll@{P\+S\+\_\+\+Enroll}}
+\index{P\+S\+\_\+\+Enroll@{P\+S\+\_\+\+Enroll}!as608.\+c@{as608.\+c}}
+\subsubsection[{P\+S\+\_\+\+Enroll(int $\ast$p\+Page\+I\+D)}]{\setlength{\rightskip}{0pt plus 5cm}bool P\+S\+\_\+\+Enroll (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{p\+Page\+I\+D}
+\end{DoxyParamCaption}
+)}\label{as608_8c_a67aebf4a0d272ea7b5232d69e2626fc3}
+
+
+Here is the call graph for this function\+:
+% FIG 14
+
+
+
+
+Here is the caller graph for this function\+:
+% FIG 15
+
+
+\hypertarget{as608_8c_a2bfb02a967e1becc8c4526434a81fbd6}{}\index{as608.\+c@{as608.\+c}!P\+S\+\_\+\+Flush@{P\+S\+\_\+\+Flush}}
+\index{P\+S\+\_\+\+Flush@{P\+S\+\_\+\+Flush}!as608.\+c@{as608.\+c}}
+\subsubsection[{P\+S\+\_\+\+Flush()}]{\setlength{\rightskip}{0pt plus 5cm}bool P\+S\+\_\+\+Flush (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{as608_8c_a2bfb02a967e1becc8c4526434a81fbd6}
+
+
+Here is the call graph for this function\+:
+% FIG 16
+
+
+\hypertarget{as608_8c_ac515c3ff7dce6a27509f9352cd0f1943}{}\index{as608.\+c@{as608.\+c}!P\+S\+\_\+\+Gen\+Char@{P\+S\+\_\+\+Gen\+Char}}
+\index{P\+S\+\_\+\+Gen\+Char@{P\+S\+\_\+\+Gen\+Char}!as608.\+c@{as608.\+c}}
+\subsubsection[{P\+S\+\_\+\+Gen\+Char(uchar buffer\+I\+D)}]{\setlength{\rightskip}{0pt plus 5cm}bool P\+S\+\_\+\+Gen\+Char (
+\begin{DoxyParamCaption}
+\item[{{\bf uchar}}]{buffer\+I\+D}
+\end{DoxyParamCaption}
+)}\label{as608_8c_ac515c3ff7dce6a27509f9352cd0f1943}
+
+
+Here is the call graph for this function\+:
+% FIG 17
+
+
+
+
+Here is the caller graph for this function\+:
+% FIG 18
+
+
+\hypertarget{as608_8c_a09284b1462d70fed411138c3080b0f34}{}\index{as608.\+c@{as608.\+c}!P\+S\+\_\+\+Get\+All\+Info@{P\+S\+\_\+\+Get\+All\+Info}}
+\index{P\+S\+\_\+\+Get\+All\+Info@{P\+S\+\_\+\+Get\+All\+Info}!as608.\+c@{as608.\+c}}
+\subsubsection[{P\+S\+\_\+\+Get\+All\+Info()}]{\setlength{\rightskip}{0pt plus 5cm}bool P\+S\+\_\+\+Get\+All\+Info (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{as608_8c_a09284b1462d70fed411138c3080b0f34}
+
+
+Here is the call graph for this function\+:
+% FIG 19
+
+
+\hypertarget{as608_8c_af8cb71ea77ec9b32ca50d4732a6a7b67}{}\index{as608.\+c@{as608.\+c}!P\+S\+\_\+\+Get\+Error\+Desc@{P\+S\+\_\+\+Get\+Error\+Desc}}
+\index{P\+S\+\_\+\+Get\+Error\+Desc@{P\+S\+\_\+\+Get\+Error\+Desc}!as608.\+c@{as608.\+c}}
+\subsubsection[{P\+S\+\_\+\+Get\+Error\+Desc()}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ P\+S\+\_\+\+Get\+Error\+Desc (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{as608_8c_af8cb71ea77ec9b32ca50d4732a6a7b67}
+\hypertarget{as608_8c_ab93b7b3b367d82fc358845a0713e77db}{}\index{as608.\+c@{as608.\+c}!P\+S\+\_\+\+Get\+Image@{P\+S\+\_\+\+Get\+Image}}
+\index{P\+S\+\_\+\+Get\+Image@{P\+S\+\_\+\+Get\+Image}!as608.\+c@{as608.\+c}}
+\subsubsection[{P\+S\+\_\+\+Get\+Image()}]{\setlength{\rightskip}{0pt plus 5cm}bool P\+S\+\_\+\+Get\+Image (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{as608_8c_ab93b7b3b367d82fc358845a0713e77db}
+
+
+Here is the call graph for this function\+:
+% FIG 20
+
+
+
+
+Here is the caller graph for this function\+:
+% FIG 21
+
+
+\hypertarget{as608_8c_a91f4e3c59f8f808f31d72d7cd91c67ee}{}\index{as608.\+c@{as608.\+c}!P\+S\+\_\+\+Get\+Random\+Code@{P\+S\+\_\+\+Get\+Random\+Code}}
+\index{P\+S\+\_\+\+Get\+Random\+Code@{P\+S\+\_\+\+Get\+Random\+Code}!as608.\+c@{as608.\+c}}
+\subsubsection[{P\+S\+\_\+\+Get\+Random\+Code(uint $\ast$p\+Random)}]{\setlength{\rightskip}{0pt plus 5cm}bool P\+S\+\_\+\+Get\+Random\+Code (
+\begin{DoxyParamCaption}
+\item[{{\bf uint} $\ast$}]{p\+Random}
+\end{DoxyParamCaption}
+)}\label{as608_8c_a91f4e3c59f8f808f31d72d7cd91c67ee}
+
+
+Here is the call graph for this function\+:
+% FIG 22
+
+
+\hypertarget{as608_8c_ad45d831c5a5ab8f94a0992c5bb54a0dd}{}\index{as608.\+c@{as608.\+c}!P\+S\+\_\+\+High\+Speed\+Search@{P\+S\+\_\+\+High\+Speed\+Search}}
+\index{P\+S\+\_\+\+High\+Speed\+Search@{P\+S\+\_\+\+High\+Speed\+Search}!as608.\+c@{as608.\+c}}
+\subsubsection[{P\+S\+\_\+\+High\+Speed\+Search(uchar buffer\+I\+D, int start\+Page\+I\+D, int count, int $\ast$p\+Page\+I\+D, int $\ast$p\+Score)}]{\setlength{\rightskip}{0pt plus 5cm}bool P\+S\+\_\+\+High\+Speed\+Search (
+\begin{DoxyParamCaption}
+\item[{{\bf uchar}}]{buffer\+I\+D, }
+\item[{int}]{start\+Page\+I\+D, }
+\item[{int}]{count, }
+\item[{int $\ast$}]{p\+Page\+I\+D, }
+\item[{int $\ast$}]{p\+Score}
+\end{DoxyParamCaption}
+)}\label{as608_8c_ad45d831c5a5ab8f94a0992c5bb54a0dd}
+
+
+Here is the call graph for this function\+:
+% FIG 23
+
+
+\hypertarget{as608_8c_a3ed25a66cf830d909aae5856b7a881c1}{}\index{as608.\+c@{as608.\+c}!P\+S\+\_\+\+Identify@{P\+S\+\_\+\+Identify}}
+\index{P\+S\+\_\+\+Identify@{P\+S\+\_\+\+Identify}!as608.\+c@{as608.\+c}}
+\subsubsection[{P\+S\+\_\+\+Identify(int $\ast$p\+Page\+I\+D, int $\ast$p\+Score)}]{\setlength{\rightskip}{0pt plus 5cm}bool P\+S\+\_\+\+Identify (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{p\+Page\+I\+D, }
+\item[{int $\ast$}]{p\+Score}
+\end{DoxyParamCaption}
+)}\label{as608_8c_a3ed25a66cf830d909aae5856b7a881c1}
+
+
+Here is the call graph for this function\+:
+% FIG 24
+
+
+
+
+Here is the caller graph for this function\+:
+% FIG 25
+
+
+\hypertarget{as608_8c_a12a0eb56a685718f339333019923d990}{}\index{as608.\+c@{as608.\+c}!P\+S\+\_\+\+Load\+Char@{P\+S\+\_\+\+Load\+Char}}
+\index{P\+S\+\_\+\+Load\+Char@{P\+S\+\_\+\+Load\+Char}!as608.\+c@{as608.\+c}}
+\subsubsection[{P\+S\+\_\+\+Load\+Char(uchar buffer\+I\+D, int page\+I\+D)}]{\setlength{\rightskip}{0pt plus 5cm}bool P\+S\+\_\+\+Load\+Char (
+\begin{DoxyParamCaption}
+\item[{{\bf uchar}}]{buffer\+I\+D, }
+\item[{int}]{page\+I\+D}
+\end{DoxyParamCaption}
+)}\label{as608_8c_a12a0eb56a685718f339333019923d990}
+
+
+Here is the call graph for this function\+:
+% FIG 26
+
+
+\hypertarget{as608_8c_aaa413f6e387308e85a872533e9c2428a}{}\index{as608.\+c@{as608.\+c}!P\+S\+\_\+\+Match@{P\+S\+\_\+\+Match}}
+\index{P\+S\+\_\+\+Match@{P\+S\+\_\+\+Match}!as608.\+c@{as608.\+c}}
+\subsubsection[{P\+S\+\_\+\+Match(int $\ast$p\+Score)}]{\setlength{\rightskip}{0pt plus 5cm}bool P\+S\+\_\+\+Match (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{p\+Score}
+\end{DoxyParamCaption}
+)}\label{as608_8c_aaa413f6e387308e85a872533e9c2428a}
+
+
+Here is the call graph for this function\+:
+% FIG 27
+
+
+
+
+Here is the caller graph for this function\+:
+% FIG 28
+
+
+\hypertarget{as608_8c_acb2580d314bfbc7441b71c3c4b32f065}{}\index{as608.\+c@{as608.\+c}!P\+S\+\_\+\+Read\+Index\+Table@{P\+S\+\_\+\+Read\+Index\+Table}}
+\index{P\+S\+\_\+\+Read\+Index\+Table@{P\+S\+\_\+\+Read\+Index\+Table}!as608.\+c@{as608.\+c}}
+\subsubsection[{P\+S\+\_\+\+Read\+Index\+Table(int $\ast$index\+List, int size)}]{\setlength{\rightskip}{0pt plus 5cm}bool P\+S\+\_\+\+Read\+Index\+Table (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{index\+List, }
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)}\label{as608_8c_acb2580d314bfbc7441b71c3c4b32f065}
+
+
+Here is the call graph for this function\+:
+% FIG 29
+
+
+
+
+Here is the caller graph for this function\+:
+% FIG 30
+
+
+\hypertarget{as608_8c_aae99149f45a9a8b433a327d86094e116}{}\index{as608.\+c@{as608.\+c}!P\+S\+\_\+\+Read\+I\+N\+Fpage@{P\+S\+\_\+\+Read\+I\+N\+Fpage}}
+\index{P\+S\+\_\+\+Read\+I\+N\+Fpage@{P\+S\+\_\+\+Read\+I\+N\+Fpage}!as608.\+c@{as608.\+c}}
+\subsubsection[{P\+S\+\_\+\+Read\+I\+N\+Fpage(uchar $\ast$p\+Info, int p\+Info\+Size)}]{\setlength{\rightskip}{0pt plus 5cm}bool P\+S\+\_\+\+Read\+I\+N\+Fpage (
+\begin{DoxyParamCaption}
+\item[{{\bf uchar} $\ast$}]{p\+Info, }
+\item[{int}]{p\+Info\+Size}
+\end{DoxyParamCaption}
+)}\label{as608_8c_aae99149f45a9a8b433a327d86094e116}
+
+
+Here is the call graph for this function\+:
+% FIG 31
+
+
+
+
+Here is the caller graph for this function\+:
+% FIG 32
+
+
+\hypertarget{as608_8c_ab05d2d2863b9d09dbb04734dee938f98}{}\index{as608.\+c@{as608.\+c}!P\+S\+\_\+\+Read\+Notepad@{P\+S\+\_\+\+Read\+Notepad}}
+\index{P\+S\+\_\+\+Read\+Notepad@{P\+S\+\_\+\+Read\+Notepad}!as608.\+c@{as608.\+c}}
+\subsubsection[{P\+S\+\_\+\+Read\+Notepad(int note\+Page\+I\+D, uchar $\ast$p\+Content, int content\+Size)}]{\setlength{\rightskip}{0pt plus 5cm}bool P\+S\+\_\+\+Read\+Notepad (
+\begin{DoxyParamCaption}
+\item[{int}]{note\+Page\+I\+D, }
+\item[{{\bf uchar} $\ast$}]{p\+Content, }
+\item[{int}]{content\+Size}
+\end{DoxyParamCaption}
+)}\label{as608_8c_ab05d2d2863b9d09dbb04734dee938f98}
+
+
+Here is the call graph for this function\+:
+% FIG 33
+
+
+\hypertarget{as608_8c_aa19a000c64177c5ad0641db80b0c0031}{}\index{as608.\+c@{as608.\+c}!P\+S\+\_\+\+Read\+Sys\+Para@{P\+S\+\_\+\+Read\+Sys\+Para}}
+\index{P\+S\+\_\+\+Read\+Sys\+Para@{P\+S\+\_\+\+Read\+Sys\+Para}!as608.\+c@{as608.\+c}}
+\subsubsection[{P\+S\+\_\+\+Read\+Sys\+Para()}]{\setlength{\rightskip}{0pt plus 5cm}bool P\+S\+\_\+\+Read\+Sys\+Para (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{as608_8c_aa19a000c64177c5ad0641db80b0c0031}
+
+
+Here is the call graph for this function\+:
+% FIG 34
+
+
+
+
+Here is the caller graph for this function\+:
+% FIG 35
+
+
+\hypertarget{as608_8c_a42e7c83b9eae8089de6a4fa22b63af16}{}\index{as608.\+c@{as608.\+c}!P\+S\+\_\+\+Reg\+Model@{P\+S\+\_\+\+Reg\+Model}}
+\index{P\+S\+\_\+\+Reg\+Model@{P\+S\+\_\+\+Reg\+Model}!as608.\+c@{as608.\+c}}
+\subsubsection[{P\+S\+\_\+\+Reg\+Model()}]{\setlength{\rightskip}{0pt plus 5cm}bool P\+S\+\_\+\+Reg\+Model (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{as608_8c_a42e7c83b9eae8089de6a4fa22b63af16}
+
+
+Here is the call graph for this function\+:
+% FIG 36
+
+
+
+
+Here is the caller graph for this function\+:
+% FIG 37
+
+
+\hypertarget{as608_8c_afa46dca32feecddcfaf1de5b1b67d650}{}\index{as608.\+c@{as608.\+c}!P\+S\+\_\+\+Search@{P\+S\+\_\+\+Search}}
+\index{P\+S\+\_\+\+Search@{P\+S\+\_\+\+Search}!as608.\+c@{as608.\+c}}
+\subsubsection[{P\+S\+\_\+\+Search(uchar buffer\+I\+D, int start\+Page\+I\+D, int count, int $\ast$p\+Page\+I\+D, int $\ast$p\+Score)}]{\setlength{\rightskip}{0pt plus 5cm}bool P\+S\+\_\+\+Search (
+\begin{DoxyParamCaption}
+\item[{{\bf uchar}}]{buffer\+I\+D, }
+\item[{int}]{start\+Page\+I\+D, }
+\item[{int}]{count, }
+\item[{int $\ast$}]{p\+Page\+I\+D, }
+\item[{int $\ast$}]{p\+Score}
+\end{DoxyParamCaption}
+)}\label{as608_8c_afa46dca32feecddcfaf1de5b1b67d650}
+
+
+Here is the call graph for this function\+:
+% FIG 38
+
+
+\hypertarget{as608_8c_ad28ac4064aa9104fc44bcb7182140bf2}{}\index{as608.\+c@{as608.\+c}!P\+S\+\_\+\+Set\+Baud\+Rate@{P\+S\+\_\+\+Set\+Baud\+Rate}}
+\index{P\+S\+\_\+\+Set\+Baud\+Rate@{P\+S\+\_\+\+Set\+Baud\+Rate}!as608.\+c@{as608.\+c}}
+\subsubsection[{P\+S\+\_\+\+Set\+Baud\+Rate(int value)}]{\setlength{\rightskip}{0pt plus 5cm}bool P\+S\+\_\+\+Set\+Baud\+Rate (
+\begin{DoxyParamCaption}
+\item[{int}]{value}
+\end{DoxyParamCaption}
+)}\label{as608_8c_ad28ac4064aa9104fc44bcb7182140bf2}
+
+
+Here is the call graph for this function\+:
+% FIG 39
+
+
+\hypertarget{as608_8c_a376f4934c767f09495a63723b516ac81}{}\index{as608.\+c@{as608.\+c}!P\+S\+\_\+\+Set\+Chip\+Addr@{P\+S\+\_\+\+Set\+Chip\+Addr}}
+\index{P\+S\+\_\+\+Set\+Chip\+Addr@{P\+S\+\_\+\+Set\+Chip\+Addr}!as608.\+c@{as608.\+c}}
+\subsubsection[{P\+S\+\_\+\+Set\+Chip\+Addr(uint addr)}]{\setlength{\rightskip}{0pt plus 5cm}bool P\+S\+\_\+\+Set\+Chip\+Addr (
+\begin{DoxyParamCaption}
+\item[{{\bf uint}}]{addr}
+\end{DoxyParamCaption}
+)}\label{as608_8c_a376f4934c767f09495a63723b516ac81}
+
+
+Here is the call graph for this function\+:
+% FIG 40
+
+
+\hypertarget{as608_8c_ade14404cbee79a0b3d22f5e21cd5da14}{}\index{as608.\+c@{as608.\+c}!P\+S\+\_\+\+Set\+Packet\+Size@{P\+S\+\_\+\+Set\+Packet\+Size}}
+\index{P\+S\+\_\+\+Set\+Packet\+Size@{P\+S\+\_\+\+Set\+Packet\+Size}!as608.\+c@{as608.\+c}}
+\subsubsection[{P\+S\+\_\+\+Set\+Packet\+Size(int size)}]{\setlength{\rightskip}{0pt plus 5cm}bool P\+S\+\_\+\+Set\+Packet\+Size (
+\begin{DoxyParamCaption}
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)}\label{as608_8c_ade14404cbee79a0b3d22f5e21cd5da14}
+
+
+Here is the call graph for this function\+:
+% FIG 41
+
+
+\hypertarget{as608_8c_a07af17571c09361328900819d9c7d571}{}\index{as608.\+c@{as608.\+c}!P\+S\+\_\+\+Set\+Pwd@{P\+S\+\_\+\+Set\+Pwd}}
+\index{P\+S\+\_\+\+Set\+Pwd@{P\+S\+\_\+\+Set\+Pwd}!as608.\+c@{as608.\+c}}
+\subsubsection[{P\+S\+\_\+\+Set\+Pwd(uint pwd)}]{\setlength{\rightskip}{0pt plus 5cm}bool P\+S\+\_\+\+Set\+Pwd (
+\begin{DoxyParamCaption}
+\item[{{\bf uint}}]{pwd}
+\end{DoxyParamCaption}
+)}\label{as608_8c_a07af17571c09361328900819d9c7d571}
+
+
+Here is the call graph for this function\+:
+% FIG 42
+
+
+\hypertarget{as608_8c_af4c4c9a990ce91bc94fc8f18cdc29c16}{}\index{as608.\+c@{as608.\+c}!P\+S\+\_\+\+Set\+Secure\+Level@{P\+S\+\_\+\+Set\+Secure\+Level}}
+\index{P\+S\+\_\+\+Set\+Secure\+Level@{P\+S\+\_\+\+Set\+Secure\+Level}!as608.\+c@{as608.\+c}}
+\subsubsection[{P\+S\+\_\+\+Set\+Secure\+Level(int level)}]{\setlength{\rightskip}{0pt plus 5cm}bool P\+S\+\_\+\+Set\+Secure\+Level (
+\begin{DoxyParamCaption}
+\item[{int}]{level}
+\end{DoxyParamCaption}
+)}\label{as608_8c_af4c4c9a990ce91bc94fc8f18cdc29c16}
+
+
+Here is the call graph for this function\+:
+% FIG 43
+
+
+\hypertarget{as608_8c_a522a62d36aeebd23459b2343a84a1972}{}\index{as608.\+c@{as608.\+c}!P\+S\+\_\+\+Setup@{P\+S\+\_\+\+Setup}}
+\index{P\+S\+\_\+\+Setup@{P\+S\+\_\+\+Setup}!as608.\+c@{as608.\+c}}
+\subsubsection[{P\+S\+\_\+\+Setup(uint chip\+Addr, uint password)}]{\setlength{\rightskip}{0pt plus 5cm}bool P\+S\+\_\+\+Setup (
+\begin{DoxyParamCaption}
+\item[{{\bf uint}}]{chip\+Addr, }
+\item[{{\bf uint}}]{password}
+\end{DoxyParamCaption}
+)}\label{as608_8c_a522a62d36aeebd23459b2343a84a1972}
+
+
+Here is the call graph for this function\+:
+% FIG 44
+
+
+
+
+Here is the caller graph for this function\+:
+% FIG 45
+
+
+\hypertarget{as608_8c_a23adbcbb36764d9b638bb9c7caea5b30}{}\index{as608.\+c@{as608.\+c}!P\+S\+\_\+\+Store\+Char@{P\+S\+\_\+\+Store\+Char}}
+\index{P\+S\+\_\+\+Store\+Char@{P\+S\+\_\+\+Store\+Char}!as608.\+c@{as608.\+c}}
+\subsubsection[{P\+S\+\_\+\+Store\+Char(uchar buffer\+I\+D, int page\+I\+D)}]{\setlength{\rightskip}{0pt plus 5cm}bool P\+S\+\_\+\+Store\+Char (
+\begin{DoxyParamCaption}
+\item[{{\bf uchar}}]{buffer\+I\+D, }
+\item[{int}]{page\+I\+D}
+\end{DoxyParamCaption}
+)}\label{as608_8c_a23adbcbb36764d9b638bb9c7caea5b30}
+
+
+Here is the call graph for this function\+:
+% FIG 46
+
+
+
+
+Here is the caller graph for this function\+:
+% FIG 47
+
+
+\hypertarget{as608_8c_a5290e687341aa0c1711f71f078525830}{}\index{as608.\+c@{as608.\+c}!P\+S\+\_\+\+Up\+Char@{P\+S\+\_\+\+Up\+Char}}
+\index{P\+S\+\_\+\+Up\+Char@{P\+S\+\_\+\+Up\+Char}!as608.\+c@{as608.\+c}}
+\subsubsection[{P\+S\+\_\+\+Up\+Char(uchar buffer\+I\+D, const char $\ast$filename)}]{\setlength{\rightskip}{0pt plus 5cm}bool P\+S\+\_\+\+Up\+Char (
+\begin{DoxyParamCaption}
+\item[{{\bf uchar}}]{buffer\+I\+D, }
+\item[{const char $\ast$}]{filename}
+\end{DoxyParamCaption}
+)}\label{as608_8c_a5290e687341aa0c1711f71f078525830}
+
+
+Here is the call graph for this function\+:
+% FIG 48
+
+
+\hypertarget{as608_8c_a530324613d04e0515428f8ff3b6579e6}{}\index{as608.\+c@{as608.\+c}!P\+S\+\_\+\+Up\+Image@{P\+S\+\_\+\+Up\+Image}}
+\index{P\+S\+\_\+\+Up\+Image@{P\+S\+\_\+\+Up\+Image}!as608.\+c@{as608.\+c}}
+\subsubsection[{P\+S\+\_\+\+Up\+Image(const char $\ast$filename)}]{\setlength{\rightskip}{0pt plus 5cm}bool P\+S\+\_\+\+Up\+Image (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{filename}
+\end{DoxyParamCaption}
+)}\label{as608_8c_a530324613d04e0515428f8ff3b6579e6}
+
+
+Here is the call graph for this function\+:
+% FIG 49
+
+
+\hypertarget{as608_8c_ac6141ed8850680abfa4d5d066aedd1ec}{}\index{as608.\+c@{as608.\+c}!P\+S\+\_\+\+Valid\+Templete\+Num@{P\+S\+\_\+\+Valid\+Templete\+Num}}
+\index{P\+S\+\_\+\+Valid\+Templete\+Num@{P\+S\+\_\+\+Valid\+Templete\+Num}!as608.\+c@{as608.\+c}}
+\subsubsection[{P\+S\+\_\+\+Valid\+Templete\+Num(int $\ast$p\+Valid\+N)}]{\setlength{\rightskip}{0pt plus 5cm}bool P\+S\+\_\+\+Valid\+Templete\+Num (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{p\+Valid\+N}
+\end{DoxyParamCaption}
+)}\label{as608_8c_ac6141ed8850680abfa4d5d066aedd1ec}
+
+
+Here is the call graph for this function\+:
+% FIG 50
+
+
+
+
+Here is the caller graph for this function\+:
+% FIG 51
+
+
+\hypertarget{as608_8c_a45a9810f3281670bff70b96a150f5c09}{}\index{as608.\+c@{as608.\+c}!P\+S\+\_\+\+Vfy\+Pwd@{P\+S\+\_\+\+Vfy\+Pwd}}
+\index{P\+S\+\_\+\+Vfy\+Pwd@{P\+S\+\_\+\+Vfy\+Pwd}!as608.\+c@{as608.\+c}}
+\subsubsection[{P\+S\+\_\+\+Vfy\+Pwd(uint pwd)}]{\setlength{\rightskip}{0pt plus 5cm}bool P\+S\+\_\+\+Vfy\+Pwd (
+\begin{DoxyParamCaption}
+\item[{{\bf uint}}]{pwd}
+\end{DoxyParamCaption}
+)}\label{as608_8c_a45a9810f3281670bff70b96a150f5c09}
+
+
+Here is the call graph for this function\+:
+% FIG 52
+
+
+
+
+Here is the caller graph for this function\+:
+% FIG 53
+
+
+\hypertarget{as608_8c_ab1dd8a8523f905c63d26ef1f2ced8ddd}{}\index{as608.\+c@{as608.\+c}!P\+S\+\_\+\+Write\+Notepad@{P\+S\+\_\+\+Write\+Notepad}}
+\index{P\+S\+\_\+\+Write\+Notepad@{P\+S\+\_\+\+Write\+Notepad}!as608.\+c@{as608.\+c}}
+\subsubsection[{P\+S\+\_\+\+Write\+Notepad(int note\+Page\+I\+D, uchar $\ast$p\+Content, int content\+Size)}]{\setlength{\rightskip}{0pt plus 5cm}bool P\+S\+\_\+\+Write\+Notepad (
+\begin{DoxyParamCaption}
+\item[{int}]{note\+Page\+I\+D, }
+\item[{{\bf uchar} $\ast$}]{p\+Content, }
+\item[{int}]{content\+Size}
+\end{DoxyParamCaption}
+)}\label{as608_8c_ab1dd8a8523f905c63d26ef1f2ced8ddd}
+
+
+Here is the call graph for this function\+:
+% FIG 54
+
+
+\hypertarget{as608_8c_a62423f4f40bab88d575cb7bf63db03e9}{}\index{as608.\+c@{as608.\+c}!P\+S\+\_\+\+Write\+Reg@{P\+S\+\_\+\+Write\+Reg}}
+\index{P\+S\+\_\+\+Write\+Reg@{P\+S\+\_\+\+Write\+Reg}!as608.\+c@{as608.\+c}}
+\subsubsection[{P\+S\+\_\+\+Write\+Reg(int reg\+I\+D, int value)}]{\setlength{\rightskip}{0pt plus 5cm}bool P\+S\+\_\+\+Write\+Reg (
+\begin{DoxyParamCaption}
+\item[{int}]{reg\+I\+D, }
+\item[{int}]{value}
+\end{DoxyParamCaption}
+)}\label{as608_8c_a62423f4f40bab88d575cb7bf63db03e9}
+
+
+Here is the call graph for this function\+:
+% FIG 55
+
+
+
+
+Here is the caller graph for this function\+:
+% FIG 56
+
+
+\hypertarget{as608_8c_a193e9fecc5834f81fccec24f83952e50}{}\index{as608.\+c@{as608.\+c}!Recv\+Packet@{Recv\+Packet}}
+\index{Recv\+Packet@{Recv\+Packet}!as608.\+c@{as608.\+c}}
+\subsubsection[{Recv\+Packet(uchar $\ast$p\+Data, int valid\+Data\+Size)}]{\setlength{\rightskip}{0pt plus 5cm}bool Recv\+Packet (
+\begin{DoxyParamCaption}
+\item[{{\bf uchar} $\ast$}]{p\+Data, }
+\item[{int}]{valid\+Data\+Size}
+\end{DoxyParamCaption}
+)}\label{as608_8c_a193e9fecc5834f81fccec24f83952e50}
+
+
+Here is the call graph for this function\+:
+% FIG 57
+
+
+
+
+Here is the caller graph for this function\+:
+% FIG 58
+
+
+\hypertarget{as608_8c_acb590a97dc06fed947b2cc0aa489f788}{}\index{as608.\+c@{as608.\+c}!Recv\+Reply@{Recv\+Reply}}
+\index{Recv\+Reply@{Recv\+Reply}!as608.\+c@{as608.\+c}}
+\subsubsection[{Recv\+Reply(uchar $\ast$hex, int size)}]{\setlength{\rightskip}{0pt plus 5cm}bool Recv\+Reply (
+\begin{DoxyParamCaption}
+\item[{{\bf uchar} $\ast$}]{hex, }
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)}\label{as608_8c_acb590a97dc06fed947b2cc0aa489f788}
+
+
+Here is the call graph for this function\+:
+% FIG 59
+
+
+
+
+Here is the caller graph for this function\+:
+% FIG 60
+
+
+\hypertarget{as608_8c_ac7154ff58efa2c20e7032f41973dcfa3}{}\index{as608.\+c@{as608.\+c}!Send\+Order@{Send\+Order}}
+\index{Send\+Order@{Send\+Order}!as608.\+c@{as608.\+c}}
+\subsubsection[{Send\+Order(const uchar $\ast$order, int size)}]{\setlength{\rightskip}{0pt plus 5cm}int Send\+Order (
+\begin{DoxyParamCaption}
+\item[{const {\bf uchar} $\ast$}]{order, }
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)}\label{as608_8c_ac7154ff58efa2c20e7032f41973dcfa3}
+
+
+Here is the call graph for this function\+:
+% FIG 61
+
+
+
+
+Here is the caller graph for this function\+:
+% FIG 62
+
+
+\hypertarget{as608_8c_a6c5b72551e2544793a5ba2cb0448bcbd}{}\index{as608.\+c@{as608.\+c}!Send\+Packet@{Send\+Packet}}
+\index{Send\+Packet@{Send\+Packet}!as608.\+c@{as608.\+c}}
+\subsubsection[{Send\+Packet(uchar $\ast$p\+Data, int valid\+Data\+Size)}]{\setlength{\rightskip}{0pt plus 5cm}bool Send\+Packet (
+\begin{DoxyParamCaption}
+\item[{{\bf uchar} $\ast$}]{p\+Data, }
+\item[{int}]{valid\+Data\+Size}
+\end{DoxyParamCaption}
+)}\label{as608_8c_a6c5b72551e2544793a5ba2cb0448bcbd}
+
+
+Here is the call graph for this function\+:
+% FIG 63
+
+
+
+
+Here is the caller graph for this function\+:
+% FIG 64
+
+
+\hypertarget{as608_8c_af07c2aad9f2691a326cb46af75274c4c}{}\index{as608.\+c@{as608.\+c}!Split@{Split}}
+\index{Split@{Split}!as608.\+c@{as608.\+c}}
+\subsubsection[{Split(uint num, uchar $\ast$buf, int count)}]{\setlength{\rightskip}{0pt plus 5cm}void Split (
+\begin{DoxyParamCaption}
+\item[{{\bf uint}}]{num, }
+\item[{{\bf uchar} $\ast$}]{buf, }
+\item[{int}]{count}
+\end{DoxyParamCaption}
+)}\label{as608_8c_af07c2aad9f2691a326cb46af75274c4c}
+
+
+Here is the caller graph for this function\+:
+% FIG 65
+
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{as608_8c_a19c3a0b67af18ae8b8d187e21bcc6398}{}\index{as608.\+c@{as608.\+c}!g\+\_\+as608@{g\+\_\+as608}}
+\index{g\+\_\+as608@{g\+\_\+as608}!as608.\+c@{as608.\+c}}
+\subsubsection[{g\+\_\+as608}]{\setlength{\rightskip}{0pt plus 5cm}{\bf A\+S608} g\+\_\+as608}\label{as608_8c_a19c3a0b67af18ae8b8d187e21bcc6398}
+\hypertarget{as608_8c_a6957ac1dcfb11e11e72f60f78d16de53}{}\index{as608.\+c@{as608.\+c}!g\+\_\+error\+\_\+code@{g\+\_\+error\+\_\+code}}
+\index{g\+\_\+error\+\_\+code@{g\+\_\+error\+\_\+code}!as608.\+c@{as608.\+c}}
+\subsubsection[{g\+\_\+error\+\_\+code}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uchar} g\+\_\+error\+\_\+code}\label{as608_8c_a6957ac1dcfb11e11e72f60f78d16de53}
+\hypertarget{as608_8c_a017d41f37a65f0f9222622b307688824}{}\index{as608.\+c@{as608.\+c}!g\+\_\+error\+\_\+desc@{g\+\_\+error\+\_\+desc}}
+\index{g\+\_\+error\+\_\+desc@{g\+\_\+error\+\_\+desc}!as608.\+c@{as608.\+c}}
+\subsubsection[{g\+\_\+error\+\_\+desc}]{\setlength{\rightskip}{0pt plus 5cm}char g\+\_\+error\+\_\+desc\mbox{[}128\mbox{]}}\label{as608_8c_a017d41f37a65f0f9222622b307688824}
+\hypertarget{as608_8c_ac09e95a250275ca69c109f7bbadfef43}{}\index{as608.\+c@{as608.\+c}!g\+\_\+fd@{g\+\_\+fd}}
+\index{g\+\_\+fd@{g\+\_\+fd}!as608.\+c@{as608.\+c}}
+\subsubsection[{g\+\_\+fd}]{\setlength{\rightskip}{0pt plus 5cm}int g\+\_\+fd}\label{as608_8c_ac09e95a250275ca69c109f7bbadfef43}
+\hypertarget{as608_8c_a1370cd4d8d1b75bc97a0b5b6bc8c8cc4}{}\index{as608.\+c@{as608.\+c}!g\+\_\+order@{g\+\_\+order}}
+\index{g\+\_\+order@{g\+\_\+order}!as608.\+c@{as608.\+c}}
+\subsubsection[{g\+\_\+order}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uchar} g\+\_\+order\mbox{[}64\mbox{]} = \{ 0 \}}\label{as608_8c_a1370cd4d8d1b75bc97a0b5b6bc8c8cc4}
+\hypertarget{as608_8c_ac2de4cbe169f0ebe7eb4931a884b3faf}{}\index{as608.\+c@{as608.\+c}!g\+\_\+reply@{g\+\_\+reply}}
+\index{g\+\_\+reply@{g\+\_\+reply}!as608.\+c@{as608.\+c}}
+\subsubsection[{g\+\_\+reply}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uchar} g\+\_\+reply\mbox{[}64\mbox{]} = \{ 0 \}}\label{as608_8c_ac2de4cbe169f0ebe7eb4931a884b3faf}
+\hypertarget{as608_8c_af27e3faeb692ec7ae78672182717dd18}{}\index{as608.\+c@{as608.\+c}!g\+\_\+verbose@{g\+\_\+verbose}}
+\index{g\+\_\+verbose@{g\+\_\+verbose}!as608.\+c@{as608.\+c}}
+\subsubsection[{g\+\_\+verbose}]{\setlength{\rightskip}{0pt plus 5cm}int g\+\_\+verbose}\label{as608_8c_af27e3faeb692ec7ae78672182717dd18}

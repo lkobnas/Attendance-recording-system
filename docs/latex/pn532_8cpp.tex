@@ -1,0 +1,566 @@
+\hypertarget{pn532_8cpp}{}\section{E\+:/\+Glasgow Course Works/\+Realtime Embeded Programming/\+Project files/\+Course\+Project/\+Attendance-\/recording-\/system/src/\+P\+N532/\+P\+N532\+\_\+lib/pn532.cpp File Reference}
+\label{pn532_8cpp}\index{E\+:/\+Glasgow Course Works/\+Realtime Embeded Programming/\+Project files/\+Course\+Project/\+Attendance-\/recording-\/system/src/\+P\+N532/\+P\+N532\+\_\+lib/pn532.\+cpp@{E\+:/\+Glasgow Course Works/\+Realtime Embeded Programming/\+Project files/\+Course\+Project/\+Attendance-\/recording-\/system/src/\+P\+N532/\+P\+N532\+\_\+lib/pn532.\+cpp}}
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}pn532.\+h\char`\"{}}\\*
+Include dependency graph for pn532.\+cpp\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{pn532_8cpp_ac4a17c496bd0e78d6e9370dac7e98bb6}{P\+N532\+\_\+\+F\+R\+A\+M\+E\+\_\+\+M\+A\+X\+\_\+\+L\+E\+N\+G\+T\+H}~255
+\item 
+\#define \hyperlink{pn532_8cpp_a6d1ca0c0eaf2fb67529125ecdb7c5a19}{P\+N532\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+T\+I\+M\+E\+O\+U\+T}~1000
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{pn532_8cpp_a69de98d80406ff97f062c67d0bfb3cef}{P\+N532\+\_\+\+Write\+Frame} (\hyperlink{pn532_8h_a83d4ce3c80b776dca6f0a1583666d2f9}{P\+N532} $\ast$\hyperlink{testpn532_8h_a9b366c8e61355e8ecd7f729695499867}{pn532}, uint8\+\_\+t $\ast$data, uint16\+\_\+t length)
+\begin{DoxyCompactList}\small\item\em \+: Write a frame to the P\+N532 of at most length bytes in size. Note that less than length bytes might be returned! \end{DoxyCompactList}\item 
+int \hyperlink{pn532_8cpp_a4e5a0ec49ff921bd45850ea499bf7f53}{P\+N532\+\_\+\+Read\+Frame} (\hyperlink{pn532_8h_a83d4ce3c80b776dca6f0a1583666d2f9}{P\+N532} $\ast$\hyperlink{testpn532_8h_a9b366c8e61355e8ecd7f729695499867}{pn532}, uint8\+\_\+t $\ast$response, uint16\+\_\+t length)
+\begin{DoxyCompactList}\small\item\em \+: Read a response frame from the P\+N532 of at most length bytes in size. Note that less than length bytes might be returned! \end{DoxyCompactList}\item 
+int \hyperlink{pn532_8cpp_aa4146df1d7d798bbffb18e5a65b88d98}{P\+N532\+\_\+\+Call\+Function} (\hyperlink{pn532_8h_a83d4ce3c80b776dca6f0a1583666d2f9}{P\+N532} $\ast$\hyperlink{testpn532_8h_a9b366c8e61355e8ecd7f729695499867}{pn532}, uint8\+\_\+t command, uint8\+\_\+t $\ast$response, uint16\+\_\+t response\+\_\+length, uint8\+\_\+t $\ast$params, uint16\+\_\+t params\+\_\+length, uint32\+\_\+t timeout)
+\begin{DoxyCompactList}\small\item\em \+: Send specified command to the P\+N532 and expect up to response\+\_\+length. Will wait up to timeout seconds for a response and read a bytearray into response buffer. \end{DoxyCompactList}\item 
+int \hyperlink{pn532_8cpp_a4a5149d342a7cbf16bd27775d35ab223}{P\+N532\+\_\+\+Get\+Firmware\+Version} (\hyperlink{pn532_8h_a83d4ce3c80b776dca6f0a1583666d2f9}{P\+N532} $\ast$\hyperlink{testpn532_8h_a9b366c8e61355e8ecd7f729695499867}{pn532}, uint8\+\_\+t $\ast$version)
+\begin{DoxyCompactList}\small\item\em \+: Call P\+N532 Get\+Firmware\+Version function and return a buff with the I\+C, Ver, Rev, and Support values. \end{DoxyCompactList}\item 
+int \hyperlink{pn532_8cpp_a92f904fc7bf1027b59f337434973efb6}{P\+N532\+\_\+\+Sam\+Configuration} (\hyperlink{pn532_8h_a83d4ce3c80b776dca6f0a1583666d2f9}{P\+N532} $\ast$\hyperlink{testpn532_8h_a9b366c8e61355e8ecd7f729695499867}{pn532})
+\begin{DoxyCompactList}\small\item\em \+: Configure the P\+N532 to read Mi\+Fare cards. \end{DoxyCompactList}\item 
+int \hyperlink{pn532_8cpp_a5ff91aa6deba1450e4b10350be219ad5}{P\+N532\+\_\+\+Read\+Passive\+Target} (\hyperlink{pn532_8h_a83d4ce3c80b776dca6f0a1583666d2f9}{P\+N532} $\ast$\hyperlink{testpn532_8h_a9b366c8e61355e8ecd7f729695499867}{pn532}, uint8\+\_\+t $\ast$response, uint8\+\_\+t card\+\_\+baud, uint32\+\_\+t timeout)
+\begin{DoxyCompactList}\small\item\em \+: Wait for a Mi\+Fare card to be available and return its U\+I\+D when found. Will wait up to timeout seconds and return None if no card is found, otherwise a bytearray with the U\+I\+D of the found card is returned. \end{DoxyCompactList}\item 
+int \hyperlink{pn532_8cpp_a7eeb27d7c2ecff7914f7ebb7cdc235b3}{P\+N532\+\_\+\+Mifare\+Classic\+Authenticate\+Block} (\hyperlink{pn532_8h_a83d4ce3c80b776dca6f0a1583666d2f9}{P\+N532} $\ast$\hyperlink{testpn532_8h_a9b366c8e61355e8ecd7f729695499867}{pn532}, uint8\+\_\+t $\ast$uid, uint8\+\_\+t uid\+\_\+length, uint16\+\_\+t block\+\_\+number, uint16\+\_\+t key\+\_\+number, uint8\+\_\+t $\ast$key)
+\begin{DoxyCompactList}\small\item\em \+: Authenticate specified block number for a Mi\+Fare classic card. \end{DoxyCompactList}\item 
+int \hyperlink{pn532_8cpp_adf6f589be1bdf9799405b9e5f68562bc}{P\+N532\+\_\+\+Mifare\+Classic\+Read\+Block} (\hyperlink{pn532_8h_a83d4ce3c80b776dca6f0a1583666d2f9}{P\+N532} $\ast$\hyperlink{testpn532_8h_a9b366c8e61355e8ecd7f729695499867}{pn532}, uint8\+\_\+t $\ast$response, uint16\+\_\+t block\+\_\+number)
+\begin{DoxyCompactList}\small\item\em \+: Read a block of data from the card. Block number should be the block to read. \end{DoxyCompactList}\item 
+int \hyperlink{pn532_8cpp_ad30ec43c8537d8ef4f918ca8dedebde8}{P\+N532\+\_\+\+Mifare\+Classic\+Write\+Block} (\hyperlink{pn532_8h_a83d4ce3c80b776dca6f0a1583666d2f9}{P\+N532} $\ast$\hyperlink{testpn532_8h_a9b366c8e61355e8ecd7f729695499867}{pn532}, uint8\+\_\+t $\ast$data, uint16\+\_\+t block\+\_\+number)
+\begin{DoxyCompactList}\small\item\em \+: Write a block of data to the card. Block number should be the block to write and data should be a byte array of length 16 with the data to write. \end{DoxyCompactList}\item 
+int \hyperlink{pn532_8cpp_ae2fe91e2a40b5a38403a672860735413}{P\+N532\+\_\+\+Ntag2xx\+Read\+Block} (\hyperlink{pn532_8h_a83d4ce3c80b776dca6f0a1583666d2f9}{P\+N532} $\ast$\hyperlink{testpn532_8h_a9b366c8e61355e8ecd7f729695499867}{pn532}, uint8\+\_\+t $\ast$response, uint16\+\_\+t block\+\_\+number)
+\begin{DoxyCompactList}\small\item\em \+: Read a block of data from the card. Block number should be the block to read. \end{DoxyCompactList}\item 
+int \hyperlink{pn532_8cpp_a6ee17588025ca24892b5c156057b1fe2}{P\+N532\+\_\+\+Ntag2xx\+Write\+Block} (\hyperlink{pn532_8h_a83d4ce3c80b776dca6f0a1583666d2f9}{P\+N532} $\ast$\hyperlink{testpn532_8h_a9b366c8e61355e8ecd7f729695499867}{pn532}, uint8\+\_\+t $\ast$data, uint16\+\_\+t block\+\_\+number)
+\begin{DoxyCompactList}\small\item\em \+: Write a block of data to the card. Block number should be the block to write and data should be a byte array of length 4 with the data to write. \end{DoxyCompactList}\item 
+int \hyperlink{pn532_8cpp_a063c81bf21873960691fe1d44fed64aa}{P\+N532\+\_\+\+Read\+Gpio} (\hyperlink{pn532_8h_a83d4ce3c80b776dca6f0a1583666d2f9}{P\+N532} $\ast$\hyperlink{testpn532_8h_a9b366c8e61355e8ecd7f729695499867}{pn532}, uint8\+\_\+t $\ast$pins\+\_\+state)
+\begin{DoxyCompactList}\small\item\em \+: Read the G\+P\+I\+O states. \end{DoxyCompactList}\item 
+bool \hyperlink{pn532_8cpp_a86020520cbcff3fe83bccd90664f94b2}{P\+N532\+\_\+\+Read\+Gpio\+P} (\hyperlink{pn532_8h_a83d4ce3c80b776dca6f0a1583666d2f9}{P\+N532} $\ast$\hyperlink{testpn532_8h_a9b366c8e61355e8ecd7f729695499867}{pn532}, uint8\+\_\+t pin\+\_\+number)
+\begin{DoxyCompactList}\small\item\em \+: Read the G\+P\+I\+O state of specified pins in (P30 ... P35). \end{DoxyCompactList}\item 
+bool \hyperlink{pn532_8cpp_ac4dc75442bfccba7150de41a73570c50}{P\+N532\+\_\+\+Read\+Gpio\+I} (\hyperlink{pn532_8h_a83d4ce3c80b776dca6f0a1583666d2f9}{P\+N532} $\ast$\hyperlink{testpn532_8h_a9b366c8e61355e8ecd7f729695499867}{pn532}, uint8\+\_\+t pin\+\_\+number)
+\begin{DoxyCompactList}\small\item\em \+: Read the G\+P\+I\+O state of I0 or I1 pin. \end{DoxyCompactList}\item 
+int \hyperlink{pn532_8cpp_a0e2a8da61dadb7eb1c517312da114cdb}{P\+N532\+\_\+\+Write\+Gpio} (\hyperlink{pn532_8h_a83d4ce3c80b776dca6f0a1583666d2f9}{P\+N532} $\ast$\hyperlink{testpn532_8h_a9b366c8e61355e8ecd7f729695499867}{pn532}, uint8\+\_\+t $\ast$pins\+\_\+state)
+\begin{DoxyCompactList}\small\item\em \+: Write the G\+P\+I\+O states. \end{DoxyCompactList}\item 
+int \hyperlink{pn532_8cpp_a74ce64964d676b92a18552b7338e82e9}{P\+N532\+\_\+\+Write\+Gpio\+P} (\hyperlink{pn532_8h_a83d4ce3c80b776dca6f0a1583666d2f9}{P\+N532} $\ast$\hyperlink{testpn532_8h_a9b366c8e61355e8ecd7f729695499867}{pn532}, uint8\+\_\+t pin\+\_\+number, bool pin\+\_\+state)
+\begin{DoxyCompactList}\small\item\em \+: Write the specified pin with given states. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const uint8\+\_\+t \hyperlink{pn532_8cpp_ace963daeebd9282e988576c25ff762ee}{P\+N532\+\_\+\+A\+C\+K} \mbox{[}$\,$\mbox{]} = \{0x00, 0x00, 0x\+F\+F, 0x00, 0x\+F\+F, 0x00\}
+\item 
+const uint8\+\_\+t \hyperlink{pn532_8cpp_affb4ac37c8733262af29d9c93165b388}{P\+N532\+\_\+\+F\+R\+A\+M\+E\+\_\+\+S\+T\+A\+R\+T} \mbox{[}$\,$\mbox{]} = \{0x00, 0x00, 0x\+F\+F\}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{pn532_8cpp_a6d1ca0c0eaf2fb67529125ecdb7c5a19}{}\index{pn532.\+cpp@{pn532.\+cpp}!P\+N532\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+T\+I\+M\+E\+O\+U\+T@{P\+N532\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+T\+I\+M\+E\+O\+U\+T}}
+\index{P\+N532\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+T\+I\+M\+E\+O\+U\+T@{P\+N532\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+T\+I\+M\+E\+O\+U\+T}!pn532.\+cpp@{pn532.\+cpp}}
+\subsubsection[{P\+N532\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+T\+I\+M\+E\+O\+U\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+N532\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+T\+I\+M\+E\+O\+U\+T~1000}\label{pn532_8cpp_a6d1ca0c0eaf2fb67529125ecdb7c5a19}
+\hypertarget{pn532_8cpp_ac4a17c496bd0e78d6e9370dac7e98bb6}{}\index{pn532.\+cpp@{pn532.\+cpp}!P\+N532\+\_\+\+F\+R\+A\+M\+E\+\_\+\+M\+A\+X\+\_\+\+L\+E\+N\+G\+T\+H@{P\+N532\+\_\+\+F\+R\+A\+M\+E\+\_\+\+M\+A\+X\+\_\+\+L\+E\+N\+G\+T\+H}}
+\index{P\+N532\+\_\+\+F\+R\+A\+M\+E\+\_\+\+M\+A\+X\+\_\+\+L\+E\+N\+G\+T\+H@{P\+N532\+\_\+\+F\+R\+A\+M\+E\+\_\+\+M\+A\+X\+\_\+\+L\+E\+N\+G\+T\+H}!pn532.\+cpp@{pn532.\+cpp}}
+\subsubsection[{P\+N532\+\_\+\+F\+R\+A\+M\+E\+\_\+\+M\+A\+X\+\_\+\+L\+E\+N\+G\+T\+H}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+N532\+\_\+\+F\+R\+A\+M\+E\+\_\+\+M\+A\+X\+\_\+\+L\+E\+N\+G\+T\+H~255}\label{pn532_8cpp_ac4a17c496bd0e78d6e9370dac7e98bb6}
+
+
+\subsection{Function Documentation}
+\hypertarget{pn532_8cpp_aa4146df1d7d798bbffb18e5a65b88d98}{}\index{pn532.\+cpp@{pn532.\+cpp}!P\+N532\+\_\+\+Call\+Function@{P\+N532\+\_\+\+Call\+Function}}
+\index{P\+N532\+\_\+\+Call\+Function@{P\+N532\+\_\+\+Call\+Function}!pn532.\+cpp@{pn532.\+cpp}}
+\subsubsection[{P\+N532\+\_\+\+Call\+Function(\+P\+N532 $\ast$pn532, uint8\+\_\+t command, uint8\+\_\+t $\ast$response, uint16\+\_\+t response\+\_\+length, uint8\+\_\+t $\ast$params, uint16\+\_\+t params\+\_\+length, uint32\+\_\+t timeout)}]{\setlength{\rightskip}{0pt plus 5cm}int P\+N532\+\_\+\+Call\+Function (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+N532} $\ast$}]{pn532, }
+\item[{uint8\+\_\+t}]{command, }
+\item[{uint8\+\_\+t $\ast$}]{response, }
+\item[{uint16\+\_\+t}]{response\+\_\+length, }
+\item[{uint8\+\_\+t $\ast$}]{params, }
+\item[{uint16\+\_\+t}]{params\+\_\+length, }
+\item[{uint32\+\_\+t}]{timeout}
+\end{DoxyParamCaption}
+)}\label{pn532_8cpp_aa4146df1d7d798bbffb18e5a65b88d98}
+
+
+\+: Send specified command to the P\+N532 and expect up to response\+\_\+length. Will wait up to timeout seconds for a response and read a bytearray into response buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pn532} & P\+N532 handler \\
+\hline
+{\em command} & command to send \\
+\hline
+{\em response} & buffer returned \\
+\hline
+{\em response\+\_\+length} & expected response length \\
+\hline
+{\em params} & can optionally specify an array of bytes to send as parameters to the function call, or N\+U\+L\+L if there is no need to send parameters. \\
+\hline
+{\em params\+\_\+length} & length of the argument params \\
+\hline
+{\em timeout} & timout of systick \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em } & \\
+\hline
+\end{DoxyRetVals}
+
+
+Here is the call graph for this function\+:
+% FIG 1
+
+
+
+
+Here is the caller graph for this function\+:
+% FIG 2
+
+
+\hypertarget{pn532_8cpp_a4a5149d342a7cbf16bd27775d35ab223}{}\index{pn532.\+cpp@{pn532.\+cpp}!P\+N532\+\_\+\+Get\+Firmware\+Version@{P\+N532\+\_\+\+Get\+Firmware\+Version}}
+\index{P\+N532\+\_\+\+Get\+Firmware\+Version@{P\+N532\+\_\+\+Get\+Firmware\+Version}!pn532.\+cpp@{pn532.\+cpp}}
+\subsubsection[{P\+N532\+\_\+\+Get\+Firmware\+Version(\+P\+N532 $\ast$pn532, uint8\+\_\+t $\ast$version)}]{\setlength{\rightskip}{0pt plus 5cm}int P\+N532\+\_\+\+Get\+Firmware\+Version (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+N532} $\ast$}]{pn532, }
+\item[{uint8\+\_\+t $\ast$}]{version}
+\end{DoxyParamCaption}
+)}\label{pn532_8cpp_a4a5149d342a7cbf16bd27775d35ab223}
+
+
+\+: Call P\+N532 Get\+Firmware\+Version function and return a buff with the I\+C, Ver, Rev, and Support values. 
+
+
+
+Here is the call graph for this function\+:
+% FIG 3
+
+
+
+
+Here is the caller graph for this function\+:
+% FIG 4
+
+
+\hypertarget{pn532_8cpp_a7eeb27d7c2ecff7914f7ebb7cdc235b3}{}\index{pn532.\+cpp@{pn532.\+cpp}!P\+N532\+\_\+\+Mifare\+Classic\+Authenticate\+Block@{P\+N532\+\_\+\+Mifare\+Classic\+Authenticate\+Block}}
+\index{P\+N532\+\_\+\+Mifare\+Classic\+Authenticate\+Block@{P\+N532\+\_\+\+Mifare\+Classic\+Authenticate\+Block}!pn532.\+cpp@{pn532.\+cpp}}
+\subsubsection[{P\+N532\+\_\+\+Mifare\+Classic\+Authenticate\+Block(\+P\+N532 $\ast$pn532, uint8\+\_\+t $\ast$uid, uint8\+\_\+t uid\+\_\+length, uint16\+\_\+t block\+\_\+number, uint16\+\_\+t key\+\_\+number, uint8\+\_\+t $\ast$key)}]{\setlength{\rightskip}{0pt plus 5cm}int P\+N532\+\_\+\+Mifare\+Classic\+Authenticate\+Block (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+N532} $\ast$}]{pn532, }
+\item[{uint8\+\_\+t $\ast$}]{uid, }
+\item[{uint8\+\_\+t}]{uid\+\_\+length, }
+\item[{uint16\+\_\+t}]{block\+\_\+number, }
+\item[{uint16\+\_\+t}]{key\+\_\+number, }
+\item[{uint8\+\_\+t $\ast$}]{key}
+\end{DoxyParamCaption}
+)}\label{pn532_8cpp_a7eeb27d7c2ecff7914f7ebb7cdc235b3}
+
+
+\+: Authenticate specified block number for a Mi\+Fare classic card. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em uid} & A byte array with the U\+I\+D of the card. \\
+\hline
+{\em uid\+\_\+length} & Length of the U\+I\+D of the card. \\
+\hline
+{\em block\+\_\+number} & The block to authenticate. \\
+\hline
+{\em key\+\_\+number} & The key type (like M\+I\+F\+A\+R\+E\+\_\+\+C\+M\+D\+\_\+\+A\+U\+T\+H\+\_\+\+A or M\+I\+F\+A\+R\+E\+\_\+\+C\+M\+D\+\_\+\+A\+U\+T\+H\+\_\+\+B). \\
+\hline
+{\em key} & A byte array with the key data. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em } & \\
+\hline
+\end{DoxyRetVals}
+
+
+Here is the call graph for this function\+:
+% FIG 5
+
+
+\hypertarget{pn532_8cpp_adf6f589be1bdf9799405b9e5f68562bc}{}\index{pn532.\+cpp@{pn532.\+cpp}!P\+N532\+\_\+\+Mifare\+Classic\+Read\+Block@{P\+N532\+\_\+\+Mifare\+Classic\+Read\+Block}}
+\index{P\+N532\+\_\+\+Mifare\+Classic\+Read\+Block@{P\+N532\+\_\+\+Mifare\+Classic\+Read\+Block}!pn532.\+cpp@{pn532.\+cpp}}
+\subsubsection[{P\+N532\+\_\+\+Mifare\+Classic\+Read\+Block(\+P\+N532 $\ast$pn532, uint8\+\_\+t $\ast$response, uint16\+\_\+t block\+\_\+number)}]{\setlength{\rightskip}{0pt plus 5cm}int P\+N532\+\_\+\+Mifare\+Classic\+Read\+Block (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+N532} $\ast$}]{pn532, }
+\item[{uint8\+\_\+t $\ast$}]{response, }
+\item[{uint16\+\_\+t}]{block\+\_\+number}
+\end{DoxyParamCaption}
+)}\label{pn532_8cpp_adf6f589be1bdf9799405b9e5f68562bc}
+
+
+\+: Read a block of data from the card. Block number should be the block to read. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em response} & buffer of length 16 returned if the block is successfully read. \\
+\hline
+{\em block\+\_\+number} & specify a block to read. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em } & \\
+\hline
+\end{DoxyRetVals}
+
+
+Here is the call graph for this function\+:
+% FIG 6
+
+
+\hypertarget{pn532_8cpp_ad30ec43c8537d8ef4f918ca8dedebde8}{}\index{pn532.\+cpp@{pn532.\+cpp}!P\+N532\+\_\+\+Mifare\+Classic\+Write\+Block@{P\+N532\+\_\+\+Mifare\+Classic\+Write\+Block}}
+\index{P\+N532\+\_\+\+Mifare\+Classic\+Write\+Block@{P\+N532\+\_\+\+Mifare\+Classic\+Write\+Block}!pn532.\+cpp@{pn532.\+cpp}}
+\subsubsection[{P\+N532\+\_\+\+Mifare\+Classic\+Write\+Block(\+P\+N532 $\ast$pn532, uint8\+\_\+t $\ast$data, uint16\+\_\+t block\+\_\+number)}]{\setlength{\rightskip}{0pt plus 5cm}int P\+N532\+\_\+\+Mifare\+Classic\+Write\+Block (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+N532} $\ast$}]{pn532, }
+\item[{uint8\+\_\+t $\ast$}]{data, }
+\item[{uint16\+\_\+t}]{block\+\_\+number}
+\end{DoxyParamCaption}
+)}\label{pn532_8cpp_ad30ec43c8537d8ef4f918ca8dedebde8}
+
+
+\+: Write a block of data to the card. Block number should be the block to write and data should be a byte array of length 16 with the data to write. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & data to write. \\
+\hline
+{\em block\+\_\+number} & specify a block to write. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em } & \\
+\hline
+\end{DoxyRetVals}
+
+
+Here is the call graph for this function\+:
+% FIG 7
+
+
+\hypertarget{pn532_8cpp_ae2fe91e2a40b5a38403a672860735413}{}\index{pn532.\+cpp@{pn532.\+cpp}!P\+N532\+\_\+\+Ntag2xx\+Read\+Block@{P\+N532\+\_\+\+Ntag2xx\+Read\+Block}}
+\index{P\+N532\+\_\+\+Ntag2xx\+Read\+Block@{P\+N532\+\_\+\+Ntag2xx\+Read\+Block}!pn532.\+cpp@{pn532.\+cpp}}
+\subsubsection[{P\+N532\+\_\+\+Ntag2xx\+Read\+Block(\+P\+N532 $\ast$pn532, uint8\+\_\+t $\ast$response, uint16\+\_\+t block\+\_\+number)}]{\setlength{\rightskip}{0pt plus 5cm}int P\+N532\+\_\+\+Ntag2xx\+Read\+Block (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+N532} $\ast$}]{pn532, }
+\item[{uint8\+\_\+t $\ast$}]{response, }
+\item[{uint16\+\_\+t}]{block\+\_\+number}
+\end{DoxyParamCaption}
+)}\label{pn532_8cpp_ae2fe91e2a40b5a38403a672860735413}
+
+
+\+: Read a block of data from the card. Block number should be the block to read. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em response} & buffer of length 4 returned if the block is successfully read. \\
+\hline
+{\em block\+\_\+number} & specify a block to read. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em } & \\
+\hline
+\end{DoxyRetVals}
+
+
+Here is the call graph for this function\+:
+% FIG 8
+
+
+\hypertarget{pn532_8cpp_a6ee17588025ca24892b5c156057b1fe2}{}\index{pn532.\+cpp@{pn532.\+cpp}!P\+N532\+\_\+\+Ntag2xx\+Write\+Block@{P\+N532\+\_\+\+Ntag2xx\+Write\+Block}}
+\index{P\+N532\+\_\+\+Ntag2xx\+Write\+Block@{P\+N532\+\_\+\+Ntag2xx\+Write\+Block}!pn532.\+cpp@{pn532.\+cpp}}
+\subsubsection[{P\+N532\+\_\+\+Ntag2xx\+Write\+Block(\+P\+N532 $\ast$pn532, uint8\+\_\+t $\ast$data, uint16\+\_\+t block\+\_\+number)}]{\setlength{\rightskip}{0pt plus 5cm}int P\+N532\+\_\+\+Ntag2xx\+Write\+Block (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+N532} $\ast$}]{pn532, }
+\item[{uint8\+\_\+t $\ast$}]{data, }
+\item[{uint16\+\_\+t}]{block\+\_\+number}
+\end{DoxyParamCaption}
+)}\label{pn532_8cpp_a6ee17588025ca24892b5c156057b1fe2}
+
+
+\+: Write a block of data to the card. Block number should be the block to write and data should be a byte array of length 4 with the data to write. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & data to write. \\
+\hline
+{\em block\+\_\+number} & specify a block to write. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em } & \\
+\hline
+\end{DoxyRetVals}
+
+
+Here is the call graph for this function\+:
+% FIG 9
+
+
+\hypertarget{pn532_8cpp_a4e5a0ec49ff921bd45850ea499bf7f53}{}\index{pn532.\+cpp@{pn532.\+cpp}!P\+N532\+\_\+\+Read\+Frame@{P\+N532\+\_\+\+Read\+Frame}}
+\index{P\+N532\+\_\+\+Read\+Frame@{P\+N532\+\_\+\+Read\+Frame}!pn532.\+cpp@{pn532.\+cpp}}
+\subsubsection[{P\+N532\+\_\+\+Read\+Frame(\+P\+N532 $\ast$pn532, uint8\+\_\+t $\ast$response, uint16\+\_\+t length)}]{\setlength{\rightskip}{0pt plus 5cm}int P\+N532\+\_\+\+Read\+Frame (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+N532} $\ast$}]{pn532, }
+\item[{uint8\+\_\+t $\ast$}]{response, }
+\item[{uint16\+\_\+t}]{length}
+\end{DoxyParamCaption}
+)}\label{pn532_8cpp_a4e5a0ec49ff921bd45850ea499bf7f53}
+
+
+\+: Read a response frame from the P\+N532 of at most length bytes in size. Note that less than length bytes might be returned! 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em } & \\
+\hline
+\end{DoxyRetVals}
+
+
+Here is the caller graph for this function\+:
+% FIG 10
+
+
+\hypertarget{pn532_8cpp_a063c81bf21873960691fe1d44fed64aa}{}\index{pn532.\+cpp@{pn532.\+cpp}!P\+N532\+\_\+\+Read\+Gpio@{P\+N532\+\_\+\+Read\+Gpio}}
+\index{P\+N532\+\_\+\+Read\+Gpio@{P\+N532\+\_\+\+Read\+Gpio}!pn532.\+cpp@{pn532.\+cpp}}
+\subsubsection[{P\+N532\+\_\+\+Read\+Gpio(\+P\+N532 $\ast$pn532, uint8\+\_\+t $\ast$pins\+\_\+state)}]{\setlength{\rightskip}{0pt plus 5cm}int P\+N532\+\_\+\+Read\+Gpio (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+N532} $\ast$}]{pn532, }
+\item[{uint8\+\_\+t $\ast$}]{pins\+\_\+state}
+\end{DoxyParamCaption}
+)}\label{pn532_8cpp_a063c81bf21873960691fe1d44fed64aa}
+
+
+\+: Read the G\+P\+I\+O states. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pin\+\_\+state} & pin state buffer (3 bytes) returned. returns 3 bytes containing the pin state where\+: P3\mbox{[}0\mbox{]} = P30, P7\mbox{[}0\mbox{]} = 0, I\mbox{[}0\mbox{]} = I0, P3\mbox{[}1\mbox{]} = P31, P7\mbox{[}1\mbox{]} = P71, I\mbox{[}1\mbox{]} = I1, P3\mbox{[}2\mbox{]} = P32, P7\mbox{[}2\mbox{]} = P72, I\mbox{[}2\mbox{]} = 0, P3\mbox{[}3\mbox{]} = P33, P7\mbox{[}3\mbox{]} = 0, I\mbox{[}3\mbox{]} = 0, P3\mbox{[}4\mbox{]} = P34, P7\mbox{[}4\mbox{]} = 0, I\mbox{[}4\mbox{]} = 0, P3\mbox{[}5\mbox{]} = P35, P7\mbox{[}5\mbox{]} = 0, I\mbox{[}5\mbox{]} = 0, P3\mbox{[}6\mbox{]} = 0, P7\mbox{[}6\mbox{]} = 0, I\mbox{[}6\mbox{]} = 0, P3\mbox{[}7\mbox{]} = 0, P7\mbox{[}7\mbox{]} = 0, I\mbox{[}7\mbox{]} = 0, \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em } & \\
+\hline
+\end{DoxyRetVals}
+
+
+Here is the call graph for this function\+:
+% FIG 11
+
+
+
+
+Here is the caller graph for this function\+:
+% FIG 12
+
+
+\hypertarget{pn532_8cpp_ac4dc75442bfccba7150de41a73570c50}{}\index{pn532.\+cpp@{pn532.\+cpp}!P\+N532\+\_\+\+Read\+Gpio\+I@{P\+N532\+\_\+\+Read\+Gpio\+I}}
+\index{P\+N532\+\_\+\+Read\+Gpio\+I@{P\+N532\+\_\+\+Read\+Gpio\+I}!pn532.\+cpp@{pn532.\+cpp}}
+\subsubsection[{P\+N532\+\_\+\+Read\+Gpio\+I(\+P\+N532 $\ast$pn532, uint8\+\_\+t pin\+\_\+number)}]{\setlength{\rightskip}{0pt plus 5cm}bool P\+N532\+\_\+\+Read\+Gpio\+I (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+N532} $\ast$}]{pn532, }
+\item[{uint8\+\_\+t}]{pin\+\_\+number}
+\end{DoxyParamCaption}
+)}\label{pn532_8cpp_ac4dc75442bfccba7150de41a73570c50}
+
+
+\+: Read the G\+P\+I\+O state of I0 or I1 pin. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pin\+\_\+number} & specify the pin to read. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em } & \\
+\hline
+\end{DoxyRetVals}
+
+
+Here is the call graph for this function\+:
+% FIG 13
+
+
+\hypertarget{pn532_8cpp_a86020520cbcff3fe83bccd90664f94b2}{}\index{pn532.\+cpp@{pn532.\+cpp}!P\+N532\+\_\+\+Read\+Gpio\+P@{P\+N532\+\_\+\+Read\+Gpio\+P}}
+\index{P\+N532\+\_\+\+Read\+Gpio\+P@{P\+N532\+\_\+\+Read\+Gpio\+P}!pn532.\+cpp@{pn532.\+cpp}}
+\subsubsection[{P\+N532\+\_\+\+Read\+Gpio\+P(\+P\+N532 $\ast$pn532, uint8\+\_\+t pin\+\_\+number)}]{\setlength{\rightskip}{0pt plus 5cm}bool P\+N532\+\_\+\+Read\+Gpio\+P (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+N532} $\ast$}]{pn532, }
+\item[{uint8\+\_\+t}]{pin\+\_\+number}
+\end{DoxyParamCaption}
+)}\label{pn532_8cpp_a86020520cbcff3fe83bccd90664f94b2}
+
+
+\+: Read the G\+P\+I\+O state of specified pins in (P30 ... P35). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pin\+\_\+number} & specify the pin to read. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em } & \\
+\hline
+\end{DoxyRetVals}
+
+
+Here is the call graph for this function\+:
+% FIG 14
+
+
+\hypertarget{pn532_8cpp_a5ff91aa6deba1450e4b10350be219ad5}{}\index{pn532.\+cpp@{pn532.\+cpp}!P\+N532\+\_\+\+Read\+Passive\+Target@{P\+N532\+\_\+\+Read\+Passive\+Target}}
+\index{P\+N532\+\_\+\+Read\+Passive\+Target@{P\+N532\+\_\+\+Read\+Passive\+Target}!pn532.\+cpp@{pn532.\+cpp}}
+\subsubsection[{P\+N532\+\_\+\+Read\+Passive\+Target(\+P\+N532 $\ast$pn532, uint8\+\_\+t $\ast$response, uint8\+\_\+t card\+\_\+baud, uint32\+\_\+t timeout)}]{\setlength{\rightskip}{0pt plus 5cm}int P\+N532\+\_\+\+Read\+Passive\+Target (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+N532} $\ast$}]{pn532, }
+\item[{uint8\+\_\+t $\ast$}]{response, }
+\item[{uint8\+\_\+t}]{card\+\_\+baud, }
+\item[{uint32\+\_\+t}]{timeout}
+\end{DoxyParamCaption}
+)}\label{pn532_8cpp_a5ff91aa6deba1450e4b10350be219ad5}
+
+
+\+: Wait for a Mi\+Fare card to be available and return its U\+I\+D when found. Will wait up to timeout seconds and return None if no card is found, otherwise a bytearray with the U\+I\+D of the found card is returned. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em } & \\
+\hline
+\end{DoxyRetVals}
+
+
+Here is the call graph for this function\+:
+% FIG 15
+
+
+
+
+Here is the caller graph for this function\+:
+% FIG 16
+
+
+\hypertarget{pn532_8cpp_a92f904fc7bf1027b59f337434973efb6}{}\index{pn532.\+cpp@{pn532.\+cpp}!P\+N532\+\_\+\+Sam\+Configuration@{P\+N532\+\_\+\+Sam\+Configuration}}
+\index{P\+N532\+\_\+\+Sam\+Configuration@{P\+N532\+\_\+\+Sam\+Configuration}!pn532.\+cpp@{pn532.\+cpp}}
+\subsubsection[{P\+N532\+\_\+\+Sam\+Configuration(\+P\+N532 $\ast$pn532)}]{\setlength{\rightskip}{0pt plus 5cm}int P\+N532\+\_\+\+Sam\+Configuration (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+N532} $\ast$}]{pn532}
+\end{DoxyParamCaption}
+)}\label{pn532_8cpp_a92f904fc7bf1027b59f337434973efb6}
+
+
+\+: Configure the P\+N532 to read Mi\+Fare cards. 
+
+
+
+Here is the call graph for this function\+:
+% FIG 17
+
+
+
+
+Here is the caller graph for this function\+:
+% FIG 18
+
+
+\hypertarget{pn532_8cpp_a69de98d80406ff97f062c67d0bfb3cef}{}\index{pn532.\+cpp@{pn532.\+cpp}!P\+N532\+\_\+\+Write\+Frame@{P\+N532\+\_\+\+Write\+Frame}}
+\index{P\+N532\+\_\+\+Write\+Frame@{P\+N532\+\_\+\+Write\+Frame}!pn532.\+cpp@{pn532.\+cpp}}
+\subsubsection[{P\+N532\+\_\+\+Write\+Frame(\+P\+N532 $\ast$pn532, uint8\+\_\+t $\ast$data, uint16\+\_\+t length)}]{\setlength{\rightskip}{0pt plus 5cm}int P\+N532\+\_\+\+Write\+Frame (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+N532} $\ast$}]{pn532, }
+\item[{uint8\+\_\+t $\ast$}]{data, }
+\item[{uint16\+\_\+t}]{length}
+\end{DoxyParamCaption}
+)}\label{pn532_8cpp_a69de98d80406ff97f062c67d0bfb3cef}
+
+
+\+: Write a frame to the P\+N532 of at most length bytes in size. Note that less than length bytes might be returned! 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em } & \\
+\hline
+\end{DoxyRetVals}
+
+
+Here is the caller graph for this function\+:
+% FIG 19
+
+
+\hypertarget{pn532_8cpp_a0e2a8da61dadb7eb1c517312da114cdb}{}\index{pn532.\+cpp@{pn532.\+cpp}!P\+N532\+\_\+\+Write\+Gpio@{P\+N532\+\_\+\+Write\+Gpio}}
+\index{P\+N532\+\_\+\+Write\+Gpio@{P\+N532\+\_\+\+Write\+Gpio}!pn532.\+cpp@{pn532.\+cpp}}
+\subsubsection[{P\+N532\+\_\+\+Write\+Gpio(\+P\+N532 $\ast$pn532, uint8\+\_\+t $\ast$pins\+\_\+state)}]{\setlength{\rightskip}{0pt plus 5cm}int P\+N532\+\_\+\+Write\+Gpio (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+N532} $\ast$}]{pn532, }
+\item[{uint8\+\_\+t $\ast$}]{pins\+\_\+state}
+\end{DoxyParamCaption}
+)}\label{pn532_8cpp_a0e2a8da61dadb7eb1c517312da114cdb}
+
+
+\+: Write the G\+P\+I\+O states. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pins\+\_\+state} & pin state buffer (2 bytes) to write. no need to read pin states before write with the param pin\+\_\+state P3 = pin\+\_\+state\mbox{[}0\mbox{]}, P7 = pin\+\_\+state\mbox{[}1\mbox{]} bits\+: P3\mbox{[}0\mbox{]} = P30, P7\mbox{[}0\mbox{]} = 0, P3\mbox{[}1\mbox{]} = P31, P7\mbox{[}1\mbox{]} = P71, P3\mbox{[}2\mbox{]} = P32, P7\mbox{[}2\mbox{]} = P72, P3\mbox{[}3\mbox{]} = P33, P7\mbox{[}3\mbox{]} = nu, P3\mbox{[}4\mbox{]} = P34, P7\mbox{[}4\mbox{]} = nu, P3\mbox{[}5\mbox{]} = P35, P7\mbox{[}5\mbox{]} = nu, P3\mbox{[}6\mbox{]} = nu, P7\mbox{[}6\mbox{]} = nu, P3\mbox{[}7\mbox{]} = Val, P7\mbox{[}7\mbox{]} = Val, For each port that is validated (bit Val = 1), all the bits are applied simultaneously. It is not possible for example to modify the state of the port P32 without applying a value to the ports P30, P31, P33, P34 and P35. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em } & \\
+\hline
+\end{DoxyRetVals}
+
+
+Here is the call graph for this function\+:
+% FIG 20
+
+
+\hypertarget{pn532_8cpp_a74ce64964d676b92a18552b7338e82e9}{}\index{pn532.\+cpp@{pn532.\+cpp}!P\+N532\+\_\+\+Write\+Gpio\+P@{P\+N532\+\_\+\+Write\+Gpio\+P}}
+\index{P\+N532\+\_\+\+Write\+Gpio\+P@{P\+N532\+\_\+\+Write\+Gpio\+P}!pn532.\+cpp@{pn532.\+cpp}}
+\subsubsection[{P\+N532\+\_\+\+Write\+Gpio\+P(\+P\+N532 $\ast$pn532, uint8\+\_\+t pin\+\_\+number, bool pin\+\_\+state)}]{\setlength{\rightskip}{0pt plus 5cm}int P\+N532\+\_\+\+Write\+Gpio\+P (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+N532} $\ast$}]{pn532, }
+\item[{uint8\+\_\+t}]{pin\+\_\+number, }
+\item[{bool}]{pin\+\_\+state}
+\end{DoxyParamCaption}
+)}\label{pn532_8cpp_a74ce64964d676b92a18552b7338e82e9}
+
+
+\+: Write the specified pin with given states. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pin\+\_\+number} & specify the pin to write. \\
+\hline
+{\em pin\+\_\+state} & specify the pin state. true for H\+I\+G\+H, false for L\+O\+W. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em } & \\
+\hline
+\end{DoxyRetVals}
+
+
+Here is the call graph for this function\+:
+% FIG 21
+
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{pn532_8cpp_ace963daeebd9282e988576c25ff762ee}{}\index{pn532.\+cpp@{pn532.\+cpp}!P\+N532\+\_\+\+A\+C\+K@{P\+N532\+\_\+\+A\+C\+K}}
+\index{P\+N532\+\_\+\+A\+C\+K@{P\+N532\+\_\+\+A\+C\+K}!pn532.\+cpp@{pn532.\+cpp}}
+\subsubsection[{P\+N532\+\_\+\+A\+C\+K}]{\setlength{\rightskip}{0pt plus 5cm}const uint8\+\_\+t P\+N532\+\_\+\+A\+C\+K\mbox{[}$\,$\mbox{]} = \{0x00, 0x00, 0x\+F\+F, 0x00, 0x\+F\+F, 0x00\}}\label{pn532_8cpp_ace963daeebd9282e988576c25ff762ee}
+\hypertarget{pn532_8cpp_affb4ac37c8733262af29d9c93165b388}{}\index{pn532.\+cpp@{pn532.\+cpp}!P\+N532\+\_\+\+F\+R\+A\+M\+E\+\_\+\+S\+T\+A\+R\+T@{P\+N532\+\_\+\+F\+R\+A\+M\+E\+\_\+\+S\+T\+A\+R\+T}}
+\index{P\+N532\+\_\+\+F\+R\+A\+M\+E\+\_\+\+S\+T\+A\+R\+T@{P\+N532\+\_\+\+F\+R\+A\+M\+E\+\_\+\+S\+T\+A\+R\+T}!pn532.\+cpp@{pn532.\+cpp}}
+\subsubsection[{P\+N532\+\_\+\+F\+R\+A\+M\+E\+\_\+\+S\+T\+A\+R\+T}]{\setlength{\rightskip}{0pt plus 5cm}const uint8\+\_\+t P\+N532\+\_\+\+F\+R\+A\+M\+E\+\_\+\+S\+T\+A\+R\+T\mbox{[}$\,$\mbox{]} = \{0x00, 0x00, 0x\+F\+F\}}\label{pn532_8cpp_affb4ac37c8733262af29d9c93165b388}

@@ -1,0 +1,24 @@
+digraph "MainWindow::init"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="MainWindow::init",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Doorlock::init",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_doorlock.html#afcbd63621433c6086f0356bd2f94b47d",tooltip="Initialise WiringPi library and GPIO pin mode. "];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="CourseDB::initDB",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_course_d_b.html#af310392b1ba647e7d0d320ac64fec301",tooltip="creating a new database file named \"courses.db\" and creating a new table named \"COURSES\" in the datab..."];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="CourseDB::getAllCourses",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_course_d_b.html#ada1e9df01308d68dacc6a95730517a01",tooltip="Retrieves all courses from the database and returns them as QList<Course>. "];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="MyException::message",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_my_exception.html#a7371232a66d68dcd8c8c6363b434c0db"];
+  Node1 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="MainWindow::updateTableView",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_main_window.html#a31ebff8b2a54cfd5f634c82253f3ffdd",tooltip="update course table "];
+  Node6 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="MainWindow::updateStudent\lTable",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_main_window.html#ae72f434e60eb56c5ba1f18c1a0edd2ba",tooltip="update student table with upcoming course "];
+  Node7 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="CourseDB::getCourse",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_course_d_b.html#afc10757467c711b2782bd1c1cb23b0fc",tooltip="Access to courses in the database and extraction of relevant student lists and related data..."];
+  Node7 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

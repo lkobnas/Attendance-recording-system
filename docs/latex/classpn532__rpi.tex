@@ -1,0 +1,89 @@
+\hypertarget{classpn532__rpi}{}\section{pn532\+\_\+rpi Class Reference}
+\label{classpn532__rpi}\index{pn532\+\_\+rpi@{pn532\+\_\+rpi}}
+
+
+{\ttfamily \#include $<$pn532\+\_\+rpi.\+h$>$}
+
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \hyperlink{classpn532__rpi_aca9da0b54a41684dd0f6e8758c682ca5}{P\+N532\+\_\+\+Reset} (void)
+\item 
+static void \hyperlink{classpn532__rpi_a1d3372e40b375d69a33ef8407c37f951}{P\+N532\+\_\+\+Log} (const char $\ast$log)
+\item 
+static void \hyperlink{classpn532__rpi_a6e82be3a5b5c2c311a4089be49632be5}{P\+N532\+\_\+\+I2\+C\+\_\+\+Init} (\hyperlink{pn532_8h_a83d4ce3c80b776dca6f0a1583666d2f9}{P\+N532} $\ast$dev)
+\item 
+static int \hyperlink{classpn532__rpi_af91398677bb63d20f10ee98b67a29767}{P\+N532\+\_\+\+I2\+C\+\_\+\+Read\+Data} (uint8\+\_\+t $\ast$data, uint16\+\_\+t count)
+\item 
+static int \hyperlink{classpn532__rpi_a26fb40a5d7af615e4d597765127333d5}{P\+N532\+\_\+\+I2\+C\+\_\+\+Write\+Data} (uint8\+\_\+t $\ast$data, uint16\+\_\+t count)
+\item 
+static bool \hyperlink{classpn532__rpi_a5e9cb0ee0301680cd2a945ea4413f73c}{P\+N532\+\_\+\+I2\+C\+\_\+\+Wait\+Ready} (uint32\+\_\+t timeout)
+\item 
+static int \hyperlink{classpn532__rpi_afb5e919c8d4e5bbd2149ec50b80e114d}{P\+N532\+\_\+\+I2\+C\+\_\+\+Wakeup} (void)
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classpn532__rpi_a6e82be3a5b5c2c311a4089be49632be5}{}\index{pn532\+\_\+rpi@{pn532\+\_\+rpi}!P\+N532\+\_\+\+I2\+C\+\_\+\+Init@{P\+N532\+\_\+\+I2\+C\+\_\+\+Init}}
+\index{P\+N532\+\_\+\+I2\+C\+\_\+\+Init@{P\+N532\+\_\+\+I2\+C\+\_\+\+Init}!pn532\+\_\+rpi@{pn532\+\_\+rpi}}
+\subsubsection[{P\+N532\+\_\+\+I2\+C\+\_\+\+Init(\+P\+N532 $\ast$dev)}]{\setlength{\rightskip}{0pt plus 5cm}void pn532\+\_\+rpi\+::\+P\+N532\+\_\+\+I2\+C\+\_\+\+Init (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+N532} $\ast$}]{dev}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{classpn532__rpi_a6e82be3a5b5c2c311a4089be49632be5}
+
+
+Here is the caller graph for this function\+:
+% FIG 0
+
+
+\hypertarget{classpn532__rpi_af91398677bb63d20f10ee98b67a29767}{}\index{pn532\+\_\+rpi@{pn532\+\_\+rpi}!P\+N532\+\_\+\+I2\+C\+\_\+\+Read\+Data@{P\+N532\+\_\+\+I2\+C\+\_\+\+Read\+Data}}
+\index{P\+N532\+\_\+\+I2\+C\+\_\+\+Read\+Data@{P\+N532\+\_\+\+I2\+C\+\_\+\+Read\+Data}!pn532\+\_\+rpi@{pn532\+\_\+rpi}}
+\subsubsection[{P\+N532\+\_\+\+I2\+C\+\_\+\+Read\+Data(uint8\+\_\+t $\ast$data, uint16\+\_\+t count)}]{\setlength{\rightskip}{0pt plus 5cm}int pn532\+\_\+rpi\+::\+P\+N532\+\_\+\+I2\+C\+\_\+\+Read\+Data (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t $\ast$}]{data, }
+\item[{uint16\+\_\+t}]{count}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{classpn532__rpi_af91398677bb63d20f10ee98b67a29767}
+\hypertarget{classpn532__rpi_a5e9cb0ee0301680cd2a945ea4413f73c}{}\index{pn532\+\_\+rpi@{pn532\+\_\+rpi}!P\+N532\+\_\+\+I2\+C\+\_\+\+Wait\+Ready@{P\+N532\+\_\+\+I2\+C\+\_\+\+Wait\+Ready}}
+\index{P\+N532\+\_\+\+I2\+C\+\_\+\+Wait\+Ready@{P\+N532\+\_\+\+I2\+C\+\_\+\+Wait\+Ready}!pn532\+\_\+rpi@{pn532\+\_\+rpi}}
+\subsubsection[{P\+N532\+\_\+\+I2\+C\+\_\+\+Wait\+Ready(uint32\+\_\+t timeout)}]{\setlength{\rightskip}{0pt plus 5cm}bool pn532\+\_\+rpi\+::\+P\+N532\+\_\+\+I2\+C\+\_\+\+Wait\+Ready (
+\begin{DoxyParamCaption}
+\item[{uint32\+\_\+t}]{timeout}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{classpn532__rpi_a5e9cb0ee0301680cd2a945ea4413f73c}
+\hypertarget{classpn532__rpi_afb5e919c8d4e5bbd2149ec50b80e114d}{}\index{pn532\+\_\+rpi@{pn532\+\_\+rpi}!P\+N532\+\_\+\+I2\+C\+\_\+\+Wakeup@{P\+N532\+\_\+\+I2\+C\+\_\+\+Wakeup}}
+\index{P\+N532\+\_\+\+I2\+C\+\_\+\+Wakeup@{P\+N532\+\_\+\+I2\+C\+\_\+\+Wakeup}!pn532\+\_\+rpi@{pn532\+\_\+rpi}}
+\subsubsection[{P\+N532\+\_\+\+I2\+C\+\_\+\+Wakeup(void)}]{\setlength{\rightskip}{0pt plus 5cm}int pn532\+\_\+rpi\+::\+P\+N532\+\_\+\+I2\+C\+\_\+\+Wakeup (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{classpn532__rpi_afb5e919c8d4e5bbd2149ec50b80e114d}
+\hypertarget{classpn532__rpi_a26fb40a5d7af615e4d597765127333d5}{}\index{pn532\+\_\+rpi@{pn532\+\_\+rpi}!P\+N532\+\_\+\+I2\+C\+\_\+\+Write\+Data@{P\+N532\+\_\+\+I2\+C\+\_\+\+Write\+Data}}
+\index{P\+N532\+\_\+\+I2\+C\+\_\+\+Write\+Data@{P\+N532\+\_\+\+I2\+C\+\_\+\+Write\+Data}!pn532\+\_\+rpi@{pn532\+\_\+rpi}}
+\subsubsection[{P\+N532\+\_\+\+I2\+C\+\_\+\+Write\+Data(uint8\+\_\+t $\ast$data, uint16\+\_\+t count)}]{\setlength{\rightskip}{0pt plus 5cm}int pn532\+\_\+rpi\+::\+P\+N532\+\_\+\+I2\+C\+\_\+\+Write\+Data (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t $\ast$}]{data, }
+\item[{uint16\+\_\+t}]{count}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{classpn532__rpi_a26fb40a5d7af615e4d597765127333d5}
+\hypertarget{classpn532__rpi_a1d3372e40b375d69a33ef8407c37f951}{}\index{pn532\+\_\+rpi@{pn532\+\_\+rpi}!P\+N532\+\_\+\+Log@{P\+N532\+\_\+\+Log}}
+\index{P\+N532\+\_\+\+Log@{P\+N532\+\_\+\+Log}!pn532\+\_\+rpi@{pn532\+\_\+rpi}}
+\subsubsection[{P\+N532\+\_\+\+Log(const char $\ast$log)}]{\setlength{\rightskip}{0pt plus 5cm}void pn532\+\_\+rpi\+::\+P\+N532\+\_\+\+Log (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{log}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{classpn532__rpi_a1d3372e40b375d69a33ef8407c37f951}
+\hypertarget{classpn532__rpi_aca9da0b54a41684dd0f6e8758c682ca5}{}\index{pn532\+\_\+rpi@{pn532\+\_\+rpi}!P\+N532\+\_\+\+Reset@{P\+N532\+\_\+\+Reset}}
+\index{P\+N532\+\_\+\+Reset@{P\+N532\+\_\+\+Reset}!pn532\+\_\+rpi@{pn532\+\_\+rpi}}
+\subsubsection[{P\+N532\+\_\+\+Reset(void)}]{\setlength{\rightskip}{0pt plus 5cm}int pn532\+\_\+rpi\+::\+P\+N532\+\_\+\+Reset (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{classpn532__rpi_aca9da0b54a41684dd0f6e8758c682ca5}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Glasgow Course Works/\+Realtime Embeded Programming/\+Project files/\+Course\+Project/\+Attendance-\/recording-\/system/src/\+P\+N532/\+P\+N532\+\_\+lib/\hyperlink{pn532__rpi_8h}{pn532\+\_\+rpi.\+h}\item 
+E\+:/\+Glasgow Course Works/\+Realtime Embeded Programming/\+Project files/\+Course\+Project/\+Attendance-\/recording-\/system/src/\+P\+N532/\+P\+N532\+\_\+lib/\hyperlink{pn532__rpi_8cpp}{pn532\+\_\+rpi.\+cpp}\end{DoxyCompactItemize}

@@ -1,0 +1,45 @@
+digraph "Email::readCredentialsFile"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Email::readCredentialsFile",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="Email::send_email_record",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_email.html#af5c194f8670d4e2fb6153c9c3bf15c48",tooltip="Send email using SendGrid with pre-designed dynamic templates. "];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="TEST",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$test_email_8h.html#a56bfa94f212630bd193e1cf2b816a9a3"];
+  Node2 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="MainWindow::onUIDReceived",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_main_window.html#ac8e92844161faf8c2dd4a11e69a57b11",tooltip="Triggered whe Student card detected, update attendance list updated and send attendance record email..."];
+  Node2 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node5 [label="MainWindow::onFPIDIdentify\lReceived",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_main_window.html#a12c1711cb7ef466a1ccb9d31fc6e2657",tooltip="Triggered whe Student card detected, update attendance list updated and send attendance record email..."];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node6 [label="Email::send_email_newStudent",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_email.html#aad6b1fc223be02eb81439a843ea37320",tooltip="sends an email to a new student using the SendGrid email delivery service "];
+  Node6 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node7 [label="AddStudentWindow::on\l_sAddButton_clicked",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_add_student_window.html#ac8a09f059cf9f6e4824295dd937fdd33",tooltip="Validate all input fields and add student to database. "];
+  Node6 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node8 [label="TEST",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$test_email_8h.html#a91f6dfb7eb62d77d4f8f4d61caf71d5d"];
+  Node1 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node9 [label="Email::send_email_enroll\lToCourse",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_email.html#aff8985b743a5077a71222685c3c46551",tooltip="send_email_enrollToCourse in the Email class that sends an email to a recipient who has enrolled in a..."];
+  Node9 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node10 [label="CourseDB::insertCourse",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_course_d_b.html#a4b7e78db87d134769f842ab51aa3f0b4",tooltip="Insert a new course in the database with a list of names, dates and student IDs (SIDString), update the student list and send a confirmation email. "];
+  Node10 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node11 [label="AddCourseWindow::on\l_cAddButton_clicked",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_add_course_window.html#a6352af0f6a82eb9b773cdf5c535bbcc5",tooltip="Validate all fields and add course to database. "];
+  Node10 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node12 [label="TEST",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$test_course_d_b_8h.html#a35b7740d4da26be157134580b3785b20"];
+  Node9 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node13 [label="CourseDB::updateStudentList",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_course_d_b.html#a0a71cd964ea94d514a465b11cb65c437",tooltip="Update course student list, students receive confirmation email. "];
+  Node9 -> Node14 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node14 [label="TEST",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$test_email_8h.html#a99f3337d713cbe5223912641dd647709"];
+  Node1 -> Node15 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node15 [label="Email::send_email_lateReminder",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_email.html#a3522905a60977cac1c8d99d4c911f3ee",tooltip="send_email_lateReminder for a class Email which sends an email reminder to a recipient who is late fo..."];
+  Node15 -> Node16 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node16 [label="TEST",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$test_email_8h.html#a9957ea564e50ccc25665c589030bfe59"];
+  Node15 -> Node17 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node17 [label="MainWindow::checkCourseStart",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_main_window.html#a8ebe9859eb33fda652cf463cc24fac67",tooltip="check if any course is starting "];
+  Node17 -> Node18 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node18 [label="MainWindow::update",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_main_window.html#a128f71880d4b9683149023fc46fcc9f8",tooltip="course start "];
+  Node18 -> Node19 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node19 [label="MainWindow::MainWindow",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_main_window.html#a996c5a2b6f77944776856f08ec30858d",tooltip="MainWindow Constructor. "];
+  Node1 -> Node20 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node20 [label="TEST",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$test_email_8h.html#abdfdf7a042ca8730da7f4724ad81d6cf"];
+}

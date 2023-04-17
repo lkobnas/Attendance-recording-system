@@ -1,0 +1,23 @@
+digraph "MainWindow::on_deleteCourseButton_clicked"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="MainWindow::on_deleteCourse\lButton_clicked",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="getSelectedData",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$mainwindow_8cpp.html#aa2e308a0d8bdfab3859a6d1f6042424f",tooltip="Get selected course in the tableview. "];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="CourseDB::deleteCourse",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_course_d_b.html#a31f81ae3094414ea8f14dcceec6532ae",tooltip="Delete a course name from the database. "];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="MyException::message",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_my_exception.html#a7371232a66d68dcd8c8c6363b434c0db"];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid"];
+  Node5 [label="MainWindow::updateTableView",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_main_window.html#a31ebff8b2a54cfd5f634c82253f3ffdd",tooltip="update course table "];
+  Node5 -> Node6 [color="midnightblue",fontsize="10",style="solid"];
+  Node6 [label="CourseDB::getAllCourses",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_course_d_b.html#ada1e9df01308d68dacc6a95730517a01",tooltip="Retrieves all courses from the database and returns them as QList<Course>. "];
+  Node5 -> Node4 [color="midnightblue",fontsize="10",style="solid"];
+  Node5 -> Node7 [color="midnightblue",fontsize="10",style="solid"];
+  Node7 [label="MainWindow::updateStudent\lTable",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_main_window.html#ae72f434e60eb56c5ba1f18c1a0edd2ba",tooltip="update student table with upcoming course "];
+  Node7 -> Node8 [color="midnightblue",fontsize="10",style="solid"];
+  Node8 [label="CourseDB::getCourse",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_course_d_b.html#afc10757467c711b2782bd1c1cb23b0fc",tooltip="Access to courses in the database and extraction of relevant student lists and related data..."];
+  Node7 -> Node4 [color="midnightblue",fontsize="10",style="solid"];
+}

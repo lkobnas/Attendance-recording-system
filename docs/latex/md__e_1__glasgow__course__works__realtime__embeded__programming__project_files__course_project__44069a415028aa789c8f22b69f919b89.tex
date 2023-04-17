@@ -1,0 +1,226 @@
+P\+N532 N\+F\+C Library for Raspberry Pi, S\+T\+M32, Arduino
+
+
+
+\section*{How to use?}
+
+\subsection*{For Raspberry Pi}
+
+\subsubsection*{Using S\+P\+I}
+
+
+\begin{DoxyEnumerate}
+\item Set I0\+I1\+:
+\end{DoxyEnumerate}
+\begin{DoxyItemize}
+\item I0 --$>$ L\+O\+W
+\item I1 --$>$ H\+I\+G\+H
+\end{DoxyItemize}
+\begin{DoxyEnumerate}
+\item Hardware Connection\+:
+\end{DoxyEnumerate}
+\begin{DoxyItemize}
+\item S\+C\+K --$>$ S\+C\+K
+\item M\+I\+S\+O --$>$ M\+I\+S\+O
+\item M\+O\+S\+I/\+S\+D\+A/\+T\+X --$>$ M\+O\+S\+I
+\item N\+S\+S/\+S\+C\+L/\+R\+X --$>$ D4 (G\+P\+I\+O 4 of B\+C\+M pinout) Optional\+:
+\item R\+S\+T\+P\+D\+N --$>$ D20 (for hardware reset)
+\end{DoxyItemize}
+\begin{DoxyEnumerate}
+\item Modify the P\+N532 Init lines for S\+P\+I in {\ttfamily example/raspberrypi/rpi\+\_\+get\+\_\+uid.\+c}\+: 
+\begin{DoxyCode}
+1 PN532\_SPI\_Init(&pn532);
+2 //PN532\_I2C\_Init(&pn532);
+3 //PN532\_UART\_Init(&pn532);
+\end{DoxyCode}
+
+\item Compile with make\+: 
+\begin{DoxyCode}
+1 cd examples/raspberrypi && make
+\end{DoxyCode}
+
+\item Run the demo with\+: 
+\begin{DoxyCode}
+1 ./rpi\_get\_uid.exe
+\end{DoxyCode}
+
+\end{DoxyEnumerate}
+
+\subsubsection*{Using I2\+C}
+
+
+\begin{DoxyEnumerate}
+\item Set I0\+I1\+:
+\end{DoxyEnumerate}
+\begin{DoxyItemize}
+\item I0 --$>$ H\+I\+G\+H
+\item I1 --$>$ L\+O\+W
+\end{DoxyItemize}
+\begin{DoxyEnumerate}
+\item Hardware Connection\+:
+\end{DoxyEnumerate}
+\begin{DoxyItemize}
+\item M\+O\+S\+I/\+S\+D\+A/\+T\+X --$>$ S\+D\+A
+\item N\+S\+S/\+S\+C\+L/\+R\+X --$>$ S\+C\+L Optional\+:
+\item P32 --$>$ D16 (for hardware request)
+\item R\+S\+T\+P\+D\+N --$>$ D20 (for hardware reset)
+\end{DoxyItemize}
+\begin{DoxyEnumerate}
+\item Modify the P\+N532 Init lines for I2\+C in {\ttfamily example/raspberrypi/rpi\+\_\+get\+\_\+uid.\+c}\+: 
+\begin{DoxyCode}
+1 //PN532\_SPI\_Init(&pn532);
+2 PN532\_I2C\_Init(&pn532);
+3 //PN532\_UART\_Init(&pn532);
+\end{DoxyCode}
+
+\item Compile with make\+: 
+\begin{DoxyCode}
+1 cd examples/raspberrypi && make
+\end{DoxyCode}
+
+\item Run the demo with\+: 
+\begin{DoxyCode}
+1 ./rpi\_get\_uid.exe
+\end{DoxyCode}
+
+\end{DoxyEnumerate}
+
+\subsubsection*{Using U\+A\+R\+T}
+
+
+\begin{DoxyEnumerate}
+\item Set I0\+I1\+:
+\end{DoxyEnumerate}
+\begin{DoxyItemize}
+\item I0 --$>$ L\+O\+W
+\item I1 --$>$ L\+O\+W
+\end{DoxyItemize}
+\begin{DoxyEnumerate}
+\item Hardware Connection\+:
+\end{DoxyEnumerate}
+\begin{DoxyItemize}
+\item M\+O\+S\+I/\+S\+D\+A/\+T\+X --$>$ R\+X
+\item N\+S\+S/\+S\+C\+L/\+R\+X --$>$ T\+X Optional\+:
+\item R\+S\+T\+P\+D\+N --$>$ D20 (for hardware reset)
+\end{DoxyItemize}
+\begin{DoxyEnumerate}
+\item Modify the P\+N532 Init lines for U\+A\+R\+T in {\ttfamily example/raspberrypi/rpi\+\_\+get\+\_\+uid.\+c}\+: 
+\begin{DoxyCode}
+1 //PN532\_SPI\_Init(&pn532);
+2 //PN532\_I2C\_Init(&pn532);
+3 PN532\_UART\_Init(&pn532);
+\end{DoxyCode}
+
+\item Compile with make\+: 
+\begin{DoxyCode}
+1 cd examples/raspberrypi && make
+\end{DoxyCode}
+
+\item Run the demo with\+: 
+\begin{DoxyCode}
+1 ./rpi\_get\_uid.exe
+\end{DoxyCode}
+
+\end{DoxyEnumerate}
+
+\subsection*{For Arduino U\+N\+O}
+
+Please first copy the files pn532.\+c, \hyperlink{pn532_8h}{pn532.\+h}, pn532\+\_\+uno.\+cpp and pn532\+\_\+uno.\+h to the libraries directory, which can be set up by Arduino I\+D\+E --$>$ preference.
+
+Then you should also connect the serial port from your U\+N\+O to a P\+C for Serial Monitor.
+\begin{DoxyItemize}
+\item Baudrate\+: 115200.
+\end{DoxyItemize}
+
+\subsubsection*{Using S\+P\+I}
+
+
+\begin{DoxyEnumerate}
+\item Set I0\+I1\+:
+\end{DoxyEnumerate}
+\begin{DoxyItemize}
+\item I0 --$>$ L\+O\+W
+\item I1 --$>$ H\+I\+G\+H
+\end{DoxyItemize}
+\begin{DoxyEnumerate}
+\item Hardware Connection\+:
+\end{DoxyEnumerate}
+\begin{DoxyItemize}
+\item S\+C\+K --$>$ Arduino D13
+\item M\+I\+S\+O --$>$ Arduino\+D12
+\item M\+O\+S\+I --$>$ Arduino D11
+\item N\+S\+S --$>$ Arduino D4
+\end{DoxyItemize}
+\begin{DoxyEnumerate}
+\item Open examples\textbackslash{} uno\+\_\+get\+\_\+uid.\+ino with Arduino I\+D\+E then change the P\+N532 Init lines for S\+P\+I\+: 
+\begin{DoxyCode}
+1 PN532\_SPI\_Init(&pn532);
+2 //PN532\_I2C\_Init(&pn532);
+\end{DoxyCode}
+
+\item Compile and upload the demo to your Arduino U\+N\+O board\+: 
+\begin{DoxyCode}
+1 examples\(\backslash\)arduino\(\backslash\)uno\_get\_uid\(\backslash\) uno\_get\_uid.ino
+\end{DoxyCode}
+
+\end{DoxyEnumerate}
+
+\subsubsection*{Using I2\+C}
+
+
+\begin{DoxyEnumerate}
+\item Set I0\+I1\+:
+\end{DoxyEnumerate}
+\begin{DoxyItemize}
+\item I0 --$>$ H\+I\+G\+H
+\item I1 --$>$ L\+O\+W
+\end{DoxyItemize}
+\begin{DoxyEnumerate}
+\item Hardware Connection\+:
+\end{DoxyEnumerate}
+\begin{DoxyItemize}
+\item S\+C\+L --$>$ Arduino\+A5
+\item S\+D\+A --$>$ Arduino\+A4
+\end{DoxyItemize}
+\begin{DoxyEnumerate}
+\item Open examples\textbackslash{}arduino\textbackslash{}uno\+\_\+get\+\_\+uid\textbackslash{}uno\+\_\+get\+\_\+uid.\+ino with Arduino I\+D\+E then change the P\+N532 Init lines for I2\+C\+: 
+\begin{DoxyCode}
+1 //PN532\_SPI\_Init(&pn532);
+2 PN532\_I2C\_Init(&pn532);
+\end{DoxyCode}
+
+\item Compile and upload the demo to your Arduino U\+N\+O board\+: 
+\begin{DoxyCode}
+1 examples\(\backslash\)arduino\(\backslash\)uno\_get\_uid\(\backslash\)uno\_get\_uid.ino
+\end{DoxyCode}
+
+\end{DoxyEnumerate}
+
+\subsection*{For S\+T\+M32}
+
+The demos are build on S\+T\+M32\+F103\+C\+B\+T6, but you can port them with S\+T\+M32\+Cube\+M\+X.
+
+
+\begin{DoxyEnumerate}
+\item Set I0\+I1\+:
+\end{DoxyEnumerate}
+\begin{DoxyItemize}
+\item I0 --$>$ L\+O\+W
+\item I1 --$>$ H\+I\+G\+H
+\end{DoxyItemize}
+\begin{DoxyEnumerate}
+\item Hardware connection\+:
+\end{DoxyEnumerate}
+\begin{DoxyItemize}
+\item S\+C\+K --$>$ P\+A5
+\item M\+I\+S\+O --$>$ P\+A6
+\item M\+O\+S\+I --$>$ P\+A7
+\item N\+S\+S --$>$ P\+A4
+\item P\+A9 --$>$ R\+X
+\item P\+A10 --$>$ T\+X
+\end{DoxyItemize}
+\begin{DoxyEnumerate}
+\item Extract\+: pn532-\/lib\textbackslash{}examples\textbackslash{}stm32\textbackslash{}stm32.\+7z
+\item Open the project M\+D\+K-\/\+A\+R\+M\textbackslash{}pn532\+\_\+stm32.\+uvprojx with Keil V5
+\item Build and download the project to your S\+T\+M32 board. 
+\end{DoxyEnumerate}

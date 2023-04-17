@@ -1,0 +1,11 @@
+digraph "Email::send_email_newStudent"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Email::send_email_newStudent",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="AddStudentWindow::on\l_sAddButton_clicked",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_add_student_window.html#ac8a09f059cf9f6e4824295dd937fdd33",tooltip="Validate all input fields and add student to database. "];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="TEST",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$test_email_8h.html#a91f6dfb7eb62d77d4f8f4d61caf71d5d"];
+}

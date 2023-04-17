@@ -1,0 +1,56 @@
+\#\# Sending email from template 
+\begin{DoxyCode}
+1 curl --request POST \(\backslash\)
+2   --url https://api.sendgrid.com/v3/mail/send \(\backslash\)
+3   --header 'authorization: Bearer YOUR\_API\_KEY' \(\backslash\)
+4   --header 'Content-Type: application/json' \(\backslash\)
+5   --data '\{"personalizations": [\{"to": [\{"email": "recipient@example.com"\}]\}],"from": \{"email":
+       "sendeexampexample@example.com"\},"subject":"Hello, World!","content": [\{"type": "text/plain","value": "Heya!"\}],
+       "template\_id" : "YOUR\_TEMPLATE\_ID"\}'
+\end{DoxyCode}
+ \subsection*{Sending email at a Scheduled Time}
+
+\#\#\# Option 1\+: Sending a Basic \hyperlink{class_email}{Email} 
+\begin{DoxyCode}
+1 curl --request POST \(\backslash\)
+2   --url https://api.sendgrid.com/v3/mail/send \(\backslash\)
+3   --header 'authorization: Bearer YOUR\_API\_KEY' \(\backslash\)
+4   --header 'Content-Type: application/json' \(\backslash\)
+5   --data '\{"personalizations": [\{"to": [\{"email": "recipient@example.com"\}]\}],"from": \{"email":
+       "sendeexampexample@example.com"\},"subject":"Hello, World!","content": [\{"type": "text/plain","value": "Heya!"\}],
+       "send\_at" : UNIX\_TIMESTAMP\_HERE\}'
+\end{DoxyCode}
+
+
+\subsubsection*{Option 2\+: Scheduling and Cancelling an \hyperlink{class_email}{Email}}
+
+Step 1\+: Generate a batch I\+D 
+\begin{DoxyCode}
+1 curl --request POST \(\backslash\)
+2   --url https://api.sendgrid.com/v3/mail/batch \(\backslash\)
+3   --header 'authorization: Bearer YOUR\_API\_KEY' \(\backslash\)
+4   --header 'Content-Type: application/json' \(\backslash\)
+\end{DoxyCode}
+
+
+Step 2\+: Schedule the email to be sent, using your new batch I\+D 
+\begin{DoxyCode}
+1 curl --request POST \(\backslash\)
+2   --url https://api.sendgrid.com/v3/mail/send \(\backslash\)
+3   --header 'authorization: Bearer YOUR\_API\_KEY' \(\backslash\)
+4   --header 'Content-Type: application/json' \(\backslash\)
+5   --data '\{"personalizations": [\{"to": [\{"email": "recipient@example.com"\}]\}],"from": \{"email":
+       "sendeexampexample@example.com"\},"subject":"Hello, World!","content": [\{"type": "text/plain","value": "Heya!"\}],
+       "send\_at" : UNIX\_TIMESTAMP\_HERE, "batch\_id" : "YOUR\_BATCH\_ID"\}'
+\end{DoxyCode}
+
+
+Step 3\+: Cancel the scheduled email 
+\begin{DoxyCode}
+1 curl --request POST \(\backslash\)
+2   --url https://api.sendgrid.com/v3/user/scheduled\_sends \(\backslash\)
+3   --header 'authorization: Bearer YOUR\_API\_KEY' \(\backslash\)
+4   --header 'Content-Type: application/json' \(\backslash\)
+5   --data '\{"batch\_id":"YOUR\_BATCH\_ID","status":"cancel"\}'
+\end{DoxyCode}
+ 

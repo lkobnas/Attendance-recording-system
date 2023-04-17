@@ -1,0 +1,13 @@
+digraph "StudentDB::initDB"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="StudentDB::initDB",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="AddStudentWindow::AddStudent\lWindow",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_add_student_window.html#a9b1648c23f475584aa17a421eac88ba3",tooltip="AddStudentWindow Constructor. "];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="TEST",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$test_student_d_b_8h.html#ad537db7f7f0f8b2963f79a27bd437f61"];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="MainWindow::on_studentList\lButton_clicked",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_main_window.html#a617480870497fabb561137928b2231e6",tooltip="Open student list when button is clicked. "];
+}

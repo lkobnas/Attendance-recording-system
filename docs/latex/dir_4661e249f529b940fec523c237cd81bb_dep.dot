@@ -1,0 +1,10 @@
+digraph "E:/Glasgow Course Works" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_4661e249f529b940fec523c237cd81bb {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_4661e249f529b940fec523c237cd81bb.html"];
+    dir_4661e249f529b940fec523c237cd81bb [shape=plaintext label="Glasgow Course Works"];
+    dir_0de5b3cfa57f7af3a06cda61aa545a48 [shape=box label="Realtime Embeded Programming" color="red" fillcolor="white" style="filled" URL="dir_0de5b3cfa57f7af3a06cda61aa545a48.html"];
+  }
+}

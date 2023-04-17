@@ -1,0 +1,13 @@
+digraph "E:/Glasgow Course Works/Realtime Embeded Programming/Project files/CourseProject" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_44383f636653fc79aa86a9fe8a59c743 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="Project files" fontname="Helvetica", fontsize="10", URL="dir_44383f636653fc79aa86a9fe8a59c743.html"]
+  subgraph clusterdir_d2e777da32129d0916c133da14d58dc0 {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_d2e777da32129d0916c133da14d58dc0.html"];
+    dir_d2e777da32129d0916c133da14d58dc0 [shape=plaintext label="CourseProject"];
+    dir_21abc70e16bc01c891fab1fdb2dfa975 [shape=box label="Attendance-recording-system" color="red" fillcolor="white" style="filled" URL="dir_21abc70e16bc01c891fab1fdb2dfa975.html"];
+  }
+  }
+}

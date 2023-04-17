@@ -1,0 +1,15 @@
+digraph "AddStudentWindow::on_sAddButton_clicked"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="AddStudentWindow::on\l_sAddButton_clicked",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="StudentDB::insertStudent",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_student_d_b.html#a4d825a8a4cc4bad150ef0007c0aab41e",tooltip="The database insert inserts a new student information consisting of six parameters: sid (student ID)..."];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="MyException::message",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_my_exception.html#a7371232a66d68dcd8c8c6363b434c0db"];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="Email::send_email_newStudent",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_email.html#aad6b1fc223be02eb81439a843ea37320",tooltip="sends an email to a new student using the SendGrid email delivery service "];
+  Node4 -> Node5 [color="midnightblue",fontsize="10",style="solid"];
+  Node5 [label="Email::readCredentialsFile",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_email.html#af94727858b272dfb14a9f1224a8f2da1",tooltip="read a file named \"credentials.txt\" to obtain an API key used for authentication in an email system ..."];
+}

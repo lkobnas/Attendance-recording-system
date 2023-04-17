@@ -1,0 +1,15 @@
+digraph "MainWindow::doorControl"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="MainWindow::doorControl",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Doorlock::run",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_doorlock.html#a673692b6523ede367cb976a345c7abf8",tooltip="Run the doorlock opening sequence. "];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="Doorlock::setPinHigh",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_doorlock.html#a03ac589bab28ea38e17bbe0cfdc3cedd"];
+  Node2 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="Doorlock::delayMillis",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_doorlock.html#aef174dcae75e99ddcf7c479bc65db2d1"];
+  Node2 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="Doorlock::setPinLow",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_doorlock.html#a7479d484eff1b1122c4f9e92f51597d1"];
+}

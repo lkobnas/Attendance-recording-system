@@ -1,0 +1,251 @@
+\hypertarget{class_student_d_b}{}\section{Student\+D\+B Class Reference}
+\label{class_student_d_b}\index{Student\+D\+B@{Student\+D\+B}}
+
+
+{\ttfamily \#include $<$student\+D\+B.\+h$>$}
+
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \hyperlink{class_student_d_b_a28b1fc4c78fa28c401cf823d20203870}{init\+D\+B} ()
+\begin{DoxyCompactList}\small\item\em Initialise the list of students in the database. \end{DoxyCompactList}\item 
+static bool \hyperlink{class_student_d_b_a4d825a8a4cc4bad150ef0007c0aab41e}{insert\+Student} (Q\+String sid, Q\+String name, Q\+String \hyperlink{test_email_8h_ad5727e447818d4c056038b4e0941ac50}{email}, Q\+String card\+Id, Q\+String picture, Q\+String fp\+Id)
+\begin{DoxyCompactList}\small\item\em The database insert inserts a new student information consisting of six parameters\+: sid (student I\+D), name, email, card\+Id (student card I\+D), picture (number of bytes for the student\textquotesingle{}s photo) and fp\+Id (number of bytes for the student\textquotesingle{}s fingerprint I\+D). \end{DoxyCompactList}\item 
+static bool \hyperlink{class_student_d_b_ad523ce3b196a299535f8855a5c60a93a}{delete\+Student} (Q\+String sid)
+\begin{DoxyCompactList}\small\item\em Remove a student from the S\+T\+U\+D\+E\+N\+T\+S table in the S\+Q\+Lite database. \end{DoxyCompactList}\item 
+static bool \hyperlink{class_student_d_b_a77c06dcacdf92b1ca2be118e05491667}{check\+Student\+Exist} (Q\+String sid)
+\begin{DoxyCompactList}\small\item\em check if a student with a given sid exists in the database \end{DoxyCompactList}\item 
+static \hyperlink{struct_student}{Student} \hyperlink{class_student_d_b_af18e20bdf62fa2408a22876f9590ffd5}{get\+Student} (Q\+String sid)
+\begin{DoxyCompactList}\small\item\em takes a Q\+String sid as input and returns a \hyperlink{struct_student}{Student} object \end{DoxyCompactList}\item 
+static \hyperlink{struct_student}{Student} \hyperlink{class_student_d_b_aec7543fe050aac224e1d50ee16aeeb82}{get\+Student\+By\+Card\+I\+D} (Q\+String card\+I\+D)
+\begin{DoxyCompactList}\small\item\em takes a card\+I\+D string parameter and returns a \hyperlink{struct_student}{Student} object \end{DoxyCompactList}\item 
+static \hyperlink{struct_student}{Student} \hyperlink{class_student_d_b_a4bb67084428edf4f6cfb91643daaa693}{get\+Student\+By\+F\+P\+I\+D} (Q\+String fp\+I\+D)
+\begin{DoxyCompactList}\small\item\em retrieves a student\textquotesingle{}s information from the S\+T\+U\+D\+E\+N\+T\+S table in an S\+Q\+Lite database based on their fingerprint I\+D \end{DoxyCompactList}\item 
+static Q\+List$<$ \hyperlink{struct_student}{Student} $>$ \hyperlink{class_student_d_b_a92d37eccdeabd6de04972d36caedccc9}{get\+All\+Students} ()
+\begin{DoxyCompactList}\small\item\em Get all student records from the S\+Q\+Lite database students.\+db and return them encapsulated in a Q\+List. \end{DoxyCompactList}\item 
+static int \hyperlink{class_student_d_b_a6dc7d9b44dbf72262416d9708df1d277}{callback} (void $\ast$Not\+Used, int argc, char $\ast$$\ast$argv, char $\ast$$\ast$az\+Col\+Name)
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_student_d_b_a6dc7d9b44dbf72262416d9708df1d277}{}\index{Student\+D\+B@{Student\+D\+B}!callback@{callback}}
+\index{callback@{callback}!Student\+D\+B@{Student\+D\+B}}
+\subsubsection[{callback(void $\ast$\+Not\+Used, int argc, char $\ast$$\ast$argv, char $\ast$$\ast$az\+Col\+Name)}]{\setlength{\rightskip}{0pt plus 5cm}int Student\+D\+B\+::callback (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{Not\+Used, }
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv, }
+\item[{char $\ast$$\ast$}]{az\+Col\+Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{class_student_d_b_a6dc7d9b44dbf72262416d9708df1d277}
+\hypertarget{class_student_d_b_a77c06dcacdf92b1ca2be118e05491667}{}\index{Student\+D\+B@{Student\+D\+B}!check\+Student\+Exist@{check\+Student\+Exist}}
+\index{check\+Student\+Exist@{check\+Student\+Exist}!Student\+D\+B@{Student\+D\+B}}
+\subsubsection[{check\+Student\+Exist(\+Q\+String sid)}]{\setlength{\rightskip}{0pt plus 5cm}bool Student\+D\+B\+::check\+Student\+Exist (
+\begin{DoxyParamCaption}
+\item[{Q\+String}]{sid}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{class_student_d_b_a77c06dcacdf92b1ca2be118e05491667}
+
+
+check if a student with a given sid exists in the database 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sid} & student I\+D \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true 
+\end{DoxyReturn}
+
+
+Here is the caller graph for this function\+:
+% FIG 0
+
+
+\hypertarget{class_student_d_b_ad523ce3b196a299535f8855a5c60a93a}{}\index{Student\+D\+B@{Student\+D\+B}!delete\+Student@{delete\+Student}}
+\index{delete\+Student@{delete\+Student}!Student\+D\+B@{Student\+D\+B}}
+\subsubsection[{delete\+Student(\+Q\+String sid)}]{\setlength{\rightskip}{0pt plus 5cm}bool Student\+D\+B\+::delete\+Student (
+\begin{DoxyParamCaption}
+\item[{Q\+String}]{sid}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{class_student_d_b_ad523ce3b196a299535f8855a5c60a93a}
+
+
+Remove a student from the S\+T\+U\+D\+E\+N\+T\+S table in the S\+Q\+Lite database. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sid} & student I\+D \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true 
+\end{DoxyReturn}
+
+
+Here is the caller graph for this function\+:
+% FIG 1
+
+
+\hypertarget{class_student_d_b_a92d37eccdeabd6de04972d36caedccc9}{}\index{Student\+D\+B@{Student\+D\+B}!get\+All\+Students@{get\+All\+Students}}
+\index{get\+All\+Students@{get\+All\+Students}!Student\+D\+B@{Student\+D\+B}}
+\subsubsection[{get\+All\+Students()}]{\setlength{\rightskip}{0pt plus 5cm}Q\+List$<$ {\bf Student} $>$ Student\+D\+B\+::get\+All\+Students (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{class_student_d_b_a92d37eccdeabd6de04972d36caedccc9}
+
+
+Get all student records from the S\+Q\+Lite database students.\+db and return them encapsulated in a Q\+List. 
+
+\begin{DoxyReturn}{Returns}
+returns the \hyperlink{struct_student}{Student} object with the retrieved data 
+\end{DoxyReturn}
+
+
+Here is the caller graph for this function\+:
+% FIG 2
+
+
+\hypertarget{class_student_d_b_af18e20bdf62fa2408a22876f9590ffd5}{}\index{Student\+D\+B@{Student\+D\+B}!get\+Student@{get\+Student}}
+\index{get\+Student@{get\+Student}!Student\+D\+B@{Student\+D\+B}}
+\subsubsection[{get\+Student(\+Q\+String sid)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Student} Student\+D\+B\+::get\+Student (
+\begin{DoxyParamCaption}
+\item[{Q\+String}]{sid}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{class_student_d_b_af18e20bdf62fa2408a22876f9590ffd5}
+
+
+takes a Q\+String sid as input and returns a \hyperlink{struct_student}{Student} object 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sid} & student I\+D \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+statement is finalized using sqlite3\+\_\+finalize, and the \hyperlink{struct_student}{Student} object is returned 
+\end{DoxyReturn}
+
+
+Here is the caller graph for this function\+:
+% FIG 3
+
+
+\hypertarget{class_student_d_b_aec7543fe050aac224e1d50ee16aeeb82}{}\index{Student\+D\+B@{Student\+D\+B}!get\+Student\+By\+Card\+I\+D@{get\+Student\+By\+Card\+I\+D}}
+\index{get\+Student\+By\+Card\+I\+D@{get\+Student\+By\+Card\+I\+D}!Student\+D\+B@{Student\+D\+B}}
+\subsubsection[{get\+Student\+By\+Card\+I\+D(\+Q\+String card\+I\+D)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Student} Student\+D\+B\+::get\+Student\+By\+Card\+I\+D (
+\begin{DoxyParamCaption}
+\item[{Q\+String}]{card\+I\+D}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{class_student_d_b_aec7543fe050aac224e1d50ee16aeeb82}
+
+
+takes a card\+I\+D string parameter and returns a \hyperlink{struct_student}{Student} object 
+
+
+\begin{DoxyParams}{Parameters}
+{\em card\+I\+D} & student card I\+D \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns the \hyperlink{struct_student}{Student} object with the retrieved data 
+\end{DoxyReturn}
+
+
+Here is the caller graph for this function\+:
+% FIG 4
+
+
+\hypertarget{class_student_d_b_a4bb67084428edf4f6cfb91643daaa693}{}\index{Student\+D\+B@{Student\+D\+B}!get\+Student\+By\+F\+P\+I\+D@{get\+Student\+By\+F\+P\+I\+D}}
+\index{get\+Student\+By\+F\+P\+I\+D@{get\+Student\+By\+F\+P\+I\+D}!Student\+D\+B@{Student\+D\+B}}
+\subsubsection[{get\+Student\+By\+F\+P\+I\+D(\+Q\+String fp\+I\+D)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Student} Student\+D\+B\+::get\+Student\+By\+F\+P\+I\+D (
+\begin{DoxyParamCaption}
+\item[{Q\+String}]{fp\+I\+D}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{class_student_d_b_a4bb67084428edf4f6cfb91643daaa693}
+
+
+retrieves a student\textquotesingle{}s information from the S\+T\+U\+D\+E\+N\+T\+S table in an S\+Q\+Lite database based on their fingerprint I\+D 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fp\+I\+D} & a byte array of the student\textquotesingle{}s fingerprint I\+D \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns the \hyperlink{struct_student}{Student} object with the retrieved data 
+\end{DoxyReturn}
+
+
+Here is the caller graph for this function\+:
+% FIG 5
+
+
+\hypertarget{class_student_d_b_a28b1fc4c78fa28c401cf823d20203870}{}\index{Student\+D\+B@{Student\+D\+B}!init\+D\+B@{init\+D\+B}}
+\index{init\+D\+B@{init\+D\+B}!Student\+D\+B@{Student\+D\+B}}
+\subsubsection[{init\+D\+B()}]{\setlength{\rightskip}{0pt plus 5cm}bool Student\+D\+B\+::init\+D\+B (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{class_student_d_b_a28b1fc4c78fa28c401cf823d20203870}
+
+
+Initialise the list of students in the database. 
+
+\begin{DoxyReturn}{Returns}
+Execute successfully, return true 
+\end{DoxyReturn}
+
+
+Here is the caller graph for this function\+:
+% FIG 6
+
+
+\hypertarget{class_student_d_b_a4d825a8a4cc4bad150ef0007c0aab41e}{}\index{Student\+D\+B@{Student\+D\+B}!insert\+Student@{insert\+Student}}
+\index{insert\+Student@{insert\+Student}!Student\+D\+B@{Student\+D\+B}}
+\subsubsection[{insert\+Student(\+Q\+String sid, Q\+String name, Q\+String email, Q\+String card\+Id, Q\+String picture, Q\+String fp\+Id)}]{\setlength{\rightskip}{0pt plus 5cm}bool Student\+D\+B\+::insert\+Student (
+\begin{DoxyParamCaption}
+\item[{Q\+String}]{sid, }
+\item[{Q\+String}]{name, }
+\item[{Q\+String}]{email, }
+\item[{Q\+String}]{card\+Id, }
+\item[{Q\+String}]{picture, }
+\item[{Q\+String}]{fp\+Id}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{class_student_d_b_a4d825a8a4cc4bad150ef0007c0aab41e}
+
+
+The database insert inserts a new student information consisting of six parameters\+: sid (student I\+D), name, email, card\+Id (student card I\+D), picture (number of bytes for the student\textquotesingle{}s photo) and fp\+Id (number of bytes for the student\textquotesingle{}s fingerprint I\+D). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sid} & student I\+D \\
+\hline
+{\em name} & student name \\
+\hline
+{\em email} & student email \\
+\hline
+{\em card\+Id} & student card I\+D \\
+\hline
+{\em picture} & a byte array of the student\textquotesingle{}s photo \\
+\hline
+{\em fp\+Id} & a byte array of the student\textquotesingle{}s fingerprint I\+D \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The function returns true if the student was successfully inserted into the database 
+\end{DoxyReturn}
+
+
+Here is the caller graph for this function\+:
+% FIG 7
+
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Glasgow Course Works/\+Realtime Embeded Programming/\+Project files/\+Course\+Project/\+Attendance-\/recording-\/system/src/database/\hyperlink{student_d_b_8h}{student\+D\+B.\+h}\item 
+E\+:/\+Glasgow Course Works/\+Realtime Embeded Programming/\+Project files/\+Course\+Project/\+Attendance-\/recording-\/system/src/database/\hyperlink{student_d_b_8cpp}{student\+D\+B.\+cpp}\end{DoxyCompactItemize}

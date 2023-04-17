@@ -1,0 +1,17 @@
+digraph "CourseDB::insertCourse"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="CourseDB::insertCourse",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="MyException::message",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_my_exception.html#a7371232a66d68dcd8c8c6363b434c0db"];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="StudentDB::checkStudentExist",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_student_d_b.html#a77c06dcacdf92b1ca2be118e05491667",tooltip="check if a student with a given sid exists in the database "];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="StudentDB::getStudent",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_student_d_b.html#af18e20bdf62fa2408a22876f9590ffd5",tooltip="takes a QString sid as input and returns a Student object "];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid"];
+  Node5 [label="Email::send_email_enroll\lToCourse",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_email.html#aff8985b743a5077a71222685c3c46551",tooltip="send_email_enrollToCourse in the Email class that sends an email to a recipient who has enrolled in a..."];
+  Node5 -> Node6 [color="midnightblue",fontsize="10",style="solid"];
+  Node6 [label="Email::readCredentialsFile",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_email.html#af94727858b272dfb14a9f1224a8f2da1",tooltip="read a file named \"credentials.txt\" to obtain an API key used for authentication in an email system ..."];
+}
