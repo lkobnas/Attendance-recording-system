@@ -220,7 +220,8 @@ void Fingerprint::atExitFunc() {
     serialClose(g_fd); 
 }
 bool Fingerprint::PS_Exit() {
-  printf("Recurring: code=%02X, desc=%s\n", g_error_code, PS_GetErrorDesc());
+  //printf("Recurring: code=%02X, desc=%s\n", g_error_code, PS_GetErrorDesc());
+  printf("Recurring: No finger detected");
   return false;
 }
 
