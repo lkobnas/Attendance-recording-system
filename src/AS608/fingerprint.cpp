@@ -98,7 +98,7 @@ int findUnusedIndex(const int* indexList, const int size) {
     return index;
 }
 
-/// @brief Enroll user fingerprint data in to an empty memory, return
+/// @brief Enroll user fingerprint data in to an empty memory, only read user finger one 
 /// @return fingerprint address
 int Fingerprint::fp_enroll(){
     int address = -1;
@@ -131,8 +131,8 @@ int Fingerprint::fp_enroll(){
 return pageID;
 }
 
-/// @brief 
-/// @return 
+/// @brief Enroll user fingerprint data in to an empty memory, read user finger twice 
+/// @return fingerprint address
 int Fingerprint::fp_add()
 {
     int address = -1;
@@ -189,6 +189,8 @@ int Fingerprint::fp_add()
 
     return address;
 }
+
+/// @brief List all fingerprint ID in sensor memory, for debug use only
 void Fingerprint::fp_list(){
     int indexList[512] = { 0 };
       PS_ReadIndexTable(indexList, 512) ||  PS_Exit();
@@ -206,8 +208,10 @@ void Fingerprint::fp_list(){
       printf("Address: %d",address);
 }
 
+/// @brief Check and compare user fingerprint
+/// @return -1: fingerprint not found, otherwise: fingerprint address 
 int Fingerprint::fp_identify(){
-     int pageID = 0;
+    int pageID = 0;
     int score = 0;
     
     // Check if finger exist
