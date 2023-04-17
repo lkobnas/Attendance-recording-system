@@ -471,11 +471,11 @@ void MainWindow::recordAttendanceWindow(QString studentID)
 
 void MainWindow::onUIDReceived(const QString uid) {
     //update database arrived
-    if (d_functionRunning) {
-        return;    
-    }
-    d_functionRunning = true;
-    delay_timer->start();
+   // if (d_functionRunning) {
+   //     return;    
+   // }
+   // d_functionRunning = true;
+   // delay_timer->start();
 
     if(studentWindowValid){       
         connect(this, &MainWindow::passCardID, sWindow, 
