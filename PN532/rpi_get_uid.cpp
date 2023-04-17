@@ -37,7 +37,6 @@ string RFID::get_uid(void) {
             uid_str += to_string(uid[i]);
         }
         //cout<<"\r\n"<<uid_str;
-        break;
     }
 return uid_str;
 }
