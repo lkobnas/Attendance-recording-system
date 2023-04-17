@@ -40,9 +40,17 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     running = false;
-    if (rfidThread.joinable()) {
+    while(rfidThread.joinable()) {
         rfidThread.detach();
         rfidThread.join();
+    }
+    while(fingerprintIdentifyThread.joinable()) {
+        fingerprintIdentifyThread.detach();
+        fingerprintIdentifyThread.join();
+    }
+    while(doorlockThread.joinable()) {
+        doorlockThread.detach();
+        doorlockThread.join();
     }
     delete ui;
 }
@@ -93,8 +101,8 @@ void MainWindow::init(){
     ui->tableView->setModel(model);
     ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
     // Set the column widths and header titles
-    ui->tableView->setColumnWidth(0, 120);
-    ui->tableView->setColumnWidth(1, 160);
+    ui->tableView->setColumnWidth(0, 110);
+    ui->tableView->setColumnWidth(1, 155);
     ui->tableView->setColumnWidth(2, 60);
     ui->tableView->setColumnWidth(3, 60);
 
