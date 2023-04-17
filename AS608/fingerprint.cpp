@@ -104,7 +104,8 @@ int Fingerprint::fp_enroll(){
     int count = 0;
     printf("Please put your finger on the moudle\n");
     while (digitalRead(g_as608.detect_pin) == LOW) {
-      if(waitUntilDetectFinger(2000)){
+      delay(500)
+      if(waitUntilDetectFinger(5000)){
         break;
       }else{
         printf("No finger detected!\n");
