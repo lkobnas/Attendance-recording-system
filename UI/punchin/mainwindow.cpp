@@ -270,6 +270,7 @@ void MainWindow::on_actionSwitch_to_student_mode_triggered()
 
 void MainWindow::on_testButton_clicked()
 {
+    running=false;
     rfidThread.join();
     fingerprintIdentifyThread.join();
     doorlockThread.join();
