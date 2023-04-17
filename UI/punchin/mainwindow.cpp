@@ -438,7 +438,7 @@ void MainWindow::fingerprintIdentifyListener() {
     while (running) {
         if(fpMode == 1){    //Identify mode: Active in MainWindow
             int fpID = fp.fp_identify();
-            if (!fpID==-1) { 
+            if (!(fpID==-1)) { 
                 QString qfpID = QString::number(fpID);
                 QMetaObject::invokeMethod(this, "onFPIDIdentifyReceived", Qt::QueuedConnection,
                                         Q_ARG(QString, qfpID));
@@ -446,7 +446,7 @@ void MainWindow::fingerprintIdentifyListener() {
         }else if(fpMode == 2){  //Enroll mode: Active in AddStudentWindow
             int fpID = fp.fp_enroll();
             qDebug() <<"fpID: "<<fpID;
-            if (!fpID==-1) { 
+            if (!(fpID==-1)) { 
                 QString qfpID = QString::number(fpID);
                 
                 QMetaObject::invokeMethod(this, "onFPIDAddReceived", Qt::QueuedConnection,
