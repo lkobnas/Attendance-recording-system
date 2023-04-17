@@ -84,6 +84,7 @@ void MainWindow::init(){
     ui->labelUpcomingCourse->setFont(font);
 
     door = false;
+    doorlock.init(26);
     studentWindowValid = false;
     try{
         cdb.initDB();
