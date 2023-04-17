@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Doorlock.h"
+#include "../doorlock.h"
 
 int main() {
     try {
