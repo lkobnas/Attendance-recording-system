@@ -32,6 +32,7 @@ MainWindow::MainWindow(QWidget *parent)
     fpMode = 1;
     rfidThread = std::thread(&MainWindow::rfidListener, this);
     fingerprintIdentifyThread = std::thread(&MainWindow::fingerprintIdentifyListener, this);
+    doorlockThread = std::thread(&MainWindow::doorControl, this);
     
 
 }
@@ -66,7 +67,7 @@ void MainWindow::init(){
     font.setBold(false);
     ui->labelUpcomingCourse->setFont(font);
 
-    
+    door = false;
     studentWindowValid = false;
     try{
         cdb.initDB();
@@ -459,9 +460,7 @@ void MainWindow::fingerprintIdentifyListener() {
 
 void MainWindow::recordAttendanceWindow(QString studentID)
 {
-    //doorlock
-    doorlockThread = std::thread(&MainWindow::doorControl, this);
-    qDebug() << "recordAttendanceWindow triggered";
+    door = true;
     QString s = "Student with SID: "+studentID+" . Your attendance have been recorded";
     QMessageBox* popup = new QMessageBox(QMessageBox::Information, "Success", s, QMessageBox::Close, nullptr);
     popup->setAttribute(Qt::WA_DeleteOnClose); // delete the popup automatically when it's closed
@@ -598,6 +597,9 @@ void MainWindow::onFPIDAddReceived(QString fpid){
 }
 
 void MainWindow::doorControl(){
-    doorlock->run();
-    doorlockThread.join();
+    if(door){
+        doorlock->run();
+        door = false;
+    }
+
 }

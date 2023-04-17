@@ -97,6 +97,7 @@ private:
     std::thread doorlockThread;
     int fpMode;
     bool running;
+    bool door;
 
 
     QTimer* email_timer;
