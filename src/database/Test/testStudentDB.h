@@ -1,8 +1,8 @@
 #ifndef TESTSTUDENTDB_H
 #define TESTSTUDENTDB_H
 
-#include "studentDB.h"
-#include "studentDB.cpp"
+#include "../studentDB.h"
+#include "../studentDB.cpp"
 #include <gtest/gtest.h>
 
 StudentDB sdb;
