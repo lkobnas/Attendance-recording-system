@@ -107,8 +107,8 @@ int Fingerprint::fp_enroll(){
       delay(1);
       if ((count++) > 5000) {
         printf("Not detected the finger!\n");
-        return -1;
       }
+      return -1;
     }     
     int pageID = address;
     PS_Enroll(&pageID) || PS_Exit();
