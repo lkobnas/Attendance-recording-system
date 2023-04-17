@@ -37,7 +37,7 @@ QT_END_NAMESPACE
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
-    bool adminMode = true;              ///TEST MODE
+    bool adminMode = false;             
     QStandardItemModel* model;
     QStandardItemModel* sModel;
     CourseDB cdb;
