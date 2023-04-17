@@ -201,6 +201,7 @@ void MainWindow::updateTableView()
             return;
         }
     }
+    ui->tableView->setModel(model);
     ui->tableView->update();
     updateStudentTable();
 }
