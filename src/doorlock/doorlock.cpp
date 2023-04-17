@@ -11,7 +11,7 @@ void Doorlock::init(int p){
 }
 void Doorlock::run(){
     setPinHigh();
-    delayMillis(5000);
+    delayMillis(1500);
     setPinLow();
     delayMillis(1000);
 }
