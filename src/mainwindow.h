@@ -93,7 +93,7 @@ private:
 
     RFID rfid;
     Fingerprint fp;
-    Doorlock* doorlock;
+    Doorlock doorlock(26);
     std::thread rfidThread;
     std::thread fingerprintIdentifyThread;
     std::thread doorlockThread;
