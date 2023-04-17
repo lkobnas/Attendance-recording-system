@@ -636,7 +636,7 @@ void MainWindow::onFPIDAddReceived(QString fpid){
 }
 
 void MainWindow::doorControl(){
-    if(door){
+    while(door){
         doorlock->run();
         door = false;
     }
