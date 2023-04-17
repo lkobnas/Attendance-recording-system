@@ -1,8 +1,8 @@
 #ifndef ADDSTUDENTWINDOW_H
 #define ADDSTUDENTWINDOW_H
 
-#include "../database/studentDB.h"
-#include "../email_curl/email.h"
+#include "database/studentDB.h"
+#include "email_curl/email.h"
 #include <QWidget>
 #include <QLineEdit>
 #include <QPushButton>

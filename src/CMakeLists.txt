@@ -11,16 +11,16 @@ set(PROJECT_SOURCES
         mainwindow.h mainwindow.cpp mainwindow.ui
         addstudentwindow.h addstudentwindow.cpp addstudentwindow.ui
         addcoursewindow.h addcoursewindow.cpp addcoursewindow.ui
-        ../database/studentDB.cpp
-        ../database/courseDB.cpp
-        ../email_curl/email.cpp
-        ../PN532/PN532_lib/pn532.cpp
-        ../PN532/PN532_lib/pn532_rpi.cpp
-        ../PN532/rfid.cpp
-        ../doorlock/doorlock.cpp
-        ../AS608/fingerprint.cpp
-        ../AS608/AS608_lib/utils.c
-        ../AS608/AS608_lib/as608.c
+        database/studentDB.cpp
+        database/courseDB.cpp
+        email_curl/email.cpp
+        PN532/PN532_lib/pn532.cpp
+        PN532/PN532_lib/pn532_rpi.cpp
+        PN532/rfid.cpp
+        doorlock/doorlock.cpp
+        AS608/fingerprint.cpp
+        AS608/AS608_lib/utils.c
+        AS608/AS608_lib/as608.c
 )
 
 set(CMAKE_CXX_STANDARD 11)

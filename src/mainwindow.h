@@ -26,9 +26,9 @@
 #include "addcoursewindow.h"
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
-#include "../PN532/rfid.h"
-#include "../doorlock/doorlock.h"
-#include "../AS608/fingerprint.h"          
+#include "PN532/rfid.h"
+#include "doorlock/doorlock.h"
+#include "AS608/fingerprint.h"          
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

@@ -1,8 +1,8 @@
 #ifndef ADDCOURSEWINDOW_H
 #define ADDCOURSEWINDOW_H
 
-#include "../database/courseDB.h"
-#include "../email_curl/email.h"
+#include "database/courseDB.h"
+#include "email_curl/email.h"
 #include <QDialog>
 
 namespace Ui {
