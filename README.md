@@ -36,6 +36,13 @@ Tired of taking attendance by hand? This project will surely help you out! Punch
   <li><a href="#acknowledgements">Acknowledgements</a></li>
 </ul>
 
+<h2>Watch our Demo video here :</h2>
+
+<h3>
+
+[PunchIN -Full Demo Video](https://youtu.be/NJFYx8gFYq8) 
+</h3>
+
 
 <h2 id="features"> <br> Features </h2>
 
@@ -57,6 +64,12 @@ Intuitive UI design with various features:
 - Administrative Mode
 - Real-time Course Table
 - Expecting and Arrived student table
+
+<br>
+
+<img src="images/UI.jpeg" alt="UI" width="800" height="500" style="margin-left:25px">
+
+<br>
 
 <br>
 
