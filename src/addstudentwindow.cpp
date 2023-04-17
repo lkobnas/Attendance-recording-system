@@ -2,7 +2,7 @@
 #include "ui_addstudentwindow.h"
 
 
-/// @brief MainWindow Constructor
+/// @brief AddStudentWindow Constructor
 /// @param parent Passing parent object
 AddStudentWindow::AddStudentWindow(QWidget *parent) :
     QDialog(parent),
@@ -13,13 +13,13 @@ AddStudentWindow::AddStudentWindow(QWidget *parent) :
     setWindowTitle("Add New Student");
 }
 
-/// @brief MainWindow Destructor
+/// @brief AddStudentWindow Destructor
 AddStudentWindow::~AddStudentWindow()
 {
     delete ui;
 }
 
-/// @brief add 'Student' clear button
+/// @brief Clear all input fields
 void AddStudentWindow::on_sClearButton_clicked()
 {
     ui->sNameLineEdit->clear();
@@ -27,8 +27,8 @@ void AddStudentWindow::on_sClearButton_clicked()
     ui->sSIDLineEdit->clear();
 }
 
-/// @brief Detected ID card
-/// @param cardid ID card
+/// @brief Received student cardID from MainWindow, change button to green when succeed
+/// @param cardid is the student cardID
 void AddStudentWindow::receiveCardID(QString cardid)
 {
     qDebug()<< "receiveCardID: "<<cardid;
@@ -40,6 +40,8 @@ void AddStudentWindow::receiveCardID(QString cardid)
     ui->sCardButton->update();
 }
 
+/// @brief Received student fingerprint from MainWindow, change button to green when succeed
+/// @param fpid 
 void AddStudentWindow::receiveFPID(QString fpid)
 /// @brief add student card button
 {
@@ -53,19 +55,21 @@ void AddStudentWindow::receiveFPID(QString fpid)
 }
 
 
+/// @brief Show guidelines when card button is clicked
 void AddStudentWindow::on_sCardButton_clicked()
 {
     QMessageBox::information(this, "Scan your card", "Place your card on the card reader until this button turn green");
 }
 
 
+/// @brief Show guidelines when fingerprint button is clicked
 void AddStudentWindow::on_sFpButton_clicked()
 {
-    QMessageBox::information(this, "Scan your finger", "Place your finger on the fingerprint sensor, wait for 1 second, \n then lift your finger up and place it again until the button turn green");
+    QMessageBox::information(this, "Scan your finger", "Gently place your finger on the fingerprint sensor until the button turn green");
 }
 
 
-/// @brief Add 'Course' button
+/// @brief Validate all input fields and add student to database
 void AddStudentWindow::on_sAddButton_clicked()
 {
 
@@ -112,7 +116,7 @@ return;
 }
 
 
-/// @brief add 'Student' close button
+/// @brief Close add student window
 void AddStudentWindow::on_pushButton_clicked()
 {
     this->close();

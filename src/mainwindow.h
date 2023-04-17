@@ -34,6 +34,7 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
+/// @brief A class to wrap the QT generated header file and handle GUI functionality. Inherits from QMainWindow
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
