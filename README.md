@@ -13,13 +13,8 @@ Tired of taking attendance by hand? This project will surely help you out! Punch
 
 <h2> Join us on social media </h2>
 
-<a href="https://twitter.com/PunchIN_38">
-  <img align="left" alt="PunchIN | Twitter" width="38px" style ="margin-right:20px"  src="https://raw.githubusercontent.com/peterthehan/peterthehan/master/assets/twitter.svg" />
-</a>
-
-<a href="https://www.youtube.com/channel/UC1_89wKcrga4XP-w_oYpf4w">
-  <img align="left" alt="PunchIN | YouTube" width="38px" style ="margin-right:20px" src="https://raw.githubusercontent.com/peterthehan/peterthehan/master/assets/youtube.svg" />
-</a>
+[Twitter](https://twitter.com/PunchIN_38)
+[YouTube](https://www.youtube.com/channel/UC1_89wKcrga4XP-w_oYpf4w)
 
 <br>
 
